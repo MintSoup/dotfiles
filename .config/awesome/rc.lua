@@ -273,15 +273,16 @@ globalkeys = gears.table.join(
 		function ()
 			client.focus.maximized_horizontal = false
 			client.focus.maximized_vertical   = false
-		end)
+		end),
+	awful.key({modkey,			},	 "b", function() 
+		-- local wibox = awful.client.focus.object.screen.mywibox
+		local wibox = mouse.screen.mywibox
+		wibox.visible = not wibox.visible
+	end,
+		{description="toggle bar", group="awesome"})
 )
 
 clientkeys = gears.table.join(
-	awful.key({ modkey }, "f", function (c)
-		c.fullscreen = not c.fullscreen
-		c:raise()
-	end,
-		{description = "toggle fullscreen", group = "client"}),
 	awful.key({ modkey			}, "x", function (c) c:kill() end,
 		{description = "close", group = "client"}),
 	awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle,
