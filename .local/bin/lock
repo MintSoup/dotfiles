@@ -1,0 +1,19 @@
+#!/bin/fish
+i3lock -C \
+-i "/home/areg/Wallpapers/1611414552328.jpg" \
+--timepos='x+95:h-20' \
+--layoutpos='w/2:h-20' \
+--clock \
+--keylayout 0 \
+--timecolor d6d6d6 \
+--time-font "FiraCode Nerd Font" \
+--layout-font "FiraCode Nerd Font" \
+--insidevercolor=141419 \
+--ringvercolor=141419 \
+--ringcolor=e86315 \
+--keyhlcolor=c70096 \
+--wrongcolor=d6d6d6 \
+--verifcolor=d6d6d6 \
+--layoutcolor=d6d6d6 \
+--datecolor 00000000 \
+--nofork

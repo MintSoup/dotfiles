@@ -1,0 +1,5 @@
+#!/bin/fish
+set fn (mktemp /tmp/SXIV-XXXXXXXX)
+cp /dev/stdin $fn
+sxiv $fn
+
