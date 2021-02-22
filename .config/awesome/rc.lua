@@ -271,8 +271,7 @@ globalkeys = gears.table.join(
 		{description="show help", group="awesome"}),
 	awful.key({ modkey,           }, "n",
 		function ()
-			client.focus.maximized_horizontal = false
-			client.focus.maximized_vertical   = false
+			client.focus.maximized = not client.focus.maximized
 		end),
 	awful.key({modkey,			},	 "b", function() 
 		-- local wibox = awful.client.focus.object.screen.mywibox

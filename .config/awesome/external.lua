@@ -13,7 +13,7 @@ return gears.table.join(
     awful.key({modkey}, ";", function () awful.spawn("rofi -show emoji") end,
 			  {description = "Insert emojis", group = "launcher"}),
 	
-    awful.key({modkey, "Shift"}, "e", function () awful.spawn("pcmanfm") end,
+    awful.key({modkey, "Shift"}, "e", function () awful.spawn("pcmanfm-qt") end,
 			  {description = "PCManFM", group = "launcher"}),
     awful.key({modkey, "Shift"}, "s", function () awful.spawn("flameshot gui", false) end,
 			  {description = "Flameshot", group = "launcher"}),
