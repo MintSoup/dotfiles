@@ -1,4 +1,5 @@
 -- Standard awesome library
+--
 local gears = require("gears")
 local shape = gears.shape
 local awful = require("awful")
@@ -435,11 +436,8 @@ end
 
 client.connect_signal("manage", function (c)
 	if not is_terminal(c) then
-
 		local parent_client=awful.client.focus.history.get(c.screen, 1)
-
 		if not c.pid then return end
-
 		awful.spawn.easy_async('bash '..awesome_config_folder..'helper.sh gppid '..c.pid, function(gppid)
 			awful.spawn.easy_async('bash '..awesome_config_folder..'helper.sh ppid '..c.pid, function(ppid)
 				if parent_client and (gppid:find('^' .. parent_client.pid) or ppid:find('^' .. parent_client.pid)) and
