@@ -1,0 +1,10 @@
+#!/bin/fish
+read file
+set action (echo -e "delete\nwallpaper" | dmenu -p "$file")
+switch $action
+	case "delete"
+		rm $file
+	case "wallpaper"
+		awesome-client (printf 'require("gears.wallpaper").maximized("%s/%s")' (pwd) $file)
+end
+
