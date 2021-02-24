@@ -97,7 +97,7 @@ dir:close()
 
 
 
-math.randomseed(os.time())
+math.randomseed(os.time() * 4214053)
 
 local function set_wallpaper(s)
 	local wallpaper = wallpapers[math.random(0, #wallpapers)]
@@ -432,14 +432,19 @@ end
 
 
 
+local gppid = 'bash '..awesome_config_folder..'helper.sh gppid '
+local ppid = 'bash '..awesome_config_folder..'helper.sh ppid '
 
+client.connect_signal("property::floating", function(c) 
+	c.above = c.floating
+end)
 
 client.connect_signal("manage", function (c)
 	if not is_terminal(c) then
 		local parent_client=awful.client.focus.history.get(c.screen, 1)
 		if not c.pid then return end
-		awful.spawn.easy_async('bash '..awesome_config_folder..'helper.sh gppid '..c.pid, function(gppid)
-			awful.spawn.easy_async('bash '..awesome_config_folder..'helper.sh ppid '..c.pid, function(ppid)
+		awful.spawn.easy_async(gppid .. c.pid, function(gppid)
+			awful.spawn.easy_async(ppid .. c.pid, function(ppid)
 				if parent_client and (gppid:find('^' .. parent_client.pid) or ppid:find('^' .. parent_client.pid)) and
 																	is_terminal(parent_client) then
 
