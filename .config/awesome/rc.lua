@@ -1,5 +1,4 @@
 -- Standard awesome library
---
 local gears = require("gears")
 local shape = gears.shape
 local awful = require("awful")
@@ -524,10 +523,11 @@ end
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     -- c:emit_signal("request::activate", "mouse_enter", {raise = false})
-	c:activate({
-		context = "mouse_enter",
-		raise = false
-	})
+	--c:activate({
+		--context = "mouse_enter",
+		--raise = false
+	--})
+	c.active = true
 	syncon(c)
 end)
 
