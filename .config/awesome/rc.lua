@@ -68,6 +68,7 @@ run_once({"pia-client","/opt/piavpn/bin/pia-client"})
 run_once("flameshot")
 run_once("unclutter --timeout 30")
 run_once("xbindkeys")
+run_once("copyq")
 
 awful.spawn("xset r rate 200 40", false)
 awful.spawn("vmtouch -tf ".. os.getenv("HOME"), false)
@@ -387,6 +388,7 @@ awful.rules.rules = {
 		class = {
 			"Pavucontrol",
 			"SpeedCrunch",
+			"copyq",
 		},
 		name = {
 
