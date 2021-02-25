@@ -435,7 +435,9 @@ local gppid = 'bash '..awesome_config_folder..'helper.sh gppid '
 local ppid = 'bash '..awesome_config_folder..'helper.sh ppid '
 
 client.connect_signal("property::floating", function(c) 
-	c.above = c.floating
+	if not c.fullscreen then
+		c.above = c.floating
+	end
 end)
 
 client.connect_signal("manage", function (c)
