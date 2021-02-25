@@ -529,7 +529,6 @@ client.connect_signal("mouse::enter", function(c)
 		context = "mouse_enter",
 		raise = false
 	})
-	c.active = true
 	syncon(c)
 end)
 
