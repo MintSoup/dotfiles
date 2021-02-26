@@ -544,8 +544,10 @@ client.connect_signal("focus", function(c)
 		single_shot = true,
 		autostart = true,
 		callback  = function()
-			if x >= c.x and x < c.x + c.width and y >= c.y and y < c.y + c.height then
-				c:emit_signal("mouse::enter")
+			if c.valid then 
+				if x >= c.x and x < c.x + c.width and y >= c.y and y < c.y + c.height then
+					c:emit_signal("mouse::enter")
+				end
 			end
 		end
 	}
