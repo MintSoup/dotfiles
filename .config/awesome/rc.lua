@@ -113,6 +113,7 @@ local mycalendar = wibox.container.background(wibox.widget.textclock("%a, %d %b 
 local myclock = wibox.widget.textclock("%r", 1)
 local mybattery = require("battery")
 local mytemp = require("temp")
+local mymem = require("mem")
 mypulse = require("pulse") -- not local so external.lua can access
 mymic = require("mic")
 
@@ -201,6 +202,8 @@ awful.screen.connect_for_each_screen(function(s)
 	wwrapper(mybattery.widget),
 	larrow(),
 	wwrapper(mytemp.widget),
+	larrow(),
+	wwrapper(mymem.widget),
 	larrow(),
 	wwrapper(mypulse.widget),
 	larrow(),
@@ -567,6 +570,13 @@ client.connect_signal("property::floating", function(c)
 		c.size_hints_honor = false
 	end
 		
+end)
+
+client.connect_signal("property::hidden", function(c) 
+	c.hidden = false
+end)
+client.connect_signal("property::minimized", function(c) 
+	c.minimized = false
 end)
 
 
