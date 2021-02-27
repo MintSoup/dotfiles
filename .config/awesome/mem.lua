@@ -7,7 +7,7 @@ local function get()
 	local mem = lain.widget.mem {
 		settings = function()
 			local ram = tonumber(string.format("%.2f", mem_now.used / 1024))
-			widget:set_markup(" " .. ram .. "GiB")
+			widget:set_markup(" " .. ram .. "G")
 		end,
 		timeout = 5,
 	}
