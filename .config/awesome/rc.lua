@@ -130,6 +130,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 	awful.tag({"﫸 " }, s, awful.layout.layouts[1])
 
+
 	-- Create a taglist widget
 	s.mytaglist = awful.widget.taglist {
 		screen  = s,
@@ -214,11 +215,16 @@ awful.screen.connect_for_each_screen(function(s)
 	wwrapper(myclock),
 },
 	}
+
 end)
 
 -- Select middle tag
 for s in screen do
 	s.tags[5]:view_only() 
+	-- bar
+	for t = 1, #s.tags do
+		s.tags[t].bar = true
+	end
 end
 
 -- {{{ Mouse bindings
@@ -281,6 +287,7 @@ globalkeys = gears.table.join(
 		-- local wibox = awful.client.focus.object.screen.mywibox
 		local wibox = mouse.screen.mywibox
 		wibox.visible = not wibox.visible
+		awful.tag.selected().bar = wibox.visible
 	end,
 		{description="toggle bar", group="awesome"})
 )
@@ -623,7 +630,11 @@ end
 
 
 
-
+awful.tag.attached_connect_signal(nil, "property::selected", function(t) 
+	if not t.selected then return end
+	local wibox = mouse.screen.mywibox
+	wibox.visible = t.bar
+end)
 
 
 
