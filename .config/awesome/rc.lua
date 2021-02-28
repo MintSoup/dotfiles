@@ -467,7 +467,7 @@ client.connect_signal("manage", function (c)
 					end
 
 					c:connect_signal("unmanage", function() 
-						parent_client.minimized = false
+						parent_client.hidden = false
 
 						if parent_client.floating then
 							parent_client.x = c.x
@@ -477,7 +477,7 @@ client.connect_signal("manage", function (c)
 						end
 					end)
 
-					parent_client.minimized = true
+					parent_client.hidden = true
 					copy_size(c, parent_client, idx)
 					return
 				end
@@ -579,13 +579,9 @@ client.connect_signal("property::floating", function(c)
 		
 end)
 
-client.connect_signal("property::hidden", function(c) 
-	c.hidden = false
-end)
 client.connect_signal("property::minimized", function(c) 
 	c.minimized = false
 end)
-
 
 
 function left()
