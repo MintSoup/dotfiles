@@ -11,6 +11,12 @@ local function get()
 		end,
 		timeout = 5,
 	}
+
+
+	mem.widget:buttons(
+		awful.button({}, 1, function() mem:update() end)	
+	)
+
 	return mem
 end
 
