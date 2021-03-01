@@ -25,6 +25,8 @@ return gears.table.join(
 			  {description = "PCManFM", group = "launcher"}),
     awful.key({modkey, "Shift"}, "v", function () awful.spawn(terminal .. " -e vim") end,
 			  {description = "Vim", group = "launcher"}),
+    awful.key({modkey, "Shift"}, "b", function () awful.spawn(terminal .. " -e htop") end,
+			  {description = "Htop", group = "launcher"}),
 
 
 	
