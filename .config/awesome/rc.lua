@@ -279,10 +279,6 @@ globalkeys = gears.table.join(
 		{description = "quit awesome", group = "awesome"}),
 	awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
 		{description="show help", group="awesome"}),
-	awful.key({ modkey,           }, "n",
-		function ()
-			client.focus.maximized = not client.focus.maximized
-		end),
 	awful.key({modkey,			},	 "b", function() 
 		-- local wibox = awful.client.focus.object.screen.mywibox
 		local wibox = mouse.screen.mywibox
@@ -446,13 +442,15 @@ end
 local gppid = 'bash '..awesome_config_folder..'helper.sh gppid '
 local ppid = 'bash '..awesome_config_folder..'helper.sh ppid '
 
-client.connect_signal("property::floating", function(c) 
-	if not c.fullscreen then
-		c.above = c.floating
-	end
-end)
-
 client.connect_signal("manage", function (c)
+
+	if awesome.startup
+		and not c.size_hints.user_position
+		and not c.size_hints.program_position then
+		-- Prevent clients from being unreachable after screen count changes.
+		awful.placement.no_offscreen(c)
+	end
+
 	if not is_terminal(c) then
 		local parent_client=awful.client.focus.history.get(c.screen, 1)
 		if not c.pid then return end
@@ -483,17 +481,6 @@ client.connect_signal("manage", function (c)
 				end
 			end)
 		end)
-	end
-
-
-
-	-- if not awesome.startup then awful.client.setslave(c) end
-
-	if awesome.startup
-		and not c.size_hints.user_position
-		and not c.size_hints.program_position then
-		-- Prevent clients from being unreachable after screen count changes.
-		awful.placement.no_offscreen(c)
 	end
 
 
@@ -565,24 +552,18 @@ end)
 
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 client.connect_signal("property::urgent", function(c)
-    c.minimized = false
     c:jump_to()
 end)
 
 client.connect_signal("property::floating", function(c) 
     if c.maximized or c.fullscreen then return end
-	if c.floating then
-		if not c.size_hints_honor then c.size_hints_honor = true end
-	else
-		c.size_hints_honor = false
-	end
-		
+
+	c.size_hints_honor = c.floating
+	c.above = c.floating
+
 end)
 
-client.connect_signal("property::minimized", function(c) 
-	c.minimized = false
-end)
-
+client.connect_signal("property::minimized", function(c) c.minimized = false end)
 
 function left()
 	local tags = awful.screen.focused().selected_tags
@@ -631,12 +612,6 @@ awful.tag.attached_connect_signal(nil, "property::selected", function(t)
 	local wibox = mouse.screen.mywibox
 	wibox.visible = t.bar
 end)
-
-
-
-
-
-
 
 screen.connect_signal("arrange", function (s)
 	if not s.selected_tag then
