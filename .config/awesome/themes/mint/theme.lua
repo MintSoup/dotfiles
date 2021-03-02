@@ -32,7 +32,7 @@ theme.bg_systray = theme.color2
 
 -- {{{ Borders
 theme.useless_gap   = 4
-theme.border_width  = 1
+theme.border_width  = 2
 theme.border_normal = bg
 theme.border_focus  = "#ed00b3"
 theme.border_marked = "#ed00b3"
