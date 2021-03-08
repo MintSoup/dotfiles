@@ -16,7 +16,7 @@ theme.font       = "FiraCode Nerd Font " .. fontsize
 bg = "#1a1a20"
 
 -- {{{ Colors
-theme.color1 = "#ff9e00"
+theme.color1 = "#e0691f"
 theme.color2 = "#407be3"
 
 theme.fg_normal  = "#e8e8e8"
@@ -32,9 +32,9 @@ theme.bg_systray = theme.color2
 
 -- {{{ Borders
 theme.useless_gap   = 4
-theme.border_width  = 3
+theme.border_width  = 2
 theme.border_normal = "#00000000"
-theme.border_focus  = "#407be3"
+theme.border_focus  = theme.color2
 theme.border_marked = "#407be3"
 theme.gap_single_client  = false
 theme.border_single_client  = false
