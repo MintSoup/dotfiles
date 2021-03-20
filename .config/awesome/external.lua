@@ -27,6 +27,8 @@ return gears.table.join(
 			  {description = "Vim", group = "launcher"}),
     awful.key({modkey, "Shift"}, "b", function () awful.spawn(terminal .. " -e htop") end,
 			  {description = "Htop", group = "launcher"}),
+    awful.key({modkey, "Shift"}, "w", function () awful.spawn("emacsclient -c -a \"\" ") end,
+			  {description = "Emacs Client", group = "launcher"}),
 
 
 	
