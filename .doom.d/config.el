@@ -21,7 +21,6 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 20 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "sans" :size 20))
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -62,10 +61,24 @@
 (define-key evil-normal-state-map "x" 'delete-forward-char)
 (define-key evil-normal-state-map "X" 'delete-backward-char)
 (define-key evil-normal-state-map "C" 'evil-delete-line-without-yank)
+(define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+(define-key evil-normal-state-map (kbd "C-S-a") 'evil-numbers/dec-at-pt)
 
 (use-package! evil-snipe
   :config
   (setq evil-snipe-scope 'whole-buffer)
 )
+
 (setq neo-theme 'icons)
+
 (doom-themes-neotree-config)
+
+(defun dired-up-alternate-file ()
+  "In Dired, go up one directory, reusing the current buffer"
+  (interactive)
+  (find-alternate-file (file-name-directory (directory-file-name list-buffers-directory)))
+)
+(map! :after dired
+      :map dired-mode-map
+      :nv "-"
+      'dired-up-alternate-file)
