@@ -13,7 +13,8 @@ local theme = {}
 fontsize = 9.5
 theme.font       = "FiraCode Nerd Font " .. fontsize
 
-bg = "#1a1a20"
+-- bg = "#1a1a20"
+bg = "#21242b"
 
 -- {{{ Colors
 theme.color1 = "#e0691f"
@@ -22,7 +23,7 @@ theme.color2 = "#407be3"
 theme.fg_normal  = "#e8e8e8"
 theme.fg_focus   = "#00ff9a"
 theme.fg_urgent  = "#ff0000"
-theme.bg_normal  = bg .. "d9"
+theme.bg_normal  = bg .. "ff"
 theme.bg_focus   = "#00000000"
 theme.bg_urgent  = "#00000000"
 theme.tooltip_bg = theme.bg_normal
@@ -149,7 +150,7 @@ theme.notification_font = theme.font
 theme.notification_max_width = 450
 theme.notification_width = 450
 theme.notification_border_width = 0 
-theme.notification_bg = bg .. "89"
+theme.notification_bg = bg .. "ff"
 
 theme.bat_ac_prefix = " "
 theme.bat_percent_colors = {

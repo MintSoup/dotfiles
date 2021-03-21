@@ -2,7 +2,8 @@
     foreground:           #d6d6d6;
     selected-foreground:  #00ff9a;
     
-    background:           #141419a0; 
+    //background:           #141419a0; 
+    background:           #21242bff; 
     background-solid:     #141419ff; 
     selected-background:  rgba(0, 0, 0, 40%);
 
