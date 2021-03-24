@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Areg Hov"
-      user-mail-address "john@doe.com")
+	  user-mail-address "john@doe.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -22,7 +22,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 20 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 20))
+	  doom-variable-pitch-font (font-spec :family "sans" :size 20))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -67,18 +67,33 @@
 (use-package! evil-snipe
   :config
   (setq evil-snipe-scope 'whole-buffer)
-)
+  )
 
 (setq neo-theme 'icons)
-
-(doom-themes-neotree-config)
 
 (defun dired-up-alternate-file ()
   "In Dired, go up one directory, reusing the current buffer"
   (interactive)
-  (find-alternate-file (file-name-directory (directory-file-name list-buffers-directory)))
-)
+  (find-alternate-file "..")
+  )
+
 (map! :after dired
-      :map dired-mode-map
-      :nv "-"
-      'dired-up-alternate-file)
+	  :map dired-mode-map
+	  :n "-"
+	  'dired-up-alternate-file)
+
+(map! :leader
+	  :desc "Open calculator" "oc" 'calc)
+
+(map! :leader
+	  :desc "Previous buffer" "j" 'previous-buffer
+	  :desc "Next buffer" "k" 'next-buffer)
+
+(setq tab-width 4
+	  evil-shift-width 4
+	  lua-indent-level 4
+	  indent-tabs-mode t)
+
+
+(add-hook 'org-mode-hook 'hl-todo-mode)
+(remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)

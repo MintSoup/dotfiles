@@ -69,7 +69,7 @@ run_once("flameshot")
 run_once("unclutter --timeout 30")
 run_once("xbindkeys")
 run_once("copyq")
-run_once("picom --experimental-backends --backend=glx")
+run_once("picom")
 
 awful.spawn("xset r rate 200 40", false)
 awful.spawn("vmtouch -tf ".. os.getenv("HOME"), false)
@@ -425,6 +425,7 @@ function copy_size(c, parent_client, idx)
     if not c.valid or not parent_client.valid then
         return
     end
+
     c.floating = parent_client.floating
 	if c.floating then 
 		c.x = parent_client.x;
@@ -579,6 +580,7 @@ function right()
 	local tags = awful.screen.focused().selected_tags
 	if #tags > 1 then return end
 	local tag = tags[1]
+
 	if (tag.index - 1) % 3 < 2 then
 		awful.tag.viewidx(1)
 	end
