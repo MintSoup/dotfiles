@@ -150,7 +150,7 @@ theme.notification_font = theme.font
 theme.notification_max_width = 450
 theme.notification_width = 450
 theme.notification_border_width = 0 
-theme.notification_bg = bg .. "ff"
+theme.notification_bg = "#282c34"
 
 theme.bat_ac_prefix = " "
 theme.bat_percent_colors = {

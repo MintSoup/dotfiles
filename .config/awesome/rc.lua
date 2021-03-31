@@ -1,4 +1,5 @@
 -- Standard awesome library
+
 local gears = require("gears")
 local shape = gears.shape
 local awful = require("awful")
