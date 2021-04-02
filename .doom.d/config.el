@@ -52,7 +52,7 @@
 (map! :n "x" 'delete-forward-char
       :n "C" 'evil-delete-line-without-yank
       :n "C-a" 'evil-numbers/inc-at-pt
-      :n "C-S-A" 'evil-numbers/dec-at-pt
+      :n "C-S-a" 'evil-numbers/dec-at-pt
       :n "Ö" 'evil-ex
       :n "°" 'evil-invert-char)
 
@@ -60,10 +60,14 @@
       :map evil-org-mode-map
       :n "x" 'evil-org-delete-char-without-yank)
 
+(map! :after evil-snipe
+      :map evil-snipe-mode-map
+      :n "S" 'evil-avy-goto-char-2)
+
 (use-package! evil-snipe
   :config
-  (setq evil-snipe-scope 'whole-buffer)
-  (setq evil-snipe-repeat-scope 'whole-buffer))
+  (setq evil-snipe-scope 'whole-buffer
+	evil-snipe-repeat-scope 'whole-buffer))
 
 (defun dired-up-alternate-file ()
   "In Dired, go up one directory, reusing the current buffer"
@@ -82,11 +86,24 @@
       :desc "Previous buffer" "j" 'previous-buffer
       :desc "Next buffer" "k" 'next-buffer)
 
-
-(setq tab-width 4
-      evil-shift-width 4
-      indent-tabs-mode t)
-
 (add-hook 'org-mode-hook 'hl-todo-mode)
+
 (remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)
-(setq which-key-idle-delay 0.35)
+(setq-default which-key-idle-delay 0.35
+	      which-key-idle-secondary-delay 0.000001)
+
+					; START TABS CONFIG
+;; Create a variable for our preferred tab width
+(setq custom-tab-width 4)
+
+;; Two callable functions for enabling/disabling tabs in Emacs
+(defun enable-tabs  ()
+  (local-set-key (kbd "TAB") 'tab-to-tab-stop)
+  (setq-default python-indent-offset custom-tab-width) ;; Python
+  (setq-default electric-indent-inhibit t)
+  (setq backward-delete-char-untabify-method 'hungry)
+  (setq-default evil-shift-width custom-tab-width)
+  (setq indent-tabs-mode t)
+  (setq tab-width custom-tab-width))
+
+(add-hook 'prog-mode-hook 'enable-tabs)

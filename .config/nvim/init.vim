@@ -233,3 +233,7 @@ let g:lightline = {
 	  \ 'colorscheme': 'one',
       \ 'separator': { 'left': '', 'right': '' },
   	  \ 'subseparator': { 'left': '', 'right': '' } }
+
+
+" Increment letters with C-a
+set nrformats+=alpha

@@ -30,7 +30,7 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;; (emoji +unicode)  ;  🙂
+       (emoji +unicode)  ;
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
@@ -68,7 +68,7 @@
        :emacs
        dired             ; making dired pretty [functional]
        ;; electric          ; smarter, keyword-based electric-indent
-       ;;ibuffer         ; interactive buffer management
+       ibuffer         ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
        ;; vc                ; version-control and Emacs, sitting in a tree
 
@@ -80,7 +80,7 @@
 
        :checkers
        ;; syntax              ; tasing you for every semicolon you forget
-       ;; (spell +flyspell) ; tasing you for misspelling mispelling
+       ;; (spell +aspell) ; tasing you for misspelling mispelling
        ;; grammar           ; tasing grammar mistake every you make
 
        :tools
@@ -92,7 +92,7 @@
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
-       ;; lookup              ; navigate your code and its documentation
+       ;; (lookup +dictionary +offline)               ; navigate your code and its documentation
        ;; lsp
        ;; magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
