@@ -11,7 +11,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 local theme = {}
 -- {{{ Styles
 fontsize = 9.5
-theme.font       = "FiraCode Nerd Font " .. fontsize
+theme.font       = "Fira Code Nerd Font " .. fontsize
 
 -- bg = "#1a1a20"
 bg = "#21242b"

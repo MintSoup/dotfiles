@@ -50,3 +50,4 @@
 ;(unpin! t)
 ;; (package! doom-themes)
 (package! solaire-mode :disable t)
+(package! geiser-guile :pin "91be7a3a")

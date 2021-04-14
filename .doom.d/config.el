@@ -52,9 +52,7 @@
 (map! :n "x" 'delete-forward-char
       :n "C" 'evil-delete-line-without-yank
       :n "C-a" 'evil-numbers/inc-at-pt
-      :n "C-S-a" 'evil-numbers/dec-at-pt
-      :n "Ö" 'evil-ex
-      :n "°" 'evil-invert-char)
+      :n "C-S-a" 'evil-numbers/dec-at-pt)
 
 (map! :after evil-org
       :map evil-org-mode-map
@@ -77,7 +75,9 @@
 (map! :after dired
       :map dired-mode-map
       :n "-"
-      'dired-up-alternate-file)
+      'dired-up-alternate-file
+      :n "Y"
+      (cmd! () (dired-copy-filename-as-kill 0)))
 
 (map! :leader
       :desc "Open calculator" "oc" 'calc)
@@ -107,3 +107,4 @@
   (setq tab-width custom-tab-width))
 
 (add-hook 'prog-mode-hook 'enable-tabs)
+(setq geiser-active-implementations '(guile))
