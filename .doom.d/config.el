@@ -1,8 +1,3 @@
-;; User name
-(setq user-full-name "Areg Hov"
-	  user-mail-address "john@doe.com")
-
-
 ;; Splash
 (setq fancy-splash-image (concat doom-private-dir "emacs.svg"))
 
@@ -98,7 +93,10 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (doom/set-indent-width 4)))
 (setq lisp-body-indent 4)
 
-(setq backward-delete-char-untabify-method 'hungry)
+(setq backward-delete-char-untabify-method nil)
 
 ;; Guile
 (setq geiser-active-implementations '(guile))
+
+;; Dashboard
+(add-hook '+doom-dashboard-mode-hook 'hide-mode-line-mode)
