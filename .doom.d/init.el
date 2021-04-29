@@ -4,29 +4,29 @@
 	   ;;japanese
 	   ;;layout            ;auie,ctsrnm is the superior home row
 	   :completion
-	   (company +tng)             ;the ultimate code completion backend
+	   (company +tng)      ;the ultimate code completion backend
 	   ;;helm              ;the *other* search engine for love and life
 	   ;;ido               ;the other *other* search engine...
 	   ivy                 ;a search engine for love and life
 	   :ui
 	   ;;deft              ;notational velocity for Emacs
 	   doom                ;what makes DOOM look the way it does
-       doom-dashboard    ;a nifty splash screen for Emacs
+       doom-dashboard      ;a nifty splash screen for Emacs
 	   ;;doom-quit         ;DOOM quit-message prompts when you quit Emacs
 	   (emoji +github)     ;Emojis
 	   ;;fill-column       ;a `fill-column' indicator
 	   hl-todo             ;highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
 	   ;;hydra
 	   ;;indent-guides     ;highlighted indent columns
-	   ligatures           ;ligatures and symbols to make your code pretty again
+	   ;;ligatures         ;ligatures and symbols to make your code pretty again
 	   ;;minimap           ;show a map of the code on the side
 	   modeline            ;snazzy, Atom-inspired modeline, plus API
 	   ;;nav-flash         ;blink cursor line after big motions
-	   ;;neotree           ;a project drawer, like NERDTree for vim
+	   neotree             ;a project drawer, like NERDTree for vim
 	   ophints             ;highlight the region an operation acts on
 	   (popup +defaults)   ;tame sudden yet inevitable temporary windows
 	   ;;tabs              ;a tab bar for Emacs
-	   treemacs            ;a project drawer, like neotree but cooler
+	   ;;treemacs          ;a project drawer, like neotree but cooler
 	   unicode             ;extended unicode support for various languages
 	   ;;vc-gutter         ;vcs diff in the fringe
 	   ;;vi-tilde-fringe   ;fringe tildes to mark beyond EOB
@@ -75,14 +75,14 @@
 	   ;;ein               ;tame Jupyter notebooks with emacs
 	   eval                ;run code, run (also, repls)
 	   ;;gist              ;interacting with github gists
-	   ;;(lookup +dictionary +offline)               ; navigate your code and its documentation
-	   ;;lsp
-	   ;;magit             ;a git porcelain for Emacs
+	   ;;lookup            ; navigate your code and its documentation
+	   lsp
+	   magit               ;a git porcelain for Emacs
 	   ;;make              ;run make tasks from Emacs
 	   ;;pass              ;password manager for nerds
 	   ;;pdf               ;pdf enhancements
 	   ;;prodigy           ;FIXME managing external services & code builders
-	   ;;rgb                 ;creating color strings
+	   rgb                 ;creating color strings
 	   ;;taskrunner        ;taskrunner for all your projects
 	   ;;terraform         ;infrastructure as code
 	   ;;tmux              ;an API for interacting with tmux
@@ -93,7 +93,7 @@
 
 	   :lang
 	   ;;agda              ;types of types of types of types...
-	   ;;(cc +lsp)         ;C/C++/Obj-C madness
+	   (cc +lsp)           ;C/C++/Obj-C madness
 	   ;;clojure           ;java with a lisp
 	   ;;common-lisp       ;if you've seen one lisp, you've seen them all
 	   ;;coq               ;proofs-as-programs
@@ -132,7 +132,7 @@
 	   ;;php               ;perl's insecure younger brother
 	   ;;plantuml          ;diagrams for confusing people more
 	   ;;purescript        ;javascript, but functional
-	   ;;python            ;beautiful is better than ugly
+	   (python +lsp)       ;beautiful is better than ugly
 	   ;;qt                ;the 'cutest' gui framework ever
 	   ;;racket            ;a DSL for DSLs
 	   ;;raku              ;the artist formerly known as perl6
@@ -148,7 +148,7 @@
 	   ;;swift             ;who asked for emoji variables?
 	   ;;terra             ;Earth and Moon in alignment for performance.
 	   ;;web               ;the tubes
-	   yaml                ;JSON, but readable
+	   ;;yaml              ;JSON, but readable
 
 	   :email
 	   ;;(mu4e +gmail)

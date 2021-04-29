@@ -1,22 +1,24 @@
 ;; Splash
 (setq fancy-splash-image (concat doom-private-dir "emacs.svg"))
 
+;; Company
+(setq company-idle-delay 0.01)
+(setq company-minimum-prefix-length 1)
+
 ;; Font and Theme
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 20 :weight 'semi-light)
 	  doom-variable-pitch-font (font-spec :family "sans" :size 21)
 	  doom-themes-enable-bold t
 	  doom-themes-enable-italic t
 	  doom-theme 'my-dark
-
 	  doom-modeline-major-mode-icon t
-	  doom-themes-treemacs-theme "doom-colors"
-	  treemacs-width 30
-	  treemacs--width-is-locked nil)
+	  doom-themes-neotree-file-icons t)
 
 ;; Org
 (setq org-directory "~/Org/"
 	  org-hide-emphasis-markers t)
 (add-hook 'org-mode-hook 'hl-todo-mode)
+(add-hook 'org-mode-hook (lambda () (company-mode -1)))
 
 ;; Line numbers
 (setq display-line-numbers-type t)
@@ -65,7 +67,7 @@
 	  :n "m"
 	  'dired-hide-dotfiles-mode)
 
-(add-hook 'dired-mode-hook 'dired-hide-dotfiles-mode)
+(add-hook 'dired-mode-hook (cmd! () (dired-hide-dotfiles-mode) (not-modified)))
 
 ;; Custom keybinds
 (map! :leader
@@ -89,7 +91,8 @@
 (add-hook 'prog-mode-hook
 		  (lambda ()
 			  (setq indent-tabs-mode t)
-			  (doom/set-indent-width 4)))
+			  (doom/set-indent-width 4)
+			  (setq python-indent-offset 4)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (doom/set-indent-width 4)))
 (setq lisp-body-indent 4)
 
@@ -100,3 +103,13 @@
 
 ;; Dashboard
 (add-hook '+doom-dashboard-mode-hook 'hide-mode-line-mode)
+
+;; LSP
+(add-hook 'lsp-ui-mode-hook 'lsp-ui-doc-mode)
+
+;; CC mode
+(setq lsp-clients-clangd-args '("-j=12"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"))
