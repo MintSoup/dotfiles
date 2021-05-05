@@ -31,7 +31,7 @@
 	   ;;vc-gutter         ;vcs diff in the fringe
 	   ;;vi-tilde-fringe   ;fringe tildes to mark beyond EOB
 	   ;;window-select     ;visually switch windows
-	   ;;workspaces        ;tab emulation, persistence & separate workspaces
+	   workspaces        ;tab emulation, persistence & separate workspaces
 	   ;;zen               ;distraction-free coding or writing
 
 	   :editor
@@ -54,7 +54,7 @@
 	   ibuffer             ;interactive buffer management
 	   undo                ;persistent, smarter undo for your inevitable mistakes
 	   ;;vc                ;version-control and Emacs, sitting in a tree
-
+	   ;;
 	   :term
 	   eshell              ;the elisp shell that works everywhere
 	   ;;shell             ;simple shell REPL for Emacs
@@ -110,7 +110,7 @@
 	   ;;fsharp            ;ML stands for Microsoft's Language
 	   ;;fstar             ;(dependent) types and (monadic) effects and Z3
 	   ;;gdscript          ;the language you waited for
-	   ;;(go +lsp)         ;the hipster dialect
+	   (go +lsp)         ;the hipster dialect
 	   ;;(haskell +dante)  ;a language that's lazier than I am
 	   ;;hy                ;readability of scheme w/ speed of python
 	   ;;idris             ;a language you can depend on
@@ -132,7 +132,7 @@
 	   ;;php               ;perl's insecure younger brother
 	   ;;plantuml          ;diagrams for confusing people more
 	   ;;purescript        ;javascript, but functional
-	   (python +lsp)       ;beautiful is better than ugly
+	   ;; (python +lsp)       ;beautiful is better than ugly
 	   ;;qt                ;the 'cutest' gui framework ever
 	   ;;racket            ;a DSL for DSLs
 	   ;;raku              ;the artist formerly known as perl6

@@ -113,3 +113,4 @@
                                 "--clang-tidy"
                                 "--completion-style=detailed"
                                 "--header-insertion=never"))
+(setq-hook! 'c-mode-hook +format-with-lsp nil)
