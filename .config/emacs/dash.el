@@ -16,7 +16,7 @@
 		(set-face-attribute 'dashboard-banner-logo-title nil
 							:font "Noto Sans"
 							:foreground "#51afef"
-							:height 180))
+							:height 200))
 	(mapc 'set-dashboard-face (frame-list))
 	(add-hook 'after-make-frame-functions 'set-dashboard-face)
 	(dashboard-setup-startup-hook))

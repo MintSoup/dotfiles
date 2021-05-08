@@ -10,6 +10,7 @@
 (electric-pair-mode +1)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'conf-mode-hook 'display-line-numbers-mode)
 
 (setq mouse-wheel-scroll-amount '(5 ((shift) . 1)) ;; one line at a time
 	  mouse-wheel-progressive-speed nil ;; don't accelerate scrolling

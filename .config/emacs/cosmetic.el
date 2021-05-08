@@ -37,7 +37,7 @@
 
 (set-face-attribute 'default nil
 					:font "Fira Code Nerd Font"
-					:height 150
+					:height 154
 					:weight 'medium)
 
 (set-face-attribute 'variable-pitch nil

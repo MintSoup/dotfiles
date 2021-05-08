@@ -1,7 +1,9 @@
 ;;; -*- lexical-binding: t -*-
 (use-package org-superstar
 	:straight t
-	:hook (org-mode . org-superstar-mode))
+	:hook (org-mode . org-superstar-mode)
+	:init
+	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)))
 
 (use-package evil-org
 	:straight t
@@ -465,13 +467,11 @@ Meant for `org-mode-hook'."
 
 (with-eval-after-load 'org-faces
 	(set-face-attribute 'org-level-1 nil
-						:height 170)
+						:height 1.14)
 	(set-face-attribute 'org-level-2 nil
-						:height 165)
+						:height 1.09)
 	(set-face-attribute 'org-level-3 nil
-						:height 160)
-	(set-face-attribute 'org-level-4 nil
-						:height 155))
+						:height 1.03))
 
 
 (add-hook 'org-tab-first-hook '+org-cycle-only-current-subtree-h)

@@ -10,7 +10,6 @@
 (general-define-key :states 'normal :keymaps 'override "S" 'evil-avy-goto-char-2)
 
 (general-define-key "<escape>" 'keyboard-escape-quit)
-(general-define-key :states '(normal visual) "C-u" 'evil-scroll-up)
 
 (general-define-key :keymaps '(ivy-minibuffer-map ivy-switch-buffer-map)
 					"C-k" 'ivy-previous-line

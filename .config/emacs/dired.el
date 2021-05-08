@@ -26,6 +26,7 @@
 (general-define-key :keymaps 'dired-mode-map :states '(normal visual motion) "SPC" nil)
 (my-local-leader :keymaps 'dired-mode-map
 	"m" '(dired-hide-dotfiles-mode :wk "Toggle dotfiles")
+	"n" '(dired-number-of-marked-files :wk "Show number of marked files")
 	"o" '(dired-omit-mode :wk "Toggle Omit Mode"))
 
 (general-define-key :keymaps 'dired-mode-map :states 'normal
