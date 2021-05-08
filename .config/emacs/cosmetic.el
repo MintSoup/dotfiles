@@ -38,17 +38,17 @@
 
 (set-face-attribute 'default nil
 					:font "Fira Code Nerd Font"
-					:height 150
-					:weight 'medium)
+					:weight 'medium
+					:height 145)
 
 (set-face-attribute 'variable-pitch nil
 					:font "Noto Sans"
-					:height 150
+					:height 145
 					:weight 'medium)
 
 (set-face-attribute 'fixed-pitch nil
 					:font "Fira Code Nerd Font"
-					:height 150
+					:height 145
 					:weight 'medium)
 
 ;; Makes commented text and keywords italics.

@@ -33,7 +33,8 @@
 					"l" '(dired-find-alternate-file :wk "Visit directory")
 					"h" '(up-alternate-file :wk "Up directory"))
 
-(setq dired-listing-switches "-alh")
+(setq dired-listing-switches "-alh"
+	  dired-dwim-target t)
 
 (add-hook 'dired-mode-hook 'dired-omit-mode)
 (put 'dired-find-alternate-file 'disabled nil)

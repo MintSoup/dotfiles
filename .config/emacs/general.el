@@ -108,7 +108,9 @@
 	"" '(:ignore t :wk "Buffer")
 	"n" '(evil-buffer-new :wk "New buffer")
 	"d" '(kill-current-buffer :wk "Kill buffer")
-	"c" '(clean-buffers :wk "Clean buffers")
+	"D" '(kill-buffer-and-window :wk "Kill buffer and window")
+	"c" '(clone-buffer :wk "Clone buffer")
+	"k" '(clean-buffers :wk "Clean buffers")
 	"i" '(ibuffer :wk "IBuffer")
 	"r" '(revert-buffer :wk "Revert buffer"))
 
@@ -137,7 +139,6 @@
 	(counsel-find-file user-emacs-directory))
 
 (my-file-leader
-
 	"" '(:ignore t :wk "File")
 	"s" '(save-buffer :wk "Save")
 	"p" '(browse-my-config :wk "Find file in private config")

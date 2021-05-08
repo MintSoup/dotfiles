@@ -45,6 +45,7 @@
 (load-user-config-file "org.el")
 (load-user-config-file "vterm.el")
 (load-user-config-file "whichkey.el")
+(load-user-config-file "company.el")
 
 (setq gc-cons-threshold (* 50 1024 1024))
 
