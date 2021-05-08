@@ -7,7 +7,7 @@
 
 (general-define-key :states '(normal visual motion) "SPC" nil)
 
-(general-define-key :states 'normal :keymaps 'override "S" 'evil-avy-goto-char-2)
+(general-define-key :states 'normal :keymaps 'evil-snipe-mode-map "S" 'evil-avy-goto-char-2)
 
 (general-define-key "<escape>" 'keyboard-escape-quit)
 
@@ -117,6 +117,7 @@
 	"c" '(calc :wk "Calculator")
 	"t" '(vterm-other-window :wk "VTerm")
 	"T" '(vterm :wk "VTerm here")
+	"r" '(ielm :wk "IELM")
 	"e" '(eshell :wk "EShell"))
 
 (general-create-definer my-file-leader
@@ -130,6 +131,7 @@
 	(counsel-find-file user-emacs-directory))
 
 (my-file-leader
+
 	"" '(:ignore t :wk "File")
 	"s" '(save-buffer :wk "Save")
 	"p" '(browse-my-config :wk "Find file in private config")

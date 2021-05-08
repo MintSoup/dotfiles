@@ -11,8 +11,8 @@
 		  evil-undo-system 'undo-fu
 		  evil-search-module 'evil-search
 		  evil-ex-search-vim-style-regexp t
-		  evil-respect-visual-line-mode t
-		  evil-want-C-u-scroll t)
+		  evil-want-C-u-scroll t
+		  evil-respect-visual-line-mode t)
 	:config
 	;; use C to dd without yanking
 	(evil-define-operator evil-delete-line-without-yank (beg end type reg yank-handler)

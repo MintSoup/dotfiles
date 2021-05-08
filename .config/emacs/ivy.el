@@ -7,7 +7,8 @@
 	(setq ivy-height 15
 		  ivy-initial-inputs-alist nil
 		  ivy-on-del-error-function #'ignore
-		  ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
+		  ivy-re-builders-alist '((t . ivy--regex-ignore-order))
+		  enable-recursive-minibuffers t)
 	:config
 	(ivy-mode))
 

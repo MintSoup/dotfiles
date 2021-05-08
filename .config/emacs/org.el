@@ -3,7 +3,8 @@
 	:straight t
 	:hook (org-mode . org-superstar-mode)
 	:init
-	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)))
+	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)
+		  org-superstar-leading-bullet ""))
 
 (use-package evil-org
 	:straight t
