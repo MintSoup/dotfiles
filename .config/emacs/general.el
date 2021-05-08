@@ -53,6 +53,11 @@
 	(interactive)
 	(find-file user-init-file))
 
+(defun my-reload-private-config ()
+	"Reload private configuration"
+	(interactive)
+	(load-file user-init-file))
+
 (my-help-leader
 	"" '(:ignore t :wk "Help/Session")
 	"k" '(describe-key :wk "Describe key")
@@ -62,6 +67,7 @@
 	"F" '(counsel-describe-face :wk "Describe face")
 	"q" '(kill-emacs :wk "Kill Emacs")
 	"i" '(info :wk "Emacs help")
+	"r" '(my-reload-private-config :wk "Reload private config")
 	"c" '(my-edit-configuration :wk "Open init.el"))
 
 (general-create-definer my-window-leader

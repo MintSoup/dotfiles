@@ -47,3 +47,5 @@
 (load-user-config-file "whichkey.el")
 
 (setq gc-cons-threshold (* 50 1024 1024))
+
+(message "Init Loaded")

@@ -16,7 +16,8 @@
 		  doom-modeline-buffer-file-name-style 'relative-to-project
 		  projectile-dynamic-mode-line nil)
 	(setq mode-line-format nil)
-	(doom-modeline-mode 1))
+	(column-number-mode +1)
+	(doom-modeline-mode +1))
 
 (use-package highlight-quoted
 	:straight t
@@ -37,7 +38,7 @@
 
 (set-face-attribute 'default nil
 					:font "Fira Code Nerd Font"
-					:height 100
+					:height 150
 					:weight 'medium)
 
 (set-face-attribute 'variable-pitch nil
