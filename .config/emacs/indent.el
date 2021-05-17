@@ -4,5 +4,7 @@
 			  (setq tab-width 4
 					lisp-body-indent 4
 					python-indent-offset 4
+					c-basic-offset 4
 					indent-tabs-mode t
-					backward-delete-char-untabify-method nil)))
+					backward-delete-char-untabify-method nil
+					tab-always-indent nil)))

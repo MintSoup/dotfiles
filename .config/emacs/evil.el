@@ -99,6 +99,12 @@ This excludes the protocol and querystring."
 						"f" '+evil:defun-txtobj
 						"a" 'evil-inner-arg)
 
+	(general-define-key :states 'normal
+						"C" 'evil-delete-line-without-yank
+						"x" 'delete-forward-char
+						"C-a" 'evil-numbers/inc-at-pt
+						"C-S-a" 'evil-numbers/dec-at-pt)
+
 	(defun +evil/shift-right ()
 		"vnoremap < <gv"
 		(interactive)

@@ -17,18 +17,10 @@
 					"C-h" 'evil-backward-char
 					"C-l" 'evil-forward-char
 					"C-w" 'evil-delete-backward-word)
-
-(general-define-key :states 'normal
-					"C" 'evil-delete-line-without-yank
-					"x" 'delete-forward-char
-					"C-a" 'evil-numbers/inc-at-pt
-					"C-S-a" 'evil-numbers/dec-at-pt)
-
 (general-define-key :keymaps 'minibuffer-mode-map
 					"C-h" 'evil-backward-char
 					"C-l" 'evil-forward-char
 					"C-w" 'evil-delete-backward-word)
-
 
 (general-create-definer my-leader
 	:keymaps 'override
@@ -68,6 +60,7 @@
 	"q" '(kill-emacs :wk "Kill Emacs")
 	"i" '(info :wk "Emacs help")
 	"r" '(my-reload-private-config :wk "Reload private config")
+	"l" '(set-input-method :wk "Change language")
 	"c" '(my-edit-configuration :wk "Open init.el"))
 
 (general-create-definer my-window-leader
@@ -156,7 +149,8 @@
 
 (my-code-leader
 	"" '(:ignore t :wk "Code")
-	"f" '(format-all-buffer :wk "Format buffer"))
+	"f" '(format-all-buffer :wk "Format buffer")
+	"e" '(+quickrun :wk "Execute"))
 
 (general-create-definer my-search-leader
 	:states '(normal visual motion)

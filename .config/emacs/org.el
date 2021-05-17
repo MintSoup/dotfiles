@@ -466,6 +466,14 @@ Meant for `org-mode-hook'."
 					"C-M-<return>"  #'org-insert-subheading
 					"S-<return>"    #'+org/shift-return)
 
+;; Ugly hack to work around evil-org's stupid design
+(add-hook 'evil-org-mode-hook
+		  (lambda ()
+			  (evil-define-minor-mode-key '(normal visual) 'evil-org-mode
+				  (kbd "x")'evil-org-delete-char-without-yank
+				  (kbd "<C-return>") '+org/insert-item-below
+				  (kbd "<C-S-return>") '+org/insert-item-above)))
+
 (with-eval-after-load 'org-faces
 	(set-face-attribute 'org-level-1 nil
 						:height 1.14)

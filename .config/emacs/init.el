@@ -1,7 +1,11 @@
 ;;; -*- lexical-binding: t -*-
 ;;; Straight.el init
 
+(defvaralias 'comp-deferred-compilation-deny-list 'native-comp-deferred-compilation-deny-list)
+
+
 (defvar bootstrap-version)
+
 (let ((bootstrap-file
 	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
 	  (bootstrap-version 5))
@@ -15,6 +19,7 @@
 	(load bootstrap-file nil 'nomessage))
 
 (setq straight-vc-git-default-clone-depth 1)
+
 
 (straight-use-package 'use-package)
 
@@ -30,7 +35,6 @@
 (load-user-config-file "ivy.el")
 (load-user-config-file "scroll.el")
 (load-user-config-file "indent.el")
-(load-user-config-file "buffers.el")
 
 ;; Theme
 (load-user-config-file "cosmetic.el")
@@ -46,7 +50,21 @@
 (load-user-config-file "vterm.el")
 (load-user-config-file "whichkey.el")
 (load-user-config-file "company.el")
+(load-user-config-file "buffers.el")
+(load-user-config-file "quickrun.el")
+(load-user-config-file "erc.el")
+(load-user-config-file "neotree.el")
 
 (setq gc-cons-threshold (* 50 1024 1024))
-
-(message "Init Loaded")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auth-source-save-behavior nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
