@@ -54,5 +54,6 @@
 (load-user-config-file "quickrun.el")
 (load-user-config-file "erc.el")
 (load-user-config-file "neotree.el")
+(load-user-config-file "margin.el")
 
 (setq gc-cons-threshold (* 50 1024 1024))

@@ -2,7 +2,6 @@
 (use-package org-superstar
 	:straight t
 	:hook (org-mode . org-superstar-mode)
-	:hook (org-mode . variable-pitch-mode)
 	:init
 	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)
 		  org-superstar-leading-bullet ""))
@@ -620,21 +619,4 @@ Meant for `org-mode-hook'."
 (with-eval-after-load 'org-faces
 	(set-face-attribute 'org-level-1 nil :height 1.2)
 	(set-face-attribute 'org-level-2 nil :height 1.12)
-	(set-face-attribute 'org-level-3 nil :height 1.08)
-	(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
-	(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
-	(set-face-attribute 'org-document-info-keyword nil :inherit 'org-meta-line)
-	(set-face-attribute 'org-document-title nil :foreground "#51afef" :height 230)
-	(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-	(set-face-attribute 'org-property-value nil :inherit 'fixed-pitch)
-	(set-face-attribute 'org-link nil :inherit 'link :weight 'normal)
-	(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-    (set-face-attribute 'org-table nil :inherit 'fixed-pitch :weight 'normal)
-	(set-face-attribute 'org-tag nil :inherit '(shadow fixed-pitch) :weight 'normal)
-	(set-face-attribute 'org-drawer nil :inherit 'fixed-pitch)
-	(set-face-attribute 'org-verbatim nil :weight 'bold))
-
-(with-eval-after-load 'org-indent
-	(set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch)))
-(with-eval-after-load 'org-superstar
-	(set-face-attribute 'org-superstar-header-bullet nil :inherit 'fixed-pitch :height 1.3))
+	(set-face-attribute 'org-level-3 nil :height 1.08))
