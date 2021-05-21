@@ -3,7 +3,8 @@
 	:config
 	(setq doom-themes-neotree-enable-variable-pitch t
 		  doom-themes-neotree-file-icons t
-		  doom-themes-neotree-folder-size 1.15)
+		  doom-themes-neotree-folder-size 1.15
+		  doom-themes-neotree-chevron-size 1.0)
 	(doom-themes-neotree-config)
 	(add-hook 'neo-after-create-hook
 			  #'(lambda (_)

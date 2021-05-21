@@ -34,7 +34,8 @@
 					"h" '(up-alternate-file :wk "Up directory"))
 
 (setq dired-listing-switches "-alh"
-	  dired-dwim-target t)
+	  dired-dwim-target t
+	  all-the-icons-dired-monochrome nil)
 
 (add-hook 'dired-mode-hook 'dired-omit-mode)
 (put 'dired-find-alternate-file 'disabled nil)

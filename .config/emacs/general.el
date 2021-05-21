@@ -11,17 +11,6 @@
 
 (general-define-key "<escape>" 'keyboard-escape-quit)
 
-(general-define-key :keymaps '(ivy-minibuffer-map ivy-switch-buffer-map)
-					"C-k" 'ivy-previous-line
-					"C-j" 'ivy-next-line
-					"C-h" 'evil-backward-char
-					"C-l" 'evil-forward-char
-					"C-w" 'evil-delete-backward-word)
-(general-define-key :keymaps 'minibuffer-mode-map
-					"C-h" 'evil-backward-char
-					"C-l" 'evil-forward-char
-					"C-w" 'evil-delete-backward-word)
-
 (general-create-definer my-leader
 	:keymaps 'override
 	:states '(normal visual motion)
@@ -33,7 +22,7 @@
 	"," '(switch-to-buffer :wk "Switch buffer")
 	"." '(find-file :wk "Find file")
 	";" '(eval-expression :wk "Eval expression")
-	"SPC" '(counsel-projectile-find-file :wk "Find file in project"))
+	"SPC" '(projectile-find-file :wk "Find file in project"))
 
 (general-create-definer my-help-leader
 	:keymaps 'override
@@ -171,4 +160,5 @@
 (my-project-leader
 	"" '(:ignore t :wk "Project")
 	"p" '(projectile-switch-project :wk "Open")
+	"i" '(projectile-invalidate-cache :wk "Invalidate cache")
 	"a" '(projectile-add-known-project :wk "Add"))

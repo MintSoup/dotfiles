@@ -34,40 +34,30 @@
 	:config
 	(add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
-(add-hook 'after-make-frame-functions (lambda (frame)
+(add-hook 'after-make-frame-functions
+		  (lambda (frame)
 
-										  (set-face-attribute 'default nil
-															  :font "Fira Code Nerd Font"
-															  :weight 'medium
-															  :height 145)
+			  (set-face-attribute 'fixed-pitch nil
+								  :font "Fira Code Nerd Font"
+								  :height 150
+								  :weight 'medium)
 
-										  (set-face-attribute 'variable-pitch nil
-															  :font "Noto Sans"
-															  :height 145
-															  :weight 'medium)
+			  (set-face-attribute 'default nil
+								  :font "Fira Code Nerd Font"
+								  :height 150
+								  :weight 'medium)
 
-										  (set-face-attribute 'fixed-pitch nil
-															  :font "Fira Code Nerd Font"
-															  :height 145
-															  :weight 'medium)
-
-										  ;; Makes commented text and keywords italics.
-										  ;; This is working in emacsclient but not emacs.
-										  ;; Your font must have an italic face available.
-										  (set-face-attribute 'font-lock-comment-face nil
-															  :slant 'italic)
-										  (set-face-attribute 'font-lock-keyword-face nil
-															  :slant 'italic)
-
-
-										  ))
-
-
-;; Needed if using emacsclient. Otherwise, your fonts will be smaller than expected.
-;; (add-to-list 'default-frame-alist '(font . "Fira Code Nerd Font-14"))
-;; changes certain keywords to symbols, such as lamda!
-;; (setq global-prettify-symbols-mode t)
-
+			  (set-face-attribute 'variable-pitch nil
+								  :font "Noto Sans"
+								  :height 160
+								  :weight 'medium)
+			  ;; Makes commented text and keywords italics.
+			  ;; This is working in emacsclient but not emacs.
+			  ;; Your font must have an italic face available.
+			  (set-face-attribute 'font-lock-comment-face nil
+								  :slant 'italic)
+			  (set-face-attribute 'font-lock-keyword-face nil
+								  :slant 'italic)))
 
 
 (menu-bar-mode -1)

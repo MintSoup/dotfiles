@@ -2,6 +2,7 @@
 (use-package org-superstar
 	:straight t
 	:hook (org-mode . org-superstar-mode)
+	:hook (org-mode . variable-pitch-mode)
 	:init
 	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)
 		  org-superstar-leading-bullet ""))
@@ -474,20 +475,12 @@ Meant for `org-mode-hook'."
 				  (kbd "<C-return>") '+org/insert-item-below
 				  (kbd "<C-S-return>") '+org/insert-item-above)))
 
-(with-eval-after-load 'org-faces
-	(set-face-attribute 'org-level-1 nil
-						:height 1.14)
-	(set-face-attribute 'org-level-2 nil
-						:height 1.09)
-	(set-face-attribute 'org-level-3 nil
-						:height 1.03))
-
-
 (add-hook 'org-tab-first-hook '+org-cycle-only-current-subtree-h)
 
 (setq org-directory "~/Org/"
 	  org-hide-emphasis-markers t
-	  org-indent-indentation-per-level 4
+	  org-indent-indentation-per-level 2
+	  org-list-indent-offset 3
 	  org-list-allow-alphabetical t)
 
 (my-local-leader :keymaps 'org-mode-map :states '(normal visual map)
@@ -586,14 +579,14 @@ Meant for `org-mode-hook'."
 	"g x" #'org-capture-goto-last-stored
 
 	"l" '(:ignore t :wk "Link")
-	"c c" #'org-cliplink
-	"c d" #'+org/remove-link
-	"c i" #'org-id-store-link
-	"c l" #'org-insert-link
-	"c L" #'org-insert-all-links
-	"c s" #'org-store-link
-	"c S" #'org-insert-last-stored-link
-	"c t" #'org-toggle-link-display
+	"l c" #'org-cliplink
+	"l d" #'+org/remove-link
+	"l i" #'org-id-store-link
+	"l l" #'org-insert-link
+	"l L" #'org-insert-all-links
+	"l s" #'org-store-link
+	"l S" #'org-insert-last-stored-link
+	"l t" #'org-toggle-link-display
 
 	"p" '(:ignore t :wk "Publish")
 	"p a" #'org-publish-all
@@ -622,3 +615,26 @@ Meant for `org-mode-hook'."
 	"p d" #'org-priority-down
 	"p p" #'org-priority
 	"p u" #'org-priority-up)
+
+
+(with-eval-after-load 'org-faces
+	(set-face-attribute 'org-level-1 nil :height 1.2)
+	(set-face-attribute 'org-level-2 nil :height 1.12)
+	(set-face-attribute 'org-level-3 nil :height 1.08)
+	(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
+	(set-face-attribute 'org-document-info-keyword nil :inherit 'org-meta-line)
+	(set-face-attribute 'org-document-title nil :foreground "#51afef" :height 230)
+	(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+	(set-face-attribute 'org-property-value nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-link nil :inherit 'link :weight 'normal)
+	(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+    (set-face-attribute 'org-table nil :inherit 'fixed-pitch :weight 'normal)
+	(set-face-attribute 'org-tag nil :inherit '(shadow fixed-pitch) :weight 'normal)
+	(set-face-attribute 'org-drawer nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-verbatim nil :weight 'bold))
+
+(with-eval-after-load 'org-indent
+	(set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch)))
+(with-eval-after-load 'org-superstar
+	(set-face-attribute 'org-superstar-header-bullet nil :inherit 'fixed-pitch :height 1.3))
