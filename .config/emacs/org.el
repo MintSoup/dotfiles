@@ -16,6 +16,9 @@
 	(evil-org-set-key-theme)
 	:hook (org-mode . evil-org-mode))
 
+(use-package org-tempo
+	:ensure nil)
+
 (add-hook 'org-mode-hook '+org-enable-auto-reformat-tables-h)
 (add-hook 'org-mode-hook 'org-indent-mode)
 
@@ -466,7 +469,11 @@ Meant for `org-mode-hook'."
 					"C-<return>"    #'+org/insert-item-below
 					"C-S-<return>"  #'+org/insert-item-above
 					"C-M-<return>"  #'org-insert-subheading
-					"S-<return>"    #'+org/shift-return)
+					"S-<return>"    #'+org/shift-return
+					"M-l"           #'org-metaright
+					"M-h"           #'org-metaleft
+					"M-j"           #'org-metadown
+					"M-k"           #'org-metaleft)
 
 ;; Ugly hack to work around evil-org's stupid design
 (add-hook 'evil-org-mode-hook
@@ -617,7 +624,18 @@ Meant for `org-mode-hook'."
 	  org-indent-indentation-per-level 2
 	  org-list-indent-offset 4
 	  org-ellipsis " ▾"
-	  org-list-allow-alphabetical t)
+	  org-list-allow-alphabetical t
+
+	  org-todo-keywords
+      '((sequence "TODO(t)" "INPROG(p)" "|" "DONE(d)" "CANCELLED(c)")
+		(sequence "UNREVIEWED(u)" "REVIEW(r)" "INPROG(p)" "|" "DONE(d)" "REJECTED(x)"))
+
+	  org-todo-keyword-faces
+	  '(("PROG" . "dark orange")
+		("UNREVIEWD" . "#98be65")
+		("REVIEW" . "dark turquoise")
+		("INPROG" . "dark orange")
+		("REJECTED" . "red")))
 
 (with-eval-after-load 'org-faces
 	(set-face-attribute 'org-level-1 nil :height 1.35)
@@ -625,10 +643,10 @@ Meant for `org-mode-hook'."
 	(set-face-attribute 'org-level-3 nil :height 1.05)
 	(set-face-attribute 'org-checkbox nil :inherit '(org-todo fixed-pitch))
 	(set-face-attribute 'org-meta-line nil :inherit 'fixed-pitch)
-	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch)
-	(set-face-attribute 'org-document-title nil :height 1.6)
+	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :foreground "#83898d")
+	(set-face-attribute 'org-document-title nil :height 1.9)
 	(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
-    (set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
+	(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
 	(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
 	(set-face-attribute 'org-drawer nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-special-keyword nil :inherit 'fixed-pitch)
