@@ -2,6 +2,7 @@
 (use-package org-superstar
 	:straight t
 	:hook (org-mode . org-superstar-mode)
+	:hook (org-mode . variable-pitch-mode)
 	:init
 	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)
 		  org-superstar-leading-bullet ""))
@@ -184,6 +185,7 @@ If on a:
 						 (cl-find-if (lambda (o) (eq (overlay-get o 'org-overlay-type) 'org-latex-overlay))
 									 overlays))
 						(image-overlays
+
 						 (cl-find-if (lambda (o) (overlay-get o 'org-image-overlay))
 									 overlays)))
 					 (+org--toggle-inline-images-in-subtree beg end)
@@ -476,12 +478,6 @@ Meant for `org-mode-hook'."
 
 (add-hook 'org-tab-first-hook '+org-cycle-only-current-subtree-h)
 
-(setq org-directory "~/Org/"
-	  org-hide-emphasis-markers t
-	  org-indent-indentation-per-level 2
-	  org-list-indent-offset 3
-	  org-list-allow-alphabetical t)
-
 (my-local-leader :keymaps 'org-mode-map :states '(normal visual map)
     "#" #'org-update-statistics-cookies
     "'" #'org-edit-special
@@ -503,6 +499,7 @@ Meant for `org-mode-hook'."
 	"t" #'org-todo
 	"T" #'org-todo-list
 	"x" #'org-toggle-checkbox
+	"v" #'visual-fill-column-mode
 
 	"a" '(:ignore t :wk "Attach")
 	"a a" #'org-attach
@@ -615,8 +612,30 @@ Meant for `org-mode-hook'."
 	"p p" #'org-priority
 	"p u" #'org-priority-up)
 
+(setq org-directory "~/Org/"
+	  org-hide-emphasis-markers t
+	  org-indent-indentation-per-level 2
+	  org-list-indent-offset 4
+	  org-ellipsis " ▾"
+	  org-list-allow-alphabetical t)
 
 (with-eval-after-load 'org-faces
-	(set-face-attribute 'org-level-1 nil :height 1.2)
-	(set-face-attribute 'org-level-2 nil :height 1.12)
-	(set-face-attribute 'org-level-3 nil :height 1.08))
+	(set-face-attribute 'org-level-1 nil :height 1.35)
+	(set-face-attribute 'org-level-2 nil :height 1.2)
+	(set-face-attribute 'org-level-3 nil :height 1.05)
+	(set-face-attribute 'org-checkbox nil :inherit '(org-todo fixed-pitch))
+	(set-face-attribute 'org-meta-line nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-document-title nil :height 1.6)
+	(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+    (set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
+	(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+	(set-face-attribute 'org-drawer nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-special-keyword nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-table nil :inherit 'fixed-pitch))
+
+(with-eval-after-load 'org-indent
+	(set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch)))
+
+(with-eval-after-load 'org-superstar
+	(set-face-attribute 'org-superstar-header-bullet nil :font "FreeSans" :height 1.0))

@@ -39,8 +39,8 @@
 
 			  (set-face-attribute 'fixed-pitch nil
 								  :font "Fira Code Nerd Font"
-								  :height 150
-								  :weight 'medium)
+								  :inherit 'default
+								  :height 0.95)
 
 			  (set-face-attribute 'default nil
 								  :font "Fira Code Nerd Font"
@@ -48,8 +48,8 @@
 								  :weight 'medium)
 
 			  (set-face-attribute 'variable-pitch nil
-								  :font "Noto Sans"
-								  :height 160
+								  :font "Cantarell"
+								  :height 170
 								  :weight 'medium)
 			  ;; Makes commented text and keywords italics.
 			  ;; This is working in emacsclient but not emacs.
