@@ -129,7 +129,8 @@
 (general-create-definer my-local-leader
 	:states '(normal visual motion)
 	:prefix "SPC m")
-(my-local-leader :states '(normal visual motion) "" '(:ignore t :wk "Local"))
+
+(my-local-leader "" '(:ignore t :wk "Local"))
 
 (general-create-definer my-code-leader
 	:keymaps 'override

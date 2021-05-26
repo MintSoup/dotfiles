@@ -128,21 +128,21 @@ current file). Only scans first 2048 bytes of the document."
 
 (defun +org/dwim-at-point (&optional arg)
 	"Do-what-I-mean at point.
-If on a:
-- checkbox list item or todo heading: toggle it.
-- clock: update its time.
-- headline: cycle ARCHIVE subtrees, toggle latex fragments and inline images in
-  subtree; update statistics cookies/checkboxes and ToCs.
-- footnote reference: jump to the footnote's definition
-- footnote definition: jump to the first reference of this footnote
-- table-row or a TBLFM: recalculate the table's formulas
-- table-cell: clear it and go into insert mode. If this is a formula cell,
-  recaluclate it instead.
-- babel-call: execute the source block
-- statistics-cookie: update it.
-- latex fragment: toggle it.
-- link: follow it
-- otherwise, refresh all inline images in current tree."
+	If on a:
+	- checkbox list item or todo heading: toggle it.
+	- clock: update its time.
+	- headline: cycle ARCHIVE subtrees, toggle latex fragments and inline images in
+	subtree; update statistics cookies/checkboxes and ToCs.
+	- footnote reference: jump to the footnote's definition
+	- footnote definition: jump to the first reference of this footnote
+	- table-row or a TBLFM: recalculate the table's formulas
+	- table-cell: clear it and go into insert mode. If this is a formula cell,
+	recaluclate it instead.
+	- babel-call: execute the source block
+	- statistics-cookie: update it.
+	- latex fragment: toggle it.
+	- link: follow it
+	- otherwise, refresh all inline images in current tree."
 	(interactive "P")
 	(if (button-at (point))
 			(call-interactively #'push-button)
@@ -485,7 +485,7 @@ Meant for `org-mode-hook'."
 
 (add-hook 'org-tab-first-hook '+org-cycle-only-current-subtree-h)
 
-(my-local-leader :keymaps 'org-mode-map :states '(normal visual map)
+(my-local-leader :keymaps 'org-mode-map
     "#" #'org-update-statistics-cookies
     "'" #'org-edit-special
     "*" #'org-ctrl-c-star
@@ -627,7 +627,7 @@ Meant for `org-mode-hook'."
 	  org-list-allow-alphabetical t
 
 	  org-todo-keywords
-      '((sequence "TODO(t)" "INPROG(p)" "|" "DONE(d)" "CANCELLED(c)")
+      '((sequence "TODO(t)" "INPROG(p)" "|" "DONE(d)")
 		(sequence "UNREVIEWED(u)" "REVIEW(r)" "INPROG(p)" "|" "DONE(d)" "REJECTED(x)"))
 
 	  org-todo-keyword-faces

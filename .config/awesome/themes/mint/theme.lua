@@ -32,7 +32,7 @@ theme.bg_systray = theme.color2
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = 4
+theme.useless_gap   = 2
 theme.border_width  = 2
 theme.border_normal = "#00000000"
 theme.border_focus  = theme.color2

@@ -62,12 +62,12 @@ local function run_once(cmd)
 end
 
 
-run_once("emacs --daemon")
+run_once("emacs --daemon", "emacs")
 run_once("brave")
 run_once({"Discord", "discord"})
 run_once({"pia-client","/opt/piavpn/bin/pia-client"})
 run_once("flameshot")
-run_once("unclutter --timeout 30")
+run_once("unclutter", "unclutter --timeout 30")
 run_once("xbindkeys")
 run_once("copyq")
 run_once("picom")

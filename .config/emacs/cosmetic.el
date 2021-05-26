@@ -13,7 +13,7 @@
 	(setq doom-modeline-major-mode-icon t
 		  doom-modeline-icon t
 		  doom-modeline-height 28
-		  doom-modeline-buffer-file-name-style 'relative-to-project
+		  doom-modeline-buffer-file-name-style 'relative-from-project
 		  projectile-dynamic-mode-line nil)
 	(setq mode-line-format nil)
 	(column-number-mode +1)
@@ -22,6 +22,7 @@
 (use-package highlight-quoted
 	:straight t
 	:config
+	(add-hook 'lisp-mode-hook 'highlight-quoted-mode)
 	(add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode))
 
 (use-package rainbow-delimiters
@@ -51,6 +52,7 @@
 								  :font "Cantarell"
 								  :height 170
 								  :weight 'medium)
+
 			  ;; Makes commented text and keywords italics.
 			  ;; This is working in emacsclient but not emacs.
 			  ;; Your font must have an italic face available.

@@ -16,11 +16,12 @@
 
 				(when (plist-get plist :autoclose)
 					(push (cons window buffer) shackle--popup-window-list))
-				(with-current-buffer buffer (add-hook 'kill-buffer-hook
-													  (lambda ()
-														  (unless (one-window-p)
-															  (delete-window)))
-													  0 t)) ;; Kill window when killing popup buffers
+				(with-current-buffer buffer
+					(add-hook 'kill-buffer-hook
+							  (lambda ()
+								  (unless (one-window-p)
+									  (delete-window)))
+							  0 t)) ;; Kill window when killing popup buffers
 				window))
 
         (defun +shackle/quit-window (&optional kill window)
@@ -52,7 +53,7 @@
 				("*gud-debug*" :select t :size 0.4 :align 'below :autoclose t)
 				;; ("\\*ivy-occur .*\\*" :regexp t :select t :size 0.3 :align 'below)
 				(" *undo-tree*" :select t)
-				("*quickrun*" :select t :size 15 :align 'below)
+				("*quickrun*" :size 0.3 :align 'below)
 				("*tldr*" :size 0.4 :align 'below :autoclose t)
 				("*osx-dictionary*" :size 20 :align 'below :autoclose t)
 				("*Youdao Dictionary*" :size 15 :align 'below :autoclose t)
@@ -64,6 +65,8 @@
 				(("*Paradox Report*" "*package update results*") :size 0.2 :align 'below :autoclose t)
 				("*Package-Lint*" :size 0.4 :align 'below :autoclose t)
 				("*How Do You*" :select t :size 0.5 :align 'below :autoclose t)
+				("* Guile REPL *" :size 0.3 :align 'below :autoclose t)
+				("*Geiser dbg*" :size 0.3 :align 'below :autoclose t)
 
 				(("*Org Agenda*" " *Agenda Commands*" " *Org todo*" "*Org Dashboard*" "*Org Select*") :select t :size 0.1 :align 'below :autoclose t)
 				(("\\*Capture\\*" "^CAPTURE-.*\\.org*") :regexp t :select t :size 0.3 :align 'below :autoclose t)
