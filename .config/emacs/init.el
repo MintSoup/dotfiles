@@ -58,4 +58,5 @@
 
 ;; Lang
 
-(load-user-config-file "geiser.el")
+(load-user-config-file "geiser.el") ;; Scheme
+(load-user-config-file "lua.el") ;; Lua

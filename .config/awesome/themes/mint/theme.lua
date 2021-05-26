@@ -10,32 +10,38 @@ local dpi = require("beautiful.xresources").apply_dpi
 -- {{{ Main
 local theme = {}
 -- {{{ Styles
-fontsize = 9.5
-theme.font       = "Fira Code Nerd Font " .. fontsize
+fontsize = 10.5
+theme.font = "NotoSans Nerd Font " .. fontsize
+
 
 -- bg = "#1a1a20"
 bg = "#21242b"
 
+theme.colors = {
+	"#51afef",
+	"#c678dd",
+	"#98be65",
+	-- "#da8548"
+}
+
 -- {{{ Colors
-theme.color1 = "#e0691f"
-theme.color2 = "#407be3"
 
 theme.fg_normal  = "#e8e8e8"
-theme.fg_focus   = "#00ff9a"
+theme.fg_focus   = theme.colors[1]
 theme.fg_urgent  = "#ff0000"
 theme.bg_normal  = bg .. "ff"
 theme.bg_focus   = "#00000000"
 theme.bg_urgent  = "#00000000"
 theme.tooltip_bg = theme.bg_normal
 theme.tooltip_fg = theme.fg_normal
-theme.bg_systray = theme.color2
+-- theme.bg_systray = theme.color2
 -- }}}
 
 -- {{{ Borders
 theme.useless_gap   = 2
 theme.border_width  = 2
 theme.border_normal = "#00000000"
-theme.border_focus  = theme.color2
+theme.border_focus  = theme.colors[1]
 theme.border_marked = "#407be3"
 theme.gap_single_client  = false
 theme.border_single_client  = false
@@ -43,8 +49,6 @@ theme.border_single_client  = false
 -- }}}
 
 -- {{{ Titlebars
-theme.titlebar_bg_focus  = "#3F3F3F"
-theme.titlebar_bg_normal = "#3F3F3F"
 -- }}}
 
 -- There are other variable sets
@@ -149,7 +153,7 @@ theme.notification_icon_size = 128
 theme.notification_font = theme.font
 theme.notification_max_width = 450
 theme.notification_width = 450
-theme.notification_border_width = 0 
+theme.notification_border_width = 0
 theme.notification_bg = "#282c34"
 
 theme.bat_ac_prefix = " "

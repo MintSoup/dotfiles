@@ -111,8 +111,8 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Global widgets
-local mycalendar = wibox.container.background(wibox.widget.textclock("%a, %d %b %Y"))
-local myclock = wibox.widget.textclock("%r", 1)
+local mycalendar = wibox.container.background(wibox.widget.textclock(" %a, %d %b %Y"))
+local myclock = wibox.widget.textclock(" %r", 1)
 local mybattery = require("battery")
 local mytemp = require("temp")
 local mymem = require("mem")
@@ -165,23 +165,21 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Create the wibox
 	s.mywibox = awful.wibar{ position = "top", screen = s }
 
-	local g = true
+	local count = 2
+
 	local function wwrapper(w)
-		g = not g
-		local color = g and beautiful.color1 or beautiful.color2
-		return wibox.container.background(wibox.container.margin(w, 6, 6), color) 
+		local tmp = wibox.container.background(wibox.container.margin(w, 9, 9))
+		tmp.fg = beautiful.colors[count % #beautiful.colors + 1]
+		count = count + 1
+		return tmp
 	end
 	local function wwrapper_tight(w)
-		g = not g
-		local color = g and beautiful.color1 or beautiful.color2
-		return wibox.container.background(w, color) 
+		local tmp = wibox.container.background(w)
+		tmp.fg = beautiful.colors[count % #beautiful.colors + 1]
+		count = count + 1
+		return tmp
 	end
 
-	local larrow = function(alpha, switch)
-		if switch then g = not g end
-		return separators.arrow_left(alpha and "alpha" or (g and beautiful.color1 or beautiful.color2),
-		g and beautiful.color2 or beautiful.color1)
-	end
 	separators.width = math.floor(s.mywibox.height * 0.5)
 
 	-- Add widgets to the wibox
@@ -190,30 +188,20 @@ awful.screen.connect_for_each_screen(function(s)
 		{ -- Left widgets
 		layout = wibox.layout.fixed.horizontal,
 		--wibox.container.background(s.mytaglist, beautiful.color1),
-		wibox.container.background(s.mytaglist, beautiful.color2) ,
-		separators.arrow_right(beautiful.color2, "alpha")
+		s.mytaglist,
 	},
 	(s.mytasklist),
 
 	{ -- Right widgets
 	layout = wibox.layout.fixed.horizontal,
-	larrow(true),
 	wwrapper(wibox.widget.systray()),
-	larrow(),
 	wwrapper_tight(mykeyboardlayout),
-	larrow(),
 	wwrapper(mybattery.widget),
-	larrow(),
 	wwrapper(mytemp.widget),
-	larrow(),
 	wwrapper(mymem.widget),
-	larrow(),
 	wwrapper(mypulse.widget),
-	larrow(),
 	wwrapper(mymic.widget),
-	larrow(),
 	wwrapper(mycalendar),
-	larrow(),
 	wwrapper(myclock),
 },
 	}
@@ -222,7 +210,7 @@ end)
 
 -- Select middle tag
 for s in screen do
-	s.tags[5]:view_only() 
+	s.tags[5]:view_only()
 	-- bar
 	for t = 1, #s.tags do
 		s.tags[t].bar = true
@@ -281,7 +269,7 @@ globalkeys = gears.table.join(
 		{description = "quit awesome", group = "awesome"}),
 	awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
 		{description="show help", group="awesome"}),
-	awful.key({modkey,			},	 "b", function() 
+	awful.key({modkey,			},	 "b", function()
 		-- local wibox = awful.client.focus.object.screen.mywibox
 		local wibox = mouse.screen.mywibox
 		wibox.visible = not wibox.visible
@@ -428,7 +416,7 @@ function copy_size(c, parent_client, idx)
     end
 
     c.floating = parent_client.floating
-	if c.floating then 
+	if c.floating then
 		c.x = parent_client.x;
 		c.y = parent_client.y;
 		c.width = parent_client.width;
@@ -467,7 +455,7 @@ client.connect_signal("manage", function (c)
 						idx = awful.client.idx(parent_client).idx
 					end
 
-					c:connect_signal("unmanage", function() 
+					c:connect_signal("unmanage", function()
 						parent_client.hidden = false
 
 						if parent_client.floating then
@@ -505,13 +493,13 @@ function slow()
 end
 
 function syncon(c)
-	if not c or slowonly then 
-		slow() 
-		return 
+	if not c or slowonly then
+		slow()
+		return
 	end
 
 	for i, n in ipairs(fastscroll) do
-		if c.class == n then 
+		if c.class == n then
 			fast()
 			return
 		end
@@ -536,7 +524,7 @@ end)
 
 client.connect_signal("mouse::leave", resync)
 client.connect_signal("focus", function(c)
-	c.border_color = beautiful.border_focus 
+	c.border_color = beautiful.border_focus
 	local x = mouse.coords().x
 	local y = mouse.coords().y
 	gears.timer {
@@ -544,7 +532,7 @@ client.connect_signal("focus", function(c)
 		single_shot = true,
 		autostart = true,
 		callback  = function()
-			if c.valid then 
+			if c.valid then
 				if x >= c.x and x < c.x + c.width and y >= c.y and y < c.y + c.height then
 					c:emit_signal("mouse::enter")
 				end
@@ -558,7 +546,7 @@ client.connect_signal("property::urgent", function(c)
     c:jump_to()
 end)
 
-client.connect_signal("property::floating", function(c) 
+client.connect_signal("property::floating", function(c)
     if c.maximized or c.fullscreen then return end
 
 	c.size_hints_honor = c.floating
@@ -611,7 +599,7 @@ end
 
 
 
-awful.tag.attached_connect_signal(nil, "property::selected", function(t) 
+awful.tag.attached_connect_signal(nil, "property::selected", function(t)
 	if not t.selected then return end
 	local wibox = mouse.screen.mywibox
 	wibox.visible = t.bar
