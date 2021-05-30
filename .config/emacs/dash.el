@@ -10,6 +10,7 @@
 		  dashboard-banner-logo-title "Welcome back to GNU Emacs"
 		  dashboard-startup-banner (expand-file-name "emacs.svg" user-emacs-directory)
 		  dashboard-footer-messages nil
+		  dashboard-page-separator ""
 		  dashboard-set-init-info nil)
 	:config
 	(defun set-dashboard-face (frame)

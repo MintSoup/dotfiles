@@ -32,15 +32,13 @@
 		(evil-range (point-min) (point-max) type))
 
 	(evil-define-text-object +evil:defun-txtobj (count &optional _beg _end type)
-		"Text object to select the top-level Lisp form or function definition at
-point."
+		"Text object to select the top-level Lisp form or function definition at point."
 		(cl-destructuring-bind (beg . end)
 				(bounds-of-thing-at-point 'defun)
 			(evil-range beg end type)))
 
 	(evil-define-text-object +evil:inner-url-txtobj (count &optional _beg _end type)
-		"Text object to select the inner url at point.
-This excludes the protocol and querystring."
+		"Text object to select the inner url at point. This excludes the protocol and querystring."
 		(cl-destructuring-bind (beg . end)
 				(bounds-of-thing-at-point 'url)
 			(evil-range
@@ -125,6 +123,16 @@ This excludes the protocol and querystring."
 
 	(evil-mode))
 
+
+(use-package undo-fu
+	:straight t)
+
+(use-package evil-collection
+	:straight t
+	:after evil
+	:config
+	(evil-collection-init))
+
 (use-package evil-snipe
 	:straight t
 	:after evil
@@ -146,24 +154,18 @@ This excludes the protocol and querystring."
 	(general-define-key :keymaps 'evilem-map
 						"s" 'evil-avy-goto-char-2
 						"S" 'evil-avy-goto-char-2
-						"a" (evilem-create (list 'evil-forward-arg 'evil-backward-arg)))
+						"a" (evilem-create ('evil-forward-arg 'evil-backward-arg)))
 
 	(setq avy-background t))
 
 (use-package evil-surround
 	:straight t
-	:after evil
-	:config (global-evil-surround-mode 1))
+	:config
+	(global-evil-surround-mode 1))
 
 (use-package evil-numbers
 	:after evil
 	:straight t)
-
-(use-package evil-collection
-	:straight t
-	:after evil
-	:config
-	(evil-collection-init))
 
 (use-package evil-args
 	:straight t
@@ -171,24 +173,22 @@ This excludes the protocol and querystring."
 
 (use-package evil-textobj-anyblock
 	:straight t
-	:after evil
-	:config
-	(general-define-key :states '(normal visual)
-						"gx" 'evil-exchange
-
-
-						"gX" 'evil-exchange-cancel))
+	:after evil)
 
 (use-package evil-commentary
 	:straight t
 	:after evil
 	:config
 	(general-define-key :states '(normal visual)
-						"gc" 'evil-commentary))
+ 						"gc" 'evil-commentary))
 
 (use-package evil-exchange
 	:straight t
-	:after evil)
+	:after evil
+	:config
+	(general-define-key :states '(normal visual)
+						"gx" 'evil-exchange
+						"gX" 'evil-exchange-cancel))
 
 (use-package evil-goggles
 	:straight t
@@ -209,6 +209,3 @@ This excludes the protocol and querystring."
 (use-package evil-anzu
 	:straight t
 	:config (global-anzu-mode +1))
-
-(use-package undo-fu
-	:straight t)

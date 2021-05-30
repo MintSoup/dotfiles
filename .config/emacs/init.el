@@ -36,10 +36,11 @@
 (load-user-config-file "scroll.el")
 (load-user-config-file "indent.el")
 
-;; Theme
+;;Theme
 (load-user-config-file "cosmetic.el")
 
 ;; Aux
+
 (load-user-config-file "helpful.el")
 (load-user-config-file "projectile.el")
 (load-user-config-file "dired.el")
@@ -55,8 +56,11 @@
 (load-user-config-file "erc.el")
 (load-user-config-file "neotree.el")
 (load-user-config-file "margin.el")
+(load-user-config-file "lsp.el")
 
 ;; Lang
 
 (load-user-config-file "geiser.el") ;; Scheme
 (load-user-config-file "lua.el") ;; Lua
+
+(setq gc-cons-threshold (* 150 1024 1024))

@@ -18,5 +18,4 @@
 						(make-local-variable 'auto-hscroll-mode)
 						(setq auto-hscroll-mode nil))))
 
-
 	(my-open-leader "p" 'neotree-toggle))

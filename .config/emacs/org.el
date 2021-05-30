@@ -22,9 +22,6 @@
 (add-hook 'org-mode-hook '+org-enable-auto-reformat-tables-h)
 (add-hook 'org-mode-hook 'org-indent-mode)
 
-
-
-;;
 ;;; Helpers
 
 (defun +org--insert-item (direction)
@@ -506,7 +503,6 @@ Meant for `org-mode-hook'."
 	"t" #'org-todo
 	"T" #'org-todo-list
 	"x" #'org-toggle-checkbox
-	"v" #'visual-fill-column-mode
 
 	"a" '(:ignore t :wk "Attach")
 	"a a" #'org-attach
@@ -635,7 +631,7 @@ Meant for `org-mode-hook'."
 		("UNREVIEWD" . "#98be65")
 		("REVIEW" . "dark turquoise")
 		("INPROG" . "dark orange")
-		("REJECTED" . "red")))
+		("REJECTED" . "tomato")))
 
 (with-eval-after-load 'org-faces
 	(set-face-attribute 'org-level-1 nil :height 1.35)
@@ -657,3 +653,7 @@ Meant for `org-mode-hook'."
 
 (with-eval-after-load 'org-superstar
 	(set-face-attribute 'org-superstar-header-bullet nil :font "FreeSans" :height 1.0))
+
+(setcar org-emphasis-regexp-components " \t('\"{[:alpha:]")
+(setcar (nthcdr 1 org-emphasis-regexp-components) "[:alpha:]- \t.,:!?;'\")}\\")
+(org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)

@@ -88,21 +88,17 @@ awful.layout.layouts = {
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
-local dir = io.popen("find /home/areg/Wallpapers/ -type f", "r")
-local filenames = dir:read('*all')
-
-wallpapers = {}
-for line in filenames:gmatch("[^\n]+") do
-	table.insert(wallpapers, line)
-end
-dir:close()
+wallpapers = {
+	"/home/areg/Wallpapers/3h7aar9056g61.png",
+	"/home/areg/Wallpapers/x0wdvy9056g61.png",
+}
 
 
 
 math.randomseed(os.time() * 4214053)
 
 local function set_wallpaper(s)
-	local wallpaper = wallpapers[math.random(0, #wallpapers)]
+	local wallpaper = wallpapers[math.random(1, #wallpapers+1)]
 	gears.wallpaper.maximized(wallpaper, s, true)
 end
 
@@ -112,7 +108,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Global widgets
 local mycalendar = wibox.container.background(wibox.widget.textclock(" %a, %d %b %Y"))
-local myclock = wibox.widget.textclock(" %r", 1)
+local myclock = wibox.widget.textclock(" %R:%S", 1)
 local mybattery = require("battery")
 local mytemp = require("temp")
 local mymem = require("mem")
@@ -126,9 +122,9 @@ awful.screen.connect_for_each_screen(function(s)
 	set_wallpaper(s)
 
 	-- Each screen has its own tag table.
-	awful.tag({" ", " ", " ", " ", " ", " "}, s, awful.layout.layouts[1])
+	awful.tag({" ", " ", " ", " ", " "}, s, awful.layout.layouts[1])
 
-	awful.tag({" ", " "}, s, awful.layout.suit.max)
+	awful.tag({" ", " ", " "}, s, awful.layout.suit.max)
 
 	awful.tag({"﫸 " }, s, awful.layout.layouts[1])
 
@@ -261,7 +257,6 @@ globalkeys = gears.table.join(
 		{description = "select next", group = "layout"}),
 	awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
 		{description = "jump to urgent client", group = "client"}),
-
 	-- awesome
 	awful.key({ modkey, "Control" }, "r", awesome.restart,
 		{description = "reload awesome", group = "awesome"}),
@@ -284,7 +279,12 @@ clientkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle,
 		{description = "toggle floating", group = "client"}),
 	awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
-		{description = "move to master", group = "client"})
+		{description = "move to master", group = "client"}),
+	awful.key({ modkey, "Control"   }, "m",
+		function (c)
+			c.maximized = not c.maximized
+		end,
+		{description="Unmaximize client", group="client"})
 )
 
 local np_map = { 87, 88, 89, 83, 84, 85, 79, 80, 81 }

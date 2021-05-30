@@ -15,8 +15,7 @@
 		  doom-modeline-height 28
 		  doom-modeline-buffer-file-name-style 'relative-from-project
 		  projectile-dynamic-mode-line nil)
-	(setq mode-line-format nil)
-	(column-number-mode +1)
+ 	(column-number-mode +1)
 	(doom-modeline-mode +1))
 
 (use-package highlight-quoted
@@ -35,32 +34,32 @@
 	:config
 	(add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
-(add-hook 'after-make-frame-functions
-		  (lambda (frame)
+(defun my-setup-fonts (&optional fonts)
+	(set-face-attribute 'fixed-pitch nil
+						:font "Fira Code Nerd Font"
+						:inherit 'default
+						:height 0.95)
 
-			  (set-face-attribute 'fixed-pitch nil
-								  :font "Fira Code Nerd Font"
-								  :inherit 'default
-								  :height 0.95)
+	(set-face-attribute 'default nil
+						:font "Fira Code Nerd Font"
+						:height 150
+						:weight 'medium)
 
-			  (set-face-attribute 'default nil
-								  :font "Fira Code Nerd Font"
-								  :height 150
-								  :weight 'medium)
+	(set-face-attribute 'variable-pitch nil
+						:font "Cantarell"
+						:height 170
+						:weight 'medium)
+	;; Makes commented text and keywords italics.
+	;; This is working in emacsclient but not emacs.
+	;; Your font must have an italic face available.
+	(set-face-attribute 'font-lock-comment-face nil
+						:slant 'italic)
+	(set-face-attribute 'font-lock-keyword-face nil
+						:slant 'italic))
 
-			  (set-face-attribute 'variable-pitch nil
-								  :font "Cantarell"
-								  :height 170
-								  :weight 'medium)
+(my-setup-fonts)
 
-			  ;; Makes commented text and keywords italics.
-			  ;; This is working in emacsclient but not emacs.
-			  ;; Your font must have an italic face available.
-			  (set-face-attribute 'font-lock-comment-face nil
-								  :slant 'italic)
-			  (set-face-attribute 'font-lock-keyword-face nil
-								  :slant 'italic)))
-
+(add-hook 'after-make-frame-functions 'my-setup-fonts)
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)

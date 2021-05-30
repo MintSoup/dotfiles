@@ -94,6 +94,7 @@
 	"c" '(clone-buffer :wk "Clone buffer")
 	"k" '(clean-buffers :wk "Clean buffers")
 	"i" '(ibuffer :wk "IBuffer")
+	"v" '(visual-fill-column-mode :wk "Center text")
 	"r" '(revert-buffer :wk "Revert buffer"))
 
 (general-create-definer my-open-leader
@@ -140,6 +141,11 @@
 (my-code-leader
 	"" '(:ignore t :wk "Code")
 	"f" '(format-all-buffer :wk "Format buffer")
+	"r" '(lsp-rename :wk "Rename")
+	"a" '(lsp-execute-code-action :wk "Fix")
+	"n" '(flymake-goto-next-error :wk "Next Error")
+	"p" '(flymake-goto-prev-error :wk "Previous Error")
+	"a" '(lsp-execute-code-action :wk "Fix")
 	"e" '(+quickrun :wk "Execute"))
 
 (general-create-definer my-search-leader

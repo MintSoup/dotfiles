@@ -8,7 +8,7 @@ configuration {
 
 window {
     width: 689px;
-    height: 271px;
+    height: 277px;
     background-color: @background;
 }
 
