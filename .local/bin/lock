@@ -5,19 +5,19 @@ xkb-switch -s us
 
 i3lock -C \
 -i "/home/areg/Wallpapers/lock.png" \
---layoutpos='w/2:h-20' \
+--layout-pos='w/2:h-20' \
 --clock \
 --keylayout 0 \
 --layout-font "FiraCode Nerd Font" \
---insidevercolor=141419 \
---ringvercolor=141419 \
---ringcolor=e86315 \
---keyhlcolor=c70096 \
---wrongcolor=d6d6d6 \
---verifcolor=d6d6d6 \
---layoutcolor=00000000 \
+--insidever-color=141419 \
+--ringver-color=141419 \
+--ring-color=e86315 \
+--keyhl-color=c70096 \
+--wrong-color=d6d6d6 \
+--verif-color=d6d6d6 \
+--layout-color=00000000 \
 --layout-align 1 \
---datecolor 00000000 \
+--date-color 00000000 \
 --nofork
 
 sleep 0.05

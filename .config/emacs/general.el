@@ -22,6 +22,7 @@
 	"," '(switch-to-buffer :wk "Switch buffer")
 	"." '(find-file :wk "Find file")
 	";" '(eval-expression :wk "Eval expression")
+	"g" '(magit :wk "Magit")
 	"SPC" '(projectile-find-file :wk "Find file in project"))
 
 (general-create-definer my-help-leader
@@ -168,4 +169,5 @@
 	"" '(:ignore t :wk "Project")
 	"p" '(projectile-switch-project :wk "Open")
 	"i" '(projectile-invalidate-cache :wk "Invalidate cache")
+	"c" '(projectile-compile-project :wk "Compile project")
 	"a" '(projectile-add-known-project :wk "Add"))

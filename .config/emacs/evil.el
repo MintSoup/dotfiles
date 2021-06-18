@@ -101,6 +101,8 @@
 						"C" 'evil-delete-line-without-yank
 						"x" 'delete-forward-char
 						"C-a" 'evil-numbers/inc-at-pt
+						"M-j" 'evil-collection-unimpaired-move-text-down
+						"M-k" 'evil-collection-unimpaired-move-text-up
 						"C-S-a" 'evil-numbers/dec-at-pt)
 
 	(defun +evil/shift-right ()

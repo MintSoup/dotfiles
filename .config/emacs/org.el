@@ -3,6 +3,7 @@
 	:straight t
 	:hook (org-mode . org-superstar-mode)
 	:hook (org-mode . variable-pitch-mode)
+	:hook (org-mode . +org-enable-auto-reformat-tables-h)
 	:init
 	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)
 		  org-superstar-leading-bullet ""))
@@ -18,9 +19,6 @@
 
 (use-package org-tempo
 	:ensure nil)
-
-(add-hook 'org-mode-hook '+org-enable-auto-reformat-tables-h)
-(add-hook 'org-mode-hook 'org-indent-mode)
 
 ;;; Helpers
 
@@ -621,6 +619,7 @@ Meant for `org-mode-hook'."
 	  org-list-indent-offset 4
 	  org-ellipsis " ▾"
 	  org-list-allow-alphabetical t
+	  org-startup-indented t
 
 	  org-todo-keywords
       '((sequence "TODO(t)" "INPROG(p)" "|" "DONE(d)")

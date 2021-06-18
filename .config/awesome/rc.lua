@@ -89,8 +89,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/3h7aar9056g61.png",
-	"/home/areg/Wallpapers/x0wdvy9056g61.png",
+	"/home/areg/Wallpapers/rock.jpg"
 }
 
 
@@ -98,7 +97,7 @@ wallpapers = {
 math.randomseed(os.time() * 4214053)
 
 local function set_wallpaper(s)
-	local wallpaper = wallpapers[math.random(1, #wallpapers+1)]
+	local wallpaper = wallpapers[math.random(1, #wallpapers)]
 	gears.wallpaper.maximized(wallpaper, s, true)
 end
 
@@ -479,7 +478,8 @@ end)
 
 fastscroll = {
 	"Brave-browser",
-	"discord"
+	"discord",
+	"Element",
 }
 
 

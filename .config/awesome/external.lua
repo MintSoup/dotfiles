@@ -14,7 +14,7 @@ return gears.table.join(
 			  {description = "Insert emojis", group = "launcher"}),
     awful.key({modkey}, "v", function () awful.spawn("copyq show") end,
 			  {description = "Run CopyQ", group = "launcher"}),
-	
+
     awful.key({modkey, "Shift"}, "e", function () awful.spawn("pcmanfm-qt") end,
 			  {description = "PCManFM", group = "launcher"}),
     awful.key({modkey, "Shift"}, "s", function () awful.spawn("flameshot gui", false) end,
@@ -27,11 +27,13 @@ return gears.table.join(
 			  {description = "Vim", group = "launcher"}),
     awful.key({modkey, "Shift"}, "b", function () awful.spawn(terminal .. " -e htop") end,
 			  {description = "Htop", group = "launcher"}),
-    awful.key({modkey, "Shift"}, "w", function () awful.spawn("emacsclient -c -a \"\" ") end,
+    awful.key({modkey, "Shift"}, "w", function () awful.spawn("emacsclient -c -a \"\"") end,
 			  {description = "Emacs Client", group = "launcher"}),
+    awful.key({modkey, "Shift"}, "d", function () awful.spawn("emacsclient -c -a \"\" -e '(find-file \"~\")'") end,
+			  {description = "Dired", group = "launcher"}),
 
 
-	
+
     awful.key({}, "XF86AudioRaiseVolume", function () mypulse:raise() end,
 			  {description = "Raise volume", group = "launcher"}),
 
@@ -48,14 +50,14 @@ return gears.table.join(
 			  {description = "Lower mpd volume", group = "launcher"}),
     awful.key({modkey}, "XF86Launch1", function () awful.spawn("mpc toggle", false) end,
 			  {description = "Toggle mpd", group = "launcher"}),
-	
+
 
     awful.key({}, "XF86MonBrightnessUp", function () awful.spawn("xbacklight -inc 10") end,
 			  {description = "Increase monitor brightness", group = "launcher"}),
     awful.key({}, "XF86MonBrightnessDown", function () awful.spawn("xbacklight -dec 10") end,
 			  {description = "Increase monitor brightness", group = "launcher"}),
 
-	
+
     awful.key({}, "XF86KbdBrightnessUp", function () awful.spawn.with_shell(
 		"echo + > /run/kbdbacklight") end,
 			  {description = "Increase keyboard brightness", group = "launcher"}),
@@ -63,7 +65,7 @@ return gears.table.join(
 		"echo - > /run/kbdbacklight") end,
 			  {description = "Increase keyboard brightness", group = "launcher"}),
 
-	
+
     awful.key({}, "XF86PowerOff", function () awful.spawn("powermenu") end,
 			  {description = "Show powermenu", group = "launcher"}),
     awful.key({}, "XF86TouchpadToggle", function () awful.spawn("toggletpad") end,
