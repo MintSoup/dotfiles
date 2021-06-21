@@ -26,6 +26,11 @@
 
 	(ivy-mode))
 
+(defun +ivy-switch-buffer-hide-asterisk ()
+	(interactive)
+	(let ((ivy-ignore-buffers '("\\` " "\\`\\*")))
+		(ivy-switch-buffer)))
+
 (use-package counsel
 	:straight t
 	:after ivy
@@ -33,12 +38,17 @@
 
 (use-package ivy-rich
 	:straight t
-	:after counsel
 	:init
 	(setq ivy-rich-path-style 'abbrev
           ivy-virtual-abbreviate 'full)
 	:config
-	(ivy-rich-mode +1)) ;; this gets us descriptions in M-x.
+	(ivy-rich-mode)) ;; this gets us descriptions in M-x.
+
+(use-package all-the-icons-ivy-rich
+	:straight t
+	:after ivy-rich
+	:config
+	(all-the-icons-ivy-rich-mode))
 
 (use-package swiper
 	:straight t

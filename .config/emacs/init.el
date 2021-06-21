@@ -24,6 +24,7 @@
 (straight-use-package 'use-package)
 
 (defun load-user-config-file (name)
+	"Load file from `user-emacs-directory'"
 	(load-file (expand-file-name name user-emacs-directory)))
 
 
@@ -65,13 +66,16 @@
 (load-user-config-file "stm32.el") ;; STM32
 
 (setq gc-cons-threshold (* 150 1024 1024))
+
+(defun risky-local-variable-p (sym &optional _ignored) nil)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("fd85e2ae87e3873cca4ed8f41333b1eb72d55577ff35c681f9ba679bc4b2ab5d" "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e" "f4876796ef5ee9c82b125a096a590c9891cec31320569fc6ff602ff99ed73dca" default)))
+ '(safe-local-variable-values
+   '((+debug-function . stm32-start-gdb)
+	 (projectile-project-compilation-cmd . "make -j12"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

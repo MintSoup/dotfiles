@@ -144,6 +144,9 @@
 		  evil-snipe-repeat-scope 'whole-buffer
 		  evil-snipe-char-fold t)
 	:config
+	(general-define-key :states 'insert
+						:keymaps 'evil-snipe-local-mode-map
+						"S" nil)
 	(evil-snipe-mode +1)
 	(evil-snipe-override-mode +1))
 
@@ -152,11 +155,10 @@
 	:after evil
 	:config
 	(evilem-default-keybindings "gs")
-
 	(general-define-key :keymaps 'evilem-map
 						"s" 'evil-avy-goto-char-2
 						"S" 'evil-avy-goto-char-2
-						"a" (evilem-create ('evil-forward-arg 'evil-backward-arg)))
+						"a" (evilem-create (list 'evil-forward-arg 'evil-backward-arg)))
 
 	(setq avy-background t))
 

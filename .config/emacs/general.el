@@ -7,8 +7,6 @@
 
 (general-define-key :states '(normal visual motion) "SPC" nil)
 
-(general-define-key :states 'normal :keymaps 'evil-snipe-mode-map "S" 'evil-avy-goto-char-2)
-
 (general-define-key "<escape>" 'keyboard-escape-quit)
 
 (general-create-definer my-leader
@@ -19,7 +17,8 @@
 (my-leader
 	"j" '(my-next-buffer :wk "Next Buffer")
 	"k" '(my-previous-buffer :wk "Previous buffer")
-	"," '(switch-to-buffer :wk "Switch buffer")
+	"," '(+ivy-switch-buffer-hide-asterisk :wk "Switch buffer")
+	"<" '(switch-to-buffer :wk "Switch buffer")
 	"." '(find-file :wk "Find file")
 	";" '(eval-expression :wk "Eval expression")
 	"g" '(magit :wk "Magit")
@@ -90,7 +89,7 @@
 (my-buffer-leader
 	"" '(:ignore t :wk "Buffer")
 	"n" '(evil-buffer-new :wk "New buffer")
-	"d" '(kill-current-buffer :wk "Kill buffer")
+	"d" '(+kill-current-buffer :wk "Kill buffer")
 	"D" '(kill-buffer-and-window :wk "Kill buffer and window")
 	"c" '(clone-buffer :wk "Clone buffer")
 	"k" '(clean-buffers :wk "Clean buffers")
@@ -110,6 +109,7 @@
 	"t" '(vterm-other-window :wk "VTerm")
 	"T" '(vterm :wk "VTerm here")
 	"r" '(ielm :wk "IELM")
+    "p" '(+neotree-toggle :wk "Toggle neotree")
 	"e" '(eshell :wk "EShell"))
 
 (general-create-definer my-file-leader
@@ -147,6 +147,8 @@
 	"n" '(flymake-goto-next-error :wk "Next Error")
 	"p" '(flymake-goto-prev-error :wk "Previous Error")
 	"a" '(lsp-execute-code-action :wk "Fix")
+	"d" '(lsp-ui-doc-show :wk "Show documentation")
+	"D" '(lsp-ui-doc-hide :wk "Hide documentation")
 	"e" '(+quickrun :wk "Execute"))
 
 (general-create-definer my-search-leader
@@ -165,9 +167,15 @@
 	:states '(normal visual motion)
 	:prefix "SPC p")
 
+(defun +project-debug ()
+	(interactive)
+	(when (boundp '+debug-function)
+		(funcall-interactively +debug-function)))
+
 (my-project-leader
 	"" '(:ignore t :wk "Project")
 	"p" '(projectile-switch-project :wk "Open")
+	"d" '(+project-debug :wk "Debug")
 	"i" '(projectile-invalidate-cache :wk "Invalidate cache")
 	"c" '(projectile-compile-project :wk "Compile project")
 	"a" '(projectile-add-known-project :wk "Add"))

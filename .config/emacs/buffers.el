@@ -22,9 +22,13 @@
 	(interactive)
 	(my-change-buffer 'previous-buffer))
 
-
 (defun remove-scratch-buffer ()
 	(if (get-buffer "*scratch*")
 			(kill-buffer "*scratch*")))
+
+(defun +kill-current-buffer ()
+	(interactive)
+	(unless (string-equal (buffer-name) "*dashboard*")
+		(kill-current-buffer)))
 
 (add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)

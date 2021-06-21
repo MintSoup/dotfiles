@@ -16,6 +16,11 @@
 							  word-wrap nil
 							  mode-line-format nil)
 						(make-local-variable 'auto-hscroll-mode)
-						(setq auto-hscroll-mode nil))))
+						(setq auto-hscroll-mode nil)))))
 
-	(my-open-leader "p" 'neotree-toggle))
+(defun +neotree-toggle ()
+	"Open neotree in the projectile project root if possible, otherwise open it normally"
+	(interactive)
+	(if (neo-global--window-exists-p)
+			(neotree-hide)
+		(neotree-dir (projectile-acquire-root))))
