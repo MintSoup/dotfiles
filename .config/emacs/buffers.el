@@ -31,4 +31,9 @@
 	(unless (string-equal (buffer-name) "*dashboard*")
 		(kill-current-buffer)))
 
+(use-package all-the-icons-ibuffer
+	:straight t
+	:config
+	(all-the-icons-ibuffer-mode))
+
 (add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)

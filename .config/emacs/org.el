@@ -3,6 +3,7 @@
 	:straight t
 	:hook (org-mode . org-superstar-mode)
 	:hook (org-mode . variable-pitch-mode)
+	:hook (org-mode . visual-fill-column-mode)
 	:hook (org-mode . +org-enable-auto-reformat-tables-h)
 	:init
 	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)

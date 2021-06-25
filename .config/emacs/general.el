@@ -104,13 +104,14 @@
 
 (my-open-leader
 	"" '(:ignore t :wk "Open")
-	"d" '(dired-jump :wk "Dired")
+	"d" '(projectile-dired :wk "Dired")
+	"D" '(dired-jump :wk "Dired here")
 	"c" '(calc :wk "Calculator")
 	"t" '(vterm-other-window :wk "VTerm")
-	"T" '(vterm :wk "VTerm here")
+	"T" '(projectile-run-vterm :wk "VTerm here")
 	"r" '(ielm :wk "IELM")
     "p" '(+neotree-toggle :wk "Toggle neotree")
-	"e" '(eshell :wk "EShell"))
+	"e" '(projectile-run-eshell :wk "EShell"))
 
 (general-create-definer my-file-leader
 	:keymaps 'override
@@ -157,7 +158,7 @@
 
 (my-search-leader
 	"" '(:ignore t :wk "Search")
-	"s" '(swiper :wk "Buffer")
+	"s" '(swiper-isearch :wk "Buffer")
 	"S" '(swiper-all :wk "All open buffers")
 	"d" '(counsel-locate :wk "Locate file")
 	"r" '(counsel-rg :wk "Ripgrep")
@@ -169,12 +170,20 @@
 
 (defun +project-debug ()
 	(interactive)
+	(setq +project-compilation-do-debug t)
 	(when (boundp '+debug-function)
-		(funcall-interactively +debug-function)))
+		;; (setq-local compilation-finish-functions compilation-finish-functions)
+		(let ((dbgf +debug-function))
+			(add-to-list 'compilation-finish-functions
+						 (lambda (buffer status)
+							 (when (and (string-equal status "finished\n") +project-compilation-do-debug)
+								 (setq +project-compilation-do-debug nil)
+								 (funcall-interactively dbgf))))
+			(projectile-compile-project projectile-project-compilation-cmd))))
 
 (my-project-leader
 	"" '(:ignore t :wk "Project")
-	"p" '(projectile-switch-project :wk "Open")
+	"p" '(counsel-projectile-switch-project :wk "Open")
 	"d" '(+project-debug :wk "Debug")
 	"i" '(projectile-invalidate-cache :wk "Invalidate cache")
 	"c" '(projectile-compile-project :wk "Compile project")

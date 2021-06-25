@@ -49,6 +49,8 @@
 						:font "Cantarell"
 						:height 170
 						:weight 'medium)
+
+	;; (set-fontset-font "-CTDB-FiraCode Nerd Font-normal-normal-normal-*-20-*-*-*-d-0-fontset-auto2" 'armenian (font-spec :family "DejaVu Sans Code"))
 	;; Makes commented text and keywords italics.
 	;; This is working in emacsclient but not emacs.
 	;; Your font must have an italic face available.
