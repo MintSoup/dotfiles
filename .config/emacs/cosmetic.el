@@ -42,12 +42,12 @@
 
 	(set-face-attribute 'default nil
 						:font "Fira Code Nerd Font"
-						:height 150
+						:height 120
 						:weight 'medium)
 
 	(set-face-attribute 'variable-pitch nil
 						:font "Cantarell"
-						:height 170
+						:height 136
 						:weight 'medium)
 
 	;; (set-fontset-font "-CTDB-FiraCode Nerd Font-normal-normal-normal-*-20-*-*-*-d-0-fontset-auto2" 'armenian (font-spec :family "DejaVu Sans Code"))

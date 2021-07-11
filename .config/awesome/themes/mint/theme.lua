@@ -29,7 +29,7 @@ theme.colors = {
 
 theme.fg_normal  = "#e8e8e8"
 theme.fg_focus   = theme.colors[1]
-theme.fg_urgent  = "#ff0000"
+theme.fg_urgent  = "#e8e8e8"
 theme.bg_normal  = bg .. "ff"
 theme.bg_focus   = "#00000000"
 theme.bg_urgent  = "#00000000"

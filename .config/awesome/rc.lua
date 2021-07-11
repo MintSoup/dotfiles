@@ -19,22 +19,22 @@ local scroll = require("scroll")
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
 	naughty.notify({ preset = naughty.config.presets.critical,
-	title = "Oops, there were errors during startup!",
-	text = awesome.startup_errors })
+					 title = "Oops, there were errors during startup!",
+					 text = awesome.startup_errors })
 end
 
 -- Handle runtime errors after startup
 do
 	local in_error = false
 	awesome.connect_signal("debug::error", function (err)
-		-- Make sure we don't go into an endless error loop
-		if in_error then return end
-		in_error = true
+							   -- Make sure we don't go into an endless error loop
+							   if in_error then return end
+							   in_error = true
 
-		naughty.notify({ preset = naughty.config.presets.critical,
-		title = "Oops, an error happened!",
-		text = tostring(err) })
-		in_error = false
+							   naughty.notify({ preset = naughty.config.presets.critical,
+												title = "Oops, an error happened!",
+												text = tostring(err) })
+							   in_error = false
 	end)
 end
 -- }}}
@@ -71,6 +71,7 @@ run_once("unclutter", "unclutter --timeout 30")
 run_once("xbindkeys")
 run_once("copyq")
 run_once("picom")
+run_once("numlockx on")
 
 awful.spawn("xset r rate 200 40", false)
 awful.spawn("vmtouch -tf ".. os.getenv("HOME"), false)
@@ -89,7 +90,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/rock.jpg"
+	"/home/areg/Wallpapers/anime.jpg"
 }
 
 
@@ -117,89 +118,89 @@ mymic = require("mic")
 
 
 awful.screen.connect_for_each_screen(function(s)
-	-- Wallpaper
-	set_wallpaper(s)
+		-- Wallpaper
+		set_wallpaper(s)
 
-	-- Each screen has its own tag table.
-	awful.tag({" ", " ", " ", " ", " "}, s, awful.layout.layouts[1])
+		-- Each screen has its own tag table.
+		awful.tag({" ", " ", " ", " ", " "}, s, awful.layout.layouts[1])
 
-	awful.tag({" ", " ", " "}, s, awful.layout.suit.max)
+		awful.tag({" ", " ", " "}, s, awful.layout.suit.max)
 
-	awful.tag({"﫸 " }, s, awful.layout.layouts[1])
-
-
-	-- Create a taglist widget
-	s.mytaglist = awful.widget.taglist {
-		screen  = s,
-		filter = function (t) return t.selected or #t:clients() > 0 end,
-		-- filter  = awful.widget.taglist.filter.all,
-        buttons = {
-            awful.button({ }, 1, function(t) t:view_only() end),
-            awful.button({ modkey }, 1, function(t)
-                                            if client.focus then
-                                                client.focus:move_to_tag(t)
-                                            end
-                                        end),
-            awful.button({ }, 3, awful.tag.viewtoggle),
-            awful.button({ modkey }, 3, function(t)
-                                            if client.focus then
-                                                client.focus:toggle_tag(t)
-                                            end
-                                        end),
-        }
-	}
+		awful.tag({"﫸 " }, s, awful.layout.layouts[1])
 
 
-	-- Create a tasklist widget
-	s.mytasklist = awful.widget.tasklist {
-		screen  = s,
-		filter  = awful.widget.tasklist.filter.focused,
-		buttons = tasklist_buttons
-	}
+		-- Create a taglist widget
+		s.mytaglist = awful.widget.taglist {
+			screen  = s,
+			filter = function (t) return t.selected or #t:clients() > 0 end,
+			-- filter  = awful.widget.taglist.filter.all,
+			buttons = {
+				awful.button({ }, 1, function(t) t:view_only() end),
+				awful.button({ modkey }, 1, function(t)
+						if client.focus then
+							client.focus:move_to_tag(t)
+						end
+				end),
+				awful.button({ }, 3, awful.tag.viewtoggle),
+				awful.button({ modkey }, 3, function(t)
+						if client.focus then
+							client.focus:toggle_tag(t)
+						end
+				end),
+			}
+		}
 
-	-- Create the wibox
-	s.mywibox = awful.wibar{ position = "top", screen = s }
 
-	local count = 2
+		-- Create a tasklist widget
+		s.mytasklist = awful.widget.tasklist {
+			screen  = s,
+			filter  = awful.widget.tasklist.filter.focused,
+			buttons = tasklist_buttons
+		}
 
-	local function wwrapper(w)
-		local tmp = wibox.container.background(wibox.container.margin(w, 9, 9))
-		tmp.fg = beautiful.colors[count % #beautiful.colors + 1]
-		count = count + 1
-		return tmp
-	end
-	local function wwrapper_tight(w)
-		local tmp = wibox.container.background(w)
-		tmp.fg = beautiful.colors[count % #beautiful.colors + 1]
-		count = count + 1
-		return tmp
-	end
+		-- Create the wibox
+		s.mywibox = awful.wibar{ position = "top", screen = s }
 
-	separators.width = math.floor(s.mywibox.height * 0.5)
+		local count = 2
 
-	-- Add widgets to the wibox
-	s.mywibox:setup {
-		layout = wibox.layout.align.horizontal,
-		{ -- Left widgets
-		layout = wibox.layout.fixed.horizontal,
-		--wibox.container.background(s.mytaglist, beautiful.color1),
-		s.mytaglist,
-	},
-	(s.mytasklist),
+		local function wwrapper(w)
+			local tmp = wibox.container.background(wibox.container.margin(w, 9, 9))
+			tmp.fg = beautiful.colors[count % #beautiful.colors + 1]
+			count = count + 1
+			return tmp
+		end
+		local function wwrapper_tight(w)
+			local tmp = wibox.container.background(w)
+			tmp.fg = beautiful.colors[count % #beautiful.colors + 1]
+			count = count + 1
+			return tmp
+		end
 
-	{ -- Right widgets
-	layout = wibox.layout.fixed.horizontal,
-	wwrapper(wibox.widget.systray()),
-	wwrapper_tight(mykeyboardlayout),
-	wwrapper(mybattery.widget),
-	wwrapper(mytemp.widget),
-	wwrapper(mymem.widget),
-	wwrapper(mypulse.widget),
-	wwrapper(mymic.widget),
-	wwrapper(mycalendar),
-	wwrapper(myclock),
-},
-	}
+		separators.width = math.floor(s.mywibox.height * 0.5)
+
+		-- Add widgets to the wibox
+		s.mywibox:setup {
+			layout = wibox.layout.align.horizontal,
+			{ -- Left widgets
+				layout = wibox.layout.fixed.horizontal,
+				--wibox.container.background(s.mytaglist, beautiful.color1),
+				s.mytaglist,
+			},
+			(s.mytasklist),
+
+			{ -- Right widgets
+				layout = wibox.layout.fixed.horizontal,
+				wwrapper(wibox.widget.systray()),
+				wwrapper_tight(mykeyboardlayout),
+				wwrapper(mybattery.widget),
+				wwrapper(mytemp.widget),
+				wwrapper(mymem.widget),
+				wwrapper(mypulse.widget),
+				wwrapper(mymic.widget),
+				wwrapper(mycalendar),
+				wwrapper(myclock),
+			},
+		}
 
 end)
 
@@ -264,10 +265,10 @@ globalkeys = gears.table.join(
 	awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
 		{description="show help", group="awesome"}),
 	awful.key({modkey,			},	 "b", function()
-		-- local wibox = awful.client.focus.object.screen.mywibox
-		local wibox = mouse.screen.mywibox
-		wibox.visible = not wibox.visible
-		awful.tag.selected().bar = wibox.visible
+			-- local wibox = awful.client.focus.object.screen.mywibox
+			local wibox = mouse.screen.mywibox
+			wibox.visible = not wibox.visible
+			awful.tag.selected().bar = wibox.visible
 	end,
 		{description="toggle bar", group="awesome"})
 )
@@ -290,48 +291,48 @@ local np_map = { 87, 88, 89, 83, 84, 85, 79, 80, 81 }
 
 for i = 1, 9 do
 	globalkeys = gears.table.join(globalkeys,
-	-- View tag only.
-	awful.key({ modkey }, "#" .. np_map[i],
-	function ()
-		local screen = awful.screen.focused()
-		local tag = screen.tags[i]
-		if tag then
-			tag:view_only()
-		end
-	end,
-	{description = "view tag #"..i, group = "tag"}),
-	-- Toggle tag display.
-	awful.key({ modkey, "Control" }, "#" .. np_map[i],
-	function ()
-		local screen = awful.screen.focused()
-		local tag = screen.tags[i]
-		if tag then
-			awful.tag.viewtoggle(tag)
-		end
-	end,
-	{description = "toggle tag #" .. i, group = "tag"}),
-	-- Move client to tag.
-	awful.key({ modkey, "Shift" }, "#" .. np_map[i],
-	function ()
-		if client.focus then
-			local tag = client.focus.screen.tags[i]
-			if tag then
-				client.focus:move_to_tag(tag)
-			end
-		end
-	end,
-	{description = "move focused client to tag #"..i, group = "tag"}),
-	-- Toggle tag on focused client.
-	awful.key({ modkey, "Control", "Shift" }, "#" .. np_map[i],
-	function ()
-		if client.focus then
-			local tag = client.focus.screen.tags[i]
-			if tag then
-				client.focus:toggle_tag(tag)
-			end
-		end
-	end,
-	{description = "toggle focused client on tag #" .. i, group = "tag"})
+								  -- View tag only.
+								  awful.key({ modkey }, "#" .. np_map[i],
+									  function ()
+										  local screen = awful.screen.focused()
+										  local tag = screen.tags[i]
+										  if tag then
+											  tag:view_only()
+										  end
+									  end,
+									  {description = "view tag #"..i, group = "tag"}),
+								  -- Toggle tag display.
+								  awful.key({ modkey, "Control" }, "#" .. np_map[i],
+									  function ()
+										  local screen = awful.screen.focused()
+										  local tag = screen.tags[i]
+										  if tag then
+											  awful.tag.viewtoggle(tag)
+										  end
+									  end,
+									  {description = "toggle tag #" .. i, group = "tag"}),
+								  -- Move client to tag.
+								  awful.key({ modkey, "Shift" }, "#" .. np_map[i],
+									  function ()
+										  if client.focus then
+											  local tag = client.focus.screen.tags[i]
+											  if tag then
+												  client.focus:move_to_tag(tag)
+											  end
+										  end
+									  end,
+									  {description = "move focused client to tag #"..i, group = "tag"}),
+								  -- Toggle tag on focused client.
+								  awful.key({ modkey, "Control", "Shift" }, "#" .. np_map[i],
+									  function ()
+										  if client.focus then
+											  local tag = client.focus.screen.tags[i]
+											  if tag then
+												  client.focus:toggle_tag(tag)
+											  end
+										  end
+									  end,
+									  {description = "toggle focused client on tag #" .. i, group = "tag"})
 	)
 end
 
@@ -340,19 +341,19 @@ gears.table.merge(globalkeys, require("external"))
 
 clientbuttons = gears.table.join(
 	awful.button({ }, 1, function (c)
-		c:emit_signal("request::activate", "mouse_click", {raise = true})
+			c:emit_signal("request::activate", "mouse_click", {raise = true})
 	end),
 	awful.button({ modkey }, 1, function (c)
-		c:emit_signal("request::activate", "mouse_click", {raise = true})
-		awful.mouse.client.move(c)
+			c:emit_signal("request::activate", "mouse_click", {raise = true})
+			awful.mouse.client.move(c)
 	end),
 	awful.button({ modkey }, 3, function (c)
-		c:emit_signal("request::activate", "mouse_click", {raise = true})
-		awful.mouse.client.resize(c)
+			c:emit_signal("request::activate", "mouse_click", {raise = true})
+			awful.mouse.client.resize(c)
 	end),
 	awful.button({ modkey }, 2, function (c)
-		c:emit_signal("request::activate", "mouse_click", {raise = true})
-		awful.client.floating.toggle()
+			c:emit_signal("request::activate", "mouse_click", {raise = true})
+			awful.client.floating.toggle()
 	end)
 )
 
@@ -365,32 +366,32 @@ root.keys(globalkeys)
 awful.rules.rules = {
 	-- All clients will match this rule.
 	{ rule = { },
-	properties = { border_width = beautiful.border_width,
-	border_color = beautiful.border_normal,
-	focus = awful.client.focus.filter,
-	raise = true,
-	keys = clientkeys,
-	buttons = clientbuttons,
-	screen = awful.screen.preferred,
-	placement = awful.placement.no_overlap+awful.placement.no_offscreen
-}
+	  properties = { border_width = beautiful.border_width,
+					 border_color = beautiful.border_normal,
+					 focus = awful.client.focus.filter,
+					 raise = true,
+					 keys = clientkeys,
+					 buttons = clientbuttons,
+					 screen = awful.screen.preferred,
+					 placement = awful.placement.no_overlap+awful.placement.no_offscreen
+	  }
 	},
 
 	-- Floating clients.
 	{ rule_any = {
-		instance = {
-		},
-		class = {
-			"Pavucontrol",
-			"SpeedCrunch",
-			"copyq",
-		},
-		name = {
+		  instance = {
+		  },
+		  class = {
+			  "Pavucontrol",
+			  "SpeedCrunch",
+			  "copyq",
+		  },
+		  name = {
 
-		},
-		role = {
-			"pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-		}
+		  },
+		  role = {
+			  "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+		  }
 	}, properties = { floating = true }},
 
 	{ rule = { class = "Brave-browser" }, properties = { screen = 1, tag = " " } },
@@ -403,18 +404,18 @@ awful.rules.rules = {
 -- Signal function to execute when a new client appears.
 
 function is_terminal(c)
-    return c.class == "st-256color"
+	return c.class == "st-256color"
 end
 
 function copy_size(c, parent_client, idx)
-    if not c or not parent_client then
-        return
-    end
-    if not c.valid or not parent_client.valid then
-        return
-    end
+	if not c or not parent_client then
+		return
+	end
+	if not c.valid or not parent_client.valid then
+		return
+	end
 
-    c.floating = parent_client.floating
+	c.floating = parent_client.floating
 	if c.floating then
 		c.x = parent_client.x;
 		c.y = parent_client.y;
@@ -434,44 +435,44 @@ local ppid = 'bash '..awesome_config_folder..'helper.sh ppid '
 
 client.connect_signal("manage", function (c)
 
-	if awesome.startup
-		and not c.size_hints.user_position
-		and not c.size_hints.program_position then
-		-- Prevent clients from being unreachable after screen count changes.
-		awful.placement.no_offscreen(c)
-	end
+						  if awesome.startup
+							  and not c.size_hints.user_position
+							  and not c.size_hints.program_position then
+							  -- Prevent clients from being unreachable after screen count changes.
+							  awful.placement.no_offscreen(c)
+						  end
 
-	if not is_terminal(c) then
-		local parent_client=awful.client.focus.history.get(c.screen, 1)
-		if not c.pid then return end
-		awful.spawn.easy_async(gppid .. c.pid, function(gppid)
-			awful.spawn.easy_async(ppid .. c.pid, function(ppid)
-				if parent_client and (gppid:find('^' .. parent_client.pid) or ppid:find('^' .. parent_client.pid)) and
-																	is_terminal(parent_client) then
+						  if not is_terminal(c) then
+							  local parent_client=awful.client.focus.history.get(c.screen, 1)
+							  if not c.pid then return end
+							  awful.spawn.easy_async(gppid .. c.pid, function(gppid)
+														 awful.spawn.easy_async(ppid .. c.pid, function(ppid)
+																					if parent_client and (gppid:find('^' .. parent_client.pid) or ppid:find('^' .. parent_client.pid)) and
+																						is_terminal(parent_client) then
 
-					local idx
-					if not parent_client.floating then
-						idx = awful.client.idx(parent_client).idx
-					end
+																						local idx
+																						if not parent_client.floating then
+																							idx = awful.client.idx(parent_client).idx
+																						end
 
-					c:connect_signal("unmanage", function()
-						parent_client.hidden = false
+																						c:connect_signal("unmanage", function()
+																											 parent_client.hidden = false
 
-						if parent_client.floating then
-							parent_client.x = c.x
-							parent_client.y = c.y
-							parent_client.width = c.width
-							parent_client.height = c.height
-						end
-					end)
+																											 if parent_client.floating then
+																												 parent_client.x = c.x
+																												 parent_client.y = c.y
+																												 parent_client.width = c.width
+																												 parent_client.height = c.height
+																											 end
+																						end)
 
-					parent_client.hidden = true
-					copy_size(c, parent_client, idx)
-					return
-				end
-			end)
-		end)
-	end
+																						parent_client.hidden = true
+																						copy_size(c, parent_client, idx)
+																						return
+																					end
+														 end)
+							  end)
+						  end
 
 
 end)
@@ -514,43 +515,40 @@ end
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
-    -- c:emit_signal("request::activate", "mouse_enter", {raise = false})
-	c:activate({
-		context = "mouse_enter",
-		raise = false
-	})
-	syncon(c)
+						  -- c:emit_signal("request::activate", "mouse_enter", {raise = false})
+						  c:activate({
+								  context = "mouse_enter",
+								  raise = false
+						  })
+						  syncon(c)
 end)
 
 client.connect_signal("mouse::leave", resync)
 client.connect_signal("focus", function(c)
-	c.border_color = beautiful.border_focus
-	local x = mouse.coords().x
-	local y = mouse.coords().y
-	gears.timer {
-		timeout   = 0.001,
-		single_shot = true,
-		autostart = true,
-		callback  = function()
-			if c.valid then
-				if x >= c.x and x < c.x + c.width and y >= c.y and y < c.y + c.height then
-					c:emit_signal("mouse::enter")
-				end
-			end
-		end
-	}
+						  c.border_color = beautiful.border_focus
+						  local x = mouse.coords().x
+						  local y = mouse.coords().y
+						  gears.timer {
+							  timeout   = 0.001,
+							  single_shot = true,
+							  autostart = true,
+							  callback  = function()
+								  if c.valid then
+									  if x >= c.x and x < c.x + c.width and y >= c.y and y < c.y + c.height then
+										  c:emit_signal("mouse::enter")
+									  end
+								  end
+							  end
+						  }
 end)
 
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-client.connect_signal("property::urgent", function(c)
-    c:jump_to()
-end)
 
 client.connect_signal("property::floating", function(c)
-    if c.maximized or c.fullscreen then return end
+						  if c.maximized or c.fullscreen then return end
 
-	c.size_hints_honor = c.floating
-	c.above = c.floating
+						  c.size_hints_honor = c.floating
+						  c.above = c.floating
 
 end)
 
@@ -600,25 +598,25 @@ end
 
 
 awful.tag.attached_connect_signal(nil, "property::selected", function(t)
-	if not t.selected then return end
-	local wibox = mouse.screen.mywibox
-	wibox.visible = t.bar
+									  if not t.selected then return end
+									  local wibox = mouse.screen.mywibox
+									  wibox.visible = t.bar
 end)
 
 screen.connect_signal("arrange", function (s)
-	if not s.selected_tag then
-		return
-	end
-    local max = s.selected_tag.layout.name == "max"
-    local only_one = #s.tiled_clients == 1 -- use tiled_clients so that other floating windows don't affect the count
-    -- but iterate over clients instead of tiled_clients as tiled_clients doesn't include maximized windows
-    for _, c in pairs(s.clients) do
-        if (max or only_one) and not c.floating or c.maximized then
-            c.border_width = 0
-        else
-            c.border_width = beautiful.border_width
-        end
-    end
+						  if not s.selected_tag then
+							  return
+						  end
+						  local max = s.selected_tag.layout.name == "max"
+						  local only_one = #s.tiled_clients == 1 -- use tiled_clients so that other floating windows don't affect the count
+						  -- but iterate over clients instead of tiled_clients as tiled_clients doesn't include maximized windows
+						  for _, c in pairs(s.clients) do
+							  if (max or only_one) and not c.floating or c.maximized then
+								  c.border_width = 0
+							  else
+								  c.border_width = beautiful.border_width
+							  end
+						  end
 end)
 
 naughty.config.defaults.border_width = beautiful.notification_border_width
