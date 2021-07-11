@@ -16,3 +16,7 @@
 	(when (derived-mode-p 'prog-mode)
 		(delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
+
+(setq make-backup-files nil)
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups/"))))

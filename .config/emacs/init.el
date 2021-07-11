@@ -59,6 +59,7 @@
 (load-user-config-file "margin.el")
 (load-user-config-file "lsp.el")
 (load-user-config-file "magit.el")
+(load-user-config-file "gud.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme
