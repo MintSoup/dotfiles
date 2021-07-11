@@ -62,7 +62,7 @@ local function run_once(cmd)
 end
 
 
-run_once("emacs", "emacs --daemon")
+run_once({"emacs", "emacs --daemon"})
 run_once("brave")
 run_once({"Discord", "discord"})
 run_once({"pia-client","/opt/piavpn/bin/pia-client"})
