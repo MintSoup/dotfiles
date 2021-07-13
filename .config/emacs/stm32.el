@@ -443,9 +443,17 @@
 	(when (get-buffer "*st-util*")
 		(kill-buffer "*st-util*"))
 	(when (get-buffer "*gud-target extended-remote localhost:4242*")
-		(kill-buffer "*gud-target extended-remote localhost:4242*"))
-	)
+		(kill-buffer "*gud-target extended-remote localhost:4242*")))
+
+
+(defun stm32-init-project ()
+	"Initialize STM32 project"
+	(interactive)
+	(dolist (file (directory-files
+				   (expand-file-name "stm32" user-emacs-directory)
+				   t "^\\.?[a-zA-Z]"))
+			(copy-file file (projectile-acquire-root)))
+	(interactive))
 
 (provide 'stm32)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; stm32.el ends here
