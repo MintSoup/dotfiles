@@ -2,20 +2,25 @@
 
 (defun my-change-buffer (change-buffer)
 	"Call CHANGE-BUFFER until `my-skippable-buffer-regexp' doesn't match."
-	(let ((initial (current-buffer)))
+	(let ((initial (buffer-name)))
 		(funcall change-buffer)
-		(let ((first-change (current-buffer)))
-			(catch 'loop
-				(while (string-match-p my-skippable-buffer-regexp (buffer-name))
-					(funcall change-buffer)
-					(when (eq (current-buffer) first-change)
-						(switch-to-buffer initial)
-						(throw 'loop t)))))))
+		(cl-loop while
+				 (string-match-p my-skippable-buffer-regexp (buffer-name)) do
+				 (if (eq (buffer-name) initial)
+						 (cl-return)
+					 (funcall change-buffer)))))
+
+(defun +!tmp-next-buffer ()
+
+	"Temporary function to deal with current next-buffer bug"
+	(previous-buffer)
+	(next-buffer)
+	(next-buffer))
 
 (defun my-next-buffer ()
 	"Variant of `next-buffer' that skips `my-skippable-buffer-regexp'."
 	(interactive)
-	(my-change-buffer 'next-buffer))
+	(my-change-buffer '+!tmp-next-buffer))
 
 (defun my-previous-buffer ()
 	"Variant of `previous-buffer' that skips `my-skippable-buffer-regexp'."

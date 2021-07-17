@@ -479,6 +479,7 @@ fastscroll = {
 	"Brave-browser",
 	"discord",
 	"Element",
+	"Zathura",
 }
 
 
