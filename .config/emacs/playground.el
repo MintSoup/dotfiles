@@ -1,0 +1,2 @@
+(defun graph (nums)
+	(dolist))

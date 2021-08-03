@@ -634,9 +634,9 @@ Meant for `org-mode-hook'."
 		("REJECTED" . "tomato")))
 
 (with-eval-after-load 'org-faces
-	(set-face-attribute 'org-level-1 nil :height 1.35)
-	(set-face-attribute 'org-level-2 nil :height 1.2)
-	(set-face-attribute 'org-level-3 nil :height 1.05)
+	(set-face-attribute 'org-level-1 nil :height 1.35 :weight 'normal)
+	(set-face-attribute 'org-level-2 nil :height 1.2 :weight 'normal)
+	(set-face-attribute 'org-level-3 nil :height 1.05 :weight 'normal)
 	(set-face-attribute 'org-checkbox nil :inherit '(org-todo fixed-pitch))
 	(set-face-attribute 'org-meta-line nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :foreground "#83898d")
