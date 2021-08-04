@@ -2,7 +2,7 @@
 (use-package visual-fill-column
 	:straight t
 	:init
-	 (setq visual-fill-column-width 80
+	 (setq visual-fill-column-width 90
            visual-fill-column-center-text t))
 
 (defun unfill-paragraph (&optional region)

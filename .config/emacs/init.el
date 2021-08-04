@@ -60,6 +60,7 @@
 (load-user-config-file "lsp.el")
 (load-user-config-file "magit.el")
 (load-user-config-file "gud.el")
+(load-user-config-file "sr-speedbar.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme
@@ -74,6 +75,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("fd85e2ae87e3873cca4ed8f41333b1eb72d55577ff35c681f9ba679bc4b2ab5d" "b7e460a67bcb6cac0a6aadfdc99bdf8bbfca1393da535d4e8945df0648fa95fb" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" default))
  '(safe-local-variable-values
    '((+debug-function . stm32-start-gdb)
 	 (projectile-project-compilation-cmd . "make -j12"))))

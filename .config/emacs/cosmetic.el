@@ -34,6 +34,7 @@
 	:config
 	(add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
+
 (defun my-setup-fonts (&optional fonts)
 	(set-face-attribute 'fixed-pitch nil
 						:font "Fira Code Nerd Font"

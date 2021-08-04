@@ -7,3 +7,4 @@
 					"<f9>"		'gud-break
 					"<f5>"		'gud-cont
 					"<delete>"	'gud-remove)
+(setq gdb-many-windows t)
