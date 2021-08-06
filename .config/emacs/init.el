@@ -61,6 +61,7 @@
 (load-user-config-file "magit.el")
 (load-user-config-file "gud.el")
 (load-user-config-file "sr-speedbar.el")
+(load-user-config-file "torrent.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme

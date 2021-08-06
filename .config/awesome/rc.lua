@@ -74,7 +74,6 @@ run_once("picom")
 run_once("numlockx on")
 
 awful.spawn("xset r rate 200 40", false)
-awful.spawn("vmtouch -tf ".. os.getenv("HOME"), false)
 
 
 

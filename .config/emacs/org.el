@@ -16,6 +16,8 @@
 	:config
 	(add-to-list 'evil-org-key-theme 'shift)
 	(evil-org-set-key-theme)
+	(require 'evil-org-agenda)
+	(evil-org-agenda-set-keys)
 	:hook (org-mode . evil-org-mode))
 
 (use-package org-tempo
@@ -615,6 +617,7 @@ Meant for `org-mode-hook'."
 	"p u" #'org-priority-up)
 
 (setq org-directory "~/Org/"
+	  org-agenda-files '("~/Org/Agenda/")
 	  org-hide-emphasis-markers t
 	  org-indent-indentation-per-level 2
 	  org-list-indent-offset 4

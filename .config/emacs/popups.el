@@ -60,6 +60,7 @@
 				("*Finder*" :select t :size 0.3 :align below :autoclose t)
 				("^\\*macro expansion\\**" :regexp t :size 0.4 :align below)
 				("^\\*elfeed-entry" :regexp t :size 0.7 :align below :autoclose t)
+				(transmission-mode :size 1 :align below :autoclose t :same t)
 				(" *Install vterm* " :size 0.35 :same t :align below)
 				("*vterm*" :size 0.35 :align below)
 				(("*Paradox Report*" "*package update results*") :size 0.2 :align below :autoclose t)

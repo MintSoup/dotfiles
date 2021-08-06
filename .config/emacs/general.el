@@ -65,8 +65,8 @@
 	"k" '(evil-window-up :wk "Switch to upper window")
 	"H" '(evil-window-move-far-left :wk "Move window to the left")
 	"L" '(evil-window-move-far-right :wk "Move window to the right")
-	"J" '(evil-window-move-far-down :wk "Move window to the far bottom")
-	"K" '(evil-window-move-far-up :wk "Move window to the far top")
+	"J" '(evil-window-move-very-bottom :wk "Move window to the far bottom")
+	"K" '(evil-window-move-very-top :wk "Move window to the far top")
 	"v" '(evil-window-vsplit :wk "Vertical split")
 	"s" '(evil-window-split :wk "Horizontal split")
 	"=" '(balance-windows :wk "Balance windows")
@@ -111,6 +111,7 @@
 	"T" '(projectile-run-vterm :wk "VTerm here")
 	"r" '(ielm :wk "IELM")
     "p" '(+neotree-toggle :wk "Toggle neotree")
+    "a" '(org-agenda :wk "Org Agenda")
 	"e" '(projectile-run-eshell :wk "EShell"))
 
 (general-create-definer my-file-leader
@@ -123,10 +124,16 @@
 	(interactive)
 	(counsel-find-file user-emacs-directory))
 
+(defun browse-org-files ()
+	"Browse file in emacs config directory"
+	(interactive)
+	(counsel-find-file "~/Org/"))
+
 (my-file-leader
 	"" '(:ignore t :wk "File")
 	"s" '(save-buffer :wk "Save")
-	"p" '(browse-my-config :wk "Find file in private config")
+	"o" '(browse-org-files :wk "Browse Org")
+	"p" '(browse-my-config :wk "Browse private config")
 	"r" '(counsel-recentf :wk "Recent files"))
 
 (general-create-definer my-local-leader
