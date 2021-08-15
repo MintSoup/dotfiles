@@ -8,6 +8,7 @@
 (general-define-key :states '(normal visual motion) "SPC" nil)
 
 (general-define-key "<escape>" 'keyboard-escape-quit)
+(general-define-key :keymaps 'Info-mode-map :states 'normal "RET" 'Info-follow-nearest-node)
 
 (general-create-definer my-leader
 	:keymaps 'override
@@ -189,10 +190,15 @@
 								 (funcall-interactively dbgf))))
 			(projectile-compile-project projectile-project-compilation-cmd))))
 
+(defun +project-stop-debug ()
+	(interactive)
+	(kill-buffer (gdb-get-buffer 'gdbmi)))
+
 (my-project-leader
 	"" '(:ignore t :wk "Project")
 	"p" '(counsel-projectile-switch-project :wk "Open")
 	"d" '(+project-debug :wk "Debug")
+	"d" '(+project-stop-debug :wk "Stop debug")
 	"i" '(projectile-invalidate-cache :wk "Invalidate cache")
 	"c" '(projectile-compile-project :wk "Compile project")
 	"a" '(projectile-add-known-project :wk "Add"))

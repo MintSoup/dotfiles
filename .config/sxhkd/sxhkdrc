@@ -1,51 +1,51 @@
-#super + Return
-	#st
-#super + space
-	#rofi -theme drun.rasi -show drun
-#super + shift + e
-	#pcmanfm
-#super + z
-	#dmenuprojects
-#super + shift + s 
-	#flameshot gui
-#super + semicolon
-	#rofi -show emoji
-#shift + alt
-	#xkb-switch -n	
-#super + shift + m
-	#$TERMINAL ncmpcpp
-#super + shift + n
-	#$TERMINAL nmtui
-#
-#XF86AudioMute
-    #pactl set-sink-mute 0 toggle && kill -44 (pidof dwmblocks)
-#
-#XF86Audio{Raise,Lower}Volume
-    #pactl set-sink-volume 0 {+2%,-2%} && kill -44 (pidof dwmblocks)
-#
-#super + XF86Audio{Raise,Lower}Volume
-    #mpc volume {+,-}5
-#
-#XF86MonBrightness{Up,Down}
-    #xbacklight {-inc, -dec} 10
-#
-#XF86KbdBrightness{Up,Down}
-	#echo {+,-} > /run/kbdbacklight
-#
-#XF86PowerOff
-	#powermenu
-#
-#XF86TouchpadToggle
-	#toggletpad
-#
-#XF86Launch1
-	#speedcrunch
-#
-#super + XF86Launch1
-	#mpc toggle
-#
-#XF86Sleep
-	#lock
-#
+super + Return
+	st
+super + space
+	rofi -theme drun.rasi -show drun
+super + shift + e
+	pcmanfm
+super + z
+	dmenuprojects
+super + shift + s 
+	flameshot gui
+super + semicolon
+	rofi -show emoji
+shift + alt
+	xkb-switch -n	
+super + shift + m
+	$TERMINAL ncmpcpp
+super + shift + n
+	$TERMINAL nmtui
+
+XF86AudioMute
+    pactl set-sink-mute 0 toggle && kill -44 (pidof dwmblocks)
+
+XF86Audio{Raise,Lower}Volume
+    pactl set-sink-volume 0 {+2%,-2%} && kill -44 (pidof dwmblocks)
+
+super + XF86Audio{Raise,Lower}Volume
+    mpc volume {+,-}5
+
+XF86MonBrightness{Up,Down}
+    xbacklight {-inc, -dec} 10
+
+XF86KbdBrightness{Up,Down}
+	echo {+,-} > /run/kbdbacklight
+
+XF86PowerOff
+	powermenu
+
+XF86TouchpadToggle
+	toggletpad
+
+XF86Launch1
+	speedcrunch
+
+super + XF86Launch1
+	mpc toggle
+
+XF86Sleep
+	lock
+
 button8: button4
    st & kill -USR1 $(pidof sxhkd)

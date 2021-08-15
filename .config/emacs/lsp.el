@@ -14,5 +14,5 @@
 
 (use-package lsp-ui
 	:straight t
-	:init
-	(setq lsp-ui-doc-mode nil))
+	:config
+	(setq lsp-ui-doc-enable nil))

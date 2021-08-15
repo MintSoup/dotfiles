@@ -5,6 +5,7 @@ SETUVAR _fish_abbr_ga_2E_:git\x20add\x20\x2e
 SETUVAR _fish_abbr_gcm:git\x20commit\x20\x2dm
 SETUVAR _fish_abbr_gpom:git\x20push\x20origin\x20main
 SETUVAR _fish_abbr_ls:lsd
+SETUVAR _fish_abbr_mnt:sudo\x20mount\x20/dev/sdb1\x20\x2dt\x20vfat\x20\x2do\x20umask\x3d0000\x20/mnt
 SETUVAR _fish_abbr_nv:nvim
 SETUVAR _fish_abbr_p:paru
 SETUVAR _fish_abbr_pr:paru\x20\x2dRns

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 
 ppid() {
   printf "$(ps -o ppid= -p $1)" | xargs
