@@ -187,18 +187,21 @@
 						 (lambda (buffer status)
 							 (when (and (string-equal status "finished\n") +project-compilation-do-debug)
 								 (setq +project-compilation-do-debug nil)
-								 (funcall-interactively dbgf))))
-			(projectile-compile-project projectile-project-compilation-cmd))))
+								 (funcall-interactively dbgf)))))
+		(let ((projectile-project-compilation-cmd projectile-project-debug-cmd))
+			(projectile-compile-project projectile-project-debug-cmd))))
 
 (defun +project-stop-debug ()
 	(interactive)
-	(kill-buffer (gdb-get-buffer 'gdbmi)))
+	(let ((buff (gdb-get-buffer 'gdbmi)))
+		(when buff
+			(kill-buffer buff))))
 
 (my-project-leader
 	"" '(:ignore t :wk "Project")
 	"p" '(counsel-projectile-switch-project :wk "Open")
 	"d" '(+project-debug :wk "Debug")
-	"d" '(+project-stop-debug :wk "Stop debug")
+	"D" '(+project-stop-debug :wk "Stop debug")
 	"i" '(projectile-invalidate-cache :wk "Invalidate cache")
 	"c" '(projectile-compile-project :wk "Compile project")
 	"a" '(projectile-add-known-project :wk "Add"))
