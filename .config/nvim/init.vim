@@ -45,9 +45,6 @@ Plug 'ghifarit53/tokyonight-vim'
 " Close braces, quotes etc
 Plug 'jiangmiao/auto-pairs'
 
-" Autocomplete
-Plug 'ycm-core/YouCompleteMe' 
-
 " Show open buffers on top
 Plug 'zefei/vim-wintabs'
 Plug 'zefei/vim-wintabs-powerline'
@@ -58,9 +55,6 @@ Plug 'LucHermitte/local_vimrc'
 
 " CtrlP for search (basically a lighter fzf)
 Plug 'ctrlpvim/ctrlp.vim'
-
-" Debugging
-Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
 
 " Sneak for moving around quickly
 Plug 'justinmk/vim-sneak'
@@ -102,14 +96,6 @@ colorscheme tokyonight
 
 " Don't show --insert-- (because we have lightline)
 set noshowmode
-
-" YCM autoload config file
-let g:ycm_confirm_extra_conf = 0
-
-" Autocomplete after typing 1 character
-let g:ycm_semantic_triggers =  {
-			\   'c,cpp,cs,python': [ 're!\w{1}', '_' ],
-			\ }
 
 "Disable preview on top thing
 set completeopt-=preview
@@ -153,18 +139,11 @@ nnoremap <silent> C "_dd
 nnoremap <silent> x "_x
 
 
-" Use human mappings for vimspector
-let g:vimspector_enable_mappings = 'HUMAN'
-
 " Show hidden files in CtrlP
 let g:ctrlp_show_hidden=1
 
 " Stupid option in autopairs disabl e
 let g:AutoPairsMultilineClose=0
-
-" Stop vimspector session with :VR
-command VR VimspectorReset
-
 
 " CHADTree toggling
 function ToggleCT()
