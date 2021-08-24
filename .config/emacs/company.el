@@ -13,3 +13,7 @@
 						"<tab>" 'company-select-next)
 	(setq company-backends
 		  '((company-capf company-files geiser-company-backend company-keywords))))
+
+(general-define-key :states 'insert
+					:keymaps 'eshell-mode-map
+					"<tab>" 'company-complete)

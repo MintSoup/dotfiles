@@ -30,8 +30,9 @@
 			(evil-normal-state)
 			(set-window-dedicated-p win1 t)
 
-			(let* ((win2 (split-window nil (floor (* (window-height) 0.66))))
-				   (win3 (split-window nil (floor (* (window-height) 0.5)))))
+			(let* ((win2 (split-window nil (floor (* (window-height) 0.75))))
+				   (win3 (split-window nil (floor (* (window-height) 0.66))))
+				   (win4 (split-window nil (floor (* (window-height) 0.5)))))
 
 				(set-window-buffer win0 (or (gdb-get-source-buffer)
 											(list-buffers-noselect)))
@@ -42,7 +43,11 @@
 				(with-current-buffer (gdb-inferior-io-name)
 					(evil-normal-state))
 
+				(with-current-buffer (gdb-locals-buffer-name)
+					(evil-normal-state))
+
 				(gdb-set-window-buffer (gdb-get-buffer-create 'gdb-inferior-io) nil win3)
+				(gdb-set-window-buffer (gdb-get-buffer-create 'gdb-locals-buffer) nil win4)
 				(gdb-set-window-buffer (gdb-stack-buffer-name) nil win2)
 				(setq gdb-source-window-list `(,win0))
 				(select-window win0)))))

@@ -10,17 +10,10 @@
 						 (cl-return)
 					 (funcall change-buffer)))))
 
-(defun +!tmp-next-buffer ()
-
-	"Temporary function to deal with current next-buffer bug"
-	(previous-buffer)
-	(next-buffer)
-	(next-buffer))
-
 (defun my-next-buffer ()
 	"Variant of `next-buffer' that skips `my-skippable-buffer-regexp'."
 	(interactive)
-	(my-change-buffer '+!tmp-next-buffer))
+	(my-change-buffer 'next-buffer))
 
 (defun my-previous-buffer ()
 	"Variant of `previous-buffer' that skips `my-skippable-buffer-regexp'."
