@@ -634,7 +634,32 @@ Meant for `org-mode-hook'."
 		("UNREVIEWD" . "#98be65")
 		("REVIEW" . "dark turquoise")
 		("INPROG" . "dark orange")
-		("REJECTED" . "tomato")))
+		("REJECTED" . "tomato"))
+
+
+	  org-latex-default-packages-alist
+	  '(("AUTO" "inputenc" t
+		 ("pdflatex"))
+		("T1" "fontenc" t
+		 ("pdflatex"))
+		("" "graphicx" t)
+		("" "grffile" t)
+		("" "longtable" nil)
+		("" "wrapfig" nil)
+		("" "rotating" nil)
+		("normalem" "ulem" t)
+		("" "amsmath" t)
+		("" "textcomp" t)
+		("" "amssymb" t)
+		("" "capt-of" nil)
+		("colorlinks=true" "hyperref" nil))
+
+	  org-agenda-start-day "-1d"
+	  org-agenda-span 1
+	  org-agenda-start-on-weekday nil
+	  org-agenda-window-setup 'other-window)
+
+(plist-put org-format-latex-options :scale 1.35)
 
 (with-eval-after-load 'org-faces
 	(set-face-attribute 'org-level-1 nil :height 1.35 :weight 'normal)

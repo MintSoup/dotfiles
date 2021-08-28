@@ -63,6 +63,7 @@
 (load-user-config-file "sr-speedbar.el")
 (load-user-config-file "torrent.el")
 (load-user-config-file "gnus.el")
+(load-user-config-file "as.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme
@@ -79,7 +80,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((projectile-project-debug-cmd . "make -j12")
+   '((+debug-function . projectile-start-gdb)
+	 (projectile-project-debug-cmd . "make -j12")
 	 (projectile-project-debug-cmd . "make -j12 debug")
 	 (projectile-project-compilation-cmd . "make -j12")
 	 (+debug-function . projectile-run-gdb)
