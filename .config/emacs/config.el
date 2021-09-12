@@ -16,6 +16,7 @@
 	(when (derived-mode-p 'prog-mode)
 		(delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
+(add-to-list 'auto-mode-alist '("\\.cbn\\'" . prog-mode))
 
 (setq make-backup-files nil)
 (setq backup-directory-alist

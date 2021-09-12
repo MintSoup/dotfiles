@@ -9,7 +9,6 @@
 					"<delete>"	'gud-remove)
 (setq gdb-many-windows t)
 
-
 (defun my-gdb-setup-windows ()
 	"Lay out the window pattern for option `gdb-many-windows'."
 	(if gdb-default-window-configuration-file

@@ -187,7 +187,7 @@
 						 (lambda (buffer status)
 							 (when (and (string-equal status "finished\n") +project-compilation-do-debug)
 								 (setq +project-compilation-do-debug nil)
-								 (funcall-interactively dbgf)))))
+								 (eval dbgf)))))
 		(let ((projectile-project-compilation-cmd projectile-project-debug-cmd))
 			(projectile-compile-project projectile-project-debug-cmd))))
 
@@ -197,6 +197,11 @@
 		(when buff
 			(kill-buffer buff))))
 
+(defun +project-run ()
+	(interactive)
+	(when (boundp '+run-function)
+		(eval +run-function)))
+
 (my-project-leader
 	"" '(:ignore t :wk "Project")
 	"p" '(counsel-projectile-switch-project :wk "Open")
@@ -204,4 +209,5 @@
 	"D" '(+project-stop-debug :wk "Stop debug")
 	"i" '(projectile-invalidate-cache :wk "Invalidate cache")
 	"c" '(projectile-compile-project :wk "Compile project")
+	"r" '(+project-run :wk "Run project")
 	"a" '(projectile-add-known-project :wk "Add"))

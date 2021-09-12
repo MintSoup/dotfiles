@@ -135,6 +135,12 @@
 	:config
 	(evil-collection-init))
 
+(use-package evil-lion
+	:straight t
+	:after evil
+	:config
+	(evil-lion-mode))
+
 (use-package evil-snipe
 	:straight t
 	:after evil

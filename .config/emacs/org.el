@@ -4,6 +4,7 @@
 	:hook (org-mode . org-superstar-mode)
 	:hook (org-mode . variable-pitch-mode)
 	:hook (org-mode . visual-fill-column-mode)
+	:hook (org-mode . flyspell-mode)
 	:hook (org-mode . +org-enable-auto-reformat-tables-h)
 	:init
 	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)
@@ -471,7 +472,7 @@ Meant for `org-mode-hook'."
 					"M-l"           #'org-metaright
 					"M-h"           #'org-metaleft
 					"M-j"           #'org-metadown
-					"M-k"           #'org-metaleft)
+					"M-k"           #'org-metaup)
 
 ;; Ugly hack to work around evil-org's stupid design
 (add-hook 'evil-org-mode-hook
@@ -624,6 +625,8 @@ Meant for `org-mode-hook'."
 	  org-ellipsis " ▾"
 	  org-list-allow-alphabetical t
 	  org-startup-indented t
+	  org-pretty-entities t
+	  org-export-preserve-breaks t
 
 	  org-todo-keywords
       '((sequence "TODO(t)" "INPROG(p)" "|" "DONE(d)")
@@ -643,6 +646,9 @@ Meant for `org-mode-hook'."
 		("T1" "fontenc" t
 		 ("pdflatex"))
 		("" "graphicx" t)
+		("" "xcolor" t)
+		("" "scalerel" t)
+		("" "stackengine" t)
 		("" "grffile" t)
 		("" "longtable" nil)
 		("" "wrapfig" nil)
@@ -661,11 +667,15 @@ Meant for `org-mode-hook'."
 
 (plist-put org-format-latex-options :scale 1.35)
 
+
 (with-eval-after-load 'org-faces
 	(set-face-attribute 'org-level-1 nil :height 1.35 :weight 'normal)
 	(set-face-attribute 'org-level-2 nil :height 1.2 :weight 'normal)
 	(set-face-attribute 'org-level-3 nil :height 1.05 :weight 'normal)
 	(set-face-attribute 'org-level-4 nil :weight 'normal)
+	(set-face-attribute 'org-level-5 nil :weight 'normal)
+	(set-face-attribute 'org-level-6 nil :weight 'normal)
+	(set-face-attribute 'org-level-7 nil :weight 'normal)
 	(set-face-attribute 'org-checkbox nil :inherit '(org-todo fixed-pitch))
 	(set-face-attribute 'org-meta-line nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :foreground "#83898d")

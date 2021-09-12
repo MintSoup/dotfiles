@@ -80,9 +80,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((+debug-function . projectile-start-gdb)
+   '((+run-function run-in-vterm "./carbon test.cbn" projectile-run-vterm)
+	 (+run-function run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
+	 (+debug-function projectile-run-gdb)
+	 (+debug-function . projectile-start-gdb)
 	 (projectile-project-debug-cmd . "make -j12")
 	 (projectile-project-debug-cmd . "make -j12 debug")
 	 (projectile-project-compilation-cmd . "make -j12")
 	 (+debug-function . projectile-run-gdb)
 	 (+debug-function . stm32-start-gdb))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
