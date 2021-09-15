@@ -1,39 +1,39 @@
 configuration {
-    modi: "window,run,drun";
-    show-icons: true;
-    font: "NotoSans Nerd Font 15";
+	modi: "window,run,drun";
+	show-icons: true;
+	font: "Cantarell 16";
 }
 
 @import "colors.rasi"
 
 window {
-    width: 689px;
-    height: 277px;
-    background-color: @background;
+	width: 689px;
+	height: 277px;
+	background-color: @background;
 }
 
 mainbox {
-    children: [listview];
+	children: [listview];
 }
 
 listview {
-    layout: horizontal;
-    background-color: transparent;
+	layout: horizontal;
+	background-color: transparent;
 	padding: 0;
 	margin: 12px;
 }
 
 element {
 	width: 216px;
-    orientation: vertical;
+	orientation: vertical;
 	padding: 8;
 }
 
 element-icon {
-    size: 192px;
+	size: 192px;
 }
 
 element-text {
-    horizontal-align: 0.5;
-    vertical-align: 0.5;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
 }

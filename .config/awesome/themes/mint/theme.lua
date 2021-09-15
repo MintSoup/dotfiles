@@ -39,7 +39,7 @@ theme.tooltip_fg = theme.fg_normal
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = 2
+theme.useless_gap   = 3
 theme.border_width  = 2
 theme.border_normal = "#00000000"
 theme.border_focus  = theme.colors[1]
