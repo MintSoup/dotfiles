@@ -73,7 +73,3 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode -1)
-
-(add-hook 'prog-mode-hook 'hl-line-mode)
-(add-hook 'dired-mode-hook 'hl-line-mode)
-(add-hook 'conf-mode-hook 'hl-line-mode)

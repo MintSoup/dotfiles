@@ -102,7 +102,7 @@ determine the exact padding."
 	 (vc-deleted     red)
 
 	 ;; custom categories
-	 (hidden     `(,(car bg) black black))
+	 (hidden `(,(car bg) "black" "black"))
 	 (-modeline-bright doom-one-brighter-modeline)
 	 (-modeline-pad
 	  (when doom-one-padded-modeline

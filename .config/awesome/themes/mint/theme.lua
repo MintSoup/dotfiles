@@ -15,7 +15,8 @@ theme.font = "NotoSans Nerd Font " .. fontsize
 
 
 -- bg = "#1a1a20"
-bg = "#21242b"
+-- bg = "#21242b"
+bg = "#1e222a"
 
 theme.colors = {
 	"#51afef",
