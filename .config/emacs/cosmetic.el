@@ -34,6 +34,11 @@
 	:config
 	(add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
+(use-package rainbow-mode
+	:straight t
+	:config
+	(add-hook 'prog-mode-hook 'rainbow-mode))
+
 
 (defun my-setup-fonts (&optional fonts)
 	(set-face-attribute 'fixed-pitch nil

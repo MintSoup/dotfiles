@@ -33,7 +33,7 @@ determine the exact padding."
 	"My fork of one-dark"
 
 	;; name        default   256       16
-	((bg         '("#21242b" nil       nil            ))
+	((bg         '("#1e222a" nil       nil            ))
 	 (bg-alt     '("#1b1e24" nil       nil            ))
 	 (base0      '("#1B2229" "black"   "black"        ))
 	 (base1      '("#1c1f24" "#1e1e1e" "brightblack"  ))
@@ -48,17 +48,34 @@ determine the exact padding."
 	 (fg-alt     '("#5B6268" "#2d2d2d" "white"        ))
 
 	 (grey       base4)
-	 (red        '("#ff6c6b" "#ff6655" "red"          ))
-	 (orange     '("#da8548" "#dd8844" "brightred"    ))
-	 (green      '("#98be65" "#99bb66" "green"        ))
-	 (teal       '("#4db5bd" "#44b9b1" "brightgreen"  ))
-	 (yellow     '("#ECBE7B" "#ECBE7B" "yellow"       ))
-	 (blue       '("#51afef" "#51afef" "brightblue"   ))
+	 (red        '("#e06c75" "#ff6655" "red"          ))
+	 (orange     '("#d19a66" "#dd8844" "brightred"    ))
+	 (green      '("#98c379" "#99bb66" "green"        ))
+	 (teal       '("#56b6c2" "#44b9b1" "brightgreen"  ))
+	 (yellow     '("#d19a66" "#ECBE7B" "yellow"       ))
+	 (blue       '("#61afef" "#51afef" "brightblue"   ))
 	 (dark-blue  '("#2257A0" "#2257A0" "blue"         ))
 	 (magenta    '("#c678dd" "#c678dd" "brightmagenta"))
 	 (violet     '("#a9a1e1" "#a9a1e1" "magenta"      ))
 	 (cyan       '("#46D9FF" "#46D9FF" "brightcyan"   ))
 	 (dark-cyan  '("#5699AF" "#5699AF" "cyan"         ))
+
+ ;;    base0A = #e5c07b,
+ ;;    base04 = #565c64,
+ ;;    base07 = #c8ccd4,
+ ;;    base05 = #abb2bf,
+ ;;    base0E = #c678dd,
+ ;;    base0D = #61afef,
+ ;;    base0C = #56b6c2,
+ ;;    base0B = #98c379,
+ ;;    base02 = #3e4451,
+ ;;    base0F = #be5046,
+ ;;    base03 = #545862,
+ ;;    base08 = #e06c75,
+ ;;    base01 = #353b45,
+ ;;    base00 = #1e222a,
+ ;;    base09 = #d19a66,
+ ;;    base06 = #b6bdca
 
 	 ;; face categories -- required for all themes
 	 (highlight      blue)
@@ -85,7 +102,7 @@ determine the exact padding."
 	 (vc-deleted     red)
 
 	 ;; custom categories
-	 (hidden     `(,(car bg) "black" "black"))
+	 (hidden     `(,(car bg) black black))
 	 (-modeline-bright doom-one-brighter-modeline)
 	 (-modeline-pad
 	  (when doom-one-padded-modeline
@@ -174,7 +191,6 @@ determine the exact padding."
 	 (rjsx-attr :foreground orange))
 
 	;; --- extra variables ---------------------
-	()
-	)
+	())
 
 ;;; doom-one-theme.el ends here

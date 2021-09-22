@@ -112,7 +112,7 @@
 	"V" '(projectile-run-vterm :wk "VTerm here")
 	"t" '(transmission :wk "Torrents")
 	"r" '(ielm :wk "IELM")
-    "p" '(+neotree-toggle :wk "Toggle neotree")
+    "p" '(treemacs :wk "Toggle tree")
     "a" '(org-agenda :wk "Org Agenda")
 	"e" '(projectile-run-eshell :wk "EShell"))
 

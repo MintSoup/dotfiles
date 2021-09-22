@@ -1,9 +1,9 @@
 function fish_prompt
-        set_color 2397de; echo -n $USER
+        set_color 61afef; echo -n $USER
         set_color normal
-        set_color ff00ff; echo -n @
-        set_color ff7410; echo -n $hostname
-        set_color 00ff00; echo -n "" (prompt_pwd)
+        set_color c678dd; echo -n @
+        set_color e06c75; echo -n $hostname
+        set_color 98c379; echo -n "" (prompt_pwd)
 
-        set_color ffff00; echo "\$ "
+        set_color da8548; echo " \$ "
 end
