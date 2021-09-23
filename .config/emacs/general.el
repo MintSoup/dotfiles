@@ -199,8 +199,17 @@
 
 (defun +project-run ()
 	(interactive)
+	(setq +project-compilation-do-run t)
 	(when (boundp '+run-function)
-		(eval +run-function)))
+		;; (setq-local compilation-finish-functions compilation-finish-functions)
+		(let ((runf +run-function))
+			(add-to-list 'compilation-finish-functions
+						 (lambda (buffer status)
+							 (when (and (string-equal status "finished\n") +project-compilation-do-run)
+								 (setq +project-compilation-do-run nil)
+								 (eval runf)))))
+		(let ((projectile-project-compilation-cmd projectile-project-run-cmd))
+			(projectile-compile-project projectile-project-run-cmd))))
 
 (my-project-leader
 	"" '(:ignore t :wk "Project")
