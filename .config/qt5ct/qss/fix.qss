@@ -1,0 +1,9 @@
+QToolTip {
+  border: 1px solid palette(highlight);
+}
+QMenu {
+  border: 1px solid palette(highlight);
+}
+QCheckBox::indicator {
+  color: red;
+}
