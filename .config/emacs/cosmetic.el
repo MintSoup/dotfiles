@@ -35,9 +35,7 @@
 	(add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
 (use-package rainbow-mode
-	:straight t
-	:config
-	(add-hook 'prog-mode-hook 'rainbow-mode))
+	:straight t)
 
 
 (defun my-setup-fonts (&optional fonts)
