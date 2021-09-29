@@ -34,7 +34,7 @@ determine the exact padding."
 
 	;; name        default   256       16
 	((bg         '("#1e222a" nil       nil            ))
-	 (bg-alt     '("#1b1e24" nil       nil            ))
+	 (bg-alt     '("#14171c" nil       nil            ))
 	 (base0      '("#1B2229" "black"   "black"        ))
 	 (base1      '("#1c1f24" "#1e1e1e" "brightblack"  ))
 	 (base2      '("#202328" "#2e2e2e" "brightblack"  ))
@@ -52,7 +52,7 @@ determine the exact padding."
 	 (orange     '("#d19a66" "#dd8844" "brightred"    ))
 	 (green      '("#98c379" "#99bb66" "green"        ))
 	 (teal       '("#56b6c2" "#44b9b1" "brightgreen"  ))
-	 (yellow     '("#d19a66" "#ECBE7B" "yellow"       ))
+	 (yellow     '("#e5c07b" "#ECBE7B" "yellow"       ))
 	 (blue       '("#61afef" "#51afef" "brightblue"   ))
 	 (dark-blue  '("#2257A0" "#2257A0" "blue"         ))
 	 (magenta    '("#c678dd" "#c678dd" "brightmagenta"))

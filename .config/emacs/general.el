@@ -103,6 +103,13 @@
 	:states '(normal visual motion)
 	:prefix "SPC o")
 
+(defun +treemacs ()
+	(interactive)
+	(pcase (treemacs-current-visibility)
+		('visible (delete-window (treemacs-get-local-window)))
+		((or 'none 'exists)
+		 (treemacs-display-current-project-exclusively))))
+
 (my-open-leader
 	"" '(:ignore t :wk "Open")
 	"d" '(projectile-dired :wk "Dired")
@@ -112,7 +119,7 @@
 	"V" '(projectile-run-vterm :wk "VTerm here")
 	"t" '(transmission :wk "Torrents")
 	"r" '(ielm :wk "IELM")
-    "p" '(treemacs :wk "Toggle tree")
+    "p" '(+treemacs :wk "Toggle tree")
     "a" '(org-agenda :wk "Org Agenda")
 	"e" '(projectile-run-eshell :wk "EShell"))
 
