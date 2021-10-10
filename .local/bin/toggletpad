@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Toggle touchpad status
 # Using libinput and xinput
 

@@ -7,13 +7,16 @@ configuration {
 @import "colors.rasi"
 
 window {
-	width: 689px;
-	height: 277px;
+	width: 693px;
+	height: 264;
 	background-color: @background;
+	border: 2px;
+	border-color: #121419;
 }
 
 mainbox {
 	children: [listview];
+	background-color: transparent;
 }
 
 listview {
@@ -25,15 +28,26 @@ listview {
 
 element {
 	width: 216px;
+	background-color: transparent;
 	orientation: vertical;
 	padding: 8;
 }
 
+
 element-icon {
 	size: 192px;
+	horizontal-align: 0.6;
+	background-color: transparent;
+}
+
+element-icon selected {
+	size: 300px;
+	background-color: @selected-background;
 }
 
 element-text {
 	horizontal-align: 0.5;
 	vertical-align: 0.5;
+	background-color: transparent;
+	color: @foreground;
 }

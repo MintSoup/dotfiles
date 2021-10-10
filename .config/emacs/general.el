@@ -215,7 +215,7 @@
 							 (when (and (string-equal status "finished\n") +project-compilation-do-run)
 								 (setq +project-compilation-do-run nil)
 								 (eval runf)))))
-		(let ((projectile-project-compilation-cmd projectile-project-run-cmd))
+		(let ((projectile-project-compilation-cmd projectile-project-compilation-cmd))
 			(projectile-compile-project projectile-project-run-cmd))))
 
 (my-project-leader
@@ -227,3 +227,17 @@
 	"c" '(projectile-compile-project :wk "Compile project")
 	"r" '(+project-run :wk "Run project")
 	"a" '(projectile-add-known-project :wk "Add"))
+
+
+
+
+(general-create-definer my-mode-leader
+	:states '(normal visual motion)
+	:prefix "SPC M"
+	:keymaps 'override)
+
+(my-mode-leader
+	"o" '(org-mode :wk "Org")
+	"e" '(emacs-lisp-mode :wk "Elisp")
+	"c" '(c-mode :wk "C")
+	"p" '(python-mode :wk "Python"))

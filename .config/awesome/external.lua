@@ -56,6 +56,8 @@ return gears.table.join(
 			  {description = "Increase monitor brightness", group = "launcher"}),
     awful.key({}, "XF86MonBrightnessDown", function () awful.spawn("xbacklight -dec 10") end,
 			  {description = "Increase monitor brightness", group = "launcher"}),
+    awful.key({modkey, "Control"}, "l", function () awful.spawn.with_shell("sleep 0.08; xset dpms force off") end,
+			  {description = "Turn off backlight", group = "launcher"}),
 
 
     awful.key({}, "XF86KbdBrightnessUp", function () awful.spawn.with_shell(

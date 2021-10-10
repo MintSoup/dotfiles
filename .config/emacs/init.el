@@ -68,6 +68,7 @@
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme
 (load-user-config-file "lua.el") ;; Lua
+(load-user-config-file "carbon.el") ;; Carbon
 (load-user-config-file "stm32.el") ;; STM32
 
 (setq gc-cons-threshold (* 150 1024 1024))
@@ -80,7 +81,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((+run-function run-in-vterm "./carbon test.cbn" projectile-run-vterm)
+   '((+debug-function stm32-start-gdb)
+	 (+run-function run-in-vterm "./carbon test.cbn" projectile-run-vterm)
 	 (+run-function run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
 	 (+debug-function projectile-run-gdb)
 	 (+debug-function . projectile-start-gdb)
@@ -89,3 +91,9 @@
 	 (projectile-project-compilation-cmd . "make -j12")
 	 (+debug-function . projectile-run-gdb)
 	 (+debug-function . stm32-start-gdb))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

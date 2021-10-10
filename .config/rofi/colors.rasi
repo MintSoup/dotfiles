@@ -7,12 +7,5 @@
 	background-solid:	  #141419ff; 
 	selected-background:  rgba(0, 0, 0, 50%);
 
-	/*#87b5d7;*/  
-	/*#6eacda;*/
-	/*#deca72;*/
-	/*#39c9fe;*/
-
-	red:				  rgba ( 220, 50, 47, 100 % );
-	blue:				  rgba ( 38, 139, 210, 100 % );
 }
 

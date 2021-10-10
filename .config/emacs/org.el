@@ -622,7 +622,7 @@ Meant for `org-mode-hook'."
 	  org-hide-emphasis-markers t
 	  org-indent-indentation-per-level 2
 	  org-list-indent-offset 4
-	  org-ellipsis " ▾"
+	  org-ellipsis "▾"
 	  org-list-allow-alphabetical t
 	  org-startup-indented t
 	  org-pretty-entities t
@@ -681,6 +681,7 @@ Meant for `org-mode-hook'."
 	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :foreground "#83898d")
 	(set-face-attribute 'org-document-title nil :height 1.5 :weight 'normal)
 	(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-footnote nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
 	(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
 	(set-face-attribute 'org-drawer nil :inherit 'fixed-pitch)

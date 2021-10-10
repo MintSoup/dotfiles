@@ -15,7 +15,7 @@
 	:config
 	(defun set-dashboard-face (frame)
 		(set-face-attribute 'dashboard-banner-logo-title nil
-							:font "Noto Sans"
+							:font "Cantarell"
 							:foreground "#51afef"
 							:height 160))
 	(mapc 'set-dashboard-face (frame-list))

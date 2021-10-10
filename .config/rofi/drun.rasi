@@ -14,9 +14,10 @@ configuration {
 }
 
 #mainbox {
-    border:  0;
+    border:  2;
+	border-color: #121419;
     padding: 20;
-	background-color: #00000000;
+	background-color: transparent;
 }
 
 #textbox {
@@ -43,11 +44,19 @@ element {
 element-icon {
     size: 80px;
     margin: 0 10px 0 0;
+	background-color: transparent;
+	horizontal-align: 0.5;
 }
 
 element-text {
     horizontal-align:               0.5;
     vertical-align:                 0.5;
+	background-color: transparent;
+	color: @foreground;
+}
+
+element-text selected {
+	color: @foreground-selected;
 }
 
 #element.normal.normal {

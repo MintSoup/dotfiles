@@ -1,7 +1,7 @@
 configuration {
     modi: "window,run,drun";
     theme: "clean";
-    font: "Fira Code Nerd Font 15";
+    font: "Cantarell 15";
 }
 
 @import "colors.rasi"
@@ -13,7 +13,8 @@ configuration {
 }
 
 #mainbox {
-    border:  0;
+    border:  2;
+	border-color: #121419;
     padding: 6px 6px;
 	background-color: #00000000;
 }
@@ -38,10 +39,13 @@ element {
     border-radius: 0px;
     orientation: vertical;
 	padding: 8px 12px;
+	background-color: transparent;
 }
 
 element-text {
     horizontal-align:               0.0;
+	background-color: transparent;
+	color: @foreground;
     vertical-align:                 0.5;
 }
 

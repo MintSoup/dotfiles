@@ -51,8 +51,9 @@
 
 	(set-face-attribute 'variable-pitch nil
 						:font "Cantarell"
-						:height 136
-						:weight 'medium)
+						:weight 'normal
+						:slant 'normal
+						:height 136)
 
 	;; (set-fontset-font "-CTDB-FiraCode Nerd Font-normal-normal-normal-*-20-*-*-*-d-0-fontset-auto2" 'armenian (font-spec :family "DejaVu Sans Code"))
 	;; Makes commented text and keywords italics.
@@ -66,6 +67,7 @@
 (my-setup-fonts)
 
 (add-hook 'after-make-frame-functions 'my-setup-fonts)
+
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
