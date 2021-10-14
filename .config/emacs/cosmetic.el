@@ -50,9 +50,8 @@
 						:weight 'medium)
 
 	(set-face-attribute 'variable-pitch nil
-						:font "Cantarell"
-						:weight 'normal
-						:slant 'normal
+						:font "Cantarell Book"
+						:weight 'book
 						:height 136)
 
 	;; (set-fontset-font "-CTDB-FiraCode Nerd Font-normal-normal-normal-*-20-*-*-*-d-0-fontset-auto2" 'armenian (font-spec :family "DejaVu Sans Code"))
