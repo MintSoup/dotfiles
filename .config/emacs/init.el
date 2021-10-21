@@ -62,7 +62,7 @@
 (load-user-config-file "gud.el")
 (load-user-config-file "sr-speedbar.el")
 (load-user-config-file "torrent.el")
-(load-user-config-file "gnus.el")
+(load-user-config-file "mail.el")
 (load-user-config-file "as.el")
 
 ;; Lang

@@ -67,6 +67,8 @@
 
 (add-hook 'after-make-frame-functions 'my-setup-fonts)
 
+(add-hook 'prog-mode-hook 'hl-line-mode)
+(add-hook 'dired-mode-hook 'hl-line-mode)
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
