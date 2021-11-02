@@ -15,6 +15,7 @@
 (defun my-prog-nuke-trailing-whitespace ()
 	(when (derived-mode-p 'prog-mode)
 		(delete-trailing-whitespace)))
+
 (add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
 
 (setq make-backup-files nil)

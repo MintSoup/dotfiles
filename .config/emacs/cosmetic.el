@@ -37,7 +37,6 @@
 (use-package rainbow-mode
 	:straight t)
 
-
 (defun my-setup-fonts (&optional fonts)
 	(set-face-attribute 'fixed-pitch nil
 						:font "Fira Code Nerd Font"

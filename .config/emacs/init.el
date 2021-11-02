@@ -63,13 +63,14 @@
 (load-user-config-file "sr-speedbar.el")
 (load-user-config-file "torrent.el")
 (load-user-config-file "mail.el")
-(load-user-config-file "as.el")
+(load-user-config-file "eshell.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme
 (load-user-config-file "lua.el") ;; Lua
 (load-user-config-file "carbon.el") ;; Carbon
 (load-user-config-file "stm32.el") ;; STM32
+(load-user-config-file "as.el") ;; NASM
 
 (setq gc-cons-threshold (* 150 1024 1024))
 
@@ -81,10 +82,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((+run-function run-in-vterm "./bfc bruh.b" 'projectile-run-vterm)
+   '((+run-function run-in-vterm "./main.out" 'projectile-run-vterm)
+	 (+run-function run-in-vterm "./main.cpp" 'projectile-run-vterm)
+	 (+run-function run-in-vterm "./bfc bruh.b" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./bfc" 'projectile-run-vterm)
 	 (+debug-function stm32-start-gdb)
-	 (+run-function run-in-vterm "./carbon test.cbn" projectile-run-vterm)
 	 (+run-function run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
 	 (+debug-function projectile-run-gdb)
 	 (+debug-function . projectile-start-gdb)

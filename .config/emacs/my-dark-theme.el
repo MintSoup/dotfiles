@@ -34,7 +34,7 @@ determine the exact padding."
 
 	;; name        default   256       16
 	((bg         '("#1e222a" nil       nil            ))
-	 (bg-alt     '("#14171c" nil       nil            ))
+	 (bg-alt     '("#191d23" nil       nil            ))
 	 (base0      '("#1B2229" "black"   "black"        ))
 	 (base1      '("#1c1f24" "#1e1e1e" "brightblack"  ))
 	 (base2      '("#202328" "#2e2e2e" "brightblack"  ))

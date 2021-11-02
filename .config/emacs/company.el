@@ -1,7 +1,6 @@
 (use-package company
 	:straight t
 	:hook (prog-mode . company-mode)
-	(eshell-mode . company-mode)
 	:config
 	(company-tng-mode)
 	(setq company-idle-delay 0
@@ -13,7 +12,3 @@
 						"<tab>" 'company-select-next)
 	(setq company-backends
 		  '((company-capf company-files geiser-company-backend company-keywords))))
-
-(general-define-key :states 'insert
-					:keymaps 'eshell-mode-map
-					"<tab>" 'company-complete)
