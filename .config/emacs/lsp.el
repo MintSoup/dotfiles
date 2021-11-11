@@ -16,3 +16,6 @@
 	:straight t
 	:config
 	(setq lsp-ui-doc-enable nil))
+
+(use-package lsp-ivy
+	:straight t)

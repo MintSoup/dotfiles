@@ -110,13 +110,17 @@
 		((or 'none 'exists)
 		 (treemacs-display-current-project-exclusively))))
 
+(defun +projectile-vterm ()
+	(interactive)
+	(projectile-with-default-dir (projectile-acquire-root)
+		(switch-to-buffer (vterm-other-window))))
+
 (my-open-leader
 	"" '(:ignore t :wk "Open")
 	"d" '(projectile-dired :wk "Dired")
 	"D" '(dired-jump :wk "Dired here")
 	"c" '(calc :wk "Calculator")
-	"v" '(vterm-other-window :wk "VTerm")
-	"V" '(projectile-run-vterm :wk "VTerm here")
+	"v" '(+projectile-vterm :wk "VTerm")
 	"t" '(transmission :wk "Torrents")
 	"r" '(ielm :wk "IELM")
     "p" '(+treemacs :wk "Toggle tree")

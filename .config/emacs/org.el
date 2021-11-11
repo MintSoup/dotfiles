@@ -685,8 +685,8 @@ Meant for `org-mode-hook'."
 	(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
 	(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
 	(set-face-attribute 'org-drawer nil :inherit 'fixed-pitch)
-	(set-face-attribute 'org-special-keyword nil :inherit 'fixed-pitch))
-	;; (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
+	(set-face-attribute 'org-special-keyword nil :inherit 'fixed-pitch)
+	(set-face-attribute 'org-table nil :inherit 'fixed-pitch))
 
 (with-eval-after-load 'org-indent
 	(set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch)))

@@ -89,7 +89,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/castle.jpg"
+	"/home/areg/Wallpapers/finally.jpg"
 }
 
 
@@ -259,8 +259,6 @@ globalkeys = gears.table.join(
 	-- awesome
 	awful.key({ modkey, "Control" }, "r", awesome.restart,
 		{description = "reload awesome", group = "awesome"}),
-	awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-		{description = "quit awesome", group = "awesome"}),
 	awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
 		{description="show help", group="awesome"}),
 	awful.key({modkey,			},	 "b", function()

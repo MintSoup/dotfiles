@@ -1,6 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 (use-package vterm
-	:straight t)
+	:straight t
+	:config
+	(setq vterm-timer-delay 0.05))
 
 (defun run-in-vterm-kill (process event)
 	"A process sentinel. Kills PROCESS's buffer if it is live."

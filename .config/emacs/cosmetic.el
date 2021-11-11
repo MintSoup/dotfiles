@@ -49,9 +49,9 @@
 						:weight 'medium)
 
 	(set-face-attribute 'variable-pitch nil
-						:font "Cantarell Book"
-						:weight 'book
-						:height 136)
+						:font "Noto Sans"
+						:weight 'regular
+						:height 125)
 
 	;; (set-fontset-font "-CTDB-FiraCode Nerd Font-normal-normal-normal-*-20-*-*-*-d-0-fontset-auto2" 'armenian (font-spec :family "DejaVu Sans Code"))
 	;; Makes commented text and keywords italics.
