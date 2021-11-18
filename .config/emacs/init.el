@@ -3,6 +3,7 @@
 
 ;; (defvaralias 'comp-deferred-compilation-deny-list 'native-comp-deferred-compilation-deny-list)
 
+(setq native-comp-async-jobs-number 13)
 
 (defvar bootstrap-version)
 
@@ -37,7 +38,6 @@
 (load-user-config-file "scroll.el")
 (load-user-config-file "indent.el")
 
-
 ;; Theme
 (load-user-config-file "cosmetic.el")
 
@@ -64,6 +64,7 @@
 (load-user-config-file "torrent.el")
 (load-user-config-file "mail.el")
 (load-user-config-file "eshell.el")
+(load-user-config-file "ligatures.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme
@@ -81,8 +82,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("a5fb5e5ce1b1ec487b76a98a4f867570c227d715f2da0fdbf8a0344c61dfb3ab" "246a9596178bb806c5f41e5b571546bb6e0f4bd41a9da0df5dfbca7ec6e2250c" default))
  '(safe-local-variable-values
    '((+run-function run-in-vterm "./main.out" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./main.cpp" 'projectile-run-vterm)
@@ -97,9 +96,3 @@
 	 (projectile-project-compilation-cmd . "make -j12")
 	 (+debug-function . projectile-run-gdb)
 	 (+debug-function . stm32-start-gdb))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

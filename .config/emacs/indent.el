@@ -8,4 +8,5 @@
 					c-basic-offset 4
 					indent-tabs-mode t
 					backward-delete-char-untabify-method nil
+					sgml-basic-offset 4
 					tab-always-indent nil)))

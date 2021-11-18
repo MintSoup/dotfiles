@@ -10,6 +10,5 @@
 (use-package treemacs-projectile
 	:straight t)
 
-
 (use-package treemacs-evil
 	:straight t)

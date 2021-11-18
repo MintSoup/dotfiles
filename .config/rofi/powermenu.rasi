@@ -1,7 +1,7 @@
 configuration {
 	modi: "window,run,drun";
 	show-icons: true;
-	font: "Cantarell 16";
+	font: "Noto Sans 14";
 }
 
 @import "colors.rasi"

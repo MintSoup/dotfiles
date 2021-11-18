@@ -1,7 +1,7 @@
 configuration {
     modi: "window,run,drun";
     theme: "clean";
-    font: "Cantarell 15";
+    font: "Noto Sans 15";
 }
 
 @import "colors.rasi"

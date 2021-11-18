@@ -621,7 +621,7 @@ Meant for `org-mode-hook'."
 	  org-agenda-files '("~/Org/Agenda/")
 	  org-hide-emphasis-markers t
 	  org-indent-indentation-per-level 2
-	  org-list-indent-offset 4
+	  org-list-indent-offset 3
 	  org-ellipsis "▾"
 	  org-list-allow-alphabetical t
 	  org-startup-indented t
@@ -679,7 +679,7 @@ Meant for `org-mode-hook'."
 	(set-face-attribute 'org-checkbox nil :inherit '(org-todo fixed-pitch))
 	(set-face-attribute 'org-meta-line nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :foreground "#83898d")
-	(set-face-attribute 'org-document-title nil :height 1.5 :weight 'normal)
+	(set-face-attribute 'org-document-title nil :height 1.8 :weight 'normal :foreground "#61afef")
 	(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-footnote nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
@@ -697,3 +697,21 @@ Meant for `org-mode-hook'."
 (setcar org-emphasis-regexp-components " \t('\"{[:alpha:]")
 (setcar (nthcdr 1 org-emphasis-regexp-components) "[:alpha:]- \t.,:!?;'\")}\\")
 (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
+
+(require 'ox-latex)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-listings 'minted)
+(setq org-latex-minted-options
+      '(("tabsize" "4")))
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(setq org-src-fontify-natively t)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)
+   (latex . t)))

@@ -108,7 +108,16 @@
 	(pcase (treemacs-current-visibility)
 		('visible (delete-window (treemacs-get-local-window)))
 		((or 'none 'exists)
-		 (treemacs-display-current-project-exclusively))))
+		 (let ((project (projectile-acquire-root)))
+			 (treemacs-do-add-project-to-workspace
+			  project
+			  (file-name-nondirectory
+			   (directory-file-name
+				(file-name-directory project))))
+			 (treemacs-display-current-project-exclusively))
+		 (with-current-buffer (treemacs-get-local-buffer)
+			 (doom-modeline-mode +1)))))
+
 
 (defun +projectile-vterm ()
 	(interactive)
