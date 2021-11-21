@@ -12,21 +12,6 @@ function __fish_command_not_found_handler --on-event fish_command_not_found
     echo "fish: Unknown command '$argv'"
 end
 
-if status is-interactive
-    set -l onedark_options '-b'
-
-    if set -q VIM
-        # Using from vim/neovim.
-        set onedark_options "-256"
-    else if string match -iq "eterm*" $TERM
-        # Using from emacs.
-        function fish_title; true; end
-        set onedark_options "-256"
-    end
-
-    set_onedark $onedark_options
-end
-
 tty | grep tty1
 if [ $status = 0 ]
     startx

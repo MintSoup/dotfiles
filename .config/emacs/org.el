@@ -6,6 +6,7 @@
 	:hook (org-mode . visual-fill-column-mode)
 	:hook (org-mode . flyspell-mode)
 	:hook (org-mode . +org-enable-auto-reformat-tables-h)
+	:hook (org-mode . org-appear-mode)
 	:init
 	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)
 		  org-superstar-leading-bullet ""))
@@ -23,6 +24,9 @@
 
 (use-package org-tempo
 	:ensure nil)
+
+(use-package org-appear
+	:straight t)
 
 ;;; Helpers
 
