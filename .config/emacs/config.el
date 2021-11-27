@@ -21,3 +21,9 @@
 (setq make-backup-files nil)
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups/"))))
+
+
+(use-package su
+	:straight t
+	:config
+	(su-mode +1))

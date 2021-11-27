@@ -72,6 +72,7 @@
 (load-user-config-file "carbon.el") ;; Carbon
 (load-user-config-file "stm32.el") ;; STM32
 (load-user-config-file "as.el") ;; NASM
+(load-user-config-file "lisp.el") ;; Lisp
 
 (setq gc-cons-threshold (* 150 1024 1024))
 

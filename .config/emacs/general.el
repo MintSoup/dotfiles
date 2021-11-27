@@ -109,6 +109,8 @@
 		('visible (delete-window (treemacs-get-local-window)))
 		((or 'none 'exists)
 		 (let ((project (projectile-acquire-root)))
+			 (treemacs-do-add-project-to-workspace "/tmp" "temp")
+			 (treemacs-display-current-project-exclusively)
 			 (treemacs-do-add-project-to-workspace
 			  project
 			  (file-name-nondirectory

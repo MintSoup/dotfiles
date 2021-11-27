@@ -83,5 +83,5 @@
 (first-binding)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; End of xbindkeys configuration ;
+										; End of xbindkeys configuration ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

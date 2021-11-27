@@ -28,6 +28,9 @@
 (use-package org-appear
 	:straight t)
 
+(use-package epresent
+	:straight t)
+
 ;;; Helpers
 
 (defun +org--insert-item (direction)
