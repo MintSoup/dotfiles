@@ -65,7 +65,7 @@ end
 run_once({"emacs", "emacs --daemon"})
 run_once("brave")
 run_once({"Discord", "discord"})
-run_once({"pia-client","/opt/piavpn/bin/pia-client"})
+-- run_once({"pia-client","/opt/piavpn/bin/pia-client"})
 run_once("flameshot")
 run_once("unclutter", "unclutter --timeout 30")
 run_once("xbindkeys")

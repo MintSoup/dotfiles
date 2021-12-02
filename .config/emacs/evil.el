@@ -20,8 +20,13 @@
 		:motion evil-line-or-visual-line
 		(evil-delete-whole-line beg end type ?_ yank-handler))
 	;; Same for x
+	(evil-define-operator evil-delete-char-without-yank (beg end type reg yank-handler)
+		"Delete char without yanking."
+		:motion evil-forward-char
+		(evil-delete-char beg end type ?_))
+
 	(evil-define-operator evil-org-delete-char-without-yank (count beg end type register)
-		"Same as evil-line-or-visual-line but without yank."
+		"`org-delete-char' without yanking"
 		:motion evil-forward-char
 		(interactive "p<R><x>")
 		(evil-org-delete-char count beg end type ?_))
@@ -99,7 +104,7 @@
 
 	(general-define-key :states 'normal
 						"C" 'evil-delete-line-without-yank
-						"x" 'delete-forward-char
+						"x" 'evil-delete-char-without-yank
 						"C-a" 'evil-numbers/inc-at-pt
 						"M-j" 'evil-collection-unimpaired-move-text-down
 						"M-k" 'evil-collection-unimpaired-move-text-up

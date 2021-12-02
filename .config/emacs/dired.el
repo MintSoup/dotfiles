@@ -19,6 +19,8 @@
 	:config
 	:hook (dired-mode . dired-hide-dotfiles-mode))
 
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+
 (defun up-alternate-file ()
 	(interactive)
 	(find-alternate-file ".."))

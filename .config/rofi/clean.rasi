@@ -1,6 +1,6 @@
 configuration {
     modi: "window,run,drun";
-    theme: "clean";
+    //theme: "clean";
     font: "Noto Sans 15";
 }
 
