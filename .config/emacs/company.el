@@ -6,7 +6,7 @@
 	(company-tng-mode)
 	(setq company-idle-delay 0
 		  company-minimum-prefix-length 1)
-	(general-define-key :keymaps '(company-active-map company-search-map company-tng-map)
+	(general-define-key :keymaps 'company-tng-map
 						"C-w" nil
 						"C-h" nil
 						"<f1>" nil

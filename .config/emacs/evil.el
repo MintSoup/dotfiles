@@ -8,7 +8,7 @@
 		  evil-vsplit-window-right t
 		  evil-split-window-below t
 		  evil-want-Y-yank-to-eol t
-		  evil-undo-system 'undo-fu
+		  evil-undo-system 'undo-redo
 		  evil-search-module 'evil-search
 		  evil-ex-search-vim-style-regexp t
 		  evil-want-C-u-scroll t
@@ -57,8 +57,7 @@
 						end)
 					(if (evil-visual-state-p)
 							1
-						0)))
-			 type)))
+						0))) type)))
 
 	(evil-define-text-object +evil:outer-url-txtobj (count &optional _beg _end type)
 		"Text object to select the whole url at point."
@@ -68,36 +67,14 @@
 			 beg (- end (if (evil-visual-state-p) 1 0))
 			 type)))
 
-	(evil-define-text-object +evil:inner-any-quote (count &optional beg end type)
-		"Select the closest inner quote."
-		(let ((evil-textobj-anyblock-blocks
-			   '(("'" . "'")
-				 ("\"" . "\"")
-				 ("`" . "`")
-				 ("‘" . "’")
-				 ("“" . "”"))))
-			(evil-textobj-anyblock-inner-block count beg end type)))
-
-	(evil-define-text-object +evil:outer-any-quote (count &optional beg end type)
-		"Select the closest outer quote."
-		(let ((evil-textobj-anyblock-blocks
-			   '(("'" . "'")
-				 ("\"" . "\"")
-				 ("`" . "`")
-				 ("‘" . "’")
-				 ("“" . "”"))))
-			(evil-textobj-anyblock-a-block count beg end type)))
-
 	(general-define-key :keymaps 'outer
 						"u" '+evil:outer-url-txtobj
-						"q" '+evil:outer-any-quote
 						"g" '+evil:whole-buffer-txtobj
 						"f" '+evil:defun-txtobj
 						"a" 'evil-outer-arg)
 
 	(general-define-key :keymaps 'inner
 						"u" '+evil:inner-url-txtobj
-						"q" '+evil:inner-any-quote
 						"g" '+evil:whole-buffer-txtobj
 						"f" '+evil:defun-txtobj
 						"a" 'evil-inner-arg)
@@ -115,24 +92,24 @@
 		(interactive)
 		(call-interactively #'evil-shift-right)
 		(evil-normal-state)
-		(evil-visual-restore))
+		(evil-visual-restore)))
 
-	(defun +evil/shift-left ()
-		"vnoremap > >gv"
-		(interactive)
-		(call-interactively #'evil-shift-left)
-		(evil-normal-state)
-		(evil-visual-restore))
+(defun +evil/shift-left ()
+	"vnoremap > >gv"
+	(interactive)
+	(call-interactively #'evil-shift-left)
+	(evil-normal-state)
+	(evil-visual-restore))
 
-	(general-define-key :states 'visual
-						">" '+evil/shift-right
-						"<" '+evil/shift-left)
+(general-define-key :states 'visual
+					">" '+evil/shift-right
+					"<" '+evil/shift-left)
 
-	(evil-mode))
+(evil-mode)
 
 
-(use-package undo-fu
-	:straight t)
+;; (use-package undo-fu
+;; 	:straight t)
 
 (use-package evil-collection
 	:straight t
@@ -183,10 +160,6 @@
 	:straight t)
 
 (use-package evil-args
-	:straight t
-	:after evil)
-
-(use-package evil-textobj-anyblock
 	:straight t
 	:after evil)
 

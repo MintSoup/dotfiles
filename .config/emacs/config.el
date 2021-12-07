@@ -22,8 +22,14 @@
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups/"))))
 
+(add-hook 'imenu-after-jump-hook '+scroll-current-line-to-top)
+
+(defun +scroll-current-line-to-top ()
+	(evil-scroll-line-to-top (line-number-at-pos)))
 
 (use-package su
 	:straight t
 	:config
 	(su-mode +1))
+
+(winner-mode)

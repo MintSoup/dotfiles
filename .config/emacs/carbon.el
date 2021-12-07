@@ -42,7 +42,7 @@
 
 
 (define-derived-mode carbon-mode prog-mode "Carbon"
-	"major mode for editing carbon src "
+	"Major mode for editing Carbon source code"
 	(setq-local font-lock-defaults '(carbon-font-lock-highlights)
 				comment-start "# "
 				comment-start-skip "#+\\s-*"))

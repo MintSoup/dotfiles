@@ -109,13 +109,9 @@
 		('visible (delete-window (treemacs-get-local-window)))
 		((or 'none 'exists)
 		 (let ((project (projectile-acquire-root)))
-			 (treemacs-do-add-project-to-workspace "/tmp" "temp")
-			 (treemacs-display-current-project-exclusively)
 			 (treemacs-do-add-project-to-workspace
-			  project
-			  (file-name-nondirectory
-			   (directory-file-name
-				(file-name-directory project))))
+			  "/tmp"
+			  "cringe")
 			 (treemacs-display-current-project-exclusively))
 		 (with-current-buffer (treemacs-get-local-buffer)
 			 (doom-modeline-mode +1)))))
