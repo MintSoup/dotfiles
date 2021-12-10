@@ -12,6 +12,8 @@
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 (add-hook 'Info-mode-hook 'visual-fill-column-mode)
 
+(setq css-fontify-colors nil)
+
 (defun my-prog-nuke-trailing-whitespace ()
 	(when (derived-mode-p 'prog-mode)
 		(delete-trailing-whitespace)))

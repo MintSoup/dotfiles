@@ -5,6 +5,7 @@
 	:config
 	(setq doom-themes-treemacs-enable-variable-pitch t
 		  doom-themes-treemacs-theme "doom-colors"
+		  treemacs-read-string-input 'from-minibuffer
 		  treemacs-width 30)
 	(doom-themes-treemacs-config)
 	;; dirty trick to fix project-follow-mode

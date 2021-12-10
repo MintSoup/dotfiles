@@ -5,15 +5,37 @@
 		(dolist (n graph-data)
 			(save-excursion
 				(insert-rectangle
-				 (append
-				  (make-list (- max-elt n) " ")
-				  (make-list n "*"))))
+				 (append (make-list
+						  (- max-elt n) " ")
+						 (make-list n "x"))))
 			(forward-char))))
 
 (progn
 	(end-of-line)
 	(insert "\n\n\n\n")
-	(graph (mapcar
-		(lambda (x)
-			(round (exp x)))
-		(number-sequence 0 3 0.1))))
+	(graph (--map
+			(round (exp it))
+			(number-sequence 0 3 0.1))))
+
+
+
+                              x
+                              x
+                             xx
+                             xx
+                            xxx
+                           xxxx
+                           xxxx
+                          xxxxx
+                         xxxxxx
+                        xxxxxxx
+                       xxxxxxxx
+                      xxxxxxxxx
+                     xxxxxxxxxx
+                   xxxxxxxxxxxx
+                  xxxxxxxxxxxxx
+                xxxxxxxxxxxxxxx
+             xxxxxxxxxxxxxxxxxx
+          xxxxxxxxxxxxxxxxxxxxx
+     xxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

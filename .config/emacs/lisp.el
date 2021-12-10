@@ -5,6 +5,7 @@
 	:hook (scheme-mode . evil-cleverparens-mode)
 	:hook (evil-cleverparens-mode . turn-off-visual-line-mode)
 	:config
+	(setq evil-cleverparens-indent-afterwards nil) ;; cp does it too early
 	(general-define-key :keymaps 'outer "f" '+evil:defun-txtobj)
 	(general-define-key :keymaps 'inner "f" '+evil:defun-txtobj))
 
@@ -26,7 +27,14 @@
 	(interactive)
 	(visual-line-mode -1))
 
+(defun indent-this-sexp (BEG END &optional TYPE REGISTER YANK-HANDLER)
+	(when (evil-cp--inside-any-form-p)
+		(save-excursion
+			(evil-cp--backward-up-list)
+			(indent-sexp))))
+
 (advice-add 'evil-cp--balanced-block-p :override 'evil-cp--balanced-block-p-noyank)
+(advice-add 'evil-cp-delete :after 'indent-this-sexp)
 
 (evil-define-operator evil-cp-delete-line-without-yank (beg end type reg yank-handler)
 	"Delete line without yanking while keeping parenthesis balanced."

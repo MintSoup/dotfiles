@@ -20,5 +20,5 @@
 (use-package lsp-ivy
 	:straight t)
 
-(use-package lsp-python-ms
-	:straight t)
+;; (use-package lsp-python-ms
+;; 	:straight t)

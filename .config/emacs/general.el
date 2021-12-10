@@ -23,6 +23,7 @@
 	"." '(find-file :wk "Find file")
 	";" '(eval-expression :wk "Eval expression")
 	"g" '(magit :wk "Magit")
+	"/" '(switch-to-buffer-other-window :wk "Switch to buffer in other window")
 	"SPC" '(projectile-find-file :wk "Find file in project"))
 
 (general-create-definer my-help-leader
@@ -89,13 +90,13 @@
 
 (my-buffer-leader
 	"" '(:ignore t :wk "Buffer")
-	"n" '(evil-buffer-new :wk "New buffer")
 	"d" '(+kill-current-buffer :wk "Kill buffer")
 	"D" '(kill-buffer-and-window :wk "Kill buffer and window")
 	"c" '(clone-buffer :wk "Clone buffer")
 	"k" '(clean-buffers :wk "Clean buffers")
 	"i" '(ibuffer :wk "IBuffer")
 	"v" '(visual-fill-column-mode :wk "Center text")
+	"R" '(rename-buffer :wk "Rename buffer")
 	"r" '(revert-buffer :wk "Revert buffer"))
 
 (general-create-definer my-open-leader
