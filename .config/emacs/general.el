@@ -154,6 +154,7 @@
 	"" '(:ignore t :wk "File")
 	"s" '(save-buffer :wk "Save")
 	"o" '(browse-org-files :wk "Browse Org")
+	"a" '(find-alternate-file :wk "Find alternate file")
 	"p" '(browse-my-config :wk "Browse private config")
 	"r" '(counsel-recentf :wk "Recent files"))
 
@@ -239,8 +240,6 @@
 	"c" '(projectile-compile-project :wk "Compile project")
 	"r" '(+project-run :wk "Run project")
 	"a" '(projectile-add-known-project :wk "Add"))
-
-
 
 
 (general-create-definer my-mode-leader

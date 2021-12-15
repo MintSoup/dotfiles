@@ -7,8 +7,12 @@
 	:config
 	(setq evil-cleverparens-indent-afterwards nil) ;; cp does it too early
 	(general-define-key :keymaps 'outer "f" '+evil:defun-txtobj)
-	(general-define-key :keymaps 'inner "f" '+evil:defun-txtobj))
+	(general-define-key :keymaps 'inner "f" '+evil:defun-txtobj)
+	(general-define-key :keymaps 'evil-cleverparens-mode-map
+						:states '(normal insert)
+						"C-(" '+wrap-and-edit-next))
 
+(defalias 'sp-forward-barf-sexp 'paredit-forward-barf-sexp)
 
 (general-define-key :keymaps 'evil-cleverparens-mode-map
 					:states '(normal visual)
@@ -32,6 +36,11 @@
 		(save-excursion
 			(evil-cp--backward-up-list)
 			(indent-sexp))))
+
+(defun +wrap-and-edit-next ()
+	(interactive)
+	(evil-cp-wrap-next-round 1)
+	(evil-cp-insert 1))
 
 (advice-add 'evil-cp--balanced-block-p :override 'evil-cp--balanced-block-p-noyank)
 (advice-add 'evil-cp-delete :after 'indent-this-sexp)

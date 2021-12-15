@@ -48,7 +48,6 @@
 	(dolist (file files)
 		(xdg-open file)))
 
-
 (my-local-leader :keymaps 'dired-mode-map
 	"m" '(dired-hide-dotfiles-mode :wk "Toggle dotfiles")
 	"n" '(dired-number-of-marked-files :wk "Show number of marked files")
