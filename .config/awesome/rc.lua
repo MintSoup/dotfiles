@@ -65,6 +65,7 @@ end
 run_once({"emacs", "emacs --daemon"})
 run_once("brave")
 run_once({"Discord", "discord"})
+run_once({"electron", "element-desktop"})
 -- run_once({"pia-client","/opt/piavpn/bin/pia-client"})
 run_once("flameshot")
 run_once("unclutter", "unclutter --timeout 30")
@@ -392,6 +393,7 @@ awful.rules.rules = {
 	}, properties = { floating = true }},
 
 	{ rule = { class = "Brave-browser" }, properties = { screen = 1, tag = " " } },
+	{ rule = { class = "Element" }, properties = { screen = 1, tag = " " } },
 	{ rule = { class = "discord" }, properties = { screen = 1, tag = " " } },
 	{ rule = { class = "st-256color" }, properties = { size_hints_honor = false } },
 }

@@ -11,6 +11,7 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 (add-hook 'Info-mode-hook 'visual-fill-column-mode)
+(add-hook 'shell-mode-hook 'evil-normal-state)
 
 (setq css-fontify-colors nil)
 

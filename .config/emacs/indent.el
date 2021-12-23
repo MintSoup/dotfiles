@@ -9,4 +9,5 @@
 					indent-tabs-mode t
 					backward-delete-char-untabify-method nil
 					sgml-basic-offset 4
-					tab-always-indent nil)))
+					tab-always-indent nil)
+			  (c-set-offset 'case-label '4)))

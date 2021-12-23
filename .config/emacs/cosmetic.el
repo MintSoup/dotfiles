@@ -73,3 +73,5 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode -1)
+
+(setq x-stretch-cursor t)

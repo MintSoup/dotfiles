@@ -171,7 +171,7 @@
 
 (my-code-leader
 	"" '(:ignore t :wk "Code")
-	"f" '(format-all-buffer :wk "Format buffer")
+	"f" '(apheleia-format-buffer :wk "Format buffer")
 	"r" '(lsp-rename :wk "Rename")
 	"a" '(lsp-execute-code-action :wk "Fix")
 	"n" '(flymake-goto-next-error :wk "Next Error")
