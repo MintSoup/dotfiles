@@ -11,7 +11,7 @@
 (setq smtpmail-smtp-server "smtp.gmail.com"
 	  smtpmail-smtp-service 25
 	  send-mail-function 'smtpmail-send-it
-	  user-mail-address "areg_hovhannisyan@edu.aua.am"
+	  user-mail-address "areg"
 	  message-directory (expand-file-name "mail" user-emacs-directory)
 	  gnus-directory (expand-file-name "news" user-emacs-directory)
 	  nnfolder-directory (expand-file-name "mail/archive" user-emacs-directory))

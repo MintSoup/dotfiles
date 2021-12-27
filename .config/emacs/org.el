@@ -701,9 +701,9 @@ Meant for `org-mode-hook'."
 (with-eval-after-load 'org-superstar
 	(set-face-attribute 'org-superstar-header-bullet nil :font "FreeSans" :height 1.0))
 
-(setcar org-emphasis-regexp-components " \t('\"{[:alpha:]")
-(setcar (nthcdr 1 org-emphasis-regexp-components) "[:alpha:]- \t.,:!?;'\")}\\")
-(org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+;; (setcar org-emphasis-regexp-components " \t('\"{[:alpha:]")
+;; (setcar (nthcdr 1 org-emphasis-regexp-components) "[:alpha:]- \t.,:!?;'\")}\\")
+;; (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
 
 
 (require 'ox-latex)
