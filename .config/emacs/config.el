@@ -23,7 +23,7 @@
 
 (setq make-backup-files nil)
 (setq backup-directory-alist
-      `(("." . ,(concat user-emacs-directory "backups/"))))
+	  `(("." . ,(concat user-emacs-directory "backups/"))))
 
 (add-hook 'imenu-after-jump-hook '+scroll-current-line-to-top)
 
@@ -36,3 +36,7 @@
 	(su-mode +1))
 
 (winner-mode)
+
+(defun indent-buffer ()
+	(interactive)
+	(indent-region (point-min) (point-max) nil))

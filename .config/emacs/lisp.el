@@ -18,7 +18,8 @@
 					:states '(normal visual)
 					"s" 'evil-snipe-s
 					"x" 'evil-cp-delete-char-without-yank
-					"C" 'evil-cp-delete-line-without-yank)
+					"C" 'evil-cp-delete-line-without-yank
+					"M-y" 'evil-paste-pop)
 
 
 (defun evil-cp--balanced-block-p-noyank (beg end)

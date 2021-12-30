@@ -86,7 +86,8 @@
 						"C-a" 'evil-numbers/inc-at-pt
 						"M-j" 'evil-collection-unimpaired-move-text-down
 						"M-k" 'evil-collection-unimpaired-move-text-up
-						"C-S-a" 'evil-numbers/dec-at-pt)
+						"C-S-a" 'evil-numbers/dec-at-pt
+						"go" 'indent-buffer)
 
 	(defun +evil/shift-right ()
 		"vnoremap < <gv"
@@ -169,7 +170,7 @@
 	:after evil
 	:config
 	(general-define-key :states '(normal visual)
- 						"gc" 'evil-commentary))
+						"gc" 'evil-commentary))
 
 (use-package evil-exchange
 	:straight t

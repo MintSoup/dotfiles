@@ -69,6 +69,7 @@
 (load-user-config-file "stm32.el") ;; STM32
 (load-user-config-file "as.el") ;; NASM
 (load-user-config-file "lisp.el") ;; Lisp
+(load-user-config-file "web.el") ;; Lisp
 
 (setq gc-cons-threshold (* 150 1024 1024))
 
@@ -80,7 +81,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((+run-function run-in-vterm "./main.out" 'projectile-run-vterm)
+   '((+run-function run-in-vterm "./proxy" 'projectile-run-vterm)
+	 (+run-function run-in-vterm "./main.out" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./main.cpp" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./bfc bruh.b" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./bfc" 'projectile-run-vterm)
