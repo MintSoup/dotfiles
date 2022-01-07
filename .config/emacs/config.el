@@ -40,3 +40,5 @@
 (defun indent-buffer ()
 	(interactive)
 	(indent-region (point-min) (point-max) nil))
+
+(setq-default major-mode 'text-mode)

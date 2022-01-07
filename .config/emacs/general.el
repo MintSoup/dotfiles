@@ -189,7 +189,8 @@
 	"" '(:ignore t :wk "Search")
 	"s" '(swiper-isearch :wk "Buffer")
 	"S" '(swiper-all :wk "All open buffers")
-	"d" '(counsel-locate :wk "Locate file")
+	"d" '(counsel-fd-dired-jump :wk "Find directory")
+	"f" '(counsel-fd-file-jump :wk "Find file")
 	"r" '(counsel-rg :wk "Ripgrep")
 	"i" '(counsel-imenu :wk "Symbol"))
 

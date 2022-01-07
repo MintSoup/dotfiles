@@ -56,7 +56,6 @@
 (load-user-config-file "lsp.el")
 (load-user-config-file "magit.el")
 (load-user-config-file "gud.el")
-(load-user-config-file "sr-speedbar.el")
 (load-user-config-file "torrent.el")
 (load-user-config-file "mail.el")
 (load-user-config-file "eshell.el")

@@ -36,6 +36,10 @@
 	:after ivy
 	:config (counsel-mode +1))
 
+(use-package counsel-fd
+	:straight t
+	:after counsel)
+
 (use-package ivy-rich
 	:straight t
 	:init
