@@ -10,9 +10,10 @@
 						"C-w" nil
 						"C-h" nil
 						"<f1>" nil
+						"<RET>" 'company-complete
 						"<tab>" 'company-select-next)
 	(setq company-backends
-		  '((company-capf company-files geiser-company-backend company-keywords))))
+		  '((company-capf company-files geiser-company-backend company-keywords company-yasnippet))))
 
 (defun eshell-disable-company ()
 	(when (and (fboundp 'company-mode)

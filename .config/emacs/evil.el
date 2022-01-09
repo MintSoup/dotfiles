@@ -94,21 +94,24 @@
 		(interactive)
 		(call-interactively #'evil-shift-right)
 		(evil-normal-state)
-		(evil-visual-restore)))
+		(evil-visual-restore))
 
-(defun +evil/shift-left ()
-	"vnoremap > >gv"
-	(interactive)
-	(call-interactively #'evil-shift-left)
-	(evil-normal-state)
-	(evil-visual-restore))
+	(defun +evil/shift-left ()
+		"vnoremap > >gv"
+		(interactive)
+		(call-interactively #'evil-shift-left)
+		(evil-normal-state)
+		(evil-visual-restore))
 
-(general-define-key :states 'visual
-					">" '+evil/shift-right
-					"<" '+evil/shift-left)
+	(evil-define-motion evil-lookup ()
+		"Look up the keyword at point. Calls `evil-lookup-func' interactively."
+		(call-interactively evil-lookup-func))
 
-(evil-mode)
+	(general-define-key :states 'visual
+						">" '+evil/shift-right
+						"<" '+evil/shift-left)
 
+	(evil-mode))
 
 ;; (use-package undo-fu
 ;; 	:straight t)

@@ -31,6 +31,8 @@
 (load-user-config-file "evil.el")
 (load-user-config-file "config.el")
 (load-user-config-file "ivy.el")
+
+;; Less important
 (load-user-config-file "scroll.el")
 (load-user-config-file "indent.el")
 
@@ -60,6 +62,7 @@
 (load-user-config-file "mail.el")
 (load-user-config-file "eshell.el")
 (load-user-config-file "ligatures.el")
+(load-user-config-file "snippets.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (setq my-skippable-buffer-regexp "^\*.+\*$")
 
 (defun my-change-buffer (change-buffer)

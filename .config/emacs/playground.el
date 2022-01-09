@@ -7,35 +7,12 @@
 				(insert-rectangle
 				 (append (make-list
 						  (- max-elt n) " ")
-						 (make-list n "x"))))
+						 (make-list n "o"))))
 			(forward-char))))
 
 (progn
 	(end-of-line)
 	(insert "\n\n\n\n")
 	(graph (--map
-			(round (exp it))
-			(number-sequence 0 3 0.1))))
-
-
-
-                              x
-                              x
-                             xx
-                             xx
-                            xxx
-                           xxxx
-                           xxxx
-                          xxxxx
-                         xxxxxx
-                        xxxxxxx
-                       xxxxxxxx
-                      xxxxxxxxx
-                     xxxxxxxxxx
-                   xxxxxxxxxxxx
-                  xxxxxxxxxxxxx
-                xxxxxxxxxxxxxxx
-             xxxxxxxxxxxxxxxxxx
-          xxxxxxxxxxxxxxxxxxxxx
-     xxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+			(round (* it it))
+			(number-sequence -5 5 0.1))))

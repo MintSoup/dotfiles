@@ -4,11 +4,11 @@ set layout (xkb-switch)
 xkb-switch -s us
 
 i3lock -C \
--i "/home/areg/Wallpapers/rock.jpg" \
+-i "/home/areg/Wallpapers/mount.jpeg" \
 --layout-pos='w/2:h-20' \
 --clock \
 --keylayout 0 \
---layout-font "FiraCode Nerd Font" \
+--layout-font "Noto Sans" \
 --insidever-color=141419 \
 --ringver-color=141419 \
 --ring-color=#61afef \
@@ -17,7 +17,7 @@ i3lock -C \
 --verif-color=d6d6d6 \
 --layout-color=00000000 \
 --layout-align 1 \
---date-color 00000000 \
+--date-color=00000000 \
 --time-color=00000000 \
 --nofork
 

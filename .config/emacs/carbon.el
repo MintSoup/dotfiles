@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (let* ((kwds '("and"
 			   "or"
 			   "is"
