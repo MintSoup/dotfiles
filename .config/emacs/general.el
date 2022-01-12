@@ -52,6 +52,7 @@
 	"i" '(info :wk "Emacs help")
 	"r" '(my-reload-private-config :wk "Reload private config")
 	"l" '(set-input-method :wk "Change language")
+	"s" '(counsel-info-lookup-symbol :wk "Lookup symbol in texinfo")
 	"c" '(my-edit-configuration :wk "Open init.el"))
 
 (general-create-definer my-window-leader

@@ -96,4 +96,11 @@
 	 (projectile-project-debug-cmd . "make -j12 debug")
 	 (projectile-project-compilation-cmd . "make -j12")
 	 (+debug-function . projectile-run-gdb)
-	 (+debug-function . stm32-start-gdb))))
+	 (+debug-function . stm32-start-gdb)))
+ '(warning-suppress-types '((auto-save))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

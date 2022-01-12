@@ -7,7 +7,8 @@
 	(setq lsp-idle-delay 0.1
 		  lsp-headerline-breadcrumb-enable t
 		  lsp-headerline-breadcrumb-icons-enable t
-		  lsp-headerline-breadcrumb-segments '(project file symbols)))
+		  lsp-headerline-breadcrumb-segments '(project file symbols)
+		  lsp-completion-provider :none))
 
 (use-package lsp-treemacs
 	:straight t)
@@ -19,6 +20,7 @@
 
 (use-package lsp-ivy
 	:straight t)
+
 
 ;; (use-package lsp-python-ms
 ;; 	:straight t)

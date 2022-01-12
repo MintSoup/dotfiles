@@ -13,11 +13,11 @@
 						"<RET>" 'company-complete
 						"<tab>" 'company-select-next)
 	(setq company-backends
-		  '((company-capf company-files geiser-company-backend company-keywords company-yasnippet))))
+		  '((company-capf company-yasnippet company-files geiser-company-backend company-keywords))))
 
-(defun eshell-disable-company ()
+(defun eshell-disable-company-on-tramp ()
 	(when (and (fboundp 'company-mode)
                (file-remote-p default-directory))
 		(company-mode -1)))
 
-(add-hook 'eshell-mode-hook 'eshell-disable-company)
+(add-hook 'eshell-mode-hook 'eshell-disable-company-on-tramp)
