@@ -10,7 +10,7 @@
 						"C-w" nil
 						"C-h" nil
 						"<f1>" nil
-						"<RET>" 'company-complete
+						;; "C-c" 'company-complete
 						"<tab>" 'company-select-next)
 	(setq company-backends
 		  '((company-capf company-yasnippet company-files geiser-company-backend company-keywords))))

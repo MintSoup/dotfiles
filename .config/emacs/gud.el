@@ -56,4 +56,3 @@
 (general-define-key :keymaps 'gdb-frames-mode-map
 					:states 'normal
 					"RET" 'gdb-select-frame)
-(add-hook 'gud-mode-hook 'company-mode)

@@ -18,7 +18,7 @@
 (my-leader
 	"j" '(my-next-buffer :wk "Next Buffer")
 	"k" '(my-previous-buffer :wk "Previous buffer")
-	"," '(+ivy-switch-buffer-hide-asterisk :wk "Switch buffer")
+	"," '(+counsel-switch-buffer-hide-asterisk :wk "Switch buffer")
 	"<" '(switch-to-buffer :wk "Switch buffer")
 	"." '(find-file :wk "Find file")
 	";" '(eval-expression :wk "Eval expression")
@@ -253,4 +253,20 @@
 	"o" '(org-mode :wk "Org")
 	"e" '(emacs-lisp-mode :wk "Elisp")
 	"c" '(c-mode :wk "C")
+	"t" '(text-mode :wk "Text")
+	"s" '(scheme-mode :wk "Scheme")
 	"p" '(python-mode :wk "Python"))
+
+
+(general-create-definer my-insert-leader
+	:states '(normal visual motion)
+	:prefix "SPC i"
+	:keymaps 'override)
+
+(defun prompt-for-path (dir)
+	"Prompt for directory and cd to it."
+	(interactive "D")
+	(insert dir))
+
+(my-insert-leader
+	"p" '(prompt-for-path :wk "Path"))

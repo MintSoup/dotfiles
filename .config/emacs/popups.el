@@ -91,7 +91,7 @@
 				(profiler-report-mode :select t :size 0.5 :align below)
 				("*ELP Profiling Restuls*" :select t :size 0.5 :align below)
 
-				((inferior-python-mode inf-ruby-mode swift-repl-mode) :size 0.4 :align below)
+				((inferior-python-mode inf-ruby-mode swift-repl-mode) :size 0.3 :align below)
 				("*prolog*" :size 0.4 :align below)
 
 				(("*Gofmt Errors*" "*Go Test*") :select t :size 0.3 :align below :autoclose t)

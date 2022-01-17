@@ -26,10 +26,10 @@
 
 	(ivy-mode))
 
-(defun +ivy-switch-buffer-hide-asterisk ()
+(defun +counsel-switch-buffer-hide-asterisk ()
 	(interactive)
 	(let ((ivy-ignore-buffers '("\\` " "\\`\\*")))
-		(ivy-switch-buffer)))
+		(counsel-switch-buffer)))
 
 (use-package counsel
 	:straight t
@@ -40,47 +40,45 @@
 	:straight t
 	:after counsel)
 
-(use-package ivy-rich
-	:straight t
-	:init
-	(setq ivy-rich-path-style 'abbrev
-          ivy-virtual-abbreviate 'full)
-	:config
-	(ivy-rich-mode)) ;; this gets us descriptions in M-x.
-
 (use-package all-the-icons-ivy-rich
 	:straight t
-	:after ivy-rich
+	:after counsel-projectile
+	:init
+	(setq all-the-icons-ivy-rich-project nil)
 	:config
-	(all-the-icons-ivy-rich-mode))
+	(all-the-icons-ivy-rich-mode 1)
+	(ivy-rich-mode 1))
+
+(use-package ivy-rich
+	:straight t
+	:after all-the-icons-ivy-rich
+	:init
+	(setq ivy-rich-path-style 'abbrev
+          ivy-virtual-abbreviate 'full))
 
 (use-package swiper
 	:straight t
 	:after ivy)
 
-(eval-after-load 'ivy-rich
-	(progn
-		(defvar ek/ivy-rich-cache
-			(make-hash-table :test 'equal))
+(with-eval-after-load 'ivy-rich
+	(defvar ek/ivy-rich-cache
+		(make-hash-table :test 'equal))
 
-		(defun ek/ivy-rich-cache-lookup (delegate candidate)
-			(let ((result (gethash candidate ek/ivy-rich-cache)))
-				(unless result
-					(setq result (funcall delegate candidate))
-					(puthash candidate result ek/ivy-rich-cache))
-				result))
+	(defun ek/ivy-rich-cache-lookup (delegate candidate)
+		(let ((result (gethash candidate ek/ivy-rich-cache)))
+			(unless result
+				(setq result (funcall delegate candidate))
+				(puthash candidate result ek/ivy-rich-cache))
+			result))
 
-		(defun ek/ivy-rich-cache-reset ()
-			(clrhash ek/ivy-rich-cache))
+	(defun ek/ivy-rich-cache-reset ()
+		(clrhash ek/ivy-rich-cache))
 
-		(defun ek/ivy-rich-cache-rebuild ()
-			(mapc (lambda (buffer)
-					  (ivy-rich--ivy-switch-buffer-transformer (buffer-name buffer)))
-				  (buffer-list)))
+	(defun ek/ivy-rich-cache-rebuild ()
+		(mapc (lambda (buffer)
+				  (ivy-rich--ivy-switch-buffer-transformer (buffer-name buffer)))
+			  (buffer-list)))
 
-		(defun ek/ivy-rich-cache-rebuild-trigger ()
-			(ek/ivy-rich-cache-reset)
-			(run-with-idle-timer 1 nil 'ek/ivy-rich-cache-rebuild))
-
-		(advice-add 'ivy-rich--ivy-switch-buffer-transformer :around 'ek/ivy-rich-cache-lookup)
-		(advice-add 'ivy-switch-buffer :after 'ek/ivy-rich-cache-rebuild-trigger)))
+	(defun ek/ivy-rich-cache-rebuild-trigger ()
+		(ek/ivy-rich-cache-reset)
+		(run-with-idle-timer 1 nil 'ek/ivy-rich-cache-rebuild)))

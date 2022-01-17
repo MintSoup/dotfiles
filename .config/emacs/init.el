@@ -24,8 +24,6 @@
 	"Load file from `user-emacs-directory'"
 	(load-file (expand-file-name name user-emacs-directory)))
 
-
-
 ;; Core
 (load-user-config-file "general.el")
 (load-user-config-file "evil.el")
