@@ -81,7 +81,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((+run-function run-in-vterm "./proxy" 'projectile-run-vterm)
+   '((projectile-indexing-method . hybrid)
+	 (+run-function run-in-vterm "./proxy" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./main.out" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./main.cpp" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./bfc bruh.b" 'projectile-run-vterm)
@@ -96,9 +97,3 @@
 	 (+debug-function . projectile-run-gdb)
 	 (+debug-function . stm32-start-gdb)))
  '(warning-suppress-types '((auto-save))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

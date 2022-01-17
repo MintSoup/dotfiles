@@ -10,13 +10,11 @@
 		(unless (file-remote-p default-directory) ad-do-it))
 	(projectile-mode +1))
 
-(defalias 'counsel-projectile-find-file-transformer 'identity) ;; Otherwise it's slow af
-
 (use-package counsel-projectile
 	:straight t
 	:config
 	(counsel-projectile-mode))
 
-(add-hook 'projectile-after-switch-project-hook
-		  (lambda ()
-			  (projectile-invalidate-cache nil)))
+;; (add-hook 'projectile-after-switch-project-hook
+;; 		  (lambda ()
+;; 			  (projectile-invalidate-cache nil)))

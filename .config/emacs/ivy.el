@@ -44,7 +44,7 @@
 	:straight t
 	:after counsel-projectile
 	:init
-	(setq all-the-icons-ivy-rich-project nil)
+	(setq all-the-icons-ivy-rich-project t)
 	:config
 	(all-the-icons-ivy-rich-mode 1)
 	(ivy-rich-mode 1))
@@ -64,21 +64,32 @@
 	(defvar ek/ivy-rich-cache
 		(make-hash-table :test 'equal))
 
-	(defun ek/ivy-rich-cache-lookup (delegate candidate)
-		(let ((result (gethash candidate ek/ivy-rich-cache)))
-			(unless result
-				(setq result (funcall delegate candidate))
-				(puthash candidate result ek/ivy-rich-cache))
-			result))
+	(defun make-cacher-function (oldfn)
+		(let ((hashtable (make-hash-table :test 'equal)))
+			(lambda (delegate candidate)
+				(let ((result (gethash candidate hashtable)))
+					(unless result
+						(setq result (funcall delegate candidate))
+						(puthash candidate result hashtable))
+					result))))
 
-	(defun ek/ivy-rich-cache-reset ()
-		(clrhash ek/ivy-rich-cache))
+	(advice-add 'all-the-icons-ivy-rich-file-modes :around
+				(make-cacher-function 'all-the-icons-ivy-rich-file-id))
+	(advice-add 'all-the-icons-ivy-rich-file-id :around
+				(make-cacher-function 'all-the-icons-ivy-rich-file-id))
+	(advice-add 'all-the-icons-ivy-rich-file-size :around
+				(make-cacher-function 'all-the-icons-ivy-rich-file-size))
+	(advice-add 'all-the-icons-ivy-rich-file-modification-time :around
+				(make-cacher-function 'all-the-icons-ivy-rich-file-modification-time))
+	(advice-add 'all-the-icons-ivy-rich-project-file-modes :around
+				(make-cacher-function 'all-the-icons-ivy-rich-project-file-modes))
+	(advice-add 'all-the-icons-ivy-rich-project-file-id :around
+				(make-cacher-function 'all-the-icons-ivy-rich-project-file-id))
+	(advice-add 'all-the-icons-ivy-rich-project-file-size :around
+				(make-cacher-function 'all-the-icons-ivy-rich-project-file-size))
+	(advice-add 'all-the-icons-ivy-rich-project-file-modification-time :around
+				(make-cacher-function 'all-the-icons-ivy-rich-project-file-modification-time))
+	(advice-add 'counsel-projectile-find-file-transformer :around (make-cacher-function 'counsel-projectile-find-file-transformer))
 
-	(defun ek/ivy-rich-cache-rebuild ()
-		(mapc (lambda (buffer)
-				  (ivy-rich--ivy-switch-buffer-transformer (buffer-name buffer)))
-			  (buffer-list)))
-
-	(defun ek/ivy-rich-cache-rebuild-trigger ()
-		(ek/ivy-rich-cache-reset)
-		(run-with-idle-timer 1 nil 'ek/ivy-rich-cache-rebuild)))
+	(advice-add 'ivy-rich--ivy-switch-buffer-transformer :around
+				(make-cacher-function 'ivy-rich--ivy-switch-buffer-transformer)))
