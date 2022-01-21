@@ -38,7 +38,13 @@
 (winner-mode)
 
 (defun indent-buffer ()
+	"Call `indent-region' on the entire buffer."
 	(interactive)
 	(indent-region (point-min) (point-max) nil))
+
+(defun tabify-buffer ()
+	"Call `tabify' on the entire buffer."
+	(interactive)
+	(tabify (point-min) (point-max)))
 
 (setq-default major-mode 'text-mode)

@@ -47,34 +47,27 @@
 	(setq all-the-icons-ivy-rich-project t)
 	:config
 	(all-the-icons-ivy-rich-mode 1)
-	(ivy-rich-mode 1))
-
-(use-package ivy-rich
-	:straight t
-	:after all-the-icons-ivy-rich
-	:init
-	(setq ivy-rich-path-style 'abbrev
-          ivy-virtual-abbreviate 'full))
-
-(use-package swiper
-	:straight t
-	:after ivy)
-
-(with-eval-after-load 'ivy-rich
-	(defvar ek/ivy-rich-cache
-		(make-hash-table :test 'equal))
-
-	(defun make-cacher-function (oldfn)
+	(ivy-rich-mode 1)
+	:config
+	(defun make-cacher-function (oldfn &optional keep)
 		(let ((hashtable (make-hash-table :test 'equal)))
+			(unless keep
+				(add-hook 'minibuffer-mode-hook
+						  (lambda ()
+							  (clrhash hashtable))))
 			(lambda (delegate candidate)
+				"Cache the results for this function to speed things up"
 				(let ((result (gethash candidate hashtable)))
 					(unless result
 						(setq result (funcall delegate candidate))
 						(puthash candidate result hashtable))
 					result))))
 
+	(advice-add 'all-the-icons-ivy-rich--project-file-path :around
+				(make-cacher-function 'all-the-icons-ivy-rich--project-file-path t))
+
 	(advice-add 'all-the-icons-ivy-rich-file-modes :around
-				(make-cacher-function 'all-the-icons-ivy-rich-file-id))
+				(make-cacher-function 'all-the-icons-ivy-rich-modes))
 	(advice-add 'all-the-icons-ivy-rich-file-id :around
 				(make-cacher-function 'all-the-icons-ivy-rich-file-id))
 	(advice-add 'all-the-icons-ivy-rich-file-size :around
@@ -89,7 +82,18 @@
 				(make-cacher-function 'all-the-icons-ivy-rich-project-file-size))
 	(advice-add 'all-the-icons-ivy-rich-project-file-modification-time :around
 				(make-cacher-function 'all-the-icons-ivy-rich-project-file-modification-time))
-	(advice-add 'counsel-projectile-find-file-transformer :around (make-cacher-function 'counsel-projectile-find-file-transformer))
-
+	(advice-add 'counsel-projectile-find-file-transformer :around
+				(make-cacher-function 'counsel-projectile-find-file-transformer))
 	(advice-add 'ivy-rich--ivy-switch-buffer-transformer :around
 				(make-cacher-function 'ivy-rich--ivy-switch-buffer-transformer)))
+
+(use-package ivy-rich
+	:straight t
+	:after all-the-icons-ivy-rich
+	:init
+	(setq ivy-rich-path-style 'abbrev
+          ivy-virtual-abbreviate 'full))
+
+(use-package swiper
+	:straight t
+	:after ivy)

@@ -53,6 +53,7 @@
 				(select-window win0)))))
 
 (advice-add 'gdb-setup-windows :override #'my-gdb-setup-windows)
+;; (advice-add 'speedbar-toggle-line-expansion :after (lambda () (speedbar-refresh 1)))
 (general-define-key :keymaps 'gdb-frames-mode-map
 					:states 'normal
 					"RET" 'gdb-select-frame)

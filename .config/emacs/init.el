@@ -69,7 +69,7 @@
 (load-user-config-file "stm32.el") ;; STM32
 (load-user-config-file "as.el") ;; NASM
 (load-user-config-file "lisp.el") ;; Lisp
-(load-user-config-file "web.el") ;; Lisp
+(load-user-config-file "web.el") ;; Web stuff
 
 (setq gc-cons-threshold (* 150 1024 1024))
 

@@ -13,8 +13,6 @@
 (use-package counsel-projectile
 	:straight t
 	:config
-	(counsel-projectile-mode))
-
-;; (add-hook 'projectile-after-switch-project-hook
-;; 		  (lambda ()
-;; 			  (projectile-invalidate-cache nil)))
+	(counsel-projectile-mode)
+	:init
+	(setq counsel-projectile-find-file-matcher 'ivy--re-filter))

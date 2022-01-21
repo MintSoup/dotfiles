@@ -87,7 +87,8 @@
 						"M-j" 'evil-collection-unimpaired-move-text-down
 						"M-k" 'evil-collection-unimpaired-move-text-up
 						"C-S-a" 'evil-numbers/dec-at-pt
-						"go" 'indent-buffer)
+						"go" 'indent-buffer
+						"gt" 'tabify-buffer)
 
 	(defun +evil/shift-right ()
 		"vnoremap < <gv"
