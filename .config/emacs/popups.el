@@ -70,7 +70,6 @@
 				("*How Do You*" :select t :size 0.5 :align below :autoclose t)
 				("* Guile REPL *" :size 0.3 :align below :autoclose t)
 				("*Geiser dbg*" :size 0.3 :align below :autoclose t)
-
 				(("*Org Agenda*" " *Agenda Commands*" " *Org todo*" "*Org Dashboard*" "*Org Select*") :select t :size 0.55 :align right :autoclose t)
 				(("\\*Capture\\*" "^CAPTURE-.*\\.org*") :regexp t :select t :size 0.3 :align below :autoclose t)
 

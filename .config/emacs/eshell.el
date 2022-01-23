@@ -2,11 +2,11 @@
 (add-hook 'eshell-mode-hook
 		  (lambda ()
 			  (setq-local tab-width 4
-						  company-backends '((company-pcomplete company-files company-elisp)))))
+						  company-backends '((company-pcomplete company-files)))))
 
-;; (add-hook 'eshell-mode-hook 'company-mode)
-;; (general-define-key :states 'insert :keymaps 'eshell-mode-map
-;; 					"<tab>" 'company-select-next)
+(add-hook 'eshell-mode-hook 'company-mode)
+(general-define-key :states 'insert :keymaps 'eshell-mode-map
+					"<tab>" 'company-select-next)
 
 (require 'cl-lib)
 (require 'company)

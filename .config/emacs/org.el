@@ -424,6 +424,12 @@ re-align the table if necessary. (Necessary because org-mode has a
 			(goto-char pt))))
 
 ;;;###autoload
+(defun +org-realign-table-maybe-a (&rest _)
+	"Auto-align table under cursor and re-calculate formulas."
+	(when (eq major-mode 'org-mode)
+		(+org-realign-table-maybe-h)))
+
+;;;###autoload
 (defun +org-enable-auto-reformat-tables-h ()
 	"Realign tables & update formulas when exiting insert mode (`evil-mode').
 Meant for `org-mode-hook'."
@@ -487,17 +493,18 @@ Meant for `org-mode-hook'."
 			  (evil-define-minor-mode-key '(normal visual) 'evil-org-mode
 				  (kbd "x")'evil-org-delete-char-without-yank
 				  (kbd "<C-return>") '+org/insert-item-below
-				  (kbd "<C-S-return>") '+org/insert-item-above)))
+				  (kbd "<C-S-return>") '+org/insert-item-above
+				  (kbd "gl") 'evil-lion-left)))
 
 (add-hook 'org-tab-first-hook '+org-cycle-only-current-subtree-h)
 
 (my-local-leader :keymaps 'org-mode-map
-    "#" #'org-update-statistics-cookies
-    "'" #'org-edit-special
-    "*" #'org-ctrl-c-star
-    "+" #'org-ctrl-c-minus
-    "," #'org-switchb
-    "." #'org-goto
+	"#" #'org-update-statistics-cookies
+	"'" #'org-edit-special
+	"*" #'org-ctrl-c-star
+	"+" #'org-ctrl-c-minus
+	"," #'org-switchb
+	"." #'org-goto
 	"." #'counsel-org-goto
 	"/" #'counsel-org-goto-all
 	"A" #'org-archive-subtree
@@ -636,7 +643,7 @@ Meant for `org-mode-hook'."
 	  org-export-preserve-breaks t
 
 	  org-todo-keywords
-      '((sequence "TODO(t)" "INPROG(p)" "|" "DONE(d)")
+	  '((sequence "TODO(t)" "INPROG(p)" "|" "DONE(d)")
 		(sequence "UNREVIEWED(u)" "REVIEW(r)" "INPROG(p)" "|" "DONE(d)" "REJECTED(x)"))
 
 	  org-todo-keyword-faces
@@ -710,11 +717,11 @@ Meant for `org-mode-hook'."
 (add-to-list 'org-latex-packages-alist '("" "minted"))
 (setq org-latex-listings 'minted)
 (setq org-latex-minted-options
-      '(("tabsize" "4")))
+	  '(("tabsize" "4")))
 (setq org-latex-pdf-process
-      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+	  '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+		"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+		"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 (setq org-src-fontify-natively t)
 
