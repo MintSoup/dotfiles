@@ -73,10 +73,9 @@ run_once("xbindkeys")
 run_once("copyq")
 run_once("picom")
 run_once("numlockx on")
+run_once("xsettingsd")
 
 awful.spawn("xset r rate 200 40", false)
-
-
 
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -283,7 +282,9 @@ clientkeys = gears.table.join(
 		function (c)
 			c.maximized = not c.maximized
 		end,
-		{description="Unmaximize client", group="client"})
+		{description="Unmaximize client", group="client"}),
+    awful.key({ modkey, }, "o", function (c) c:move_to_screen() end,
+		{description = "move to screen", group = "client"})
 )
 
 local np_map = { 87, 88, 89, 83, 84, 85, 79, 80, 81 }
@@ -434,45 +435,45 @@ local gppid = 'sh '..awesome_config_folder..'helper.sh gppid '
 local ppid = 'sh '..awesome_config_folder..'helper.sh ppid '
 client.connect_signal("manage", function (c)
 
-	if awesome.startup
-		and not c.size_hints.user_position
-		and not c.size_hints.program_position then
-		-- Prevent clients from being unreachable after screen count changes.
-		awful.placement.no_offscreen(c)
-	end
+						  if awesome.startup
+							  and not c.size_hints.user_position
+							  and not c.size_hints.program_position then
+							  -- Prevent clients from being unreachable after screen count changes.
+							  awful.placement.no_offscreen(c)
+						  end
 
 
-	if not is_terminal(c) then
-		local parent_client=awful.client.focus.history.get(c.screen, 1)
-		if not c.pid then return end
-		awful.spawn.easy_async(gppid .. c.pid, function(gppid)
-			awful.spawn.easy_async(ppid .. c.pid, function(ppid)
-				if parent_client and parent_client.pid and (gppid:find('^' .. parent_client.pid) or ppid:find('^' .. parent_client.pid)) and
-																	is_terminal(parent_client) then
+						  if not is_terminal(c) then
+							  local parent_client=awful.client.focus.history.get(c.screen, 1)
+							  if not c.pid then return end
+							  awful.spawn.easy_async(gppid .. c.pid, function(gppid)
+														 awful.spawn.easy_async(ppid .. c.pid, function(ppid)
+																					if parent_client and parent_client.pid and (gppid:find('^' .. parent_client.pid) or ppid:find('^' .. parent_client.pid)) and
+																						is_terminal(parent_client) then
 
-					local idx
-					if not parent_client.floating then
-						idx = awful.client.idx(parent_client).idx
-					end
+																						local idx
+																						if not parent_client.floating then
+																							idx = awful.client.idx(parent_client).idx
+																						end
 
-					c:connect_signal("unmanage", function()
-						parent_client.hidden = false
+																						c:connect_signal("unmanage", function()
+																											 parent_client.hidden = false
 
-						if parent_client.floating then
-							parent_client.x = c.x
-							parent_client.y = c.y
-							parent_client.width = c.width
-							parent_client.height = c.height
-						end
-					end)
+																											 if parent_client.floating then
+																												 parent_client.x = c.x
+																												 parent_client.y = c.y
+																												 parent_client.width = c.width
+																												 parent_client.height = c.height
+																											 end
+																						end)
 
-					parent_client.hidden = true
-					copy_size(c, parent_client, idx)
-					return
-				end
-			end)
-		end)
-	end
+																						parent_client.hidden = true
+																						copy_size(c, parent_client, idx)
+																						return
+																					end
+														 end)
+							  end)
+						  end
 end)
 
 fastscroll = {

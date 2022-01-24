@@ -719,9 +719,9 @@ Meant for `org-mode-hook'."
 (setq org-latex-minted-options
 	  '(("tabsize" "4")))
 (setq org-latex-pdf-process
-	  '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-		"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-		"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+	  '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+		"xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+		"xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 (setq org-src-fontify-natively t)
 
