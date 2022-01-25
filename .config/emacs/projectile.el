@@ -2,7 +2,7 @@
 	:straight t
 	:init
 	(setq projectile-enable-caching t
-		  projectile-indexing-method 'alien
+		  projectile-indexing-method 'hybrid
 		  projectile-require-project-root nil
 		  projectile-sort-order 'recently-active
 		  projectile-globally-ignored-directories '())
@@ -24,7 +24,7 @@ otherwise operates relative to project root."
 		 (lambda (file)
 			 (if (string-prefix-p "./" file)
 					 (setq file (string-trim-left file "\\./")))
-			 (or (string-suffix-p "evil-ex.el" file) (cl-some
+			 (or (cl-some
 				  (lambda (f)
 					  (string= f (file-name-nondirectory file)))
 				  ignored-files)
