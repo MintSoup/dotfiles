@@ -43,7 +43,7 @@ end
 
 local function get()
 	local tt = awful.tooltip{}
-	
+
 
 	local widget = lain.widget.bat {
 		settings = function()
@@ -52,6 +52,7 @@ local function get()
 		end,
 		battery = "BAT0",
 		timeout = 30,
+		notify = "off",
 	}
 
 
@@ -65,7 +66,7 @@ local function get()
 	end)
 
 	widget.listener = watch("acpi_listen", {
-		stdout = function(line) 
+		stdout = function(line)
 			gears.timer {
 				timeout   = 2.5,
 				call_now  = true,

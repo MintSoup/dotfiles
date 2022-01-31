@@ -82,9 +82,7 @@
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    '((projectile-indexing-method . hybrid)
-	 (+run-function run-in-vterm "./proxy" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./main.out" 'projectile-run-vterm)
-	 (+run-function run-in-vterm "./main.cpp" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./bfc bruh.b" 'projectile-run-vterm)
 	 (+run-function run-in-vterm "./bfc" 'projectile-run-vterm)
 	 (+debug-function stm32-start-gdb)
@@ -95,5 +93,4 @@
 	 (projectile-project-debug-cmd . "make -j12 debug")
 	 (projectile-project-compilation-cmd . "make -j12")
 	 (+debug-function . projectile-run-gdb)
-	 (+debug-function . stm32-start-gdb)))
- '(warning-suppress-types '((auto-save))))
+	 (+debug-function . stm32-start-gdb))))

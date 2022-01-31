@@ -683,10 +683,10 @@ Meant for `org-mode-hook'."
 
 
 (with-eval-after-load 'org-faces
-	(set-face-attribute 'org-level-1 nil :height 1.35 :weight 'normal)
-	(set-face-attribute 'org-level-2 nil :height 1.2 :weight 'normal)
-	(set-face-attribute 'org-level-3 nil :height 1.05 :weight 'normal)
-	(set-face-attribute 'org-level-4 nil :weight 'normal)
+	(set-face-attribute 'org-level-1 nil :height 1.5 :weight 'normal)
+	(set-face-attribute 'org-level-2 nil :height 1.25 :weight 'normal)
+	(set-face-attribute 'org-level-3 nil :height 1.1 :weight 'normal)
+	(set-face-attribute 'org-level-4 nil :height 1.05 :weight 'normal)
 	(set-face-attribute 'org-level-5 nil :weight 'normal)
 	(set-face-attribute 'org-level-6 nil :weight 'normal)
 	(set-face-attribute 'org-level-7 nil :weight 'normal)
