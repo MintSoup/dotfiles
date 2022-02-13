@@ -53,14 +53,7 @@
 						:weight 'regular
 						:height 125)
 
-	;; (set-fontset-font "-CTDB-FiraCode Nerd Font-normal-normal-normal-*-20-*-*-*-d-0-fontset-auto2" 'armenian (font-spec :family "DejaVu Sans Code"))
-	;; Makes commented text and keywords italics.
-	;; This is working in emacsclient but not emacs.
-	;; Your font must have an italic face available.
-	(set-face-attribute 'font-lock-comment-face nil
-						:slant 'italic)
-	(set-face-attribute 'font-lock-keyword-face nil
-						:slant 'italic))
+	(set-fontset-font t 'armenian "Noto Sans Armenian"))
 
 (my-setup-fonts)
 

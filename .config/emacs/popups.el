@@ -49,7 +49,7 @@
 				("\\*[Wo]*Man.*\\*" :regexp t :select t :align right :size 0.55 :autoclose t)
 				("*Calendar*" :select t :size 0.3 :align below)
 				(("*shell*" "*ielm*") :popup t :size 0.3 :align below :volatile)
-				("\\*eshell.*\\*" :popup :t :size 0.3 :align below :regexp t)
+				("\\*eshell.*" :popup :t :size 0.35 :align below :regexp t)
 				("^\\*vc-.*\\*$" :regexp t :size 0.3 :align below :autoclose t)
 				;; ("*gud-debug*" :select t :size 0.4 :align below :autoclose t)
 				;; ("\\*ivy-occur .*\\*" :regexp t :select t :size 0.3 :align below)

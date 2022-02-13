@@ -15,8 +15,8 @@
 	:config
 	(defun set-dashboard-face (frame)
 		(set-face-attribute 'dashboard-banner-logo-title nil
-							:font "Noto Sans"
-							:foreground "#51afef"
+							:inherit 'variable-pitch
+							:foreground (doom-color 'blue)
 							:height 160))
 	(mapc 'set-dashboard-face (frame-list))
 	(add-hook 'after-make-frame-functions 'set-dashboard-face)

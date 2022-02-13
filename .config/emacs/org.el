@@ -20,6 +20,11 @@
 	(evil-org-set-key-theme)
 	(require 'evil-org-agenda)
 	(evil-org-agenda-set-keys)
+	(evil-define-minor-mode-key '(normal visual) 'evil-org-mode
+		(kbd "x")'evil-org-delete-char-without-yank
+		(kbd "<C-return>") '+org/insert-item-below
+		(kbd "<C-S-return>") '+org/insert-item-above
+		(kbd "gl") 'evil-lion-left)
 	:hook (org-mode . evil-org-mode))
 
 (use-package org-tempo
@@ -282,7 +287,6 @@ Executes `org-table-copy-down' if in table."
 	(interactive "p")
 	(dotimes (_ count) (+org--insert-item 'above)))
 
-
 ;;; Folds
 (defalias #'+org/toggle-fold #'+org-cycle-only-current-subtree-h)
 
@@ -487,15 +491,6 @@ Meant for `org-mode-hook'."
 					"M-j"           #'org-metadown
 					"M-k"           #'org-metaup)
 
-;; Ugly hack to work around evil-org's stupid design
-(add-hook 'evil-org-mode-hook
-		  (lambda ()
-			  (evil-define-minor-mode-key '(normal visual) 'evil-org-mode
-				  (kbd "x")'evil-org-delete-char-without-yank
-				  (kbd "<C-return>") '+org/insert-item-below
-				  (kbd "<C-S-return>") '+org/insert-item-above
-				  (kbd "gl") 'evil-lion-left)))
-
 (add-hook 'org-tab-first-hook '+org-cycle-only-current-subtree-h)
 
 (my-local-leader :keymaps 'org-mode-map
@@ -681,7 +676,6 @@ Meant for `org-mode-hook'."
 
 (plist-put org-format-latex-options :scale 1.35)
 
-
 (with-eval-after-load 'org-faces
 	(set-face-attribute 'org-level-1 nil :height 1.5 :weight 'normal)
 	(set-face-attribute 'org-level-2 nil :height 1.25 :weight 'normal)
@@ -725,7 +719,49 @@ Meant for `org-mode-hook'."
 
 (setq org-src-fontify-natively t)
 
+
+(setcdr (assoc "\\.pdf\\'" org-file-apps) "zathura %s")
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((R . t)
    (latex . t)))
+
+
+(defun org-latex-plain-text (text info)
+	"Transcode a TEXT string from Org to LaTeX.
+TEXT is the string to transcode.  INFO is a plist holding
+contextual information."
+	(let* ((specialp (plist-get info :with-special-strings))
+		   (output
+			;; Turn LaTeX into \LaTeX{} and TeX into \TeX{}.
+			(let ((case-fold-search nil))
+				(replace-regexp-in-string
+				 "\\<\\(?:La\\)?TeX\\>" "\\\\\\&{}"
+				 ;; Protect ^, ~, %, #, &, $, _, { and }.  Also protect \.
+				 ;; However, if special strings are used, be careful not
+				 ;; to protect "\" in "\-" constructs.
+				 (replace-regexp-in-string
+				  (concat "[%$#&{}_~^]\\|\\\\" (and specialp "\\([^-]\\|$\\)"))
+				  (lambda (m)
+					  (cl-case (string-to-char m)
+						  (?\\ "$\\\\backslash$\\1")
+						  (?~ "\\\\textasciitilde{}")
+						  (?^ "\\\\^{}")
+						  (t "\\\\\\&")))
+				  text)))))
+		;; Activate smart quotes.  Be sure to provide original TEXT string
+		;; since OUTPUT may have been modified.
+		(when (plist-get info :with-smart-quotes)
+			(setq output (org-export-activate-smart-quotes output :latex info text)))
+		;; Convert special strings.
+		(when specialp
+			(setq output (replace-regexp-in-string "\\.\\.\\." "\\\\ldots{}" output)))
+		;; Handle break preservation if required.
+		;; (message text)
+		(when (plist-get info :preserve-breaks)
+			(setq output
+				  (replace-regexp-in-string
+				   "\\(?:[ \t]*\\\\\\\\\\)?[ \t]*\n" "\\\\\n" (string-chop-newline output) nil t)))
+		;; Return value.
+		output))

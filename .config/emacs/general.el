@@ -269,4 +269,5 @@
 	(insert dir))
 
 (my-insert-leader
-	"p" '(prompt-for-path :wk "Path"))
+	"p" '(prompt-for-path :wk "Path")
+	"c" '(insert-char :wk "Character"))

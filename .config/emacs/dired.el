@@ -19,6 +19,11 @@
 	:config
 	:hook (dired-mode . dired-hide-dotfiles-mode))
 
+(use-package dired-du
+	:straight t
+	:init
+	(setq dired-du-size-format t))
+
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
 (defun up-alternate-file ()
@@ -51,8 +56,9 @@
 (my-local-leader :keymaps 'dired-mode-map
 	"m" '(dired-hide-dotfiles-mode :wk "Toggle dotfiles")
 	"n" '(dired-number-of-marked-files :wk "Show number of marked files")
-	"d" '(rcd/dired-view :wk "XDG open")
-	"o" '(dired-omit-mode :wk "Toggle Omit Mode"))
+	"f" '(rcd/dired-view :wk "XDG open")
+	"o" '(dired-omit-mode :wk "Toggle Omit Mode")
+	"d" '(dired-du-mode :wk "Dired-du"))
 
 (general-define-key :keymaps 'dired-mode-map :states 'normal
 					"l" '(dired-find-alternate-file :wk "Visit directory")
