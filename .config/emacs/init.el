@@ -39,7 +39,7 @@
 
 ;; Aux
 (load-user-config-file "helpful.el")
-(load-user-config-file "projectile.el")
+(load-user-config-file "projects.el")
 (load-user-config-file "dired.el")
 (load-user-config-file "popups.el")
 (load-user-config-file "dash.el")
