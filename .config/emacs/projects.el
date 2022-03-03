@@ -110,7 +110,9 @@ The compilation buffer is returned
 				(setq-local +on-finish-compilation-form form)))))
 
 (defun +post-compile (buffer status)
-	(when (string-equal status "finished\n")
+	(when (and
+		   (string-equal status "finished\n")
+		   (buffer-local-boundp '+on-finish-compilation-form buffer))
 		(eval (buffer-local-value
 			   '+on-finish-compilation-form buffer))))
 
