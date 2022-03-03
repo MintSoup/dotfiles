@@ -48,3 +48,9 @@
 	(tabify (point-min) (point-max)))
 
 (setq-default major-mode 'text-mode)
+
+(setq tramp-default-method "ssh")
+
+(setq sentence-end-double-space nil)
+
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)

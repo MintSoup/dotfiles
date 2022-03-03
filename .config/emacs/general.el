@@ -1,4 +1,4 @@
-;;; -*- lexical-binding: t -*-
+;;; -*- (lexical-binding:) t -*-
 ;; General
 (use-package general
 	:straight t
@@ -134,7 +134,7 @@
 	"r" '(ielm :wk "IELM")
     "p" '(+treemacs :wk "Toggle tree")
     "a" '(org-agenda :wk "Org Agenda")
-	"e" '(projectile-run-eshell :wk "EShell"))
+	"e" '(projectile-run-eshell :wk "Eshell"))
 
 (general-create-definer my-file-leader
 	:keymaps 'override
@@ -180,7 +180,8 @@
 	"a" '(lsp-execute-code-action :wk "Fix")
 	"d" '(lsp-ui-doc-show :wk "Show documentation")
 	"D" '(lsp-ui-doc-hide :wk "Hide documentation")
-	"e" '(+quickrun :wk "Execute"))
+	"e" '(+quickrun :wk "Execute")
+	"E" '(quickrun-shell :wk "Execute in Eshell"))
 
 (general-create-definer my-search-leader
 	:states '(normal visual motion)
@@ -199,39 +200,12 @@
 	:states '(normal visual motion)
 	:prefix "SPC p")
 
-(defun +project-debug ()
-	(interactive)
-	(setq +project-compilation-do-debug t)
-	(when (boundp '+debug-function)
-		;; (setq-local compilation-finish-functions compilation-finish-functions)
-		(let ((dbgf +debug-function))
-			(add-to-list 'compilation-finish-functions
-						 (lambda (buffer status)
-							 (when (and (string-equal status "finished\n") +project-compilation-do-debug)
-								 (setq +project-compilation-do-debug nil)
-								 (eval dbgf)))))
-		(let ((projectile-project-compilation-cmd projectile-project-debug-cmd))
-			(projectile-compile-project projectile-project-debug-cmd))))
-
 (defun +project-stop-debug ()
 	(interactive)
 	(let ((buff (gdb-get-buffer 'gdbmi)))
 		(when buff
 			(kill-buffer buff))))
 
-(defun +project-run ()
-	(interactive)
-	(setq +project-compilation-do-run t)
-	(when (boundp '+run-function)
-		;; (setq-local compilation-finish-functions compilation-finish-functions)
-		(let ((runf +run-function))
-			(add-to-list 'compilation-finish-functions
-						 (lambda (buffer status)
-							 (when (and (string-equal status "finished\n") +project-compilation-do-run)
-								 (setq +project-compilation-do-run nil)
-								 (eval runf)))))
-		(let ((projectile-project-compilation-cmd projectile-project-compilation-cmd))
-			(projectile-compile-project projectile-project-run-cmd))))
 
 (my-project-leader
 	"" '(:ignore t :wk "Project")
@@ -255,6 +229,8 @@
 	"c" '(c-mode :wk "C")
 	"t" '(text-mode :wk "Text")
 	"s" '(scheme-mode :wk "Scheme")
+	"r" '(restclient-mode :wk "REST client")
+	"j" '(java-mode :wk "Java")
 	"p" '(python-mode :wk "Python"))
 
 

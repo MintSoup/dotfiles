@@ -38,9 +38,9 @@
 			(evil-cp--backward-up-list)
 			(indent-sexp))))
 
-(defun +wrap-and-edit-next ()
-	(interactive)
-	(evil-cp-wrap-next-round 1)
+(defun +wrap-and-edit-next (count)
+	(interactive "p")
+	(evil-cp-wrap-next-round count)
 	(evil-cp-insert 1))
 
 (advice-add 'evil-cp--balanced-block-p :override 'evil-cp--balanced-block-p-noyank)

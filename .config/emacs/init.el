@@ -61,6 +61,7 @@
 (load-user-config-file "eshell.el")
 (load-user-config-file "ligatures.el")
 (load-user-config-file "snippets.el")
+(load-user-config-file "restclient.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme
@@ -74,23 +75,24 @@
 (setq gc-cons-threshold (* 150 1024 1024))
 
 (defun risky-local-variable-p (sym &optional _ignored) nil)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(safe-local-variable-values
-   '((projectile-indexing-method . hybrid)
-	 (+run-function run-in-vterm "./main.out" 'projectile-run-vterm)
-	 (+run-function run-in-vterm "./bfc bruh.b" 'projectile-run-vterm)
-	 (+run-function run-in-vterm "./bfc" 'projectile-run-vterm)
-	 (+debug-function stm32-start-gdb)
-	 (+run-function run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
-	 (+debug-function projectile-run-gdb)
-	 (+debug-function . projectile-start-gdb)
-	 (projectile-project-debug-cmd . "make -j12")
+ '(ignored-local-variable-values
+   '((+run-form run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
+	 (+debug-form projectile-run-gdb)
 	 (projectile-project-debug-cmd . "make -j12 debug")
-	 (projectile-project-compilation-cmd . "make -j12")
-	 (+debug-function . projectile-run-gdb)
-	 (+debug-function . stm32-start-gdb))))
+	 (projectile-project-compilation-cmd . "make -j12")))
+ '(safe-local-variable-values
+   '((+run-form run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
+	 (+debug-form projectile-run-gdb)
+	 (projectile-project-debug-cmd . "make -j12 debug")
+	 (projectile-project-compilation-cmd . "make -j12"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

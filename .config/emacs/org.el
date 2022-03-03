@@ -1,4 +1,5 @@
 ;;; -*- lexical-binding: t -*-
+
 (use-package org-superstar
 	:straight t
 	:hook (org-mode . org-superstar-mode)
@@ -478,7 +479,11 @@ Meant for `org-mode-hook'."
 					"S-h"           #'org-shiftleft
 					"S-l"           #'org-shiftright
 					"S-k"           #'org-shiftup
-					"S-j"           #'org-shiftdown)
+					"S-j"           #'org-shiftdown
+					"C-M-h"			#'org-shiftmetaleft
+					"C-M-l"			#'org-shiftmetaright
+					"C-M-j"			#'org-shiftmetadown
+					"C-M-k"			#'org-shiftmetaup)
 
 (general-define-key :keymaps 'org-mode-map :states 'insert
 					"S-<return>"    #'+org/shift-return
@@ -489,7 +494,11 @@ Meant for `org-mode-hook'."
 					"M-l"           #'org-metaright
 					"M-h"           #'org-metaleft
 					"M-j"           #'org-metadown
-					"M-k"           #'org-metaup)
+					"M-k"           #'org-metaup
+					"C-M-h"			#'org-shiftmetaleft
+					"C-M-l"			#'org-shiftmetaright
+					"C-M-j"			#'org-shiftmetadown
+					"C-M-k"			#'org-shiftmetaup)
 
 (add-hook 'org-tab-first-hook '+org-cycle-only-current-subtree-h)
 
@@ -687,7 +696,7 @@ Meant for `org-mode-hook'."
 	(set-face-attribute 'org-checkbox nil :inherit '(org-todo fixed-pitch))
 	(set-face-attribute 'org-meta-line nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :foreground "#83898d")
-	(set-face-attribute 'org-document-title nil :height 1.8 :weight 'normal :foreground "#61afef")
+	(set-face-attribute 'org-document-title nil :height 2.0 :weight 'normal :foreground (doom-color 'green))
 	(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-footnote nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
@@ -708,14 +717,14 @@ Meant for `org-mode-hook'."
 
 
 (require 'ox-latex)
-(add-to-list 'org-latex-packages-alist '("" "minted"))
-(setq org-latex-listings 'minted)
-(setq org-latex-minted-options
-	  '(("tabsize" "4")))
+;; (add-to-list 'org-latex-packages-alist '("" "minted"))
+;; (setq org-latex-listings 'minted)
+;; (setq org-latex-minted-options
+;; 	  '(("tabsize" "4")))
 (setq org-latex-pdf-process
-	  '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-		"xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-		"xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+	  '("xelatex -interaction nonstopmode -output-directory %o %f"
+		"xelatex -interaction nonstopmode -output-directory %o %f"
+		"xelatex -interaction nonstopmode -output-directory %o %f"))
 
 (setq org-src-fontify-natively t)
 
@@ -763,5 +772,28 @@ contextual information."
 			(setq output
 				  (replace-regexp-in-string
 				   "\\(?:[ \t]*\\\\\\\\\\)?[ \t]*\n" "\\\\\n" (string-chop-newline output) nil t)))
+		;; Return value.
+		output))
+
+(defun org-odt-plain-text (text info)
+	"Transcode a TEXT string from Org to ODT.
+TEXT is the string to transcode.  INFO is a plist holding
+contextual information."
+	(let ((output text))
+		;; Protect &, < and >.
+		(setq output (org-odt--encode-plain-text output t))
+		;; Handle smart quotes.  Be sure to provide original string since
+		;; OUTPUT may have been modified.
+		(when (plist-get info :with-smart-quotes)
+			(setq output (org-export-activate-smart-quotes output :utf-8 info text)))
+		;; Convert special strings.
+		(when (plist-get info :with-special-strings)
+			(dolist (pair org-odt-special-string-regexps)
+				(setq output
+					  (replace-regexp-in-string (car pair) (cdr pair) output t nil))))
+		;; Handle break preservation if required.
+		(when (plist-get info :preserve-breaks)
+			(setq output (replace-regexp-in-string
+						  "\\(\\\\\\\\\\)?[ \t]*\n" "<text:line-break/>" (string-chop-newline output) t)))
 		;; Return value.
 		output))
