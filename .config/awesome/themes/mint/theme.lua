@@ -19,9 +19,9 @@ theme.font = "NotoSans Nerd Font " .. fontsize
 bg = "#1e222a"
 
 theme.colors = {
-	"#51afef",
 	"#d19a66",
 	"#c678dd",
+	"#51afef",
 	-- "#56b6c2",
 	-- "#98c379",
 }
@@ -31,12 +31,12 @@ theme.colors = {
 theme.fg_normal  = "#e8e8e8"
 theme.fg_focus   = theme.colors[1]
 theme.fg_urgent  = "#e8e8e8"
-theme.bg_normal  = bg .. "ff"
+theme.bg_normal  = bg .. "e6"
 theme.bg_focus   = "#00000000"
 theme.bg_urgent  = "#00000000"
 theme.tooltip_bg = theme.bg_normal
 theme.tooltip_fg = theme.fg_normal
--- theme.bg_systray = theme.color2
+theme.bg_systray = "#ffffff00"
 -- }}}
 
 -- {{{ Borders

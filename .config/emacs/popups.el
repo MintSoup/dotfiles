@@ -20,7 +20,8 @@
 					(add-hook 'kill-buffer-hook
 							  (lambda ()
 								  (unless (one-window-p)
-									  (delete-window)))
+									  (-when-let (window (get-buffer-window))
+										  (delete-window window))))
 							  0 t)) ;; Kill window when killing popup buffers
 				window))
 

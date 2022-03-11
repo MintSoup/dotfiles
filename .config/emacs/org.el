@@ -681,7 +681,9 @@ Meant for `org-mode-hook'."
 	  org-agenda-start-day "-1d"
 	  org-agenda-span 1
 	  org-agenda-start-on-weekday nil
-	  org-agenda-window-setup 'other-window)
+	  org-agenda-window-setup 'other-window
+
+	  org-src-preserve-indentation t)
 
 (plist-put org-format-latex-options :scale 1.35)
 
@@ -722,9 +724,9 @@ Meant for `org-mode-hook'."
 ;; (setq org-latex-minted-options
 ;; 	  '(("tabsize" "4")))
 (setq org-latex-pdf-process
-	  '("xelatex -interaction nonstopmode -output-directory %o %f"
-		"xelatex -interaction nonstopmode -output-directory %o %f"
-		"xelatex -interaction nonstopmode -output-directory %o %f"))
+	  '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+		"xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+		"xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 (setq org-src-fontify-natively t)
 

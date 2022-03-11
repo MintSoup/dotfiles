@@ -71,7 +71,7 @@ run_once("flameshot")
 run_once("unclutter", "unclutter --timeout 30")
 run_once("xbindkeys")
 run_once("copyq")
-run_once("picom")
+run_once({"picom", "picom --experimental-backends --backend glx -b "})
 run_once("numlockx on")
 run_once("xsettingsd")
 
@@ -89,7 +89,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/waves.png",
+	"/home/areg/Wallpapers/train.jpg",
 }
 
 
@@ -190,7 +190,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 			{ -- Right widgets
 				layout = wibox.layout.fixed.horizontal,
-				wwrapper(wibox.widget.systray()),
+				-- wwrapper(wibox.widget.systray()),
 				wwrapper_tight(mykeyboardlayout),
 				wwrapper(mybattery.widget),
 				wwrapper(mytemp.widget),

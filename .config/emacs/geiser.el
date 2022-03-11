@@ -2,13 +2,18 @@
 (use-package geiser
 	:straight t
 	:init
-	(setq geiser-debug-jump-to-debug-p nil)
-	:config
-	(my-local-leader :keymaps 'geiser-mode-map
-		"d"  '(:wk "Documentation")
-		"dd" '(geiser-doc-symbol-at-point :wk "Doc for symbol at point")
-		"dm" '(geiser-doc-module :wk "Doc for module")
-		"di" '(counsel-geiser-doc-look-up-manual :wk "Info for symbol")))
+	(setq geiser-debug-jump-to-debug-p nil))
+
+(my-local-leader :keymaps 'geiser-mode-map
+	"d"  '(:wk "Documentation")
+	"dd" '(geiser-doc-symbol-at-point :wk "Doc for symbol at point")
+	"dm" '(geiser-doc-module :wk "Doc for module")
+	"di" '(counsel-geiser-doc-look-up-manual :wk "Info for symbol"))
+
+
+(general-define-key :keymaps 'geiser-debug-mode-map
+					:states 'normal
+					"," 'geiser-debug--debugger-transient)
 
 (use-package geiser-guile
 	:straight t
