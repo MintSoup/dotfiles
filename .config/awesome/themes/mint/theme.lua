@@ -43,7 +43,7 @@ theme.bg_systray = "#ffffff00"
 theme.useless_gap   = 3
 theme.border_width  = 2
 theme.border_normal = "#00000000"
-theme.border_focus  = theme.colors[1]
+theme.border_focus  = theme.colors[2]
 theme.border_marked = "#407be3"
 theme.gap_single_client  = false
 theme.border_single_client  = false
@@ -156,7 +156,7 @@ theme.notification_font = theme.font
 theme.notification_max_width = 450
 theme.notification_width = 450
 theme.notification_border_width = 0
-theme.notification_bg = "#282c34"
+theme.notification_bg = bg .. "e6"
 
 theme.bat_ac_prefix = " "
 theme.bat_percent_colors = {
