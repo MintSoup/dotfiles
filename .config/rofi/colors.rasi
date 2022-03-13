@@ -3,7 +3,7 @@
 	selected-foreground:  #00ff9a;
 	
 	//background:			#141419a0; 
-	background:			  #1e222a;
+	background:			  #1e222ae6;
 	background-solid:	  #141419ff; 
 	selected-background:  rgba(0, 0, 0, 50%);
 

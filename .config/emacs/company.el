@@ -13,7 +13,7 @@
 						;; "C-c" 'company-complete
 						"<tab>" 'company-select-next)
 	(setq company-backends
-		  '((company-capf company-files company-yasnippet
+		  '((company-capf company-files ;; company-yasnippet
 						  geiser-company-backend))))
 
 (defun eshell-disable-company-on-tramp ()

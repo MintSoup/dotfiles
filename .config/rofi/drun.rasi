@@ -14,7 +14,7 @@ configuration {
 }
 
 #mainbox {
-    border:  2;
+    border:  0;
 	border-color: #121419;
     padding: 20;
 	background-color: transparent;

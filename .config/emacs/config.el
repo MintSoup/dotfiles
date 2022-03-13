@@ -54,3 +54,7 @@
 (setq sentence-end-double-space nil)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(general-define-key
+ :keymaps 'override
+ "C-M-u" 'universal-argument)

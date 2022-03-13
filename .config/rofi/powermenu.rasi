@@ -10,7 +10,7 @@ window {
 	width: 693px;
 	height: 264;
 	background-color: @background;
-	border: 2px;
+	border: 0px;
 	border-color: #121419;
 }
 

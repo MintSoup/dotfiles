@@ -1,7 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 (setq
  send-mail-function 'smtpmail-send-it
- smtpmail-smtp-server "smtp.gmail.com"
+ smtpmail-stream-type 'starttls
  smtpmail-smtp-service 587
  message-directory (expand-file-name "mail" user-emacs-directory)
  gnus-directory (expand-file-name "news" user-emacs-directory)

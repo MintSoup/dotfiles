@@ -8,6 +8,11 @@
 	 :keymaps 'yas-minor-mode-map
 	 :states 'insert
 	 "C-e" 'yas-expand
+	 "\t" nil)
+
+	(general-define-key
+	 :keymaps 'yas-keymap
+	 "C-c" 'yas-next-field-or-maybe-expand
 	 "\t" nil))
 
 (use-package yasnippet-snippets
