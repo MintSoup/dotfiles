@@ -16,7 +16,8 @@
 	 "C-j" 'ivy-next-line
 	 "C-h" 'evil-backward-char
 	 "C-l" 'evil-forward-char
-	 "C-w" 'ivy-backward-kill-word)
+	 "C-w" 'ivy-backward-kill-word
+	 "C-<return>" '+ivy-toggle-mark)
 
 	(general-define-key
 	 :keymaps 'minibuffer-mode-map
@@ -25,6 +26,23 @@
 	 "C-w" 'ivy-backward-kill-word)
 
 	(ivy-mode))
+
+
+(defun +ivy-toggle-mark ()
+	"Toggle the mark of the selected candidate and move to the next one.
+
+In `ivy-call', :action will be called in turn for all marked
+candidates.
+
+However, if :multi-action was supplied to `ivy-read', then it
+will be called with `ivy-marked-candidates'. This way, it can
+make decisions based on the whole marked list."
+	(interactive)
+	(if (ivy--marked-p)
+			(ivy--unmark (ivy-state-current ivy-last))
+		(ivy--mark (ivy-state-current ivy-last)))
+	(ivy-next-line))
+
 
 (defun +counsel-switch-buffer-hide-asterisk ()
 	(interactive)

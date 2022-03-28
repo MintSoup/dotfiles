@@ -10,4 +10,4 @@
 					backward-delete-char-untabify-method nil
 					sgml-basic-offset 4
 					tab-always-indent nil)
-			  (c-set-offset 'case-label '4)))
+			  (c-set-offset 'case-label '+)))

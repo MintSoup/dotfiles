@@ -14,7 +14,10 @@
 						"<tab>" 'company-select-next)
 	(setq company-backends
 		  '((company-capf company-files ;; company-yasnippet
-						  geiser-company-backend))))
+						  geiser-company-backend)))
+	(general-define-key :keymaps 'yas-minor-mode-map
+						:states 'insert
+						"C-." 'company-yasnippet))
 
 (defun eshell-disable-company-on-tramp ()
 	(when (and (fboundp 'company-mode)

@@ -14,5 +14,5 @@
 	(end-of-line)
 	(insert "\n\n\n\n")
 	(graph (--map
-			(round (* it it))
-			(number-sequence -5 5 0.1))))
+			(round (* 8 (+ 1 (cos it))))
+			(number-sequence float-pi (* 5 float-pi) 0.12))))

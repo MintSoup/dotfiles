@@ -31,7 +31,7 @@ theme.colors = {
 theme.fg_normal  = "#e8e8e8"
 theme.fg_focus   = theme.colors[2]
 theme.fg_urgent  = "#e8e8e8"
-theme.bg_normal  = bg .. "e6"
+theme.bg_normal  = bg .. "f0"
 theme.bg_focus   = "#00000000"
 theme.bg_urgent  = "#00000000"
 theme.tooltip_bg = theme.bg_normal
@@ -156,7 +156,7 @@ theme.notification_font = theme.font
 theme.notification_max_width = 450
 theme.notification_width = 450
 theme.notification_border_width = 0
-theme.notification_bg = bg .. "e6"
+theme.notification_bg = bg .. "f0"
 
 theme.bat_ac_prefix = " "
 theme.bat_percent_colors = {

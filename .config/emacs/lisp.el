@@ -3,6 +3,7 @@
 	:straight t
 	:hook (emacs-lisp-mode . evil-cleverparens-mode)
 	:hook (scheme-mode . evil-cleverparens-mode)
+	:hook (lisp-mode . evil-cleverparens-mode)
 	:hook (evil-cleverparens-mode . turn-off-visual-line-mode)
 	:config
 	(setq evil-cleverparens-indent-afterwards nil) ;; cp does it too early
@@ -11,6 +12,17 @@
 	(general-define-key :keymaps 'evil-cleverparens-mode-map
 						:states '(normal insert)
 						"C-(" '+wrap-and-edit-next))
+
+(use-package sly
+	:straight t
+	:hook (sly-mrepl-mode . company-mode)
+	:init
+	(setq inferior-lisp-program "sbcl"))
+
+(my-local-leader :keymaps 'lisp-mode-map
+	"d" '(sly-documentation :wk "Documentation")
+	"D" '(sly-documentation-lookup :wk "Online Documentation"))
+
 
 (defalias 'sp-forward-barf-sexp 'paredit-forward-barf-sexp)
 

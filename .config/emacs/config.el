@@ -57,4 +57,5 @@
 
 (general-define-key
  :keymaps 'override
+ :states '(normal visual insert)
  "C-M-u" 'universal-argument)

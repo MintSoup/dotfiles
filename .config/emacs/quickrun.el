@@ -4,15 +4,12 @@
 
 (defvar quickrun-mode-commands
 	'((emacs-lisp-mode . eval-buffer)
-	  (scheme-mode . geiser-eval-buffer)))
+	  (scheme-mode . geiser-eval-buffer)
+	  (lisp-mode . sly-eval-buffer)))
 
 (defun +quickrun ()
 	"Quickrun but better"
 	(interactive)
-	(let ((binding
-		   (assoc
-			major-mode
-			quickrun-mode-commands)))
-		(if binding
-				(funcall (cdr binding))
-			(quickrun))))
+	(-if-let (binding (assoc major-mode quickrun-mode-commands))
+			(funcall (cdr binding))
+		(quickrun)))

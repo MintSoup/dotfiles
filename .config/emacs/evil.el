@@ -90,6 +90,10 @@
 						"go" 'indent-buffer
 						"gt" 'tabify-buffer)
 
+	(general-define-key :states 'normal
+						"]a" 'evil-forward-arg
+						"[a" 'evil-backward-arg)
+
 	(defun +evil/shift-right ()
 		"vnoremap < <gv"
 		(interactive)

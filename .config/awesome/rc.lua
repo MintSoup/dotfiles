@@ -89,7 +89,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/train.jpg",
+	"/home/areg/Wallpapers/chain.jpg",
 }
 
 

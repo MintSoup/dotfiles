@@ -19,7 +19,7 @@
 	"j" '(my-next-buffer :wk "Next Buffer")
 	"k" '(my-previous-buffer :wk "Previous buffer")
 	"," '(+counsel-switch-buffer-hide-asterisk :wk "Switch buffer")
-	"<" '(switch-to-buffer :wk "Switch buffer")
+	"<" '(counsel-switch-buffer :wk "Switch buffer")
 	"." '(find-file :wk "Find file")
 	";" '(eval-expression :wk "Eval expression")
 	"g" '(magit :wk "Magit")
@@ -231,6 +231,7 @@
 	"s" '(scheme-mode :wk "Scheme")
 	"r" '(restclient-mode :wk "REST client")
 	"j" '(java-mode :wk "Java")
+	"l" '(lisp-mode :wk "Common Lisp")
 	"p" '(python-mode :wk "Python"))
 
 

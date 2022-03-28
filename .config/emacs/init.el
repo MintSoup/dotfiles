@@ -85,12 +85,17 @@
 	 (+debug-form projectile-run-gdb)
 	 (projectile-project-debug-cmd . "make -j12 debug")))
  '(safe-local-variable-values
-   '((+run-form run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
+   '((+debug-function stm32-start-gdb)
+	 (+run-form run-in-vterm "gradle run" 'projectile-run-vterm)
+	 (projectile-project-compilation-cmd . "gradle buildNeeded")
+	 (+run-form run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
 	 (+debug-form projectile-run-gdb)
 	 (projectile-project-debug-cmd . "make -j12 debug")
 	 (+debug-form stm32-start-gdb)
 	 (projectile-project-debug-cmd . "make -j12")
-	 (projectile-project-compilation-cmd . "make -j12"))))
+	 (projectile-project-compilation-cmd . "make -j12")))
+ '(smtpmail-smtp-server "mail.cock.li")
+ '(smtpmail-smtp-service 25))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

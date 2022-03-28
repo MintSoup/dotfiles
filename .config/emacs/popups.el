@@ -105,5 +105,7 @@
 				((process-menu-mode cargo-process-mode) :select t :size 0.3 :align below :autoclose t)
 				(list-environment-mode :select t :size 0.3 :align below :autoclose t)
 				(geiser-doc-mode :select t :size 0.4 :align below)
+				("*sly-mrepl for sbcl*" :regexp t :select t :size 0.35 :align below)
+				("*sly-description*" :select t :size 0.3 :align below)
 				("*HTTP Response*" :select t :size 0.4 :align below)
 				(tabulated-list-mode :size 0.4 :align below)))))
