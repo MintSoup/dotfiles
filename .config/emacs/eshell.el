@@ -139,6 +139,6 @@ length of PATH (sans directory slashes) down to MAX-LEN."
                  args)
                 posns))))))
 
-(add-hook 'eshell-cmpl-load-hook #'doom-eshell-overrides)
+;; (add-hook 'eshell-cmpl-load-hook #'doom-eshell-overrides)
 
 ;; eshell-company-patch.el ends here

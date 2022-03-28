@@ -10,11 +10,8 @@
 (use-package doom-modeline
 	:straight t
 	:init
-	(setq doom-modeline-major-mode-icon t
-		  doom-modeline-icon t
-		  doom-modeline-height 28
-		  doom-modeline-buffer-file-name-style 'relative-from-project
-		  projectile-dynamic-mode-line nil)
+	(setq doom-modeline-height 28
+		  doom-modeline-buffer-file-name-style 'relative-from-project)
  	(column-number-mode +1)
 	(doom-modeline-mode +1))
 
@@ -27,7 +24,7 @@
 (use-package rainbow-delimiters
 	:straight t
 	:config
-	(add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+	(add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package highlight-numbers
 	:straight t
