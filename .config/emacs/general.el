@@ -9,6 +9,11 @@
 
 (general-define-key "<escape>" 'keyboard-escape-quit)
 (general-define-key :keymaps 'Info-mode-map :states 'normal "RET" 'Info-follow-nearest-node)
+(general-define-key
+ :keymaps 'override
+ :states '(normal visual insert)
+ "C-M-u" 'universal-argument)
+
 
 (general-create-definer my-leader
 	:keymaps 'override
@@ -74,7 +79,8 @@
 	"s" '(evil-window-split :wk "Horizontal split")
 	"=" '(balance-windows :wk "Balance windows")
 	"q" '(evil-quit :wk "Close window")
-	"Q" '(kill-buffer-and-window :wk "Kill window and buffer"))
+	"Q" '(kill-buffer-and-window :wk "Kill window and buffer")
+	"w" '(ace-window :wk "Ace window"))
 
 
 (general-create-definer my-buffer-leader

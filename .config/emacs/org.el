@@ -511,6 +511,7 @@ Meant for `org-mode-hook'."
 	"." #'org-goto
 	"." #'counsel-org-goto
 	"/" #'counsel-org-goto-all
+	"\\" #'org-toggle-pretty-entities
 	"A" #'org-archive-subtree
 	"e" #'org-export-dispatch
 	"f" #'org-footnote-new

@@ -9,9 +9,33 @@
 
 (use-package doom-modeline
 	:straight t
-	:init
+	:config
 	(setq doom-modeline-height 28
 		  doom-modeline-buffer-file-name-style 'relative-from-project)
+	(doom-modeline-def-segment window-number
+		"The current window number."
+		(let ((num (cond
+					((bound-and-true-p ace-window-display-mode)
+					 (aw-update)
+					 (window-parameter (selected-window) 'ace-window-path))
+					((bound-and-true-p winum-mode)
+					 (setq winum-auto-setup-mode-line nil)
+					 (winum-get-number-string))
+					((bound-and-true-p window-numbering-mode)
+					 (window-numbering-get-number-string))
+					(t ""))))
+			(if (and (< 0 (length num))
+					 (< 1 (length (cl-mapcan
+								   (lambda (frame)
+									   ;; Exclude minibuffer and child frames
+									   (unless (and (fboundp 'frame-parent)
+													(frame-parent frame))
+										   (window-list frame 'never)))
+								   (visible-frame-list)))))
+					(propertize (format " %s" num)
+								'face (if (doom-modeline--active)
+											  'doom-modeline-buffer-major-mode
+										  'mode-line-inactive)))))
  	(column-number-mode +1)
 	(doom-modeline-mode +1))
 
