@@ -3,10 +3,9 @@
 ;; Filename: stm32.el
 ;; Description: GDB, CubeMX and flash functionality based on cmake-ide
 ;; Author: Alexander Lutsai <s.lyra@ya.ru>
-;; Maintainer: Alexander Lutsai <s.lyra@ya.ru>
+;; Modified by mintsoup
 ;; Created: 05 Sep 2016
 ;; Version: 0.01
-;; Package-Requires: ()
 ;; Last-Updated: 11 Sep 2016
 ;;           By: Alexander Lutsai
 ;;     Update #: 0
@@ -18,52 +17,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Commentary:
-;;
-;; Required:
-;; 1) irony-mode https://github.com/Sarcasm/irony-mode
-;; 2) python
-;; 3) cmake
-;; 4) st-link https://github.com/texane/stlink
-;; 5) clang
-;; //4) https://github.com/SL-RU/STM32CubeMX_cmake
-;;
-;; 1) (require 'irony-mode)
-;; 2) Create STM32CubeMx project and generate it for Makefile toolchain
-;; 3) M-x stm32-new-project RET *select CubeMX project path*
-;; 4) open main.c
-;; 5) M-x stm32-cmake-build to compile
-;; 6) connect stlink to your PC
-;; 7) stm32-run-st-util to start gdb server
-;; 8) start GDB debugger with stm32-start-gdb
-;; 9) in gdb) "load" to upload file to MC and "cont" to run.For more see https://github.com/texane/stlink
-;; 5) good luck!
-;;
-;;
-;; After CubeMx project regeneration or adding new libraries or new sources you need to do stm32-cmake-build
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;; Change Log:
-;;
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; This program is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or (at
-;; your option) any later version.
-;;
-;; This program is distributed in the hope that it will be useful, but
-;; WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-;; General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;; Code:
 
 (defgroup stm32 nil
 	"STM32 projects integration"
@@ -221,7 +174,6 @@
 	(if (stm32-get-project-root-dir)
 			(let* ((pth (substring (stm32-get-project-root-dir) 0 -1))
 				   (name (car (last (split-string pth "/")))))
-				(message (concat "Project name: " name))
 				name)
 		(message "Wrong root directory")))
 
@@ -307,6 +259,7 @@
 			(stm32-run-st-util))
 		(when dir
 			(let ((pth (concat dir "/" name ".elf")))
+				(message pth)
 				(when (file-exists-p pth)
 					(progn
 						(message pth)
@@ -353,7 +306,6 @@
 								  )
 			(message (concat "OpenOCD config file "
 							 stm32-openocd-config-name " not found in:" r)))))
-
 (defun stm32-open-cubemx ()
 	"Open current project in cubeMX or just start application."
 	(interactive)
@@ -370,57 +322,10 @@
 (defun stm32-flash-to-mcu ()
 	"Upload compiled binary to stm32 through gdb if gdb has been started."
 	(interactive)
-	(if (or (and (get-buffer "*openocd*")
-				 (get-buffer "*gud-target extended-remote localhost:*")
-				 (get-buffer-process "*openocd*")
-				 (get-buffer-process "*gud-target extended-remote localhost:3333*"))
-			(and (get-buffer "*st-util*")
-				 (get-buffer "*gud-target extended-remote localhost:4242*")
-				 (get-buffer-process "*st-util*")
-				 (get-buffer-process "*gud-target extended-remote localhost:4242*")))
-			(progn (gdb-io-interrupt)
-				   (gud-basic-call "load")
-				   (gud-basic-call "cont"))
-		(message "No gdb has been started")))
-
-(defun stm32-fix-vfpcc ()
-	"Insert fix of vfpcc register in old versions of cmsis.  In cmsis_gcc.h.  Remove __set_FPSCR and __get_FPSCR functions."
-	(interactive)
-	(if (stm32-get-project-root-dir)
-			(let ((path (concat
-						 (stm32-get-project-root-dir)
-						 stm32-vfpcc-fix-path))
-				  (fix-count 0))
-				(if (file-exists-p path)
-						(progn
-							(message "Fixing old cmsis version")
-							(message (concat "cmsis gcc path: "
-											 path))
-							(with-temp-buffer
-								(insert-file-contents path)
-								(while (search-forward
-										stm32-vfpcc-fix-source nil t)
-									(progn
-										(setq fix-count (+ fix-count 1))))
-								(if (not (eq fix-count 0))
-										(progn (write-file (concat path ".bak"))
-											   (message "Backup saved."))))
-							(with-temp-buffer
-								(insert-file-contents path)
-								(setq fix-count 0)
-								(while (search-forward
-										stm32-vfpcc-fix-source nil t)
-									(progn
-										(replace-match stm32-vfpcc-fix-fix)
-										(setq fix-count (+ fix-count 1))
-										(message "Found!")))
-								(if (not (eq fix-count 0))
-										(progn
-											(write-file path)
-											(message
-											 "cmsis_gcc.h successfully fixed"))
-									(message "cmsis_gcc.h already fixed."))))
-					(message "No cmsis_gcc.h")))))
+	(projectile-run-async-shell-command-in-root
+	 (concat "st-flash write build/"
+			 (stm32-get-project-name) ".bin "
+			 "0x08000000")))
 
 (defun stm32-kill-gdb ()
 	"Kill all st-util, gdb or openocd processes and buffers."
@@ -452,7 +357,7 @@
 	(dolist (file (directory-files
 				   (expand-file-name "stm32" user-emacs-directory)
 				   t "^\\.?[a-zA-Z]"))
-			(copy-file file (projectile-acquire-root)))
+		(copy-file file (projectile-acquire-root)))
 	(interactive))
 
 (provide 'stm32)

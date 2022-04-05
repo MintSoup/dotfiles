@@ -20,8 +20,26 @@
 	(setq inferior-lisp-program "sbcl"))
 
 (my-local-leader :keymaps 'lisp-mode-map
-	"d" '(sly-documentation :wk "Documentation")
-	"D" '(sly-documentation-lookup :wk "Online Documentation"))
+	"i" '(sly-documentation :wk "Documentation")
+	"I" '(sly-documentation-lookup :wk "Online Documentation")
+
+	"p" '(sly-pprint-eval-last-expression :wk "Eval and pretty print")
+	"l" '(sly-load-file :wk "Load file")
+
+	"d" '(sly-disassemble-definition :wk "Disassemble definition")
+	"D" '(sly-disassemble-symbol :wk "Disassemble symbol")
+
+	"e" '(:ignore t :wk "Edit")
+	"ed" '(sly-edit-definition :wk "Definition")
+	"ev" '(sly-edit-value :wk "Value")
+
+	"m" '(:ignore t :wk "Macro")
+	"me" '(sly-macroexpand-1 :wk "Expand")
+	"mE" '(sly-macroexpand-1-inplace :wk "Expand inplace")
+	"mr" '(sly-macroexpand-all :wk "Recursively")
+	"mR" '(sly-macroexpand-all-inplace :wk "Recursively inplace")
+
+	"i" '(sly-inspect :wk "Inspect"))
 
 
 (defalias 'sp-forward-barf-sexp 'paredit-forward-barf-sexp)

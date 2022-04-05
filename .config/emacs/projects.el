@@ -90,7 +90,7 @@ The compilation buffer is returned
 	(when (boundp '+debug-form)
 		(let ((compilation-buffer
 			   (projectile--run-project-cmd projectile-project-debug-cmd projectile-compilation-cmd-map
-											:prompt-prefix "Compile command: "
+											:prompt-prefix "Debug Compile command: "
 											:save-buffers t
 											:use-comint-mode projectile-compile-use-comint-mode))
 			  (form +debug-form))
@@ -115,6 +115,14 @@ The compilation buffer is returned
 		   (buffer-local-boundp '+on-finish-compilation-form buffer))
 		(eval (buffer-local-value
 			   '+on-finish-compilation-form buffer))))
+
+(defun +projectile-compile ()
+	(interactive)
+	(projectile--run-project-cmd projectile-project-compilation-cmd projectile-compilation-cmd-map
+                                 :show-prompt t
+                                 :prompt-prefix "Compile command: "
+                                 :save-buffers t
+                                 :use-comint-mode projectile-compile-use-comint-mode))
 
 (add-hook 'compilation-finish-functions '+post-compile)
 

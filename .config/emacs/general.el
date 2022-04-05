@@ -219,7 +219,7 @@
 	"d" '(+project-debug :wk "Debug")
 	"D" '(+project-stop-debug :wk "Stop debug")
 	"i" '(projectile-invalidate-cache :wk "Invalidate cache")
-	"c" '(projectile-compile-project :wk "Compile project")
+	"c" '(+projectile-compile :wk "Compile project")
 	"r" '(+project-run :wk "Run project")
 	"a" '(projectile-add-known-project :wk "Add"))
 
