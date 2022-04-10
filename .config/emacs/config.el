@@ -54,3 +54,5 @@
 (setq sentence-end-double-space nil)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(setq epg-pinentry-mode 'loopback)

@@ -72,6 +72,9 @@
 (load-user-config-file "lisp.el") ;; Lisp
 (load-user-config-file "web.el") ;; Web stuff
 
+;; Other
+(load-user-config-file "private.el")
+
 (setq gc-cons-threshold (* 150 1024 1024))
 
 (defun risky-local-variable-p (sym &optional _ignored) nil)

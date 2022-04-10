@@ -102,6 +102,8 @@ make decisions based on the whole marked list."
 				(make-cacher-function 'all-the-icons-ivy-rich-project-file-modification-time))
 	(advice-add 'counsel-projectile-find-file-transformer :around
 				(make-cacher-function 'counsel-projectile-find-file-transformer))
+	(advice-add 'ivy-rich--all-the-icons-ivy-rich-kill-buffer-transformer :around
+				(make-cacher-function 'ivy-rich--all-the-icons-ivy-rich-kill-buffer-transformer))
 	(advice-add 'ivy-rich--ivy-switch-buffer-transformer :around
 				(make-cacher-function 'ivy-rich--ivy-switch-buffer-transformer)))
 

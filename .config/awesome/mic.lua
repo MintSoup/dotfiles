@@ -11,10 +11,10 @@ local function get()
 			end
 		end,
 		timeout = 100000,
-		devicetype = "source"
+		devicetype = "source",
 	}
 	function mic:mute()
-		awful.spawn(string.format("pactl set-source-mute %s toggle", mic.device), false)
+		awful.spawn(string.format("pactl set-source-mute 0 toggle"), false)
 		self:update()
 	end
 	mic.widget:buttons(awful.util.table.join(

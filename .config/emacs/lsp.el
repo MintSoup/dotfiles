@@ -11,14 +11,11 @@
 		  lsp-headerline-breadcrumb-segments '(project file symbols)
 		  lsp-completion-provider :none))
 
-
 (use-package lsp-treemacs
 	:straight t)
 
 (use-package lsp-ui
-	:straight t
-	:config
-	(setq lsp-ui-doc-enable nil))
+	:straight t)
 
 (use-package lsp-ivy
 	:straight t)

@@ -88,9 +88,8 @@
 						"M-k" 'evil-collection-unimpaired-move-text-up
 						"C-S-a" 'evil-numbers/dec-at-pt
 						"go" 'indent-buffer
-						"gt" 'tabify-buffer)
-
-	(general-define-key :states 'normal
+						"gt" 'tabify-buffer
+						"C-M-p" 'counsel-yank-pop
 						"]a" 'evil-forward-arg
 						"[a" 'evil-backward-arg)
 

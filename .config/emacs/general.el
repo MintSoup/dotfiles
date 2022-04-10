@@ -138,9 +138,10 @@
 	"v" '(+projectile-vterm :wk "VTerm")
 	"t" '(transmission :wk "Torrents")
 	"r" '(ielm :wk "IELM")
-    "p" '(+treemacs :wk "Toggle tree")
-    "a" '(org-agenda :wk "Org Agenda")
-	"e" '(projectile-run-eshell :wk "Eshell"))
+	"p" '(+treemacs :wk "Toggle tree")
+	"a" '(org-agenda :wk "Org Agenda")
+	"e" '(projectile-run-eshell :wk "Eshell")
+	"E" '(eshell :wk "Eshell here"))
 
 (general-create-definer my-file-leader
 	:keymaps 'override

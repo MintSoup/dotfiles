@@ -13,27 +13,29 @@ local function get()
 			end
 		end,
 		timeout = 100000,
+		cmd = string.format("pactl get-sink-volume %s", 0)
 	}
 
 	volume.delta = 2
 
 	function volume:raise()
 		local volume = tonumber(volume_now.left)
+
 		if volume <= 100 - self.delta then
-			awful.spawn(string.format("pactl set-sink-volume %s +%d%%", mypulse.device,
+			awful.spawn(string.format("pactl set-sink-volume %s +%d%%", 0,
 																		self.delta))
 		else
-			awful.spawn(string.format("pactl set-sink-volume %s 100%%", mypulse.device))
+			awful.spawn(string.format("pactl set-sink-volume %s 100%%", 0))
 		end
 		self:update()
 	end
 	function volume:lower()
-		awful.spawn(string.format("pactl set-sink-volume %s -%d%%", mypulse.device,
+		awful.spawn(string.format("pactl set-sink-volume %s -%d%%", 0,
 																	self.delta), false)
 		self:update()
 	end
 	function volume:mute()
-		awful.spawn(string.format("pactl set-sink-mute %s toggle", mypulse.device), false)
+		awful.spawn(string.format("pactl set-sink-mute %s toggle", 0), false)
 		self:update()
 	end
 
