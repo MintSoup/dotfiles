@@ -19,6 +19,13 @@
 	:init
 	(setq inferior-lisp-program "sbcl"))
 
+(general-define-key :keymaps 'sly-mrepl-mode-map
+					:states 'insert
+					"<up>" 'comint-previous-input
+					"<down>" 'comint-next-input
+					"," 'self-insert-command
+					"C-," 'sly-mrepl-shortcut)
+
 (my-local-leader :keymaps 'lisp-mode-map
 	"i" '(sly-documentation :wk "Documentation")
 	"I" '(sly-documentation-lookup :wk "Online Documentation")
@@ -39,7 +46,7 @@
 	"mr" '(sly-macroexpand-all :wk "Recursively")
 	"mR" '(sly-macroexpand-all-inplace :wk "Recursively inplace")
 
-	"i" '(sly-inspect :wk "Inspect"))
+	"s" '(sly-inspect :wk "Inspect"))
 
 
 (defalias 'sp-forward-barf-sexp 'paredit-forward-barf-sexp)
@@ -86,3 +93,5 @@
 	:motion evil-forward-char
 	(interactive "<R><x>")
 	(evil-cp-delete-char-or-splice beg end type ?_ yank-handler))
+
+(add-hook 'lisp-mode-hook 'highlight-quoted-mode)

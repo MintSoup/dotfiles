@@ -28,3 +28,4 @@
 					   "guile" "--listen")
 		(sleep-for 0.05) ;; Wait for the process to start
 		(geiser-connect 'guile "localhost" 37146)))
+(add-hook 'scheme-mode-hook 'highlight-quoted-mode)

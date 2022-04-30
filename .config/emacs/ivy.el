@@ -17,6 +17,7 @@
 	 "C-h" 'evil-backward-char
 	 "C-l" 'evil-forward-char
 	 "C-w" 'ivy-backward-kill-word
+	 "M-i" 'ivy-insert-current
 	 "C-<return>" '+ivy-toggle-mark)
 
 	(general-define-key

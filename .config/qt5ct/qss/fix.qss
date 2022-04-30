@@ -7,3 +7,7 @@ QMenu {
 QCheckBox::indicator {
   color: red;
 }
+
+QComboBox QFrame {
+    border: 1px solid palette(highlight);
+}

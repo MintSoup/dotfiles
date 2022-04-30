@@ -1,7 +1,7 @@
 --[[
 
-     Licensed under GNU General Public License v2
-      * (c) 2016, Luca CPZ
+	Licensed under GNU General Public License v2
+	* (c) 2016, Luca CPZ
 
 --]]
 
@@ -10,6 +10,7 @@ local shell   = require("awful.util").shell
 local wibox   = require("wibox")
 local string  = string
 local type    = type
+local dbg 	  = require("gears").debug
 
 -- PulseAudio volume
 -- lain.widget.pulse
@@ -26,27 +27,35 @@ local function factory(args)
 
     function pulse.update()
         helpers.async({ shell, "-c", type(pulse.cmd) == "string" and pulse.cmd or pulse.cmd() },
-        function(s)
-            volume_now = {
-                index  = string.match(s, "index: (%S+)") or "N/A",
-                device = string.match(s, "device.string = \"(%S+)\"") or "N/A",
-                muted  = string.match(s, "muted: (%S+)") or "N/A"
-            }
+			function(s)
 
-            pulse.device = volume_now.index
+				volume_now = {
+					index  = string.match(s, "index: (%S+)") or "N/A",
+					device = string.match(s, "device.string = \"(%S+)\"") or "N/A",
+					muted = {}
+				}
+				local n = 1
+				for x in string.gmatch(s, "Mute: (%S+)") do
+					volume_now.muted[n] = x
+					n = n + 1
+				end
 
-            local ch = 1
-            volume_now.channel = {}
-            for v in string.gmatch(s, ":.-(%d+)%%") do
-                volume_now.channel[ch] = v
-                ch = ch + 1
-            end
 
-            volume_now.left  = volume_now.channel[1] or "N/A"
-            volume_now.right = volume_now.channel[2] or "N/A"
+				pulse.device = volume_now.index
 
-            widget = pulse.widget
-            settings()
+				local ch = 1
+				volume_now.channel = {}
+				for v in string.gmatch(s, ":.-(%d+)%%") do
+					volume_now.channel[ch] = v
+					ch = ch + 1
+				end
+
+				volume_now.left  = volume_now.channel[1] or "N/A"
+				volume_now.right = volume_now.channel[2] or "N/A"
+
+				widget = pulse.widget
+				settings()
+
         end)
     end
 

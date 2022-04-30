@@ -125,10 +125,10 @@
 			 (doom-modeline-mode +1)))))
 
 
-(defun +projectile-vterm ()
-	(interactive)
+(defun +projectile-vterm ( ARG)
+	(interactive "P")
 	(projectile-with-default-dir (projectile-acquire-root)
-		(switch-to-buffer (vterm-other-window))))
+		(switch-to-buffer (vterm-other-window ARG))))
 
 (my-open-leader
 	"" '(:ignore t :wk "Open")
@@ -253,5 +253,6 @@
 	(insert dir))
 
 (my-insert-leader
+	"" '(:ignore t :wk "Insert")
 	"p" '(prompt-for-path :wk "Path")
 	"c" '(insert-char :wk "Character"))

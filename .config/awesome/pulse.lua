@@ -4,7 +4,7 @@ local awful = require("awful")
 local function get()
 	local volume = lain.widget.pulse {
 		settings = function()
-			if volume_now.muted == "yes" then
+			if volume_now.muted[1] == "yes" then
 				widget:set_markup("婢 " .. volume_now.left)
 			elseif volume_now.left == "0" then
 				widget:set_markup(" " .. volume_now.left)
@@ -13,7 +13,7 @@ local function get()
 			end
 		end,
 		timeout = 100000,
-		cmd = string.format("pactl get-sink-volume %s", 0)
+		cmd = "pactl list sinks"
 	}
 
 	volume.delta = 2
