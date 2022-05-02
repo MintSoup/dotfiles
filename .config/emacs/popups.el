@@ -34,7 +34,7 @@
       `(,(side-window-clause 'helpful-mode 'window-height 0.4)
 		,(side-window-clause (rx bos "*ielm*" eos))
 		,(side-window-clause
-			 (rx bos (or "*eshell" "*vterm" "*compilation" "*Geiser") (* anychar) "*"
+			 (rx bos (or "*eshell" "*vterm" "*Geiser") (* anychar) "*"
 				 (? "<" (+ digit) ">") eos)
 			 'window-height  0.35)
 		,(side-window-clause
@@ -48,9 +48,11 @@
 		 (direction . right)
 		 (window-width . 0.5))
 		(,(major-mode-matcher 'transmission-mode)
-		 (display-buffer-same-window))))
-
-
+		 (display-buffer-same-window))
+		(,(major-mode-matcher 'compilation-mode)
+		 (display-buffer-reuse-window
+		  display-buffer-in-side-window)
+		 (window-height . 0.35))))
 
 
 ;; (use-package shackle
