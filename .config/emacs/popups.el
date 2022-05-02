@@ -20,9 +20,19 @@
 	(let ((window (display-buffer-in-side-window buf alist)))
 		(select-window window)))
 
+(defun display-buffer-in-direction-killhook (buf alist)
+	(with-current-buffer buf
+		(add-hook 'kill-buffer-hook
+				  (lambda ()
+					  (unless (one-window-p)
+						  (-when-let (window (get-buffer-window))
+							  (delete-window window))))
+				  0 t))
+	(display-buffer-in-direction buf alist))
+
 (setq display-buffer-alist
-      `(,(side-window-clause 'helpful-mode
-			 'window-height 0.4)
+      `(,(side-window-clause 'helpful-mode 'window-height 0.4)
+		,(side-window-clause (rx bos "*ielm*" eos))
 		,(side-window-clause
 			 (rx bos (or "*eshell" "*vterm" "*compilation" "*Geiser") (* anychar) "*"
 				 (? "<" (+ digit) ">") eos)
@@ -32,7 +42,14 @@
 							 "info") "*" eos)
 			 'side 'right
 			 'window-width 0.5)
-		,(side-window-clause (rx bos "*ielm*" eos))))
+		(,(major-mode-matcher 'magit-status-mode)
+		 (display-buffer-reuse-window
+		  display-buffer-in-direction-killhook)
+		 (direction . right)
+		 (window-width . 0.5))
+		(,(major-mode-matcher 'transmission-mode)
+		 (display-buffer-same-window))))
+
 
 
 
@@ -53,13 +70,13 @@
 
 ;; 				(when (plist-get plist :autoclose)
 ;; 					(push (cons window buffer) shackle--popup-window-list))
-;; 				(with-current-buffer buffer
-;; 					(add-hook 'kill-buffer-hook
-;; 							  (lambda ()
-;; 								  (unless (one-window-p)
-;; 									  (-when-let (window (get-buffer-window))
-;; 										  (delete-window window))))
-;; 							  0 t)) ;; Kill window when killing popup buffers
+;;			(with-current-buffer buffer
+;;				(add-hook 'kill-buffer-hook
+;;						  (lambda ()
+;;							  (unless (one-window-p)
+;;								  (-when-let (window (get-buffer-window))
+;;									  (delete-window window))))
+;;						  0 t)) ;; Kill window when killing popup buffers
 ;; 				window))
 
 ;;         (defun +shackle/quit-window (&optional kill window)
