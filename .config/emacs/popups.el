@@ -11,16 +11,14 @@
 			   (major-mode-matcher matcher)
 		   matcher)
 	  (display-buffer-reuse-window
-	   display-buffer-in-side-window-and-select)
+	   +display-buffer-in-side-window)
 	  ,@(cl--plist-to-alist params)))
 
+(defun +display-buffer-in-side-window (buf alist)
+	(select-window (display-buffer-in-side-window buf alist)))
 
 
-(defun display-buffer-in-side-window-and-select (buf alist)
-	(let ((window (display-buffer-in-side-window buf alist)))
-		(select-window window)))
-
-(defun display-buffer-in-direction-killhook (buf alist)
+(defun display-buffer-in-direction-kill (buf alist)
 	(with-current-buffer buf
 		(add-hook 'kill-buffer-hook
 				  (lambda ()
@@ -44,15 +42,18 @@
 			 'window-width 0.5)
 		(,(major-mode-matcher 'magit-status-mode)
 		 (display-buffer-reuse-window
-		  display-buffer-in-direction-killhook)
+		  display-buffer-in-direction-kill)
 		 (direction . right)
 		 (window-width . 0.5))
 		(,(major-mode-matcher 'transmission-mode)
 		 (display-buffer-same-window))
 		(,(major-mode-matcher 'compilation-mode)
 		 (display-buffer-reuse-window
-		  display-buffer-in-side-window)
-		 (window-height . 0.35))))
+		  +display-buffer-in-side-window)
+		 (window-height . 0.35))
+		,(side-window-clause
+			 (rx bos (or "*Warnings*" "*Messages*") eos)
+			 'window-height 0.3)))
 
 
 ;; (use-package shackle

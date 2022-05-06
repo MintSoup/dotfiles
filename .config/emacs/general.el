@@ -125,10 +125,10 @@
 			 (doom-modeline-mode +1)))))
 
 
-(defun +projectile-vterm ( ARG)
+(defun +projectile-vterm (&optional ARG)
 	(interactive "P")
 	(projectile-with-default-dir (projectile-acquire-root)
-		(switch-to-buffer (vterm-other-window ARG))))
+		(vterm-other-window ARG)))
 
 (my-open-leader
 	"" '(:ignore t :wk "Open")

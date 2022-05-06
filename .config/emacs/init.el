@@ -75,7 +75,7 @@
 ;; Other
 (load-user-config-file "private.el")
 
-(setq gc-cons-threshold (* 150 1024 1024))
+(setq gc-cons-threshold (* 50 1024 1024))
 
 (defun risky-local-variable-p (sym &optional _ignored) nil)
 (custom-set-variables
@@ -84,24 +84,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values
-   '((+run-form run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
-	 (+debug-form projectile-run-gdb)
-	 (projectile-project-debug-cmd . "make -j12 debug")))
- '(safe-local-variable-values
-   '((+run-form run-in-vterm "./carbon --disassemble test.cbn" 'projectile-run-vterm)
-	 (+run-form stm32-flash-to-mcu)
-	 (+debug-function stm32-start-gdb)
-	 (+run-form run-in-vterm "gradle run" 'projectile-run-vterm)
-	 (projectile-project-compilation-cmd . "gradle buildNeeded")
-	 (+run-form run-in-vterm "./carbon test.cbn" 'projectile-run-vterm)
-	 (+debug-form projectile-run-gdb)
+   '((+run-function lambda nil
+					(run-in-vterm "./carbon --disassemble test.cbn" #'+projectile-vterm))
+	 (+debug-function . projectile-run-gdb)
 	 (projectile-project-debug-cmd . "make -j12 debug")
-	 (+debug-form stm32-start-gdb)
-	 (projectile-project-debug-cmd . "make -j12")
-	 (projectile-project-compilation-cmd . "make -j12"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+	 (projectile-project-compilation-cmd . "make -j12")
+	 (projectile-project-compilation-cmd . "gradle buildNeeded")))
+ '(safe-local-variable-values
+   '((+run-function lambda nil
+					(run-in-vterm "gradle run" #'projectile-run-vterm))
+	 (projectile-project-compilation-cmd . "gradle buildNeeded"))))

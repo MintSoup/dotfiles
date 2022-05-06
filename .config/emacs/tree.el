@@ -8,10 +8,7 @@
 		  treemacs-read-string-input 'from-minibuffer
 		  treemacs-width 30)
 	(doom-themes-treemacs-config)
-	;; dirty trick to fix project-follow-mode
-	(load-user-config-file
-	 "straight/repos/treemacs/src/elisp/treemacs-project-follow-mode.el")
-	(treemacs-project-follow-mode))
+	(treemacs-project-follow-mode +1))
 
 (use-package treemacs-projectile
 	:straight t)

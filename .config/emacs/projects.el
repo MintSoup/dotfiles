@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (use-package projectile
 	:straight t
 	:init
@@ -87,34 +88,38 @@ The compilation buffer is returned
 
 (defun +project-debug ()
 	(interactive)
-	(when (boundp '+debug-form)
-		(let ((compilation-buffer
-			   (projectile--run-project-cmd projectile-project-debug-cmd projectile-compilation-cmd-map
-											:prompt-prefix "Debug Compile command: "
-											:save-buffers t
-											:use-comint-mode projectile-compile-use-comint-mode))
-			  (form +debug-form))
+	(when (boundp '+debug-function)
+		(let* ((fn +debug-function)
+			   (compilation-buffer
+				(projectile--run-project-cmd projectile-project-debug-cmd projectile-compilation-cmd-map
+											 :prompt-prefix "Debug Compile command: "
+											 :save-buffers t
+											 :use-comint-mode projectile-compile-use-comint-mode)))
 			(with-current-buffer compilation-buffer
-				(setq-local +on-finish-compilation-form form)))))
+				(setq +on-finish-compilation-function fn)))))
+
+(defvar-local +on-finish-compilation-function nil)
 
 (defun +project-run ()
 	(interactive)
-	(when (boundp '+run-form)
-		(let ((compilation-buffer
-			   (projectile--run-project-cmd projectile-project-compilation-cmd projectile-compilation-cmd-map
-											:prompt-prefix "Compile command: "
-											:save-buffers t
-											:use-comint-mode projectile-compile-use-comint-mode))
-			  (form +run-form))
+	(when (boundp '+run-function)
+		;; NOTE: we must bind fn *before* compilation-buffer
+		;; as the popup compilation buffer automatically gets selected and overwrites
+		;; the current buffer.
+		(let* ((fn +run-function)
+			   (compilation-buffer
+				(projectile--run-project-cmd projectile-project-compilation-cmd projectile-compilation-cmd-map
+											 :prompt-prefix "Compile command: "
+											 :save-buffers t
+											 :use-comint-mode projectile-compile-use-comint-mode)))
 			(with-current-buffer compilation-buffer
-				(setq-local +on-finish-compilation-form form)))))
+				(setq-local +on-finish-compilation-function fn)))))
 
 (defun +post-compile (buffer status)
 	(when (and
 		   (string-equal status "finished\n")
-		   (buffer-local-boundp '+on-finish-compilation-form buffer))
-		(eval (buffer-local-value
-			   '+on-finish-compilation-form buffer))))
+		   +on-finish-compilation-function)
+		(funcall +on-finish-compilation-function)))
 
 (defun +projectile-compile ()
 	(interactive)
