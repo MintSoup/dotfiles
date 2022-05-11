@@ -79,7 +79,6 @@
 	"s" '(evil-window-split :wk "Horizontal split")
 	"=" '(balance-windows :wk "Balance windows")
 	"q" '(evil-quit :wk "Close window")
-	"Q" '(kill-buffer-and-window :wk "Kill window and buffer")
 	"w" '(ace-window :wk "Ace window"))
 
 

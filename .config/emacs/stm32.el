@@ -325,7 +325,8 @@
 	(projectile-run-async-shell-command-in-root
 	 (concat "st-flash write build/"
 			 (stm32-get-project-name) ".bin "
-			 "0x08000000")))
+			 "0x08000000")
+	 "*st-util*"))
 
 (defun stm32-kill-gdb ()
 	"Kill all st-util, gdb or openocd processes and buffers."

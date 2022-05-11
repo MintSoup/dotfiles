@@ -31,26 +31,41 @@
 (setq display-buffer-alist
       `(,(side-window-clause 'helpful-mode 'window-height 0.4)
 		,(side-window-clause (rx bos "*ielm*" eos))
+
+		(,(rx bos (or "*vterm" "*eshell") (* anychar) "*"
+			  (? "<" (+ digit) ">") eos)
+		 (display-buffer-reuse-window
+		  display-buffer-in-side-window)
+		 (window-height . 0.35))
+
 		,(side-window-clause
-			 (rx bos (or "*eshell" "*vterm" "*Geiser") (* anychar) "*"
+			 (rx bos (or "*Geiser" "*st-util") (* anychar) "*"
 				 (? "<" (+ digit) ">") eos)
 			 'window-height  0.35)
+
+
 		,(side-window-clause
 			 (rx bos "*" (or (group (? "Wo") "Man" (* any))
 							 "info") "*" eos)
 			 'side 'right
 			 'window-width 0.5)
+
 		(,(major-mode-matcher 'magit-status-mode)
 		 (display-buffer-reuse-window
 		  display-buffer-in-direction-kill)
 		 (direction . right)
 		 (window-width . 0.5))
+
 		(,(major-mode-matcher 'transmission-mode)
-		 (display-buffer-same-window))
+		 (display-buffer-reuse-window
+		  display-buffer-same-window)
+		 (inhibit-same-window . nil))
+
 		(,(major-mode-matcher 'compilation-mode)
 		 (display-buffer-reuse-window
 		  +display-buffer-in-side-window)
 		 (window-height . 0.35))
+
 		,(side-window-clause
 			 (rx bos (or "*Warnings*" "*Messages*") eos)
 			 'window-height 0.3)))
