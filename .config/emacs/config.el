@@ -35,6 +35,9 @@
 	:config
 	(su-mode +1))
 
+(use-package lorem-ipsum
+	:straight t)
+
 (winner-mode)
 
 (defun indent-buffer ()

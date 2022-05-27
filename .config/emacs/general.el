@@ -181,13 +181,14 @@
 	"f" '(apheleia-format-buffer :wk "Format buffer")
 	"r" '(lsp-rename :wk "Rename")
 	"a" '(lsp-execute-code-action :wk "Fix")
-	"n" '(flymake-goto-next-error :wk "Next Error")
-	"p" '(flymake-goto-prev-error :wk "Previous Error")
+	"n" '(flycheck-next-error :wk "Next Error")
+	"p" '(flycheck-previous-error :wk "Previous Error")
 	"a" '(lsp-execute-code-action :wk "Fix")
 	"d" '(lsp-ui-doc-show :wk "Show documentation")
 	"D" '(lsp-ui-doc-hide :wk "Hide documentation")
 	"e" '(+quickrun :wk "Execute")
-	"E" '(quickrun-shell :wk "Execute in Eshell"))
+	"E" '(quickrun-shell :wk "Execute in Eshell")
+	"b" '(lsp-ivy-workspace-symbol :wk "Browse"))
 
 (general-create-definer my-search-leader
 	:states '(normal visual motion)
@@ -254,4 +255,9 @@
 (my-insert-leader
 	"" '(:ignore t :wk "Insert")
 	"p" '(prompt-for-path :wk "Path")
-	"c" '(insert-char :wk "Character"))
+	"c" '(insert-char :wk "Character")
+
+	"l" '(:ignore t :wk "Lorem")
+	"lp" '(lorem-ipsum-insert-paragraphs :wk "Paragraphs")
+	"ls" '(lorem-ipsum-insert-sentences :wk "Sentences")
+	"ll" '(lorem-ipsum-insert-list :wk "List"))

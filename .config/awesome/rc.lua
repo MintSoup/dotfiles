@@ -89,7 +89,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/anime.jpg",
+	"/home/areg/Wallpapers/snek.jpg",
 }
 
 math.randomseed(os.time() * 4214053)

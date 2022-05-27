@@ -30,6 +30,7 @@
 
 (setq display-buffer-alist
       `(,(side-window-clause 'helpful-mode 'window-height 0.4)
+		,(side-window-clause 'flycheck-error-list-mode 'window-height 0.4)
 		,(side-window-clause (rx bos "*ielm*" eos))
 
 		(,(rx bos (or "*vterm" "*eshell") (* anychar) "*"
@@ -39,10 +40,13 @@
 		 (window-height . 0.35))
 
 		,(side-window-clause
-			 (rx bos (or "*Geiser" "*st-util") (* anychar) "*"
+			 (rx bos (or "*Geiser" "*st-util" "*quickrun") (* anychar) "*"
 				 (? "<" (+ digit) ">") eos)
-			 'window-height  0.35)
+			 'window-height 0.35)
 
+		,(side-window-clause
+			(rx bos "*sly" (* anychar) "*" eos)
+			'window-height 0.3)
 
 		,(side-window-clause
 			 (rx bos "*" (or (group (? "Wo") "Man" (* any))

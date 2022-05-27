@@ -62,6 +62,7 @@
 (load-user-config-file "ligatures.el")
 (load-user-config-file "snippets.el")
 (load-user-config-file "restclient.el")
+(load-user-config-file "flycheck.el")
 
 ;; Lang
 (load-user-config-file "geiser.el") ;; Scheme
@@ -91,7 +92,8 @@
 	 (projectile-project-compilation-cmd . "make -j12")
 	 (projectile-project-compilation-cmd . "gradle buildNeeded")))
  '(safe-local-variable-values
-   '((+run-function lambda nil
+   '((+debug-function function projectile-run-gdb)
+	 (+run-function lambda nil
 					(run-in-vterm "./carbon --disassemble test.cbn" #'+projectile-vterm))
 	 (projectile-project-debug-cmd . "make -j12 debug")
 	 (+run-function . stm32-flash-to-mcu)
