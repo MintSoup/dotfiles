@@ -15,7 +15,7 @@
 	(interactive "D")
 	(let* ((default-directory ARG)
            (eshell-buffer-name
-			(format "*eshell %s" (file-name-nondirectory
+			(format "*eshell %s*" (file-name-nondirectory
 								  (directory-file-name default-directory)))))
 		(eshell)))
 

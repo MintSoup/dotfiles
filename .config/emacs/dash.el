@@ -16,8 +16,7 @@
  		  dashboard-startup-banner (expand-file-name "emacs.svg" user-emacs-directory)
  		  ;; dashboard-footer-messages nil
  		  dashboard-page-separator ""
- 		  dashboard-set-init-info nil
-		  )
+ 		  dashboard-set-init-info nil)
 	(defun set-dashboard-face (frame)
 		(set-face-attribute 'dashboard-banner-logo-title nil
 							:inherit 'variable-pitch

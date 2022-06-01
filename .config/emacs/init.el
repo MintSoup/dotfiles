@@ -84,25 +84,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ignored-local-variable-values
-   '((+run-function lambda nil
+ '(safe-local-variable-values
+   '((+debug-function . stm32-start-gdb)
+	 (projectile-project-debug-cmd . "make -j12")
+	 (+run-function lambda nil
 					(run-in-vterm "./carbon --disassemble test.cbn" #'+projectile-vterm))
 	 (+debug-function . projectile-run-gdb)
 	 (projectile-project-debug-cmd . "make -j12 debug")
-	 (projectile-project-compilation-cmd . "make -j12")
-	 (projectile-project-compilation-cmd . "gradle buildNeeded")))
- '(safe-local-variable-values
-   '((+debug-function function projectile-run-gdb)
-	 (+run-function lambda nil
-					(run-in-vterm "./carbon --disassemble test.cbn" #'+projectile-vterm))
-	 (projectile-project-debug-cmd . "make -j12 debug")
-	 (+run-function . stm32-flash-to-mcu)
-	 (+debug-function . stm32-start-gdb)
-	 (projectile-project-debug-cmd . "make -j12")
-	 (projectile-project-compilation-cmd . "make -j12")
-	 (+run-function lambda nil
-					(run-in-vterm "gradle run" #'projectile-run-vterm))
-	 (projectile-project-compilation-cmd . "gradle buildNeeded"))))
+	 (projectile-project-compilation-cmd . "make -j12"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
