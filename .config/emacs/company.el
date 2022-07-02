@@ -13,8 +13,7 @@
 						;; "C-c" 'company-complete
 						"<tab>" 'company-select-next)
 	(setq company-backends
-		  '((company-capf company-files ;; company-yasnippet
-						  geiser-company-backend)))
+		  '((company-capf company-files)))
 	(general-define-key :keymaps 'yas-minor-mode-map
 						:states 'insert
 						"C-." 'company-yasnippet))

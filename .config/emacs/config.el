@@ -25,10 +25,10 @@
 (setq backup-directory-alist
 	  `(("." . ,(concat user-emacs-directory "backups/"))))
 
-(add-hook 'imenu-after-jump-hook '+scroll-current-line-to-top)
 
-(defun +scroll-current-line-to-top ()
-	(evil-scroll-line-to-top (line-number-at-pos)))
+(add-hook 'imenu-after-jump-hook
+		  (lambda ()
+			  (evil-scroll-line-to-top (line-number-at-pos))))
 
 (use-package su
 	:straight t
@@ -56,6 +56,10 @@
 
 (setq sentence-end-double-space nil)
 
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(use-package ztree
+	:straight t)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain
+	  ediff-split-window-function 'split-window-horizontally)
 
 (setq epg-pinentry-mode 'loopback)

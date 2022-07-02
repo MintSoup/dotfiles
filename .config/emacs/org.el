@@ -9,7 +9,7 @@
 	:hook (org-mode . +org-enable-auto-reformat-tables-h)
 	:hook (org-mode . org-appear-mode)
 	:init
-	(setq org-superstar-headline-bullets-list '(9673 9675 10047 10040)
+	(setq org-superstar-headline-bullets-list '(#x2B21 #x1F79B #x25C7 #x27D0)
 		  org-superstar-leading-bullet ""))
 
 (use-package evil-org
@@ -699,7 +699,7 @@ Meant for `org-mode-hook'."
 	(set-face-attribute 'org-checkbox nil :inherit '(org-todo fixed-pitch))
 	(set-face-attribute 'org-meta-line nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :foreground "#83898d")
-	(set-face-attribute 'org-document-title nil :height 2.0 :weight 'normal :foreground (doom-color 'green))
+	(set-face-attribute 'org-document-title nil :height 2.0 :weight 'medium :foreground (doom-color 'green))
 	(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-footnote nil :inherit 'fixed-pitch)
 	(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
@@ -720,10 +720,14 @@ Meant for `org-mode-hook'."
 
 
 (require 'ox-latex)
-;; (add-to-list 'org-latex-packages-alist '("" "minted"))
-;; (setq org-latex-listings 'minted)
-;; (setq org-latex-minted-options
-;; 	  '(("tabsize" "4")))
+(defun +org-activate-minted ()
+	"Activate Minted package on org-latex-export"
+	(interactive)
+	(add-to-list 'org-latex-packages-alist '("" "minted"))
+	(setq org-latex-listings 'minted)
+	(setq org-latex-minted-options
+		  '(("tabsize" "4"))))
+
 (setq org-latex-pdf-process
 	  '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 		"xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"

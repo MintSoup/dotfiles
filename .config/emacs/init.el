@@ -84,8 +84,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("7bb37d79f674ccb644d434eabc0c859d9309792727e259ea39933cc412f63202" "45e3a7209bd38bb5a8ddcdaca374c8b3c548b05d667dc060167b5761e57370fc" default))
  '(safe-local-variable-values
-   '((+debug-function . stm32-start-gdb)
+   '((+run-function . stm32-flash-to-mcu)
+	 (+debug-function . stm32-start-gdb)
 	 (projectile-project-debug-cmd . "make -j12")
 	 (+run-function lambda nil
 					(run-in-vterm "./carbon --disassemble test.cbn" #'+projectile-vterm))

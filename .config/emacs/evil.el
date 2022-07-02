@@ -115,6 +115,10 @@
 						">" '+evil/shift-right
 						"<" '+evil/shift-left)
 
+	(add-hook 'evil-jumps-post-jump-hook
+			  (lambda ()
+				  (evil-scroll-line-to-center (line-number-at-pos))))
+
 	(evil-mode))
 
 ;; (use-package undo-fu
