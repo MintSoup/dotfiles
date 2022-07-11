@@ -87,7 +87,9 @@
  '(custom-safe-themes
    '("7bb37d79f674ccb644d434eabc0c859d9309792727e259ea39933cc412f63202" "45e3a7209bd38bb5a8ddcdaca374c8b3c548b05d667dc060167b5761e57370fc" default))
  '(safe-local-variable-values
-   '((+run-function . stm32-flash-to-mcu)
+   '((+run-function lambda nil
+					(async-shell-command "make run"))
+	 (+run-function . stm32-flash-to-mcu)
 	 (+debug-function . stm32-start-gdb)
 	 (projectile-project-debug-cmd . "make -j12")
 	 (+run-function lambda nil

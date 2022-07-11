@@ -40,13 +40,16 @@
 		 (window-height . 0.35))
 
 		,(side-window-clause
+			 (rx bos "*Async Shell Command*" eos)
+			 'window-height 0.35)
+		,(side-window-clause
 			 (rx bos (or "*Geiser" "*st-util" "*quickrun") (* anychar) "*"
 				 (? "<" (+ digit) ">") eos)
 			 'window-height 0.35)
 
 		,(side-window-clause
-			(rx bos "*sly" (* anychar) "*" eos)
-			'window-height 0.3)
+			 (rx bos "*sly" (* anychar) "*" eos)
+			 'window-height 0.3)
 
 		,(side-window-clause
 			 (rx bos "*" (or (group (? "Wo") "Man" (* any))
