@@ -50,8 +50,6 @@ beautiful.init(awesome_config_folder .. "themes/mint/theme.lua")
 modkey = "Mod4"
 
 
-
-
 -- Autostart
 local function run_once(cmd)
 	if type(cmd) == "string" then
@@ -73,6 +71,7 @@ run_once("copyq")
 run_once({"picom", "picom --experimental-backends --backend glx -b "})
 run_once("numlockx on")
 run_once("xsettingsd")
+awful.spawn("getup")
 
 awful.spawn("xset r rate 200 40", false)
 
@@ -88,7 +87,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/room2.jpg",
+	"/home/areg/Wallpapers/nagyonmenohatterkep.png",
 }
 
 math.randomseed(os.time() * 4214053)

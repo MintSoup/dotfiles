@@ -9,5 +9,4 @@
 (add-hook 'message-mode-hook 'variable-pitch-mode)
 
 (setq send-mail-function 'smtpmail-send-it
-	  message-send-mail-function 'smtpmail-send-it
-	  smtpmail-smtp-server "your.smtp-server.com")
+	  message-send-mail-function 'smtpmail-send-it)

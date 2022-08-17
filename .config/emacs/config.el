@@ -38,6 +38,9 @@
 (use-package lorem-ipsum
 	:straight t)
 
+(use-package fish-mode
+	:straight t)
+
 (winner-mode)
 
 (defun indent-buffer ()
@@ -63,3 +66,5 @@
 	  ediff-split-window-function 'split-window-horizontally)
 
 (setq epg-pinentry-mode 'loopback)
+
+(setq gamegrid-glyph-height-mm 6.0)

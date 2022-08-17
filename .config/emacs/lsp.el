@@ -12,12 +12,15 @@
 		  lsp-completion-provider :none))
 
 (use-package lsp-treemacs
+	:after lsp-mode
 	:straight t)
 
 (use-package lsp-ui
+	:after lsp-mode
 	:straight t)
 
 (use-package lsp-ivy
+	:after lsp-mode
 	:straight t)
 
 ;; (use-package lsp-python-ms

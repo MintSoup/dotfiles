@@ -46,10 +46,10 @@
 	"mr" '(sly-macroexpand-all :wk "Recursively")
 	"mR" '(sly-macroexpand-all-inplace :wk "Recursively inplace")
 
-	"s" '(sly-inspect :wk "Inspect"))
+	"s" '(sly-mrepl-sync :wk "Sync package"))
 
 
-(defalias 'sp-forward-barf-sexp 'paredit-forward-barf-sexp)
+;; (defalias 'sp-forward-barf-sexp 'paredit-forward-barf-sexp)
 
 (general-define-key :keymaps 'evil-cleverparens-mode-map
 					:states '(normal visual)
@@ -95,3 +95,5 @@
 	(evil-cp-delete-char-or-splice beg end type ?_ yank-handler))
 
 (add-hook 'lisp-mode-hook 'highlight-quoted-mode)
+
+(require 'smartparens-config)

@@ -43,19 +43,16 @@
 			 (rx bos "*Async Shell Command*" eos)
 			 'window-height 0.35)
 		,(side-window-clause
-			 (rx bos (or "*Geiser" "*st-util" "*quickrun") (* anychar) "*"
+			 (rx bos (or "*Geiser" "*st-util" "*quickrun" "*sly") (* anychar) "*"
 				 (? "<" (+ digit) ">") eos)
 			 'window-height 0.35)
 
-		,(side-window-clause
-			 (rx bos "*sly" (* anychar) "*" eos)
-			 'window-height 0.3)
-
-		,(side-window-clause
-			 (rx bos "*" (or (group (? "Wo") "Man" (* any))
-							 "info") "*" eos)
-			 'side 'right
-			 'window-width 0.5)
+		(,(rx bos "*" (or (group (? "Wo") "Man" (* any))
+						  "info") "*" eos)
+		 (display-buffer-reuse-window
+		  display-buffer-in-direction-kill)
+		 (direction . rightmost)
+		 (window-width . 0.5))
 
 		(,(major-mode-matcher 'magit-status-mode)
 		 (display-buffer-reuse-window
