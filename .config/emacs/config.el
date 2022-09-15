@@ -67,4 +67,4 @@
 
 (setq epg-pinentry-mode 'loopback)
 
-(setq gamegrid-glyph-height-mm 6.0)
+(setq gamegrid-glyph-height-mm 7.0)

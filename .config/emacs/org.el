@@ -640,7 +640,7 @@ Meant for `org-mode-hook'."
 	  org-agenda-files '("~/Org/Agenda/")
 	  org-hide-emphasis-markers t
 	  org-indent-indentation-per-level 2
-	  org-list-indent-offset 3
+	  org-list-indent-offset 0
 	  org-ellipsis "▾"
 	  org-list-allow-alphabetical t
 	  org-startup-indented t

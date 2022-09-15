@@ -39,7 +39,7 @@
 
 (defun mintywm ()
 	(interactive)
-	(geiser-connect 'guile "localhost" 42069))
+	(geiser-connect-local 'guile "/tmp/mintywm"))
 
 (add-hook 'scheme-mode-hook 'highlight-quoted-mode)
 (add-hook 'geiser-mode-hook (lambda () (setq eldoc-idle-delay 0.0)))

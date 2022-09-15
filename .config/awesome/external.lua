@@ -6,10 +6,8 @@ terminal = os.getenv("TERMINAL")
 return gears.table.join(
     awful.key({modkey}, "Return", function () awful.spawn(terminal) end,
 			  {description = "ST", group = "launcher"}),
-    awful.key({modkey}, "space", function () awful.spawn("rofi -theme drun.rasi -show drun") end,
+    awful.key({modkey}, "space", function () awful.spawn.with_shell("~/.config/rofi/launchers/type-3/launcher.sh") end,
 			  {description = "Rofi", group = "launcher"}),
-    awful.key({modkey}, "z", function () awful.spawn("dmenuprojects") end,
-			  {description = "Run project", group = "launcher"}),
     awful.key({modkey}, ";", function () awful.spawn("rofi -show emoji") end,
 			  {description = "Insert emojis", group = "launcher"}),
     awful.key({modkey}, "c", function () awful.spawn("copyq show") end,
@@ -68,7 +66,7 @@ return gears.table.join(
 			  {description = "Increase keyboard brightness", group = "launcher"}),
 
 
-    awful.key({}, "XF86PowerOff", function () awful.spawn("powermenu") end,
+    awful.key({}, "XF86PowerOff", function () awful.spawn.with_shell("~/.config/rofi/powermenu/type-4/powermenu.sh") end,
 			  {description = "Show powermenu", group = "launcher"}),
     awful.key({}, "XF86TouchpadToggle", function () awful.spawn("toggletpad") end,
 			  {description = "Toggle touchpad", group = "launcher"}),

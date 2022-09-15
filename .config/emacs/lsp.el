@@ -3,7 +3,7 @@
 (use-package lsp-mode
 	:straight t
 	:hook (c-mode . lsp)
-	:hook (java-mode . lsp)
+	;; :hook (java-mode . lsp)
 	:init
 	(setq lsp-idle-delay 0.1
 		  lsp-headerline-breadcrumb-enable t

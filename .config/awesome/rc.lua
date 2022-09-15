@@ -53,9 +53,9 @@ modkey = "Mod4"
 -- Autostart
 local function run_once(cmd)
 	if type(cmd) == "string" then
-		awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || %s", cmd, cmd))
+		awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || exec %s", cmd, cmd))
 	else
-		awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || %s", cmd[1], cmd[2]))
+		awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || exec %s", cmd[1], cmd[2]))
 	end
 end
 

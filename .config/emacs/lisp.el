@@ -96,4 +96,12 @@
 
 (add-hook 'lisp-mode-hook 'highlight-quoted-mode)
 
+(defun psly ()
+	(interactive)
+	(projectile-with-default-dir (projectile-acquire-root)
+		(sly)))
+
+(set-face-attribute 'sly-stickers-armed-face nil
+					:inherit 'lazy-highlight)
+
 (require 'smartparens-config)
