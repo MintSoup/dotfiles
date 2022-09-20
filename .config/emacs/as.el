@@ -3,5 +3,5 @@
 ;; 	:straight t)
 
 (use-package gas-mode
-	:straight t)
+  :straight t)
 (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))

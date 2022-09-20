@@ -1,32 +1,32 @@
 ;;; -*- lexical-binding: t -*-
 
 (defun major-mode-matcher (mode)
-	(lambda (buf act)
-		(with-current-buffer buf
-			(eq major-mode mode))))
+  (lambda (buf act)
+	(with-current-buffer buf
+	  (eq major-mode mode))))
 
 (defun side-window-clause (matcher &rest params)
-	(declare (indent defun))
-	`(,(if (symbolp matcher)
-			   (major-mode-matcher matcher)
-		   matcher)
-	  (display-buffer-reuse-window
-	   +display-buffer-in-side-window)
-	  ,@(cl--plist-to-alist params)))
+  (declare (indent defun))
+  `(,(if (symbolp matcher)
+		 (major-mode-matcher matcher)
+	   matcher)
+	(display-buffer-reuse-window
+	 +display-buffer-in-side-window)
+	,@(cl--plist-to-alist params)))
 
 (defun +display-buffer-in-side-window (buf alist)
-	(select-window (display-buffer-in-side-window buf alist)))
+  (select-window (display-buffer-in-side-window buf alist)))
 
 
 (defun display-buffer-in-direction-kill (buf alist)
-	(with-current-buffer buf
-		(add-hook 'kill-buffer-hook
-				  (lambda ()
-					  (unless (one-window-p)
-						  (-when-let (window (get-buffer-window))
-							  (delete-window window))))
-				  0 t))
-	(display-buffer-in-direction buf alist))
+  (with-current-buffer buf
+	(add-hook 'kill-buffer-hook
+			  (lambda ()
+				(unless (one-window-p)
+				  (-when-let (window (get-buffer-window))
+					(delete-window window))))
+			  0 t))
+  (display-buffer-in-direction buf alist))
 
 (setq display-buffer-alist
       `(,(side-window-clause 'helpful-mode 'window-height 0.4)
@@ -40,12 +40,12 @@
 		 (window-height . 0.35))
 
 		,(side-window-clause
-			 (rx bos "*Async Shell Command*" eos)
-			 'window-height 0.35)
+		   (rx bos "*Async Shell Command*" eos)
+		   'window-height 0.35)
 		,(side-window-clause
-			 (rx bos (or "*Geiser" "*st-util" "*quickrun" "*sly") (* anychar) "*"
-				 (? "<" (+ digit) ">") eos)
-			 'window-height 0.35)
+		   (rx bos (or "*Geiser" "*st-util" "*quickrun" "*sly") (* anychar) "*"
+			   (? "<" (+ digit) ">") eos)
+		   'window-height 0.35)
 
 		(,(rx bos "*" (or (group (? "Wo") "Man" (* any))
 						  "info") "*" eos)
@@ -71,8 +71,8 @@
 		 (window-height . 0.35))
 
 		,(side-window-clause
-			 (rx bos (or "*Warnings*" "*Messages*") eos)
-			 'window-height 0.3)))
+		   (rx bos (or "*Warnings*" "*Messages*") eos)
+		   'window-height 0.3)))
 
 
 ;; (use-package shackle

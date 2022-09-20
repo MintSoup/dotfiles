@@ -8,21 +8,21 @@
 (let ((bootstrap-file
 	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
 	  (bootstrap-version 5))
-	(unless (file-exists-p bootstrap-file)
-		(with-current-buffer
-				(url-retrieve-synchronously
-				 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-				 'silent 'inhibit-cookies)
-			(goto-char (point-max))
-			(eval-print-last-sexp)))
-	(load bootstrap-file nil 'nomessage))
+  (unless (file-exists-p bootstrap-file)
+	(with-current-buffer
+		(url-retrieve-synchronously
+		 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+		 'silent 'inhibit-cookies)
+	  (goto-char (point-max))
+	  (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 
 (straight-use-package 'use-package)
 
 (defun load-user-config-file (name)
-	"Load file from `user-emacs-directory'"
-	(load-file (expand-file-name name user-emacs-directory)))
+  "Load file from `user-emacs-directory'"
+  (load-file (expand-file-name name user-emacs-directory)))
 
 ;; Core
 (load-user-config-file "general.el")

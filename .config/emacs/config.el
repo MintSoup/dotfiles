@@ -16,8 +16,8 @@
 (setq css-fontify-colors nil)
 
 (defun my-prog-nuke-trailing-whitespace ()
-	(when (derived-mode-p 'prog-mode)
-		(delete-trailing-whitespace)))
+  (when (derived-mode-p 'prog-mode)
+	(delete-trailing-whitespace)))
 
 (add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
 
@@ -28,30 +28,30 @@
 
 (add-hook 'imenu-after-jump-hook
 		  (lambda ()
-			  (evil-scroll-line-to-top (line-number-at-pos))))
+			(evil-scroll-line-to-top (line-number-at-pos))))
 
 (use-package su
-	:straight t
-	:config
-	(su-mode +1))
+  :straight t
+  :config
+  (su-mode +1))
 
 (use-package lorem-ipsum
-	:straight t)
+  :straight t)
 
 (use-package fish-mode
-	:straight t)
+  :straight t)
 
 (winner-mode)
 
 (defun indent-buffer ()
-	"Call `indent-region' on the entire buffer."
-	(interactive)
-	(indent-region (point-min) (point-max) nil))
+  "Call `indent-region' on the entire buffer."
+  (interactive)
+  (indent-region (point-min) (point-max) nil))
 
 (defun tabify-buffer ()
-	"Call `tabify' on the entire buffer."
-	(interactive)
-	(tabify (point-min) (point-max)))
+  "Call `tabify' on the entire buffer."
+  (interactive)
+  (tabify (point-min) (point-max)))
 
 (setq-default major-mode 'text-mode)
 
@@ -61,7 +61,7 @@
 
 
 (use-package ztree
-	:straight t)
+  :straight t)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain
 	  ediff-split-window-function 'split-window-horizontally)
 
