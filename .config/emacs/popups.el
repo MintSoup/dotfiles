@@ -45,7 +45,7 @@
 		,(side-window-clause
 		   (rx bos (or "*Geiser" "*st-util" "*quickrun" "*sly") (* anychar) "*"
 			   (? "<" (+ digit) ">") eos)
-		   'window-height 0.35)
+		   'window-height 0.32)
 
 		(,(rx bos "*" (or (group (? "Wo") "Man" (* any))
 						  "info") "*" eos)
