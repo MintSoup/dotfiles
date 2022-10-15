@@ -509,8 +509,8 @@ Meant for `org-mode-hook'."
   "+" #'org-ctrl-c-minus
   "," #'org-switchb
   "." #'org-goto
-  "." #'counsel-org-goto
-  "/" #'counsel-org-goto-all
+  ;; "." #'counsel-org-goto
+  ;; "/" #'counsel-org-goto-all
   "\\" #'org-toggle-pretty-entities
   "A" #'org-archive-subtree
   "e" #'org-export-dispatch
@@ -590,8 +590,8 @@ Meant for `org-mode-hook'."
 
   "g" '(:ignore t :wk "Go to")
   "g g" #'org-goto
-  "g g" #'counsel-org-goto
-  "g G" #'counsel-org-goto-all
+  ;; "g g" #'counsel-org-goto
+  ;; "g G" #'counsel-org-goto-all
   "g c" #'org-clock-goto
   "g i" #'org-id-goto
   "g r" #'org-refile-goto-last-stored

@@ -19,9 +19,9 @@
   :after lsp-mode
   :straight t)
 
-(use-package lsp-ivy
-  :after lsp-mode
-  :straight t)
+;; (use-package lsp-ivy
+;;   :after lsp-mode
+;;   :straight t)
 
 ;; (use-package lsp-python-ms
 ;; 	:straight t)

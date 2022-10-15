@@ -131,9 +131,8 @@ The compilation buffer is returned
 
 (add-hook 'compilation-finish-functions '+post-compile)
 
-(use-package counsel-projectile
+(use-package consult-projectile
   :straight t
   :config
-  (counsel-projectile-mode)
-  :init
-  (setq counsel-projectile-find-file-matcher 'ivy--re-filter))
+  (setq consult-projectile--source-projectile-file
+		(evil-plist-delete :face consult-projectile--source-projectile-file)))

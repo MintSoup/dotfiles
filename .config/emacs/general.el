@@ -23,13 +23,13 @@
 (my-leader
   "j" '(my-next-buffer :wk "Next Buffer")
   "k" '(my-previous-buffer :wk "Previous buffer")
-  "," '(+counsel-switch-buffer-hide-asterisk :wk "Switch buffer")
-  "<" '(counsel-switch-buffer :wk "Switch buffer")
+  "," '(consult-buffer-ignore-asterisks :wk "Switch buffer")
+  "<" '(consult-buffer :wk "Switch buffer")
   "." '(find-file :wk "Find file")
   ";" '(eval-expression :wk "Eval expression")
   "g" '(magit :wk "Magit")
   "/" '(switch-to-buffer-other-window :wk "Switch to buffer in other window")
-  "SPC" '(projectile-find-file :wk "Find file in project"))
+  "SPC" '(consult-projectile-find-file :wk "Find file in project"))
 
 (general-create-definer my-help-leader
   :keymaps 'override
@@ -52,12 +52,12 @@
   "f" '(describe-function :wk "Describe function")
   "v" '(describe-variable :wk "Describe variable")
   "o" '(describe-symbol :wk "Describe symbol")
-  "F" '(counsel-describe-face :wk "Describe face")
+  "F" '(describe-face :wk "Describe face")
   "q" '(kill-emacs :wk "Kill Emacs")
   "i" '(info :wk "Emacs help")
   "r" '(my-reload-private-config :wk "Reload private config")
   "l" '(set-input-method :wk "Change language")
-  "s" '(counsel-info-lookup-symbol :wk "Lookup symbol in texinfo")
+  ;; "s" '(counsel-info-lookup-symbol :wk "Lookup symbol in texinfo")
   "c" '(my-edit-configuration :wk "Open init.el"))
 
 (general-create-definer my-window-leader
@@ -150,12 +150,14 @@
 (defun browse-my-config ()
   "Browse file in emacs config directory"
   (interactive)
-  (counsel-find-file user-emacs-directory))
+  (let ((default-directory user-emacs-directory))
+	(call-interactively #'find-file)))
 
 (defun browse-org-files ()
   "Browse file in emacs config directory"
   (interactive)
-  (counsel-find-file "~/Org/"))
+  (let ((default-directory "~/Org/"))
+	(call-interactively #'find-file)))
 
 (my-file-leader
   "" '(:ignore t :wk "File")
@@ -163,7 +165,7 @@
   "o" '(browse-org-files :wk "Browse Org")
   "a" '(find-alternate-file :wk "Find alternate file")
   "p" '(browse-my-config :wk "Browse private config")
-  "r" '(counsel-recentf :wk "Recent files"))
+  "r" '(consult-recent-file :wk "Recent files"))
 
 (general-create-definer my-local-leader
   :states '(normal visual motion)
@@ -188,7 +190,8 @@
   "D" '(lsp-ui-doc-hide :wk "Hide documentation")
   "e" '(+quickrun :wk "Execute")
   "E" '(quickrun-shell :wk "Execute in Eshell")
-  "b" '(lsp-ivy-workspace-symbol :wk "Browse"))
+  ;; "b" '(lsp-ivy-workspace-symbol :wk "Browse")
+  )
 
 (general-create-definer my-search-leader
   :states '(normal visual motion)
@@ -196,12 +199,12 @@
 
 (my-search-leader
   "" '(:ignore t :wk "Search")
-  "s" '(swiper-isearch :wk "Buffer")
-  "S" '(swiper-all :wk "All open buffers")
-  "d" '(counsel-fd-dired-jump :wk "Find directory")
-  "f" '(counsel-fd-file-jump :wk "Find file")
-  "r" '(counsel-rg :wk "Ripgrep")
-  "i" '(counsel-imenu :wk "Symbol"))
+  "s" '(consult-line :wk "Buffer")
+  "S" '(consult-line-multi :wk "All open buffers")
+  ;; "d" '(counsel-fd-dired-jump :wk "Find directory")
+  ;; "f" '(counsel-fd-file-jump :wk "Find file")
+  "r" '(consult-ripgrep :wk "Ripgrep")
+  "i" '(consult-imenu :wk "Symbol"))
 
 (general-create-definer my-project-leader
   :states '(normal visual motion)
@@ -216,7 +219,7 @@
 
 (my-project-leader
   "" '(:ignore t :wk "Project")
-  "p" '(counsel-projectile-switch-project :wk "Open")
+  "p" '(consult-projectile-switch-project :wk "Open")
   "d" '(+project-debug :wk "Debug")
   "D" '(+project-stop-debug :wk "Stop debug")
   "i" '(projectile-invalidate-cache :wk "Invalidate cache")

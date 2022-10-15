@@ -28,7 +28,8 @@
 (load-user-config-file "general.el")
 (load-user-config-file "evil.el")
 (load-user-config-file "config.el")
-(load-user-config-file "ivy.el")
+;; (load-user-config-file "ivy.el")
+(load-user-config-file "completion.el")
 
 ;; Less important
 (load-user-config-file "scroll.el")
@@ -85,6 +86,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("747de794efdff5000e8bb1f5d9331527912fc7aa24f050c26e5ff6f64bc45a21" "18fc34307ca9a4efca760ff741667889f2683bb124a10f7814a1f4c153a14546" "5e641a9594f38f27df73f95ded23061abd7e195b8d51d7e094adda419441e278" "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
  '(safe-local-variable-values
    '((+run-function lambda nil
 					(run-in-vterm "./gps" #'+projectile-vterm))
@@ -100,3 +103,9 @@
 	 (+debug-function . projectile-run-gdb)
 	 (projectile-project-debug-cmd . "make -j12 debug")
 	 (projectile-project-compilation-cmd . "make -j12"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
