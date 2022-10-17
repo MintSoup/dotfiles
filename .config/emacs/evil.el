@@ -89,7 +89,7 @@
 					  "C-S-a" 'evil-numbers/dec-at-pt
 					  "go" 'indent-buffer
 					  "gt" 'tabify-buffer
-					  ;; "C-M-p" 'counsel-yank-pop
+					  "C-M-p" 'consult-yank-pop
 					  "]a" 'evil-forward-arg
 					  "[a" 'evil-backward-arg)
 

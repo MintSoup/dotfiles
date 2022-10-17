@@ -34,9 +34,25 @@ folder, otherwise delete a word"
 (use-package orderless
   :straight t
   :init
-  (setq completion-styles '(orderless flex substring basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (orderless flex partial-completion basic))))))
+  (setq
+   completion-styles '(orderless basic)
+   completion-category-defaults nil
+   orderless-matching-styles '(orderless-regexp)
+   orderless-style-dispatchers
+   (list
+	(lambda (pattern index total) ;; Flex~
+	  (when (string-suffix-p "~" pattern)
+		`(orderless-flex . ,(substring pattern 0 -1))))
+	(lambda (pattern index total) ;; Prefix matcher
+	  (when (string-suffix-p "\\" pattern)
+		`(orderless-prefixes . ,(substring pattern 0 -1))))
+	(lambda (pattern index total) ;; Without!
+	  (cond
+	   ((equal "!" pattern)
+		'(orderless-literal . ""))
+	   ((string-prefix-p "!" pattern)
+		`(orderless-without-literal . ,(substring pattern 1))))))))
+
 
 (use-package marginalia
   :straight t
@@ -61,21 +77,10 @@ folder, otherwise delete a word"
   (consult-customize consult-ripgrep consult-recent-file :preview-key
 					 (list (kbd "C-p"))))
 
-(defun format-icon (icon)
-  (let* ((props (get-text-property 0 'face icon))
-         (family (plist-get props :family))
-         (face (plist-get props :inherit))
-         (new-face `(:inherit ,face
-							  :family ,family
-							  :height 1.0)))
-    (put-text-property 0 (length icon) 'face new-face icon)
-	(format " %s" icon)))
 
 
 (use-package all-the-icons-completion
   :straight t
   :after (marginalia all-the-icons)
   :config
-  (all-the-icons-completion-mode)
-  (advice-add 'all-the-icons-completion-get-icon
-			  :filter-return #'format-icon))
+  (all-the-icons-completion-mode))

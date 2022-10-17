@@ -192,7 +192,8 @@ determine the exact padding."
 				 (orderless-match-face-0 :weight 'bold :foreground blue    :background (doom-blend blue    bg 0.05))
 				 (orderless-match-face-1 :weight 'bold :foreground magenta :background (doom-blend magenta bg 0.05))
 				 (orderless-match-face-2 :weight 'bold :foreground green   :background (doom-blend green   bg 0.05))
-				 (orderless-match-face-3 :weight 'bold :foreground yellow  :background (doom-blend yellow  bg 0.05)))
+				 (orderless-match-face-3 :weight 'bold :foreground yellow  :background (doom-blend yellow  bg 0.05))
+				 (vertico-current :background (doom-darken dark-blue 0.1)))
 
 				;; --- extra variables ---------------------
 				())

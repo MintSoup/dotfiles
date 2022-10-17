@@ -69,3 +69,10 @@
 (setq epg-pinentry-mode 'loopback)
 
 (setq gamegrid-glyph-height-mm 7.0)
+
+(setq enable-recursive-minibuffers t)
+
+(use-package ace-window
+  :straight t
+  :config
+  (ace-window-display-mode))
