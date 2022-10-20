@@ -251,8 +251,8 @@
   :keymaps 'override)
 
 (defun prompt-for-path (dir)
-  "Prompt for directory and cd to it."
-  (interactive "D")
+  "Prompt for directory and insert it."
+  (interactive "F")
   (insert dir))
 
 (my-insert-leader

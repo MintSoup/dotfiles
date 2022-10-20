@@ -1,5 +1,4 @@
 ;;; -*- lexical-binding: t -*-
-
 (defun dw/minibuffer-backward-kill (arg)
   "When minibuffer is completing a file name delete up to parent
 folder, otherwise delete a word"
@@ -25,11 +24,14 @@ folder, otherwise delete a word"
 		vertico-cycle nil)
   (vertico-mode)
   :config
-  (general-define-key :keymaps 'vertico-map
-					  "C-j" 'vertico-next
-					  "C-k" 'vertico-previous
-					  "C-w" 'dw/minibuffer-backward-kill
-					  "C-M-j" 'vertico-exit-input))
+  (general-define-key
+   :keymaps 'minibuffer-mode-map
+   "C-w" 'dw/minibuffer-backward-kill
+
+   :keymaps 'vertico-map
+   "C-j" 'vertico-next
+   "C-k" 'vertico-previous
+   "C-M-j" 'vertico-exit-input))
 
 (use-package orderless
   :straight t
@@ -39,20 +41,18 @@ folder, otherwise delete a word"
    completion-category-defaults nil
    orderless-matching-styles '(orderless-regexp)
    orderless-style-dispatchers
-   (list
-	(lambda (pattern index total) ;; Flex~
-	  (when (string-suffix-p "~" pattern)
-		`(orderless-flex . ,(substring pattern 0 -1))))
-	(lambda (pattern index total) ;; Prefix matcher
-	  (when (string-suffix-p "\\" pattern)
-		`(orderless-prefixes . ,(substring pattern 0 -1))))
-	(lambda (pattern index total) ;; Without!
-	  (cond
-	   ((equal "!" pattern)
-		'(orderless-literal . ""))
-	   ((string-prefix-p "!" pattern)
-		`(orderless-without-literal . ,(substring pattern 1))))))))
-
+   (cl-macrolet
+	   ((orderless-prefix-dispatcher (prefix style)
+		  `(lambda (pattern index total)
+			 (cond
+			  ((equal ,prefix pattern)
+			   '(orderless-literal . ""))
+			  ((string-prefix-p ,prefix pattern)
+			   (cons (quote ,style) (substring pattern 1)))))))
+	 (list
+	  (orderless-prefix-dispatcher "@" orderless-flex)
+	  (orderless-prefix-dispatcher "$" orderless-prefixes)
+	  (orderless-prefix-dispatcher "!" orderless-without-literal)))))
 
 (use-package marginalia
   :straight t
@@ -74,13 +74,15 @@ folder, otherwise delete a word"
 		(lambda (d)
 		  (projectile-project-root)))
   :config
-  (consult-customize consult-ripgrep consult-recent-file :preview-key
+  (consult-customize consult-ripgrep
+					 consult-recent-file
+					 :preview-key
 					 (list (kbd "C-p"))))
 
-
-
 (use-package all-the-icons-completion
-  :straight t
+  :straight (all-the-icons-completion
+			 :type git :host github :repo "iyefrat/all-the-icons-completion"
+			 :fork (:host github :repo "MintSoup/all-the-icons-completion"))
   :after (marginalia all-the-icons)
   :config
   (all-the-icons-completion-mode))
