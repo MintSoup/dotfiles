@@ -40,6 +40,7 @@ folder, otherwise delete a word"
    completion-styles '(orderless basic)
    completion-category-defaults nil
    orderless-matching-styles '(orderless-regexp)
+   completion-category-overrides '((file (styles basic-remote orderless)))
    orderless-style-dispatchers
    (cl-macrolet
 	   ((orderless-prefix-dispatcher (prefix style)
@@ -52,7 +53,17 @@ folder, otherwise delete a word"
 	 (list
 	  (orderless-prefix-dispatcher "@" orderless-flex)
 	  (orderless-prefix-dispatcher "$" orderless-prefixes)
-	  (orderless-prefix-dispatcher "!" orderless-without-literal)))))
+	  (orderless-prefix-dispatcher "!" orderless-without-literal))))
+  ;; TRAMP completion
+  (defun basic-remote-try-completion (string table pred point)
+	(and (vertico--remote-p string)
+		 (completion-basic-try-completion string table pred point)))
+  (defun basic-remote-all-completions (string table pred point)
+	(and (vertico--remote-p string)
+		 (completion-basic-all-completions string table pred point)))
+  (add-to-list
+   'completion-styles-alist
+   '(basic-remote basic-remote-try-completion basic-remote-all-completions nil)))
 
 (use-package marginalia
   :straight t

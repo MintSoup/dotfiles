@@ -6,7 +6,8 @@
   (let ((initial (buffer-name)))
 	(funcall change-buffer)
 	(cl-loop while
-			 (string-match-p my-skippable-buffer-regexp (buffer-name)) do
+			 (string-match-p my-skippable-buffer-regexp (buffer-name))
+			 do
 			 (if (eq (buffer-name) initial)
 				 (cl-return)
 			   (funcall change-buffer)))))

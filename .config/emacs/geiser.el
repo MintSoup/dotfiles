@@ -6,18 +6,20 @@
 
 (my-local-leader :keymaps 'geiser-mode-map
   "d"  '(:wk "Documentation")
-  ;; "dd" '(geiser-doc-symbol-ivy :wk "Doc for symbol")
+  "dd" '(+consult-geiser-doc-symbol :wk "Doc for symbol")
   "dm" '(geiser-doc-module :wk "Doc for module")
   ;; "di" '(counsel-geiser-doc-look-up-manual :wk "Info for symbol")
   )
 
-;; (defun geiser-doc-symbol-ivy ()
-;;   (interactive)
-;;   (ivy-read "Symbol: " geiser-completion-symbol-list-func
-;; 			:require-match t
-;; 			:action (lambda (cand)
-;; 					  (geiser-doc-symbol (intern cand)))
-;; 			:preselect (symbol-name (geiser--symbol-at-point))))
+(defun +consult-geiser-doc-symbol ()
+  (interactive)
+  (geiser-doc-symbol
+   (intern
+	(completing-read "Documentation: "
+					 geiser-completion-symbol-list-func
+					 #'always
+					 t
+					 (symbol-name (geiser--symbol-at-point))))))
 
 
 (general-define-key :keymaps 'geiser-debug-mode-map
@@ -25,8 +27,7 @@
 					"," 'geiser-debug--debugger-transient)
 
 (use-package geiser-guile
-  :straight t
-  :after company)
+  :straight t)
 
 (defun guile-run-external ()
   (interactive)

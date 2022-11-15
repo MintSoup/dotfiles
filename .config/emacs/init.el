@@ -88,6 +88,8 @@
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    '((+run-function lambda nil
+					(run-in-vterm "./carbon test.cbn" #'+projectile-vterm))
+	 (+run-function lambda nil
 					(run-in-vterm "./gps" #'+projectile-vterm))
 	 (+run-function lambda nil
 					(run-in-vterm "./vikram" #'+projectile-vterm))
@@ -101,3 +103,9 @@
 	 (+debug-function . projectile-run-gdb)
 	 (projectile-project-debug-cmd . "make -j12 debug")
 	 (projectile-project-compilation-cmd . "make -j12"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

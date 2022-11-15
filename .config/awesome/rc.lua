@@ -87,14 +87,14 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/nagyonmenohatterkep.png",
+	"/home/areg/Wallpapers/doge.png",
 }
 
 math.randomseed(os.time() * 4214053)
 
 local function set_wallpaper(s)
 	local wallpaper = wallpapers[math.random(1, #wallpapers)]
-	gears.wallpaper.maximized(wallpaper, s, true)
+	gears.wallpaper.maximized(wallpaper, s, false)
 end
 
 

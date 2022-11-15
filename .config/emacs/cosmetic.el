@@ -10,7 +10,7 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-height 28
+  (setq doom-modeline-height 32
 		doom-modeline-buffer-file-name-style 'relative-from-project)
   (doom-modeline-def-segment window-number
 	"The current window number."
