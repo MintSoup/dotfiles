@@ -29,7 +29,7 @@
   ";" '(eval-expression :wk "Eval expression")
   "g" '(magit :wk "Magit")
   "/" '(switch-to-buffer-other-window :wk "Switch to buffer in other window")
-  "SPC" '(consult-projectile-find-file :wk "Find file in project"))
+  "SPC" '(project-find-file :wk "Find file in project"))
 
 (general-create-definer my-help-leader
   :keymaps 'override
@@ -115,7 +115,7 @@
   (pcase (treemacs-current-visibility)
 	('visible (delete-window (treemacs-get-local-window)))
 	((or 'none 'exists)
-	 (let ((project (projectile-acquire-root)))
+	 (let ((project (project-current-root)))
 	   (treemacs-do-add-project-to-workspace
 		"/tmp"
 		"cringe")
@@ -124,22 +124,17 @@
 	   (doom-modeline-mode +1)))))
 
 
-(defun +projectile-vterm (&optional ARG)
-  (interactive "P")
-  (projectile-with-default-dir (projectile-acquire-root)
-	(vterm-other-window ARG)))
-
 (my-open-leader
   "" '(:ignore t :wk "Open")
-  "d" '(projectile-dired :wk "Dired")
+  "d" '(project-dired :wk "Dired")
   "D" '(dired-jump :wk "Dired here")
   "c" '(calc :wk "Calculator")
-  "v" '(+projectile-vterm :wk "VTerm")
+  "v" '(project-vterm :wk "VTerm")
   "t" '(transmission :wk "Torrents")
   "r" '(ielm :wk "IELM")
   "p" '(+treemacs :wk "Toggle tree")
   "a" '(org-agenda :wk "Org Agenda")
-  "e" '(projectile-run-eshell :wk "Eshell")
+  "e" '(project-eshell :wk "Eshell")
   "E" '(eshell :wk "Eshell here"))
 
 (general-create-definer my-file-leader
@@ -219,13 +214,12 @@
 
 (my-project-leader
   "" '(:ignore t :wk "Project")
-  "p" '(consult-projectile-switch-project :wk "Open")
+  "p" '(project-switch-project :wk "Open")
   "d" '(+project-debug :wk "Debug")
   "D" '(+project-stop-debug :wk "Stop debug")
-  "i" '(projectile-invalidate-cache :wk "Invalidate cache")
-  "c" '(+projectile-compile :wk "Compile project")
-  "r" '(+project-run :wk "Run project")
-  "a" '(projectile-add-known-project :wk "Add"))
+  ;; "i" '(projectile-invalidate-cache :wk "Invalidate cache")
+  "c" '(project-compile :wk "Compile project")
+  "r" '(+project-run :wk "Run project"))
 
 
 (general-create-definer my-mode-leader

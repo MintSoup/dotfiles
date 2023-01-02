@@ -10,8 +10,5 @@
   (doom-themes-treemacs-config)
   (treemacs-project-follow-mode +1))
 
-(use-package treemacs-projectile
-  :straight t)
-
 (use-package treemacs-evil
   :straight t)

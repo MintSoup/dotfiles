@@ -88,21 +88,10 @@
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    '((+run-function lambda nil
-					(run-in-vterm "./carbon test.cbn" #'+projectile-vterm))
-	 (+run-function lambda nil
-					(run-in-vterm "./gps" #'+projectile-vterm))
-	 (+run-function lambda nil
-					(run-in-vterm "./vikram" #'+projectile-vterm))
-	 (+run-function lambda nil
-					(async-shell-command "make run"))
-	 (+run-function . stm32-flash-to-mcu)
-	 (+debug-function . stm32-start-gdb)
-	 (projectile-project-debug-cmd . "make -j12")
-	 (+run-function lambda nil
-					(run-in-vterm "./carbon --disassemble test.cbn" #'+projectile-vterm))
+					(project-with-default-dir
+					 (run-in-vterm "./carbon test.cbn" #'+projectile-vterm)))
 	 (+debug-function . projectile-run-gdb)
-	 (projectile-project-debug-cmd . "make -j12 debug")
-	 (projectile-project-compilation-cmd . "make -j12"))))
+	 (debug-command . "make -j12 debug"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

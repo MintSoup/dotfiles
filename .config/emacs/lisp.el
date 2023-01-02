@@ -100,9 +100,4 @@
 
 (add-hook 'lisp-mode-hook 'highlight-quoted-mode)
 
-(defun psly ()
-  (interactive)
-  (projectile-with-default-dir (projectile-acquire-root)
-	(sly)))
-
 (require 'smartparens-config)

@@ -508,7 +508,7 @@ Meant for `org-mode-hook'."
   "*" #'org-ctrl-c-star
   "+" #'org-ctrl-c-minus
   "," #'org-switchb
-  "." #'org-goto
+  "." #'consult-org-heading
   ;; "." #'counsel-org-goto
   ;; "/" #'counsel-org-goto-all
   "\\" #'org-toggle-pretty-entities

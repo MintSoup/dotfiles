@@ -3,8 +3,8 @@
 set layout (xkb-switch)
 xkb-switch -s us
 
-i3lock -C \
--i "/home/areg/Wallpapers/mount.jpeg" \
+i3lock -L \
+-i "/home/areg/wallpapers/Ashenvale.jpg" \
 --layout-pos='w/2:h-20' \
 --clock \
 --keylayout 0 \

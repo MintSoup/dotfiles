@@ -68,7 +68,7 @@ run_once("flameshot")
 run_once("unclutter", "unclutter --timeout 30")
 run_once("xbindkeys")
 run_once("copyq")
-run_once({"picom", "picom --experimental-backends --backend glx -b "})
+run_once({"picom", "picom"})
 run_once("numlockx on")
 run_once("xsettingsd")
 awful.spawn("getup")
@@ -87,7 +87,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/Wallpapers/doge.png",
+	"/home/areg/wallpapers/Stormwind.jpg",
 }
 
 math.randomseed(os.time() * 4214053)

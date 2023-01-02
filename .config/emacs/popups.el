@@ -71,7 +71,7 @@
 		 (window-height . 0.35))
 
 		,(side-window-clause
-		   (rx bos (or "*Warnings*" "*Messages*") eos)
+		   (rx bos (or "*Warnings*" "*Messages*" "*eldoc*") eos)
 		   'window-height 0.3)))
 
 

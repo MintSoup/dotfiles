@@ -319,14 +319,6 @@
 			(async-shell-command c)))
 	  (async-shell-command c))))
 
-(defun stm32-flash-to-mcu ()
-  "Upload compiled binary to stm32 through gdb if gdb has been started."
-  (interactive)
-  (projectile-run-async-shell-command-in-root
-   (concat "st-flash write build/"
-		   (stm32-get-project-name) ".bin "
-		   "0x08000000")
-   "*st-util*"))
 
 (defun stm32-kill-gdb ()
   "Kill all st-util, gdb or openocd processes and buffers."
