@@ -18,6 +18,8 @@
    (let ((vterm-buffer-name (project-prefixed-buffer-name "vterm")))
 	 (vterm-other-window ARG))))
 
+(defun project-try-directory (dir)
+  (cons 'transient dir))
 
 (setq project-switch-commands
 	  '((project-find-file "Find file")
@@ -26,7 +28,10 @@
 		   (project-with-default-dir
 			(magit-status))) "Magit" "g")
 		(project-eshell "Eshell")
-		(project-vterm "VTerm" "v")))
+		(project-vterm "VTerm" "v"))
+	  project-find-functions
+	  '(project-try-vc
+		project-try-directory))
 
 (defvar debug-command "make -j12"
   "Command used for compiling project in debug mode.")
@@ -60,3 +65,10 @@
 	(funcall +on-finish-compilation-function)))
 
 (add-hook 'compilation-finish-functions '+post-compile)
+
+(use-package project-rootfile
+  :straight t
+  :config
+  ;; To get the ordering right
+  (setq project-find-functions
+		'(project-rootfile-try-detect project-try-vc project-try-directory)))

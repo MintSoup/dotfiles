@@ -151,7 +151,7 @@
 (defun browse-org-files ()
   "Browse file in emacs config directory"
   (interactive)
-  (let ((default-directory "~/Org/"))
+  (let ((default-directory "~/org/"))
 	(call-interactively #'find-file)))
 
 (my-file-leader
@@ -180,9 +180,6 @@
   "a" '(lsp-execute-code-action :wk "Fix")
   "n" '(flycheck-next-error :wk "Next Error")
   "p" '(flycheck-previous-error :wk "Previous Error")
-  "a" '(lsp-execute-code-action :wk "Fix")
-  "d" '(lsp-ui-doc-show :wk "Show documentation")
-  "D" '(lsp-ui-doc-hide :wk "Hide documentation")
   "e" '(+quickrun :wk "Execute")
   "E" '(quickrun-shell :wk "Execute in Eshell")
   ;; "b" '(lsp-ivy-workspace-symbol :wk "Browse")

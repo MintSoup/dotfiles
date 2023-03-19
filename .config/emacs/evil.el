@@ -13,7 +13,8 @@
 		evil-ex-search-vim-style-regexp t
 		evil-want-C-u-scroll t
 		evil-respect-visual-line-mode t
-		evil-lookup-func 'man)
+		evil-lookup-func 'man
+		evil-ex-visual-char-range t)
   :config
   ;; use C to dd without yanking
   (evil-define-operator evil-delete-line-without-yank (beg end type reg yank-handler)

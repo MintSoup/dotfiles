@@ -83,7 +83,7 @@ folder, otherwise delete a word"
 		  consult--source-project-buffer)
 		consult-project-function
 		(lambda (d)
-		  (projectile-project-root)))
+		  (project-current-root)))
   :config
   (consult-customize consult-ripgrep
 					 consult-recent-file

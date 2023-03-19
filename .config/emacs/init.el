@@ -87,9 +87,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((+run-function lambda nil
+   '((debug-command . "make -j12")
+	 (+debug-function lambda nil
+					  (project-with-default-dir
+					   (call-interactively #'gdb)))
+	 (+debug-function lambda nil
+					  (project-with-default-dir
+					   (gdb)))
+	 (projectile-project-debug-cmd . "make -j12")
+	 (projectile-project-compilation-cmd . "make -j12")
+	 (+run-function lambda nil
 					(project-with-default-dir
-					 (run-in-vterm "./carbon test.cbn" #'+projectile-vterm)))
+					 (run-in-vterm "./carbon test.cbn" #'vterm)))
 	 (+debug-function . projectile-run-gdb)
 	 (debug-command . "make -j12 debug"))))
 (custom-set-faces

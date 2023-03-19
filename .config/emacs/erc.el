@@ -14,7 +14,8 @@
 		erc-nick "mintsoup"
 		erc-auto-query 'window-noselect
 		erc-fill-column 120
-		erc-fill-static-center 30)
+		erc-fill-static-center 30
+		erc-join-buffer 'buffer)
 
   ;; (add-hook 'erc-mode-hook 'visual-fill-column-mode)
   (add-hook 'erc-mode-hook 'erc-pcomplete-disable)

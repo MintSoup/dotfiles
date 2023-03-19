@@ -5,15 +5,15 @@
   :config
   (company-tng-mode)
   (setq company-idle-delay 0
-		company-minimum-prefix-length 1)
+		company-minimum-prefix-length 1
+		company-backends '((company-capf company-files))
+		company-icon-size '(auto-scale . 20))
   (general-define-key :keymaps 'company-tng-map
 					  "C-w" nil
 					  "C-h" nil
 					  "<f1>" nil
 					  ;; "C-c" 'company-complete
 					  "<tab>" 'company-select-next)
-  (setq company-backends
-		'((company-capf company-files)))
   (general-define-key :keymaps 'yas-minor-mode-map
 					  :states 'insert
 					  "C-." 'company-yasnippet))

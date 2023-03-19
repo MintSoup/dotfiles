@@ -6,6 +6,7 @@
 		lua-indent-level 2
 		python-indent-offset 4
 		c-basic-offset 4
+		c-ts-mode-indent-offset 4
 		indent-tabs-mode t
 		backward-delete-char-untabify-method nil
 		sgml-basic-offset 4

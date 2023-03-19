@@ -287,7 +287,6 @@ The changes are then made buffer-local."
 ;;; ligature.el ends here
 ;; Enable the www ligature in every possible major mode
 (ligature-set-ligatures 't '("www"))
-
 ;; Enable ligatures in programming modes
 (mapc (lambda (mode)
 		(ligature-set-ligatures mode
@@ -302,5 +301,6 @@ The changes are then made buffer-local."
 								  "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
 								  "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%")))
 	  '(prog-mode vterm-mode eshell-mode))
+(ligature-set-ligatures 'org-mode '(("-" (rx (+ "-")))))
 
 (global-ligature-mode 't)

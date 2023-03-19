@@ -1,4 +1,9 @@
 ;;; -*- lexical-binding: t -*-
+
+(defun turn-off-visual-line-mode ()
+  (interactive)
+  (visual-line-mode -1))
+
 (use-package evil-cleverparens
   :straight t
   :hook (emacs-lisp-mode . evil-cleverparens-mode)
@@ -59,19 +64,17 @@
 					:states '(normal visual)
 					"s" 'evil-snipe-s
 					"x" 'evil-cp-delete-char-without-yank
-					"C" 'evil-cp-delete-line-without-yank
-					"M-y" 'evil-paste-pop)
+					"C" 'evil-cp-delete-line-without-yank)
 
+(general-define-key :keymap 'evil-cleverparens-mode-map
+					"M-y" 'evil-paste-pop
+					"M-e" 'sp-split-sexp)
 
 (defun evil-cp--balanced-block-p-noyank (beg end)
   (let* ((region (evil-yank-rectangle beg end ?_)))
 	(with-temp-buffer
 	  (insert region)
 	  (sp-region-ok-p (point-min) (point-max)))))
-
-(defun turn-off-visual-line-mode ()
-  (interactive)
-  (visual-line-mode -1))
 
 (defun indent-this-sexp (BEG END &optional TYPE REGISTER YANK-HANDLER)
   (when (evil-cp--inside-any-form-p)

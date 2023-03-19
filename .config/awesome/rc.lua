@@ -71,7 +71,6 @@ run_once("copyq")
 run_once({"picom", "picom"})
 run_once("numlockx on")
 run_once("xsettingsd")
-awful.spawn("getup")
 
 awful.spawn("xset r rate 200 40", false)
 
@@ -87,7 +86,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/wallpapers/Stormwind.jpg",
+	"/home/areg/wallpapers/nagyonmenohatterkep.png",
 }
 
 math.randomseed(os.time() * 4214053)
@@ -472,7 +471,6 @@ client.connect_signal("manage", function (c)
 end)
 
 fastscroll = {
-	"Brave-browser",
 	"discord",
 	"Element",
 	"Zathura",

@@ -153,7 +153,7 @@
 
 (defun stm32-get-project-root-dir ()
   "Return root path of current project."
-  (projectile-acquire-root))
+  (project-current-root))
 
 
 (defun stm32-get-project-build-dir ()
@@ -261,10 +261,9 @@
 	  (let ((pth (concat dir "/" name ".elf")))
 		(message pth)
 		(when (file-exists-p pth)
-		  (progn
-			(message pth)
-			(projectile-with-default-dir (projectile-acquire-root)
-			  (gdb (concat stm32-gdb-start pth)))))))))
+		  (message pth)
+		  (project-with-default-dir
+		   (gdb (concat stm32-gdb-start pth))))))))
 
 (defun stm32-start-openocd-gdb ()
   "Strart gud arm-none-eabi-gdb and connect to openocd."
@@ -350,7 +349,7 @@
   (dolist (file (directory-files
 				 (expand-file-name "stm32" user-emacs-directory)
 				 t "^\\.?[a-zA-Z]"))
-	(copy-file file (projectile-acquire-root)))
+	(copy-file file (stm32-get-project-root-dir)))
   (interactive))
 
 (provide 'stm32)
