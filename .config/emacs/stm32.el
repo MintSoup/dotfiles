@@ -349,8 +349,22 @@
   (dolist (file (directory-files
 				 (expand-file-name "stm32" user-emacs-directory)
 				 t "^\\.?[a-zA-Z]"))
-	(copy-file file (stm32-get-project-root-dir)))
-  (interactive))
+	(copy-file file (stm32-get-project-root-dir))))
+
+(defun stm32-modify-makefile ()
+  (interactive)
+  (beginning-of-buffer)
+  (search-forward "C_INCLUDES")
+  (forward-paragraph)
+  (insert "-I/usr/arm-none-eabi/include")
+  (previous-line)
+  (end-of-line)
+  (insert " \\")
+
+  (beginning-of-buffer)
+  (search-forward "float-abi")
+  (next-line)
+  (insert "FLOAT-ABI = -mfloat-abi=soft"))
 
 (provide 'stm32)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
