@@ -9,7 +9,8 @@
 					"<f5>"		'gud-cont
 					"<delete>"	'gud-remove)
 
-(setq gdb-many-windows t)
+(setq gdb-many-windows t
+	  gdb-debuginfod-enable-setting nil)
 
 (defun my-gdb-setup-windows ()
   "Lay out the window pattern for option `gdb-many-windows'."

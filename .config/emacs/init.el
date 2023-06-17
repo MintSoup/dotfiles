@@ -4,10 +4,11 @@
 ;; (defvaralias 'comp-deferred-compilation-deny-list 'native-comp-deferred-compilation-deny-list)
 
 (defvar bootstrap-version)
+(setq straight-repository-branch "develop")
 
 (let ((bootstrap-file
 	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-	  (bootstrap-version 5))
+ 	  (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
 	(with-current-buffer
 		(url-retrieve-synchronously
@@ -101,9 +102,3 @@
 					 (run-in-vterm "./carbon test.cbn" #'vterm)))
 	 (+debug-function . projectile-run-gdb)
 	 (debug-command . "make -j12 debug"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

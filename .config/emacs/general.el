@@ -195,6 +195,7 @@
   "S" '(consult-line-multi :wk "All open buffers")
   ;; "d" '(counsel-fd-dired-jump :wk "Find directory")
   ;; "f" '(counsel-fd-file-jump :wk "Find file")
+  "o" '(consult-outline :wk "Outline")
   "r" '(consult-ripgrep :wk "Ripgrep")
   "i" '(consult-imenu :wk "Symbol"))
 

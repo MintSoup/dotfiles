@@ -13,7 +13,6 @@ SETUVAR _fish_abbr_p:paru
 SETUVAR _fish_abbr_pr:paru\x20\x2dRns
 SETUVAR _fish_abbr_ps:paru\x20\x2dS
 SETUVAR _fish_abbr_pss:paru\x20\x2dSs
-SETUVAR _fish_abbr_rog:sudo\x20rogauracore
 SETUVAR _fish_abbr_rs:rsync\x20\x2dazP
 SETUVAR _fish_abbr_sp:sudo\x20pacman\x20\x2d
 SETUVAR _fish_abbr_spc:sudo\x20pacman\x20\x2dS

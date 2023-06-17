@@ -1,2 +1,2 @@
 #!/bin/fish
-youtube-dl --output "/DATA/Music/%(title)s.%(ext)s" -fbestaudio --extract-audio --audio-format mp3 --audio-quality 0 "ytsearch:$argv[1]"
+yt-dlp --output "/DATA/Music/%(title)s.%(ext)s" -fbestaudio --extract-audio --audio-format mp3 --audio-quality 0 "ytsearch:$argv[1]"

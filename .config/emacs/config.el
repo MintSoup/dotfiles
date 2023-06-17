@@ -57,12 +57,12 @@
 
 
 (with-eval-after-load 'tramp
-					  (setq tramp-default-method "ssh"
-							;; To allow logging into non-standard
-							;; systems, i.e. guix or nix where
-							;; /bin/ls doesn't exist
-							tramp-remote-path (append tramp-remote-path
-													  '(tramp-own-remote-path))))
+  (setq tramp-default-method "ssh"
+		;; To allow logging into non-standard
+		;; systems, i.e. guix or nix where
+		;; /bin/ls doesn't exist
+		tramp-remote-path (append tramp-remote-path
+								  '(tramp-own-remote-path))))
 
 (setq sentence-end-double-space nil)
 
@@ -84,6 +84,15 @@
   :config
   (ace-window-display-mode))
 
+(use-package wgrep
+  :straight t
+  :config
+  (general-define-key :keymaps 'grep-mode
+					  :states 'normal
+					  "i" 'wgrep-change-to-wgrep-mode)
+  (general-define-key :keymaps 'wgrep-mode-map
+					  :states 'normal
+					  "i" 'evil-cp-insert))
 
 (general-define-key
  :keymaps '(c-mode-map c++-mode-map java-mode-map)

@@ -75,7 +75,7 @@ folder, otherwise delete a word"
 
 (use-package consult
   :straight t
-  :init
+  :config
   (setq consult-buffer-sources
 		'(consult--source-hidden-buffer
 		  consult--source-modified-buffer
@@ -84,11 +84,10 @@ folder, otherwise delete a word"
 		consult-project-function
 		(lambda (d)
 		  (project-current-root)))
-  :config
   (consult-customize consult-ripgrep
 					 consult-recent-file
-					 :preview-key
-					 (list (kbd "C-p"))))
+					 :preview-key "C-p"))
+
 
 (use-package all-the-icons-completion
   :straight (all-the-icons-completion
