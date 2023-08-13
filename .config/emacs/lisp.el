@@ -68,7 +68,8 @@
 
 (general-define-key :keymap 'evil-cleverparens-mode-map
 					"M-y" 'evil-paste-pop
-					"M-e" 'sp-split-sexp)
+					"M-e" 'sp-split-sexp
+					"M-m" 'sp-join-sexp)
 
 (defun evil-cp--balanced-block-p-noyank (beg end)
   (let* ((region (evil-yank-rectangle beg end ?_)))

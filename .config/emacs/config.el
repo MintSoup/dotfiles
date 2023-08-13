@@ -30,11 +30,6 @@
 		  (lambda ()
 			(evil-scroll-line-to-top (line-number-at-pos))))
 
-(use-package su
-  :straight t
-  :config
-  (su-mode +1))
-
 (use-package lorem-ipsum
   :straight t)
 

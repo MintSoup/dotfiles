@@ -1,5 +1,7 @@
 local lain = require("lain")
 local awful = require("awful")
+local naughty = require("naughty")
+local gears = require("gears")
 
 local function get()
 	local mic = lain.widget.pulse {
@@ -16,7 +18,16 @@ local function get()
 	}
 	function mic:mute()
 		awful.spawn(string.format("pactl set-source-mute 0 toggle"), false)
-
+		gears.timer {
+			timeout   = 0.05,
+			call_now  = false,
+			autostart = true,
+			callback  = function()
+				awful.spawn.easy_async("pactl get-source-mute 0", function(stdout, stderr, reason, exit_code)
+										   naughty.notify { text = stdout, timeout = 1, height = 40, width = 130} end)
+			end,
+			single_shot = true,
+		}
 		self:update()
 	end
 	mic.widget:buttons(awful.util.table.join(
