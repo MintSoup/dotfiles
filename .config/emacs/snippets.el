@@ -6,14 +6,18 @@
   :config
   (general-define-key
    :keymaps 'yas-minor-mode-map
+   "TAB" nil
+   "<tab>" nil)
+  (general-define-key
+   :keymaps 'yas-minor-mode-map
    :states 'insert
-   "C-e" 'yas-expand
-   "\t" nil)
+   "C-e" 'yas-expand)
 
   (general-define-key
    :keymaps 'yas-keymap
-   "C-c" 'yas-next-field-or-maybe-expand
-   "\t" nil))
+   "C-c" 'yas-next-field
+   "C-S-c" 'yas-prev-field
+   "<tab>" nil))
 
 (use-package yasnippet-snippets
   :straight t

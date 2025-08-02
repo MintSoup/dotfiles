@@ -24,7 +24,7 @@
 
 (general-define-key :keymaps 'geiser-debug-mode-map
 					:states 'normal
-					"," 'geiser-debug--debugger-transient)
+					"," 'geiser-guile--debug-transient)
 
 (use-package geiser-guile
   :straight t)

@@ -1,116 +1,76 @@
-;; Splash
-(setq fancy-splash-image (concat doom-private-dir "emacs.svg"))
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Company
-(setq company-idle-delay 0.01)
-(setq company-minimum-prefix-length 1)
+;; Place your private configuration here! Remember, you do not need to run 'doom
+;; sync' after modifying this file!
 
-;; Font and Theme
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 20 :weight 'semi-light)
-	  doom-variable-pitch-font (font-spec :family "sans" :size 21)
-	  doom-themes-enable-bold t
-	  doom-themes-enable-italic t
-	  doom-theme 'my-dark
-	  doom-modeline-major-mode-icon t
-	  doom-themes-neotree-file-icons t)
 
-;; Org
-(setq org-directory "~/Org/"
-	  org-hide-emphasis-markers t)
-(add-hook 'org-mode-hook 'hl-todo-mode)
-(add-hook 'org-mode-hook (lambda () (company-mode -1)))
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets. It is optional.
+;; (setq user-full-name "John Doe"
+;;       user-mail-address "john@doe.com")
 
-;; Line numbers
+;; Doom exposes five (optional) variables for controlling fonts in Doom:
+;;
+;; - `doom-font' -- the primary font to use
+;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
+;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;; - `doom-symbol-font' -- for symbols
+;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
+;;
+;; See 'C-h v doom-font' for documentation and more examples of what they
+;; accept. For example:
+;;
+;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+;;
+;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
+;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
+;; refresh your font settings. If Emacs still can't find your font, it likely
+;; wasn't installed correctly. Font issues are rarely Doom issues!
+
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-one)
+
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-;; Evil customization
-(evil-ex-define-cmd "W" 'evil-write)
-
-(evil-define-operator evil-delete-line-without-yank (beg end type reg yank-handler)
-	"Delete line without yanking."
-	:motion evil-line-or-visual-line
-	(evil-delete-whole-line beg end type ?_ yank-handler))
-
-(evil-define-operator evil-org-delete-char-without-yank (count beg end type register)
-	"Same as evil-line-or-visual-line but without yank."
-	:motion evil-forward-char
-	(interactive "p<R><x>")
-	(evil-org-delete-char count beg end type ?_))
-
-(map! :n "x" 'delete-forward-char
-	  :n "C" 'evil-delete-line-without-yank
-	  :n "C-a" 'evil-numbers/inc-at-pt
-	  :n "C-S-a" 'evil-numbers/dec-at-pt)
-
-(map! :after evil-org
-	  :map evil-org-mode-map
-	  :n "x" 'evil-org-delete-char-without-yank)
-
-(map! :after evil-snipe
-	  :map evil-snipe-mode-map
-	  :n "S" 'evil-avy-goto-char-2)
-
-(setq evil-snipe-scope 'whole-buffer
-	  evil-snipe-repeat-scope 'whole-buffer)
-
-;; Dired
-(map! :after dired
-	  :map dired-mode-map
-
-	  :n "-"
-	  (cmd! () (find-alternate-file ".."))
-
-	  :n "Y"
-	  (cmd! () (dired-copy-filename-as-kill 0))
-
-	  :localleader
-	  :n "m"
-	  'dired-hide-dotfiles-mode)
-
-(add-hook 'dired-mode-hook (cmd! () (dired-hide-dotfiles-mode) (not-modified)))
-
-;; Custom keybinds
-(map! :leader
-	  :desc "Open calculator" "oc" 'calc)
-
-(map! :leader
-	  :desc "Previous buffer" "j" 'previous-buffer
-	  :desc "Next buffer" "k" 'next-buffer)
-
-(map! :i "TAB" 'tab-to-tab-stop)
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/org/")
 
 
-;; Undo
-(remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)
-
-;; Which key delay
-(setq-default which-key-idle-delay 0.35
-			  which-key-idle-secondary-delay 0.000001)
-
-;; Indentation
-(add-hook 'prog-mode-hook
-		  (lambda ()
-			  (setq indent-tabs-mode t)
-			  (doom/set-indent-width 4)
-			  (setq python-indent-offset 4)))
-(add-hook 'emacs-lisp-mode-hook (lambda () (doom/set-indent-width 4)))
-(setq lisp-body-indent 4)
-
-(setq backward-delete-char-untabify-method nil)
-
-;; Guile
-(setq geiser-active-implementations '(guile))
-
-;; Dashboard
-(add-hook '+doom-dashboard-mode-hook 'hide-mode-line-mode)
-
-;; LSP
-(add-hook 'lsp-ui-mode-hook 'lsp-ui-doc-mode)
-
-;; CC mode
-(setq lsp-clients-clangd-args '("-j=12"
-                                "--background-index"
-                                "--clang-tidy"
-                                "--completion-style=detailed"
-                                "--header-insertion=never"))
-(setq-hook! 'c-mode-hook +format-with-lsp nil)
+;; Whenever you reconfigure a package, make sure to wrap your config in an
+;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
+;;
+;;   (after! PACKAGE
+;;     (setq x y))
+;;
+;; The exceptions to this rule:
+;;
+;;   - Setting file/directory variables (like `org-directory')
+;;   - Setting variables which explicitly tell you to set them before their
+;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
+;;   - Setting doom variables (which start with 'doom-' or '+').
+;;
+;; Here are some additional functions/macros that will help you configure Doom.
+;;
+;; - `load!' for loading external *.el files relative to this one
+;; - `use-package!' for configuring packages
+;; - `after!' for running code after a package has loaded
+;; - `add-load-path!' for adding directories to the `load-path', relative to
+;;   this file. Emacs searches the `load-path' when you load packages with
+;;   `require' or `use-package'.
+;; - `map!' for binding new keys
+;;
+;; To get information about any of these functions/macros, move the cursor over
+;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+;; This will open documentation for it, including demos of how they are used.
+;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
+;; etc).
+;;
+;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+;; they are implemented.

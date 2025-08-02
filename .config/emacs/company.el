@@ -17,10 +17,3 @@
   (general-define-key :keymaps 'yas-minor-mode-map
 					  :states 'insert
 					  "C-." 'company-yasnippet))
-
-(defun eshell-disable-company-on-tramp ()
-  (when (and (fboundp 'company-mode)
-			 (file-remote-p default-directory))
-	(company-mode -1)))
-
-(add-hook 'eshell-mode-hook 'eshell-disable-company-on-tramp)

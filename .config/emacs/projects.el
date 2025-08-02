@@ -1,4 +1,6 @@
 ;;; -*- lexical-binding: t -*-
+(use-package project
+  :straight t)
 
 (defun project-current-root ()
   (project-root (project-current)))
@@ -118,4 +120,6 @@
   :config
   ;; To get the ordering right
   (setq project-find-functions
-		'(project-rootfile-try-detect project-try-vc project-try-directory)))
+		'(project-try-vc
+		  project-rootfile-try-detect
+		  project-try-directory)))

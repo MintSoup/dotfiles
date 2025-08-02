@@ -1,25 +1,24 @@
 ;;; -*- lexical-binding: t -*-
-(add-hook 'eshell-mode-hook
-		  (lambda ()
-			(setq-local tab-width 4)))
+
+(defun eshell-setup-company ()
+  (setq-local company-backends
+			  '(company-capf)))
 
 (add-hook 'eshell-mode-hook 'company-mode)
-(general-define-key :states 'insert
-					:keymaps 'eshell-mode-map
-					"<tab>" 'company-select-next)
+(add-hook 'eshell-mode-hook 'eshell-setup-company)
+(setq eshell-hist-ignoredups t)
 
 (my-local-leader :keymaps 'eshell-mode-map
-  "b" '(eshell-insert-buffer-name :wk "Insert buffer name"))
+  "b" '(eshell-insert-buffer-name :wk "Insert buffer name")
+  "d" '(eshell-cd-interactive :wk "Cd"))
 
 (defun eshell-at (ARG)
-  (interactive "D")
+  (interactive "DOpen Eshell in: ")
   (let* ((default-directory ARG)
 		 (eshell-buffer-name
 		  (format "*eshell %s*" (file-name-nondirectory
 								 (directory-file-name default-directory)))))
 	(eshell)))
-
-(require 'cl)
 
 (defun fish-path (path max-len)
   "Return a potentially trimmed-down version of the directory PATH, replacing
@@ -45,28 +44,33 @@ length of PATH (sans directory slashes) down to MAX-LEN."
 			components (cdr components)))
 	(concat str (reduce (lambda (a b) (concat a "/" b)) components))))
 
+(require 'cl)
 (defun with-face (str &rest face-plist)
   (propertize str 'face face-plist))
 
 (defun my-eshell-prompt ()
-  (concat
-
-   (with-face "("
-			  :foreground (doom-color 'magenta))
-   (with-face (user-login-name)
-			  :foreground (doom-color 'blue))
-   (with-face (system-name)
-			  :foreground (doom-color 'red))
-   (with-face ") "
-			  :foreground (doom-color 'magenta))
-
-   (with-face (fish-path (eshell/pwd) 10)
-			  :foreground (doom-color 'green))
-   (with-face " $"
-			  :foreground (doom-color 'orange))
-   (with-face " " :foreground (doom-color 'violet))))
-
-
+  (concat (with-face "(" :foreground (doom-color 'magenta))
+		  (with-face (user-login-name) :foreground (doom-color 'blue))
+		  (with-face (system-name) :foreground (doom-color 'red))
+		  (with-face ") " :foreground (doom-color 'magenta))
+		  (with-face (fish-path (eshell/pwd) 10) :foreground (doom-color 'green))
+		  (with-face " $" :foreground (doom-color 'orange))
+		  (with-face " " :foreground (doom-color 'violet))))
 
 (setq eshell-prompt-function 'my-eshell-prompt)
 (setq eshell-prompt-regexp "([a-z]+) .* \\$ ")
+
+(defun eshell-cd-interactive (dir)
+  (interactive "DCd into: ")
+  (eshell/cd dir)
+  (if (string-empty-p (eshell-get-old-input))
+	  (eshell-send-input)
+	(save-excursion
+	  (beginning-of-line)
+	  (let ((prompt-end
+			 (save-excursion
+			   (eshell-skip-prompt)
+			   (point)))
+			(inhibit-read-only t))
+		(delete-region (point) prompt-end))
+	  (eshell-emit-prompt))))

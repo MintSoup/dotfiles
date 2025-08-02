@@ -1,4 +1,4 @@
-;;; -*- (lexical-binding:) t -*-
+;;; -*- lexical-binding: t -*-
 ;; General
 (use-package general
   :straight t
@@ -110,18 +110,18 @@
   :states '(normal visual motion)
   :prefix "SPC o")
 
-(defun +treemacs ()
-  (interactive)
-  (pcase (treemacs-current-visibility)
-	('visible (delete-window (treemacs-get-local-window)))
-	((or 'none 'exists)
-	 (let ((project (project-current-root)))
-	   (treemacs-do-add-project-to-workspace
-		"/tmp"
-		"cringe")
-	   (treemacs-display-current-project-exclusively))
-	 (with-current-buffer (treemacs-get-local-buffer)
-	   (doom-modeline-mode +1)))))
+;; (defun +treemacs ()
+;;   (interactive)
+;;   (pcase (treemacs-current-visibility)
+;; 	('visible (delete-window (treemacs-get-local-window)))
+;; 	((or 'none 'exists)
+;; 	 (let ((project (project-current-root)))
+;; 	   (treemacs-do-add-project-to-workspace
+;; 		"/tmp"
+;; 		"cringe")
+;; 	   (treemacs-display-current-project-exclusively))
+;; 	 (with-current-buffer (treemacs-get-local-buffer)
+;; 	   (doom-modeline-mode +1)))))
 
 
 (my-open-leader
@@ -132,7 +132,7 @@
   "v" '(project-vterm :wk "VTerm")
   "t" '(transmission :wk "Torrents")
   "r" '(ielm :wk "IELM")
-  "p" '(+treemacs :wk "Toggle tree")
+  ;; "p" '(+treemacs :wk "Toggle tree")
   "a" '(org-agenda :wk "Org Agenda")
   "e" '(project-eshell :wk "Eshell")
   "E" '(eshell :wk "Eshell here"))

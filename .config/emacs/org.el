@@ -652,11 +652,12 @@ Meant for `org-mode-hook'."
 		(sequence "UNREVIEWED(u)" "REVIEW(r)" "INPROG(p)" "|" "DONE(d)" "REJECTED(x)"))
 
 	  org-todo-keyword-faces
-	  '(("PROG" . "dark orange")
-		("UNREVIEWD" . "#98be65")
-		("REVIEW" . "dark turquoise")
-		("INPROG" . "dark orange")
-		("REJECTED" . "tomato"))
+	  '(("UNREVIEWD" . "#98be65")
+	   ("REVIEW" . "dark turquoise")
+	   ("INPROG" . "dark orange")
+	   ("REJECTED" . (:background "tomato"
+								  :foreground "black"
+								  :weight black)))
 
 
 	  org-latex-default-packages-alist

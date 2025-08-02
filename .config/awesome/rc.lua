@@ -63,7 +63,7 @@ end
 run_once({"emacs", "emacs --daemon"})
 run_once("brave")
 run_once({"Discord", "discord"})
-run_once({"electron", "element-desktop"})
+-- run_once({"electron", "element-desktop"})
 run_once("flameshot")
 run_once("unclutter", "unclutter --timeout 30")
 run_once("xbindkeys")
@@ -86,7 +86,7 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/wallpapers/mountain.jpg",
+	"/home/areg/wallpapers/sunset.jpg",
 }
 
 math.randomseed(os.time() * 4214053)

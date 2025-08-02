@@ -41,6 +41,7 @@
 
 ;; Aux
 (load-user-config-file "helpful.el")
+(load-user-config-file "buffers.el")
 (load-user-config-file "projects.el")
 (load-user-config-file "dired.el")
 (load-user-config-file "popups.el")
@@ -50,12 +51,10 @@
 (load-user-config-file "vterm.el")
 (load-user-config-file "whichkey.el")
 (load-user-config-file "company.el")
-(load-user-config-file "buffers.el")
+(load-user-config-file "lsp.el")
 (load-user-config-file "quickrun.el")
 (load-user-config-file "erc.el")
-(load-user-config-file "tree.el")
 (load-user-config-file "margin.el")
-(load-user-config-file "lsp.el")
 (load-user-config-file "magit.el")
 (load-user-config-file "gud.el")
 (load-user-config-file "torrent.el")
@@ -65,16 +64,19 @@
 (load-user-config-file "snippets.el")
 (load-user-config-file "restclient.el")
 (load-user-config-file "flycheck.el")
-(load-user-config-file "beardbolt.el")
+;; (load-user-config-file "beardbolt.el")
 
 ;; Lang
-(load-user-config-file "geiser.el") ;; Scheme
-(load-user-config-file "lua.el") ;; Lua
-(load-user-config-file "carbon.el") ;; Carbon
-(load-user-config-file "stm32.el") ;; STM32
-(load-user-config-file "as.el") ;; NASM
-(load-user-config-file "lisp.el") ;; Lisp
-(load-user-config-file "web.el") ;; Web stuff
+(load-user-config-file "geiser.el")
+(load-user-config-file "lua.el") ;; Scheme
+(load-user-config-file "carbon.el")
+(load-user-config-file "stm32.el")
+(load-user-config-file "as.el")
+(load-user-config-file "lisp.el")
+(load-user-config-file "web.el")
+(load-user-config-file "cmake.el")
+(load-user-config-file "typst.el")
+
 
 ;; Other
 (load-user-config-file "private.el")
@@ -88,7 +90,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((debug-command . "make -j12")
+   '((+debug-function . stm32-start-gdb)
+	 (debug-command . "make -j12")
 	 (+debug-function lambda nil
 					  (project-with-default-dir
 					   (call-interactively #'gdb)))
@@ -101,4 +104,5 @@
 					(project-with-default-dir
 					 (run-in-vterm "./carbon test.cbn" #'vterm)))
 	 (+debug-function . projectile-run-gdb)
-	 (debug-command . "make -j12 debug"))))
+	 (debug-command . "make -j12 debug")))
+ '(warning-suppress-log-types '((native-compiler))))

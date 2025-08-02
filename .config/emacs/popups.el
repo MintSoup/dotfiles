@@ -33,7 +33,7 @@
 		,(side-window-clause 'flycheck-error-list-mode 'window-height 0.4)
 		,(side-window-clause (rx bos "*ielm*" eos))
 
-		(,(rx bos (or "*vterm" "*eshell") (* anychar) "*"
+		(,(rx bos (or "*vterm" "*eshell" "*request") (* anychar) "*"
 			  (? "<" (+ digit) ">") eos)
 		 (display-buffer-reuse-window
 		  display-buffer-in-side-window)

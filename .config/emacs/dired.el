@@ -24,6 +24,9 @@
   :init
   (setq dired-du-size-format t))
 
+(use-package fd-dired
+  :straight t)
+
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
 (defun up-alternate-file ()
@@ -66,7 +69,8 @@
 
 (setq dired-listing-switches "-alh"
 	  dired-dwim-target t
-	  all-the-icons-dired-monochrome nil)
+	  all-the-icons-dired-monochrome nil
+	  wdired-allow-to-change-permissions t)
 
 (add-hook 'dired-mode-hook 'dired-omit-mode)
 (put 'dired-find-alternate-file 'disabled nil)

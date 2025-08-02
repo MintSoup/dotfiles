@@ -13,8 +13,12 @@
 		evil-ex-search-vim-style-regexp t
 		evil-want-C-u-scroll t
 		evil-respect-visual-line-mode t
-		evil-lookup-func 'man
-		evil-ex-visual-char-range t)
+		;; evil-lookup-func 'man
+		evil-ex-visual-char-range t
+		evil-goto-definition-functions '(evil-goto-definition-xref
+										 evil-goto-definition-imenu
+										 evil-goto-definition-search
+										 evil-goto-definition-semantic))
   :config
   ;; use C to dd without yanking
   (evil-define-operator evil-delete-line-without-yank (beg end type reg yank-handler)
@@ -69,6 +73,12 @@
 	   beg (- end (if (evil-visual-state-p) 1 0))
 	   type)))
 
+  (evil-define-text-object +evil:inner-line-textobj (count &optional _beg _end type)
+	"Text object to select the whole url at point."
+	(cl-destructuring-bind (beg . end)
+		(bounds-of-thing-at-point 'line)
+	  (evil-range beg end type)))
+
   (general-define-key :keymaps 'outer
 					  "u" '+evil:outer-url-txtobj
 					  "g" '+evil:whole-buffer-txtobj
@@ -79,7 +89,8 @@
 					  "u" '+evil:inner-url-txtobj
 					  "g" '+evil:whole-buffer-txtobj
 					  "f" '+evil:defun-txtobj
-					  "a" 'evil-inner-arg)
+					  "a" 'evil-inner-arg
+					  "l" '+evil:inner-line-textobj)
 
   (general-define-key :states 'normal
 					  "C" 'evil-delete-line-without-yank
@@ -144,7 +155,8 @@
   (setq evil-snipe-smart-case t
 		evil-snipe-scope 'whole-buffer
 		evil-snipe-repeat-scope 'whole-buffer
-		evil-snipe-char-fold t)
+		evil-snipe-char-fold t
+		evil-snipe-repeat-keys nil)
   :config
   (general-define-key :states 'insert
 					  :keymaps 'evil-snipe-local-mode-map
