@@ -4,6 +4,7 @@
   :straight t
   :hook (c-mode . lsp)
   :hook (c++-mode . lsp)
+  :hook (rust-ts-mode . lsp)
   ;; :hook (java-mode . lsp)
   :config
   (setq lsp-idle-delay 0.1

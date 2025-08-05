@@ -471,7 +471,6 @@ client.connect_signal("manage", function (c)
 end)
 
 fastscroll = {
-	"discord",
 	"Element",
 	"Zathura",
 }
