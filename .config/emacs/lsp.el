@@ -42,6 +42,9 @@
 			   '((c++-mode c-mode) "clangd" "--completion-style=detailed" "--header-insertion-decorators=0"))
   (setq eglot-send-changes-idle-time 0.1
 		eldoc-idle-delay 0.2))
+
+(use-package consult-lsp
+  :straight t)
 ;; (use-package eglot-booster
 ;;   :after eglot
 ;;   :straight (:type git :host github :repo "jdtsmith/eglot-booster")

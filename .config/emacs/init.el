@@ -89,15 +89,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("8714a49a666c210d7527fe6cf325d6cba5432ccc46a7afd2943a21a3d8d0febc"
+	 "97ca1d334d8e728ee42aef7bdcd15fe5539cc88e9642773cea1758dbaf0c22c4"
+	 default))
  '(safe-local-variable-values
-   '((+debug-function . stm32-start-gdb)
-	 (debug-command . "make -j12")
+   '((+debug-function . stm32-start-gdb) (debug-command . "make -j12")
 	 (+debug-function lambda nil
 					  (project-with-default-dir
 					   (call-interactively #'gdb)))
-	 (+debug-function lambda nil
-					  (project-with-default-dir
-					   (gdb)))
+	 (+debug-function lambda nil (project-with-default-dir (gdb)))
 	 (projectile-project-debug-cmd . "make -j12")
 	 (projectile-project-compilation-cmd . "make -j12")
 	 (+run-function lambda nil
@@ -106,3 +107,9 @@
 	 (+debug-function . projectile-run-gdb)
 	 (debug-command . "make -j12 debug")))
  '(warning-suppress-log-types '((native-compiler))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

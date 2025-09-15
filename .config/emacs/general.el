@@ -182,8 +182,7 @@
   "p" '(flycheck-previous-error :wk "Previous Error")
   "e" '(+quickrun :wk "Execute")
   "E" '(quickrun-shell :wk "Execute in Eshell")
-  ;; "b" '(lsp-ivy-workspace-symbol :wk "Browse")
-  )
+  "b" '(consult-lsp-symbols :wk "Browse"))
 
 (general-create-definer my-search-leader
   :states '(normal visual motion)

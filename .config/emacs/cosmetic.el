@@ -70,13 +70,13 @@
 
   (set-face-attribute 'default nil
 					  :font "Fira Code Nerd Font"
-					  :height 105
+					  :height 125
 					  :weight 'normal)
 
   (set-face-attribute 'variable-pitch nil
 					  :font "Noto Sans"
 					  :weight 'normal
-					  :height 105)
+					  :height 125)
 
   (set-fontset-font t 'armenian "Noto Sans Armenian"))
 

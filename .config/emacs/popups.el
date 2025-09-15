@@ -30,6 +30,7 @@
 
 (setq display-buffer-alist
       `(,(side-window-clause 'helpful-mode 'window-height 0.4)
+		,(side-window-clause 'xref-mode 'window-height 0.4)
 		,(side-window-clause 'flycheck-error-list-mode 'window-height 0.4)
 		,(side-window-clause (rx bos "*ielm*" eos))
 
