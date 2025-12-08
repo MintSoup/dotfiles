@@ -182,7 +182,8 @@
   "p" '(flycheck-previous-error :wk "Previous Error")
   "e" '(+quickrun :wk "Execute")
   "E" '(quickrun-shell :wk "Execute in Eshell")
-  "b" '(consult-lsp-symbols :wk "Browse"))
+  "b" '(consult-lsp-symbols :wk "Browse")
+  "w" '(lsp-find-references :wk "Find references"))
 
 (general-create-definer my-search-leader
   :states '(normal visual motion)
@@ -193,7 +194,7 @@
   "s" '(consult-line :wk "Buffer")
   "S" '(consult-line-multi :wk "All open buffers")
   ;; "d" '(counsel-fd-dired-jump :wk "Find directory")
-  ;; "f" '(counsel-fd-file-jump :wk "Find file")
+  "f" '(consult-fd :wk "Find file")
   "o" '(consult-outline :wk "Outline")
   "r" '(consult-ripgrep :wk "Ripgrep")
   "i" '(consult-imenu :wk "Symbol"))

@@ -95,6 +95,12 @@
 					  :states 'normal
 					  "i" 'evil-cp-insert))
 
+(use-package dockerfile-mode
+  :straight t)
+
+(use-package yaml-mode
+  :straight t)
+
 (general-define-key
  :keymaps '(c-mode-map c++-mode-map java-mode-map)
  :states '(normal insert)

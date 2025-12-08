@@ -34,6 +34,6 @@
 (use-package all-the-icons-ibuffer
   :straight t
   :config
-  (all-the-icons-ibuffer-mode))
+  (add-hook 'ibuffer-mode-hook 'all-the-icons-ibuffer-mode))
 
 (add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
