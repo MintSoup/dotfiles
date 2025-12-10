@@ -9,7 +9,7 @@
   :hook (org-mode . +org-enable-auto-reformat-tables-h)
   :hook (org-mode . org-appear-mode)
   :init
-  (setq org-superstar-headline-bullets-list '(#x2B21 #x1F79B #x25C7 #x27D0)
+  (setq org-superstar-headline-bullets-list '(9673 9675 10040 10047)
 		org-superstar-leading-bullet ""))
 
 (use-package evil-org
@@ -711,9 +711,6 @@ Meant for `org-mode-hook'."
 
 (with-eval-after-load 'org-indent
   (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch)))
-
-(with-eval-after-load 'org-superstar
-  (set-face-attribute 'org-superstar-header-bullet nil :font "FreeSans" :height 1.0))
 
 ;; (setcar org-emphasis-regexp-components " \t('\"{[:alpha:]")
 ;; (setcar (nthcdr 1 org-emphasis-regexp-components) "[:alpha:]- \t.,:!?;'\")}\\")
