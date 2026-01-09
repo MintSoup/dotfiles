@@ -1,5 +1,5 @@
 function fish_prompt
-        set_color 61afef; echo -n $USER
+        set_color 51afef; echo -n $USER
         set_color normal
         set_color c678dd; echo -n @
         set_color e06c75; echo -n $hostname
