@@ -63,14 +63,15 @@ end
 run_once({"emacs", "emacs --daemon"})
 run_once("brave")
 run_once({"Discord", "discord"})
+run_once("Telegram")
+run_once("slack")
 -- run_once({"electron", "element-desktop"})
 run_once("flameshot")
-run_once("unclutter", "unclutter --timeout 30")
 run_once("xbindkeys")
 run_once("copyq")
-run_once({"picom", "picom"})
+run_once("picom")
 run_once("numlockx on")
-run_once("xsettingsd")
+run_once("xsettingsd") -- what is this for?
 
 awful.spawn("xset r rate 200 40", false)
 
@@ -86,7 +87,11 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 wallpapers = {
-	"/home/areg/wallpapers/sunset.jpg",
+	"/home/areg/wallpapers/city.jpg",
+	"/home/areg/wallpapers/city2.jpg",
+	"/home/areg/wallpapers/city3.jpg",
+	"/home/areg/wallpapers/city4.jpg",
+	"/home/areg/wallpapers/asphalt.jpg",
 }
 
 math.randomseed(os.time() * 4214053)
@@ -103,7 +108,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 -- Global widgets
 local mycalendar = wibox.container.background(wibox.widget.textclock(" %a, %d %b %Y"))
 local myclock = wibox.widget.textclock(" %R:%S", 1)
-local mybattery = require("battery")
+-- local mybattery = require("battery")
 local mytemp = require("temp")
 local mymem = require("mem")
 mypulse = require("pulse") -- not local so external.lua can access
@@ -186,7 +191,7 @@ awful.screen.connect_for_each_screen(function(s)
 				layout = wibox.layout.fixed.horizontal,
 				-- wwrapper(wibox.widget.systray()),
 				wwrapper_tight(mykeyboardlayout),
-				wwrapper(mybattery.widget),
+				-- wwrapper(mybattery.widget),
 				wwrapper(mytemp.widget),
 				wwrapper(mymem.widget),
 				wwrapper(mypulse.widget),
@@ -391,6 +396,8 @@ awful.rules.rules = {
 	{ rule = { class = "Brave-browser" }, properties = { screen = 1, tag = " " } },
 	{ rule = { class = "Element" }, properties = { screen = 1, tag = " " } },
 	{ rule = { class = "discord" }, properties = { screen = 1, tag = " " } },
+	{ rule = { class = "Telegram" }, properties = { screen = 1, tag = " " } },
+	{ rule = { class = "Slack" }, properties = { screen = 1, tag = " " } },
 	{ rule = { class = "st-256color" }, properties = { size_hints_honor = false } },
 }
 -- }}}

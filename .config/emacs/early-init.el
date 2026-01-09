@@ -1,6 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
-(setq native-comp-async-jobs-number 13
+(setq native-comp-async-jobs-number (num-processors)
 	  native-comp-async-report-warnings-errors nil
 	  straight-vc-git-default-clone-depth 1
 	  straight-process-buffer " *straight*"

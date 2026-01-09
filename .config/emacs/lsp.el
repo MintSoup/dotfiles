@@ -23,32 +23,13 @@
 	(setq-local evil-lookup-func 'eldoc))
   (add-hook 'lsp-mode-hook 'lsp-evil-hook))
 
-;; (use-package lsp-treemacs
-;;   :after lsp-mode
-;;   :straight t)
-
 (use-package lsp-ui
   :after lsp-mode
   :straight t)
 
-(use-package eglot
-  :straight t
-  ;; :hook (c-mode . eglot-ensure)
-  ;; :hook (c++-mode . eglot-ensure)
-  ;; :hook (c-ts-mode . eglot-ensure)
-  ;; :hook (c++-ts-mode . eglot-ensure)
-  :config
-  (add-to-list 'eglot-server-programs
-			   '((c++-mode c-mode) "clangd" "--completion-style=detailed" "--header-insertion-decorators=0"))
-  (setq eglot-send-changes-idle-time 0.1
-		eldoc-idle-delay 0.2))
 
-(use-package consult-lsp
-  :straight t)
-;; (use-package eglot-booster
-;;   :after eglot
-;;   :straight (:type git :host github :repo "jdtsmith/eglot-booster")
-;;   :config	(eglot-booster-mode))
+;; Use-package gives some weird error
+(straight-use-package 'consult-lsp)
 
-;; (use-package consult-eglot
+;; (use-package consult-lsp
 ;;   :straight t)
