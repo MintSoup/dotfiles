@@ -1,0 +1,99 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 0,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+        "battery",
+        "temperature",
+        "memory",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "clock",
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": " ",
+            "9": "﫸 ",
+            "default": "",
+        },
+		"persistent-workspaces": {
+			// "1": [],
+			// "2": [],
+			// "3": [],
+			// "4": [],
+			// "5": [],
+			// "6": [],
+			// "7": [],
+			// "8": [],
+			// "9": [],
+		}
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+	"battery": {
+		"interval": 2,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}",
+		"format-icons": {
+			"default": ["", "", "", "", "", "", "", "", "", ""],
+			"charging": "󰂄",
+			"not-charging": "󱟢"
+		},
+	},
+
+    "temperature": {
+		"interval": 1,
+        // "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon7/temp7_input",
+        "critical-threshold": 90,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", "", ""]
+    },
+
+    "memory": {
+        "interval": 1,
+        "format": " {used:0.1f}G",
+        "max-length": 10
+    },
+
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": " {volume}",
+        "format-muted": "婢",
+        "on-click": "pavucontrol",
+    },
+
+    "pulseaudio#microphone": {
+		"format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    },
+
+    "clock": {
+		"interval": 1,
+        "format": " {:%R:%S   %a, %d %b %Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+}
