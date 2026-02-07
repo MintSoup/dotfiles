@@ -6,7 +6,7 @@
 }
 
 window#waybar {
-	/* background: linear-gradient(90deg, rgba(0, 0, 0, 0) 50%, rgba(30, 34, 42, 0.5) 80%); */
+	/* background: linear-gradient(90deg, rgba(0, 0, 0, 0) 50%, rgba(30, 34, 42, 0.9) 80%); */
 
 	background: rgba(30, 34, 42, 0.85);
 }
@@ -18,18 +18,17 @@ window#waybar {
 }
 
 #workspaces button {
-	color: white;
 	border: none;
 	padding: 0 7px;
-}
-
-#workspaces button:hover {
+	box-shadow: none;
 	background: inherit;
 }
 
 #workspaces button label {
 	font-size: 1.1rem;
 	font-family: "NotoSans Regular";
+	box-shadow: none;
+	text-shadow: none;
 }
 
 #workspaces button.active label {
