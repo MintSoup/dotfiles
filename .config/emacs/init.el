@@ -62,8 +62,8 @@
 ;; (load-user-config-file "beardbolt.el")
 
 ;; Lang
-(load-user-config-file "geiser.el")
-(load-user-config-file "lua.el") ;; Scheme
+(load-user-config-file "geiser.el") ;; Scheme
+(load-user-config-file "lua.el")
 (load-user-config-file "carbon.el")
 (load-user-config-file "stm32.el")
 (load-user-config-file "as.el")
