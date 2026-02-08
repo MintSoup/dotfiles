@@ -31,7 +31,7 @@ static inline void switch_workspace(WORKSPACEID ws) {
 	g_pKeybindManager->m_dispatchers["workspace"](std::to_string(ws));
 }
 
-static void on_mouse_button(void *, SCallbackInfo &, std::any data) {
+static void on_mouse_button(void *, SCallbackInfo &info, std::any data) {
 	auto ev = std::any_cast<IPointer::SButtonEvent>(data);
 
 	const unsigned int button = ev.button;
@@ -48,6 +48,8 @@ static void on_mouse_button(void *, SCallbackInfo &, std::any data) {
 	if (!pressed)
 		return;
 
+	info.cancelled = true;
+
 	int ws = Desktop::focusState()->monitor()->activeWorkspaceID();
 	int row = ws_row(ws);
 	int col = ws_col(ws);
@@ -59,7 +61,7 @@ static void on_mouse_button(void *, SCallbackInfo &, std::any data) {
 	}
 }
 
-static void on_mouse_axis(void *, SCallbackInfo &, std::any data) {
+static void on_mouse_axis(void *, SCallbackInfo &info, std::any data) {
 	auto emap = std::any_cast<std::unordered_map<std::string, std::any>>(data);
 	auto ev = std::any_cast<IPointer::SAxisEvent>(emap.at("event"));
 
@@ -74,6 +76,8 @@ static void on_mouse_axis(void *, SCallbackInfo &, std::any data) {
 	int ws = Desktop::focusState()->monitor()->activeWorkspaceID();
 	int row = ws_row(ws);
 	int col = ws_col(ws);
+
+	info.cancelled = true;
 
 	if (ev.delta < 0 && row < 2) {
 		switch_workspace(ws_from_grid(row + 1, col));
