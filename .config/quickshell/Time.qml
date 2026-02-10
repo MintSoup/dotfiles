@@ -7,7 +7,7 @@ Singleton {
 	id: root
 	readonly property string time: {
 		// TODO: move formatting into the widget itself
-		Qt.formatDateTime(clock.date, "  ddd, d MMM yyyy    hh:mm:ss")
+		Qt.formatDateTime(clock.date, " ddd, d MMM yyyy   hh:mm:ss")
 	}
 
 	SystemClock {

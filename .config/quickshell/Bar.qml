@@ -19,7 +19,7 @@ Variants {
 			right: true
 		}
 
-		implicitHeight: 28
+		implicitHeight: 30
 
 		WrapperItem {
 			anchors {
