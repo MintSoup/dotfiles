@@ -53,7 +53,7 @@ determine the exact padding."
 				 (green      '("#98c379" "#99bb66" "green"        ))
 				 (teal       '("#56b6c2" "#44b9b1" "brightgreen"  ))
 				 (yellow     '("#e5c07b" "#ECBE7B" "yellow"       ))
-				 (blue       '("#61afef" "#51afef" "brightblue"   ))
+				 (blue       '("#51afef" "#51afef" "brightblue"   ))
 				 (dark-blue  '("#2257A0" "#2257A0" "blue"         ))
 				 (magenta    '("#c678dd" "#c678dd" "brightmagenta"))
 				 (violet     '("#a9a1e1" "#a9a1e1" "magenta"      ))

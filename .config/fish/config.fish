@@ -13,7 +13,7 @@ end
 
 tty | grep tty1
 if [ $status = 0 ]
-    startx
+    start-hyprland
 end
 
 abbr -a -- p paru

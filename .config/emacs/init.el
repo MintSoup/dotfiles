@@ -71,6 +71,7 @@
 (load-user-config-file "web.el")
 (load-user-config-file "cmake.el")
 (load-user-config-file "typst.el")
+(load-user-config-file "qml.el")
 
 
 ;; Other
@@ -85,7 +86,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("8714a49a666c210d7527fe6cf325d6cba5432ccc46a7afd2943a21a3d8d0febc"
+   '("a0caca202011407333bcd372128ad34c775d6e80d513c3207c0ce851175f8565"
+	 "8714a49a666c210d7527fe6cf325d6cba5432ccc46a7afd2943a21a3d8d0febc"
 	 "97ca1d334d8e728ee42aef7bdcd15fe5539cc88e9642773cea1758dbaf0c22c4"
 	 default))
  '(safe-local-variable-values
