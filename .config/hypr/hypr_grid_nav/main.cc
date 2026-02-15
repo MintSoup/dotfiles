@@ -1,5 +1,6 @@
 #include <hyprland/src/plugins/PluginAPI.hpp>
 #include <hyprland/src/desktop/state/FocusState.hpp>
+#include <hyprland/src/desktop/view/Window.hpp>
 #include <hyprland/src/helpers/Monitor.hpp>
 #include <hyprland/src/devices/IPointer.hpp>
 #include <hyprland/src/managers/KeybindManager.hpp>
@@ -14,6 +15,21 @@ static void dbg(const std::string &msg) {
 }
 
 static bool button8_held = false;
+static bool button9_held = false;
+
+static void run_command(const char* cmd) {
+	pid_t pid = fork();
+	if (pid == 0) {
+		setsid();
+		execlp("sh", "sh", "-c", cmd, nullptr);
+		_exit(1);
+	}
+}
+
+static bool ignored_window() {
+	auto window = Desktop::focusState()->window();
+	return window && window->m_class.contains("Minecraft");
+}
 
 static inline WORKSPACEID ws_from_grid(WORKSPACEID row, WORKSPACEID col) {
 	return row * 3 + col + 1;
@@ -32,6 +48,9 @@ static inline void switch_workspace(WORKSPACEID ws) {
 }
 
 static void on_mouse_button(void *, SCallbackInfo &info, std::any data) {
+	if (ignored_window())
+		return;
+
 	auto ev = std::any_cast<IPointer::SButtonEvent>(data);
 
 	const unsigned int button = ev.button;
@@ -39,13 +58,20 @@ static void on_mouse_button(void *, SCallbackInfo &info, std::any data) {
 
 	if (button == 276) {
 		button8_held = pressed;
+		info.cancelled = true;
 		return;
 	}
 
-	if (!button8_held)
+	if (button == 275) {
+		button9_held = pressed;
+		info.cancelled = true;
 		return;
+	}
 
 	if (!pressed)
+		return;
+
+	if (!button8_held)
 		return;
 
 	info.cancelled = true;
@@ -62,11 +88,11 @@ static void on_mouse_button(void *, SCallbackInfo &info, std::any data) {
 }
 
 static void on_mouse_axis(void *, SCallbackInfo &info, std::any data) {
+	if (ignored_window())
+		return;
+
 	auto emap = std::any_cast<std::unordered_map<std::string, std::any>>(data);
 	auto ev = std::any_cast<IPointer::SAxisEvent>(emap.at("event"));
-
-	if (!button8_held)
-		return;
 
 	if (ev.axis != WL_POINTER_AXIS_VERTICAL_SCROLL)
 		return;
@@ -77,12 +103,18 @@ static void on_mouse_axis(void *, SCallbackInfo &info, std::any data) {
 	int row = ws_row(ws);
 	int col = ws_col(ws);
 
-	info.cancelled = true;
-
-	if (ev.delta < 0 && row < 2) {
+	if (button8_held && ev.delta < 0 && row < 2) {
 		switch_workspace(ws_from_grid(row + 1, col));
-	} else if (ev.delta > 0 && row > 0) {
+		info.cancelled = true;
+	} else if (button8_held && ev.delta > 0 && row > 0) {
 		switch_workspace(ws_from_grid(row - 1, col));
+		info.cancelled = true;
+	} else if (button9_held && ev.delta < 0) {
+		run_command("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1");
+		info.cancelled = true;
+	} else if (button9_held && ev.delta > 0) {
+		run_command("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- -l 1");
+		info.cancelled = true;
 	}
 }
 
