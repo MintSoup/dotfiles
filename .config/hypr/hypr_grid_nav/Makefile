@@ -1,7 +1,7 @@
 PLUGIN_NAME = hypr-grid-nav
 
 CXX      = g++
-CXXFLAGS = -std=c++23 -fPIC -Wall -Wextra -O2 \
+CXXFLAGS = -std=c++23 -fPIC -Wall -Wextra -O2 --no-gnu-unique \
            $(shell pkg-config --cflags hyprland) \
            -Isubmodules/hyprlang/include
 
