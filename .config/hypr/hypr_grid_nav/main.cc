@@ -1,4 +1,5 @@
 #include <hyprland/src/plugins/PluginAPI.hpp>
+#include <hyprland/src/event/EventBus.hpp>
 #include <hyprland/src/desktop/state/FocusState.hpp>
 #include <hyprland/src/desktop/view/Window.hpp>
 #include <hyprland/src/helpers/Monitor.hpp>
@@ -6,18 +7,20 @@
 #include <hyprland/src/managers/KeybindManager.hpp>
 
 #include <string>
+#include <sys/types.h>
+#include <unistd.h>
 
 static HANDLE PHANDLE = nullptr;
 
-static void dbg(const std::string &msg) {
-	HyprlandAPI::addNotification(PHANDLE, msg, CHyprColor{1.0, 0.2, 0.2, 1.0},
-								 1000);
-}
+// Keep callback handles alive for the duration of the plugin.
+// Losing these will unregister the callbacks.
+static CHyprSignalListener g_mouseButtonListener;
+static CHyprSignalListener g_mouseAxisListener;
 
 static bool button8_held = false;
 static bool button9_held = false;
 
-static void run_command(const char* cmd) {
+static void run_command(const char *cmd) {
 	pid_t pid = fork();
 	if (pid == 0) {
 		setsid();
@@ -47,11 +50,10 @@ static inline void switch_workspace(WORKSPACEID ws) {
 	g_pKeybindManager->m_dispatchers["workspace"](std::to_string(ws));
 }
 
-static void on_mouse_button(void *, SCallbackInfo &info, std::any data) {
+static void on_mouse_button(const IPointer::SButtonEvent &ev,
+							Event::SCallbackInfo &info) {
 	if (ignored_window())
 		return;
-
-	auto ev = std::any_cast<IPointer::SButtonEvent>(data);
 
 	const unsigned int button = ev.button;
 	const bool pressed = (ev.state == WL_POINTER_BUTTON_STATE_PRESSED);
@@ -68,17 +70,18 @@ static void on_mouse_button(void *, SCallbackInfo &info, std::any data) {
 		return;
 	}
 
-	if (!pressed)
+	if (!pressed || !button8_held)
 		return;
 
-	if (!button8_held)
+	const auto pMonitor = Desktop::focusState()->monitor();
+	if (!pMonitor || !pMonitor->m_activeWorkspace)
 		return;
 
 	info.cancelled = true;
 
-	int ws = Desktop::focusState()->monitor()->activeWorkspaceID();
-	int row = ws_row(ws);
-	int col = ws_col(ws);
+	const WORKSPACEID ws = pMonitor->activeWorkspaceID();
+	const WORKSPACEID row = ws_row(ws);
+	const WORKSPACEID col = ws_col(ws);
 
 	if (button == 272 && col > 0) {
 		switch_workspace(ws_from_grid(row, col - 1));
@@ -87,21 +90,21 @@ static void on_mouse_button(void *, SCallbackInfo &info, std::any data) {
 	}
 }
 
-static void on_mouse_axis(void *, SCallbackInfo &info, std::any data) {
+static void on_mouse_axis(const IPointer::SAxisEvent &ev,
+						  Event::SCallbackInfo &info) {
 	if (ignored_window())
 		return;
 
-	auto emap = std::any_cast<std::unordered_map<std::string, std::any>>(data);
-	auto ev = std::any_cast<IPointer::SAxisEvent>(emap.at("event"));
-
-	if (ev.axis != WL_POINTER_AXIS_VERTICAL_SCROLL)
-		return;
-	if (ev.delta == 0)
+	if (ev.axis != WL_POINTER_AXIS_VERTICAL_SCROLL || ev.delta == 0)
 		return;
 
-	int ws = Desktop::focusState()->monitor()->activeWorkspaceID();
-	int row = ws_row(ws);
-	int col = ws_col(ws);
+	const auto pMonitor = Desktop::focusState()->monitor();
+	if (!pMonitor || !pMonitor->m_activeWorkspace)
+		return;
+
+	const WORKSPACEID ws = pMonitor->activeWorkspaceID();
+	const WORKSPACEID row = ws_row(ws);
+	const WORKSPACEID col = ws_col(ws);
 
 	if (button8_held && ev.delta < 0 && row < 2) {
 		switch_workspace(ws_from_grid(row + 1, col));
@@ -134,10 +137,10 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
 		throw std::runtime_error("[hypr-grid-nav] Version mismatch");
 	}
 
-	static auto btn = HyprlandAPI::registerCallbackDynamic(
-		PHANDLE, "mouseButton", on_mouse_button);
-	static auto axis = HyprlandAPI::registerCallbackDynamic(
-		PHANDLE, "mouseAxis", on_mouse_axis);
+	g_mouseButtonListener =
+		Event::bus()->m_events.input.mouse.button.listen(on_mouse_button);
+	g_mouseAxisListener =
+		Event::bus()->m_events.input.mouse.axis.listen(on_mouse_axis);
 
 	return {.name = "hypr-grid-nav",
 			.description = "3x3 grid workspaces",
@@ -146,4 +149,8 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
 }
 
 APICALL EXPORT void PLUGIN_EXIT() {
+	// Resetting the listeners explicitly unregisters them before the .so
+	// is unloaded, avoiding any chance of Hyprland calling into freed memory.
+	g_mouseButtonListener.reset();
+	g_mouseAxisListener.reset();
 }
