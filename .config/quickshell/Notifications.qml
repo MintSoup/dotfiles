@@ -1,132 +1,164 @@
 import QtQuick
+import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Notifications
 import Quickshell.Widgets
 
-PanelWindow {
-    anchors {
-        top: true
-        right: true
-    }
-
-    exclusionMode: ExclusionMode.Ignore
-    color: "transparent"
-
-    implicitWidth: 380
-    implicitHeight: notifColumn.implicitHeight + margins.top
-
-    margins.top: 36
-    margins.right: 12
-
+Scope {
     NotificationServer {
         id: server
+        onNotification: n => { n.tracked = true }
     }
 
-    Column {
-        id: notifColumn
+    PanelWindow {
         anchors {
-            top: parent.top
-            right: parent.right
-            topMargin: 36
-            rightMargin: 12
+            top: true
+            right: true
         }
-        spacing: 8
 
-        Repeater {
-            model: server.trackedNotifications
+        exclusionMode: ExclusionMode.Ignore
+        color: "transparent"
+        implicitWidth: 392
+        implicitHeight: notifColumn.implicitHeight + 36
 
-            Rectangle {
-                id: notif
+        Column {
+            id: notifColumn
+            anchors {
+                top: parent.top
+                right: parent.right
+                topMargin: 36
+                rightMargin: 12
+            }
+            spacing: 8
 
-                required property Notification modelData
-
-                readonly property real timeout: modelData.expireTimeout > 0 ? modelData.expireTimeout : 5000
-
-                width: 380
-                height: notifLayout.implicitHeight + 24
-                radius: 8
-                color: Theme.bg
+            Repeater {
+                model: server.trackedNotifications
 
                 Rectangle {
-                    id: cooldownBar
-                    anchors {
-                        bottom: parent.bottom
-                        left: parent.left
-                    }
-                    height: 2
-                    radius: 8
-                    color: Theme.active_ws
+					MouseArea {
+						anchors.fill: parent
+						onClicked: notif.dismissWithAnim()
+					}
 
-                    NumberAnimation on width {
-                        from: notif.width
-                        to: 0
-                        duration: notif.timeout
-                        running: true
-                        onFinished: notif.modelData.dismiss()
-                    }
-                }
+                    id: notif
 
-                RowLayout {
-                    id: notifLayout
-                    anchors {
-                        top: parent.top
-                        left: parent.left
-                        right: parent.right
-                        margins: 12
-                        bottomMargin: 10
-                    }
-                    spacing: 10
+                    required property Notification modelData
 
-                    IconImage {
-                        source: modelData.appIcon !== ""
-                            ? Quickshell.iconPath(modelData.appIcon, true)
-                            : (modelData.image ?? "")
-                        implicitSize: 32
-                        mipmap: true
-                        visible: source !== ""
-                        Layout.alignment: Qt.AlignTop
+                    readonly property real timeout: modelData.expireTimeout > 0 ? modelData.expireTimeout : 5000
+
+                    width: 380
+                    color: Theme.bg
+
+					height: Math.min(notifLayout.implicitHeight + 24, 200)
+					clip: true
+
+					opacity: 0
+					x: 200
+
+					Component.onCompleted: {
+						opacity = 1
+						x = 0
+					}
+
+					Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutCubic } }
+					Behavior on x { NumberAnimation { duration: 250; easing.type: Easing.OutCubic } }
+
+                    function dismissWithAnim() {
+                        dismissAnim.start()
                     }
 
-                    ColumnLayout {
-                        Layout.fillWidth: true
-                        spacing: 2
+					SequentialAnimation {
+						id: dismissAnim
+						ParallelAnimation {
+							NumberAnimation { target: notif; property: "opacity"; to: 0; duration: 200 }
+							NumberAnimation { target: notif; property: "x"; to: 200; duration: 200; easing.type: Easing.InCubic }
+						}
+						ScriptAction { script: notif.modelData.dismiss() }
+					}
 
-                        Noto {
-                            text: modelData.appName
-                            font.pixelSize: Theme.fontSize - 2
-                            color: Theme.active_ws
-                            font.weight: Font.Medium
-                            Layout.fillWidth: true
+                    Rectangle {
+                        anchors {
+                            bottom: parent.bottom
+                            left: parent.left
                         }
+                        height: 2
+                        color: Theme.accent2
 
-                        Noto {
-                            text: modelData.summary
-                            font.pixelSize: Theme.fontSize
-                            color: Theme.fg
-                            font.weight: Font.Bold
-                            wrapMode: Text.WordWrap
-                            Layout.fillWidth: true
-                            visible: text !== ""
-                        }
-
-                        Noto {
-                            text: modelData.body
-                            font.pixelSize: Theme.fontSize - 1
-                            color: Qt.rgba(Theme.fg.r, Theme.fg.g, Theme.fg.b, 0.75)
-                            wrapMode: Text.WordWrap
-                            Layout.fillWidth: true
-                            visible: text !== ""
+                        NumberAnimation on width {
+                            from: notif.width
+                            to: 0
+                            duration: notif.timeout
+                            running: true
+                            onFinished: notif.dismissWithAnim()
                         }
                     }
 
-                    WrapperMouseArea {
-                        Layout.alignment: Qt.AlignTop
-                        onClicked: notif.modelData.dismiss()
-                        Noto {
-                            text: ""
-                            font.pixelSize: Theme.fontSize - 2
-                            color: Qt.rgba(Theme.fg.r, Theme.fg.g, Theme.fg.b, 0.5)
+                    RowLayout {
+                        id: notifLayout
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            margins: 12
+                            bottomMargin: 10
+                        }
+                        spacing: 10
+
+						Image {
+							source: modelData.image ?? ""
+							Layout.preferredWidth: 64
+							Layout.preferredHeight: 64
+							fillMode: Image.PreserveAspectCrop
+							visible: source != ""
+							clip: true
+							Layout.alignment: Qt.AlignTop
+						}
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: 2
+
+                            RowLayout {
+                                spacing: 4
+                                Layout.fillWidth: true
+
+								IconImage {
+									source: modelData.appIcon != ""
+										? Quickshell.iconPath(modelData.appIcon, true)
+										: ""
+									implicitSize: 14
+									mipmap: true
+									visible: source != ""
+								}
+
+                                Noto {
+                                    text: modelData.appName
+                                    font.pixelSize: Theme.fontSize - 2
+                                    color: Theme.accent2
+                                    font.weight: Font.Medium
+                                    Layout.fillWidth: true
+                                }
+                            }
+
+                            Noto {
+                                text: modelData.summary
+                                font.pixelSize: Theme.fontSize
+                                color: Theme.fg
+                                font.weight: Font.Bold
+                                wrapMode: Text.WordWrap
+                                Layout.fillWidth: true
+                                visible: text !== ""
+                            }
+
+                            Noto {
+                                text: modelData.body
+                                font.pixelSize: Theme.fontSize - 1
+                                color: Qt.rgba(Theme.fg.r, Theme.fg.g, Theme.fg.b, 0.75)
+                                wrapMode: Text.WordWrap
+                                Layout.fillWidth: true
+                                visible: text !== ""
+                            }
                         }
                     }
                 }

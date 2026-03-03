@@ -15,7 +15,7 @@ WrapperItem {
 
     FileView {
         id: tempFile
-        path: "/sys/class/hwmon/hwmon7/temp7_input"
+        path: "/sys/class/hwmon/hwmon2/temp3_input"
         blockLoading: true
     }
 

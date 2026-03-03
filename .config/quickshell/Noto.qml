@@ -4,5 +4,5 @@ Text {
     font.family: Theme.font
     font.pixelSize: Theme.fontSize
 	color: Theme.fg
-	renderType: Text.NativeRendering
+	/* renderType: Text.NativeRendering */
 }

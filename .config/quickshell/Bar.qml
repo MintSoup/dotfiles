@@ -9,9 +9,7 @@ Variants {
 
 	PanelWindow {
 		required property var modelData
-		color: "#1e222a"
-		/* property var backgroundColor: Qt.rgba(0, 0, 0, 0.2) */
-		HyprlandWindow.opacity: 0.85
+		color: Theme.bg
 
 		anchors {
 			top: true
@@ -19,7 +17,7 @@ Variants {
 			right: true
 		}
 
-		implicitHeight: 28
+		implicitHeight: 32
 
 		WrapperItem {
 			id: rightWidgets
@@ -84,7 +82,7 @@ Variants {
 								}
 								icons[wsId]
 							}
-							color: active ? Theme.active_ws : Theme.fg
+							color: active ? Theme.accent1 : Theme.fg
 						}
 					}
 				}
