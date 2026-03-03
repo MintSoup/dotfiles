@@ -9,7 +9,7 @@ WrapperMouseArea {
 	property string layout: ""
 
 	cursorShape: Qt.PointingHandCursor
-	onClicked: Hyprland.dispatch("switchxkblayout all next")
+	onClicked: switchLayout.running = true
 
 	function refresh() { devicesProcess.running = true }
 
@@ -27,6 +27,11 @@ WrapperMouseArea {
 		}
 	}
 
+	Process {
+		id: switchLayout
+		command: ["hyprctl", "switchxkblayout", "all", "next"]
+	}
+
 	Connections {
 		target: Hyprland
 		function onRawEvent(event) {
@@ -34,7 +39,6 @@ WrapperMouseArea {
 			root.refresh()
 		}
 	}
-
 	Noto {
 		text: root.layout
 	}
