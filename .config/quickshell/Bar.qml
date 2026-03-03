@@ -9,6 +9,7 @@ Variants {
 
 	PanelWindow {
 		color: Theme.bg
+		id: barWindow
 
 		anchors {
 			top: true
@@ -37,7 +38,6 @@ Variants {
 				Memory {}
 				Volume {}
 				MicMute {}
-
 				Noto {
 					id: clock
 					text: Time.time

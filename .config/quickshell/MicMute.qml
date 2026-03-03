@@ -12,7 +12,6 @@ WrapperMouseArea {
     cursorShape: Qt.PointingHandCursor
 
     onClicked: {
-		console.log(micNode)
         if (root.micNode?.audio)
             root.micNode.audio.muted = !root.micNode.audio.muted
     }
