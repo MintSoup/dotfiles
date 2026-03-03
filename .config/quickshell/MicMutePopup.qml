@@ -20,11 +20,11 @@ PanelWindow {
     HyprlandWindow.opacity: 0
 
     Behavior on HyprlandWindow.opacity {
-        NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
+        NumberAnimation { duration: 125; easing.type: Easing.OutCubic }
     }
 
     Behavior on popScale {
-        NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
+        NumberAnimation { duration: 125; easing.type: Easing.OutCubic }
     }
 
     Timer {
