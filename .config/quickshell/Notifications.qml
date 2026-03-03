@@ -29,7 +29,7 @@ Scope {
 			anchors {
 				top: parent.top
 				right: parent.right
-				rightMargin: 4
+				rightMargin: 8
 			}
 			spacing: 8
 
