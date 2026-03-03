@@ -19,9 +19,10 @@ Variants {
 			right: true
 		}
 
-		implicitHeight: 30
+		implicitHeight: 28
 
 		WrapperItem {
+			id: rightWidgets
 			anchors {
 				right: parent.right
 				verticalCenter: parent.verticalCenter
@@ -30,6 +31,16 @@ Variants {
 			margin: 5
 
 			RowLayout {
+				spacing: 8
+
+				Systray {}
+				KbLayout {}
+				Battery {}
+				Temperature {}
+				Memory {}
+				Volume {}
+				MicMute {}
+
 				Noto {
 					id: clock
 					text: Time.time
@@ -38,6 +49,7 @@ Variants {
 		}
 
 		WrapperItem {
+			id: leftWidgets
 			anchors {
 				left: parent.left
 				verticalCenter: parent.verticalCenter
@@ -77,7 +89,17 @@ Variants {
 					}
 				}
 			}
+		}
+		Item {
+			anchors {
+				left: leftWidgets.right
+				right: rightWidgets.left
+				verticalCenter: parent.verticalCenter
+			}
 
+			Title {
+				anchors.centerIn: parent
+			}
 		}
 	}
 }
