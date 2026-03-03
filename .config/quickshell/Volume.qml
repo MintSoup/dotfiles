@@ -10,6 +10,7 @@ WrapperMouseArea {
     readonly property bool muted: sinkNode?.audio?.muted ?? false
 	readonly property real volume: sinkNode?.audio ? sinkNode.audio.volume * 100 : 0
 
+    cursorShape: Qt.PointingHandCursor
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton
 

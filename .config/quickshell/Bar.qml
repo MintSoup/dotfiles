@@ -8,7 +8,6 @@ Variants {
 	model: Quickshell.screens;
 
 	PanelWindow {
-		required property var modelData
 		color: Theme.bg
 
 		anchors {
