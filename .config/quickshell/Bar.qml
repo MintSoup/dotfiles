@@ -11,6 +11,12 @@ Variants {
 		color: Theme.bg
 		id: barWindow
 
+		GlobalShortcut {
+			name: "toggleBar"
+			description: "Toggle the bar"
+			onPressed: barWindow.visible = !barWindow.visible
+		}
+
 		anchors {
 			top: true
 			left: true
