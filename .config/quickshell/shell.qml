@@ -5,4 +5,5 @@ Scope {
 	Bar {}
 	Notifications {}
 	MicMutePopup {}
+	AppLauncher {}
 }
