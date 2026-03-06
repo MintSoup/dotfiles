@@ -12,7 +12,7 @@ PanelWindow {
     property bool shown: false
     property int selectedIndex: 0
     readonly property int iconSize: 128
-    readonly property int cellSize: iconSize + 40
+    readonly property int cellSize: iconSize + 64
 
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
@@ -36,7 +36,7 @@ PanelWindow {
     HyprlandWindow.opacity: shown ? 1 : 0
 
     Behavior on HyprlandWindow.opacity {
-        NumberAnimation { duration: 125; easing.type: Easing.OutCubic }
+        NumberAnimation { duration: 100; easing.type: Easing.OutCubic }
     }
 
     function close() {
@@ -102,10 +102,10 @@ PanelWindow {
         GridView {
             id: grid
 			Layout.alignment: Qt.AlignHCenter
-            implicitHeight: root.cellSize * 3
+            implicitHeight: root.cellSize * 4
 			implicitWidth: Math.floor(parent.width / root.cellSize) * root.cellSize
             clip: true
-			visible: false
+			/* visible: false */
 
             cellWidth: root.cellSize
             cellHeight: root.cellSize
