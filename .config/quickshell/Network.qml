@@ -12,7 +12,7 @@ WrapperMouseArea {
     property real currentRx: 0
     property real currentTx: 0
     readonly property int maxSamples: 300
-    readonly property int pollInterval: 200
+    readonly property int pollInterval: 100
     property bool popupOpen: false
     property var _data: ({})
 
@@ -134,7 +134,7 @@ WrapperMouseArea {
 
         property real popupProgress: root.popupOpen ? 1 : 0
         Behavior on popupProgress {
-            NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+            NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
         }
 
         Item {
@@ -153,7 +153,7 @@ WrapperMouseArea {
                     spacing: 8
 
                     RowLayout {
-                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignHCenter
                         spacing: 6
 
                         Repeater {
@@ -199,16 +199,23 @@ WrapperMouseArea {
                         }
                     }
 
+                    Rectangle {
+                        Layout.preferredWidth: parent.width * 0.85
+                        Layout.alignment: Qt.AlignHCenter
+                        height: 1
+                        color: Qt.rgba(Theme.fg.r, Theme.fg.g, Theme.fg.b, 0.3)
+                    }
+
                     RowLayout {
                         Layout.fillWidth: true
                         Noto {
-                            font.pixelSize: 12
+                            font.pixelSize: 14
                             color: Theme.accent1
                             text: "\u2193 " + root.formatSpeed(root.currentRx)
                         }
                         Item { Layout.fillWidth: true }
                         Noto {
-                            font.pixelSize: 12
+                            font.pixelSize: 14
                             color: Theme.accent2
                             text: "\u2191 " + root.formatSpeed(root.currentTx)
                         }
