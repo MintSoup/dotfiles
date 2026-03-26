@@ -39,6 +39,7 @@ Variants {
 
 				Systray {}
 				KbLayout {}
+				Network {}
 				Battery {}
 				Temperature {}
 				Memory {}
