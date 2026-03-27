@@ -10,6 +10,9 @@ Variants {
 	PanelWindow {
 		color: Theme.bg
 		id: barWindow
+		property var modelData
+
+		screen: modelData
 
 		GlobalShortcut {
 			name: "toggleBar"
