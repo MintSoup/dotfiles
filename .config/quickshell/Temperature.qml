@@ -15,7 +15,6 @@ WrapperItem {
 
     FileView {
         id: tempFile
-        path: "/sys/class/hwmon/hwmon2/temp3_input"
         blockLoading: true
     }
 
@@ -33,4 +32,20 @@ WrapperItem {
     Noto {
         text: root.icon + " " + root.temp + "°C"
     }
+
+	Component.onCompleted: {
+		for (let i = 0; i < 20; i++) {
+			const nameFile = `/sys/class/hwmon/hwmon${i}/name`
+			const f = Qt.createQmlObject(`
+            import Quickshell.Io
+            FileView { path: "${nameFile}"; blockLoading: true }
+        `, root)
+			const name = f.text().trim()
+			f.destroy()
+			if (name === "k10temp" || name === "coretemp") {
+				tempFile.path = `/sys/class/hwmon/hwmon${i}/temp1_input`
+				break
+			}
+		}
+	}
 }
