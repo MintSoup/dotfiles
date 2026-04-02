@@ -43,7 +43,7 @@ WrapperItem {
 			const name = f.text().trim()
 			f.destroy()
 			if (name === "k10temp" || name === "coretemp") {
-				tempFile.path = `/sys/class/hwmon/hwmon${i}/temp1_input`
+				tempFile.path = `/sys/class/hwmon/hwmon${i}/temp3_input`
 				break
 			}
 		}
