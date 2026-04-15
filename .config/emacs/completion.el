@@ -70,17 +70,17 @@ folder, otherwise delete a word"
   :after (vertico)
   :init
   (setq marginalia-align 'left
-		marginalia-align-offset -3)
+		marginalia-align-offset 0)
   (marginalia-mode))
 
 (use-package consult
   :straight t
   :config
   (setq consult-buffer-sources
-		'(consult--source-hidden-buffer
-		  consult--source-modified-buffer
-		  consult--source-buffer
-		  consult--source-project-buffer)
+		'(consult-source-hidden-buffer
+		  consult-source-modified-buffer
+		  consult-source-buffer
+		  consult-source-project-buffer)
 		consult-project-function
 		(lambda (d)
 		  (project-current-root)))

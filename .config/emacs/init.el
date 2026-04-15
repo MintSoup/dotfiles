@@ -59,6 +59,7 @@
 (load-user-config-file "snippets.el")
 (load-user-config-file "restclient.el")
 (load-user-config-file "flycheck.el")
+(load-user-config-file "ai.el")
 ;; (load-user-config-file "beardbolt.el")
 
 ;; Lang
