@@ -28,7 +28,7 @@
   "." '(find-file :wk "Find file")
   ";" '(eval-expression :wk "Eval expression")
   "g" '(magit :wk "Magit")
-  "a" '(claude-code-ide-menu :wk "Claude Code")
+  "a" '(agent-shell :wk "Agent Shell")
   "/" '(switch-to-buffer-other-window :wk "Switch to buffer in other window")
   "SPC" '(project-find-file :wk "Find file in project"))
 

@@ -742,63 +742,63 @@ Meant for `org-mode-hook'."
    (latex . t)))
 
 
-(defun org-latex-plain-text (text info)
-  "Transcode a TEXT string from Org to LaTeX.
-TEXT is the string to transcode.  INFO is a plist holding
-contextual information."
-  (let* ((specialp (plist-get info :with-special-strings))
-		 (output
-		  ;; Turn LaTeX into \LaTeX{} and TeX into \TeX{}.
-		  (let ((case-fold-search nil))
-			(replace-regexp-in-string
-			 "\\<\\(?:La\\)?TeX\\>" "\\\\\\&{}"
-			 ;; Protect ^, ~, %, #, &, $, _, { and }.  Also protect \.
-			 ;; However, if special strings are used, be careful not
-			 ;; to protect "\" in "\-" constructs.
-			 (replace-regexp-in-string
-			  (concat "[%$#&{}_~^]\\|\\\\" (and specialp "\\([^-]\\|$\\)"))
-			  (lambda (m)
-				(cl-case (string-to-char m)
-				  (?\\ "$\\\\backslash$\\1")
-				  (?~ "\\\\textasciitilde{}")
-				  (?^ "\\\\^{}")
-				  (t "\\\\\\&")))
-			  text)))))
-	;; Activate smart quotes.  Be sure to provide original TEXT string
-	;; since OUTPUT may have been modified.
-	(when (plist-get info :with-smart-quotes)
-	  (setq output (org-export-activate-smart-quotes output :latex info text)))
-	;; Convert special strings.
-	(when specialp
-	  (setq output (replace-regexp-in-string "\\.\\.\\." "\\\\ldots{}" output)))
-	;; Handle break preservation if required.
-	;; (message text)
-	(when (plist-get info :preserve-breaks)
-	  (setq output
-			(replace-regexp-in-string
-			 "\\(?:[ \t]*\\\\\\\\\\)?[ \t]*\n" "\\\\\n" (string-chop-newline output) nil t)))
-	;; Return value.
-	output))
+;; (defun org-latex-plain-text (text info)
+;;   "Transcode a TEXT string from Org to LaTeX.
+;; TEXT is the string to transcode.  INFO is a plist holding
+;; contextual information."
+;;   (let* ((specialp (plist-get info :with-special-strings))
+;; 		 (output
+;; 		  ;; Turn LaTeX into \LaTeX{} and TeX into \TeX{}.
+;; 		  (let ((case-fold-search nil))
+;; 			(replace-regexp-in-string
+;; 			 "\\<\\(?:La\\)?TeX\\>" "\\\\\\&{}"
+;; 			 ;; Protect ^, ~, %, #, &, $, _, { and }.  Also protect \.
+;; 			 ;; However, if special strings are used, be careful not
+;; 			 ;; to protect "\" in "\-" constructs.
+;; 			 (replace-regexp-in-string
+;; 			  (concat "[%$#&{}_~^]\\|\\\\" (and specialp "\\([^-]\\|$\\)"))
+;; 			  (lambda (m)
+;; 				(cl-case (string-to-char m)
+;; 				  (?\\ "$\\\\backslash$\\1")
+;; 				  (?~ "\\\\textasciitilde{}")
+;; 				  (?^ "\\\\^{}")
+;; 				  (t "\\\\\\&")))
+;; 			  text)))))
+;; 	;; Activate smart quotes.  Be sure to provide original TEXT string
+;; 	;; since OUTPUT may have been modified.
+;; 	(when (plist-get info :with-smart-quotes)
+;; 	  (setq output (org-export-activate-smart-quotes output :latex info text)))
+;; 	;; Convert special strings.
+;; 	(when specialp
+;; 	  (setq output (replace-regexp-in-string "\\.\\.\\." "\\\\ldots{}" output)))
+;; 	;; Handle break preservation if required.
+;; 	;; (message text)
+;; 	(when (plist-get info :preserve-breaks)
+;; 	  (setq output
+;; 			(replace-regexp-in-string
+;; 			 "\\(?:[ \t]*\\\\\\\\\\)?[ \t]*\n" "\\\\\n" (string-chop-newline output) nil t)))
+;; 	;; Return value.
+;; 	output))
 
-(defun org-odt-plain-text (text info)
-  "Transcode a TEXT string from Org to ODT.
-TEXT is the string to transcode.  INFO is a plist holding
-contextual information."
-  (let ((output text))
-	;; Protect &, < and >.
-	(setq output (org-odt--encode-plain-text output t))
-	;; Handle smart quotes.  Be sure to provide original string since
-	;; OUTPUT may have been modified.
-	(when (plist-get info :with-smart-quotes)
-	  (setq output (org-export-activate-smart-quotes output :utf-8 info text)))
-	;; Convert special strings.
-	(when (plist-get info :with-special-strings)
-	  (dolist (pair org-odt-special-string-regexps)
-		(setq output
-			  (replace-regexp-in-string (car pair) (cdr pair) output t nil))))
-	;; Handle break preservation if required.
-	(when (plist-get info :preserve-breaks)
-	  (setq output (replace-regexp-in-string
-					"\\(\\\\\\\\\\)?[ \t]*\n" "<text:line-break/>" (string-chop-newline output) t)))
-	;; Return value.
-	output))
+;; (defun org-odt-plain-text (text info)
+;;   "Transcode a TEXT string from Org to ODT.
+;; TEXT is the string to transcode.  INFO is a plist holding
+;; contextual information."
+;;   (let ((output text))
+;; 	;; Protect &, < and >.
+;; 	(setq output (org-odt--encode-plain-text output t))
+;; 	;; Handle smart quotes.  Be sure to provide original string since
+;; 	;; OUTPUT may have been modified.
+;; 	(when (plist-get info :with-smart-quotes)
+;; 	  (setq output (org-export-activate-smart-quotes output :utf-8 info text)))
+;; 	;; Convert special strings.
+;; 	(when (plist-get info :with-special-strings)
+;; 	  (dolist (pair org-odt-special-string-regexps)
+;; 		(setq output
+;; 			  (replace-regexp-in-string (car pair) (cdr pair) output t nil))))
+;; 	;; Handle break preservation if required.
+;; 	(when (plist-get info :preserve-breaks)
+;; 	  (setq output (replace-regexp-in-string
+;; 					"\\(\\\\\\\\\\)?[ \t]*\n" "<text:line-break/>" (string-chop-newline output) t)))
+;; 	;; Return value.
+;; 	output))

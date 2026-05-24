@@ -10,10 +10,9 @@
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
+(add-hook 'yaml-ts-mode-hook 'display-line-numbers-mode)
 (add-hook 'Info-mode-hook 'visual-fill-column-mode)
 (add-hook 'shell-mode-hook 'evil-normal-state)
-
-(setq css-fontify-colors nil)
 
 (defun my-prog-nuke-trailing-whitespace ()
   (when (derived-mode-p 'prog-mode)
