@@ -2,6 +2,7 @@
 
 (use-package agent-shell
   :straight t
+  :hook (agent-shell-mode . mixed-pitch-mode)
   :config
   (setq agent-shell-anthropic-claude-environment
       (agent-shell-make-environment-variables

@@ -76,7 +76,7 @@
   (set-face-attribute 'variable-pitch nil
 					  :font "Noto Sans"
 					  :weight 'normal
-					  :height 125)
+					  :height 140)
 
   (set-fontset-font t 'armenian "Noto Sans Armenian"))
 
