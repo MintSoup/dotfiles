@@ -27,7 +27,6 @@
   (add-hook 'prog-mode-hook #'corfu-mode)
   :config
   (require 'corfu-popupinfo)
-  (require 'corfu-history)
   (setq-default pgtk-wait-for-event-timeout 0)
   (corfu-popupinfo-mode +1)             ; doc popup beside candidate
   ;; `my-dark' styles `corfu-current' almost like the popup bg, so the selected
@@ -35,23 +34,6 @@
   ;; resolves per-frame, so it works under --daemon where `region' has no colour
   ;; at init time.
   (set-face-attribute 'corfu-current nil :inherit 'region :background 'unspecified)
-  (with-eval-after-load 'savehist
-    (add-to-list 'savehist-additional-variables 'corfu-history))
-  ;; Search among the currently offered candidates: ship them to the minibuffer
-  ;; where vertico + orderless can filter them.
-  (defun +corfu-move-to-minibuffer ()
-    "Run the current corfu completion in the minibuffer instead."
-    (interactive)
-    (let* ((data completion-in-region--data)
-           (beg (nth 0 data))
-           (end (nth 1 data))
-           (table (nth 2 data))
-           (pred (nth 3 data))
-           (completion-extra-properties (nth 4 data))
-           completion-cycle-threshold
-           completion-cycling)
-      (consult-completion-in-region beg end table pred)))
-
   ;; tab-and-go keys; RET stays a real newline (like the old company-tng-mode)
   (general-define-key
    :keymaps 'corfu-map
@@ -61,8 +43,20 @@
    [backtab] 'corfu-previous
    "RET" nil
    [return] nil
-   "M-SPC" 'corfu-insert-separator ; type spaces for orderless matching
-   "M-m" '+corfu-move-to-minibuffer))
+   "M-SPC" 'corfu-insert-separator) ; type spaces for orderless matching
+
+  ;; Let orderless filter completions in corfu buffers. Without this, lsp-mode
+  ;; uses its own fuzzy category and surfaces irrelevant matches (e.g. `sigmask'
+  ;; for "str"). Plain orderless (no <4-char prefix special-casing).
+  (defun +corfu-init-completion-styles ()
+    (setq-local completion-styles '(orderless basic)
+                completion-category-overrides nil
+                completion-category-defaults nil))
+  (add-hook 'corfu-mode-hook #'+corfu-init-completion-styles)
+
+  ;; corfu-quick: avy-style candidate selection
+  (require 'corfu-quick)
+  (define-key corfu-map (kbd "M-q") #'corfu-quick-insert))
 
 (use-package cape
   :straight t

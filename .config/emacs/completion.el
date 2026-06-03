@@ -1,4 +1,10 @@
 ;;; -*- lexical-binding: t -*-
+
+;; Sane completion defaults (corfu README recommendations)
+(setq tab-always-indent 'complete                 ; TAB indents, else completes
+      text-mode-ispell-word-completion nil        ; don't let ispell hijack text-mode capf
+      read-extended-command-predicate #'command-completion-default-include-p) ; tidy M-x
+
 (defun dw/minibuffer-backward-kill (arg)
   "When minibuffer is completing a file name delete up to parent
 folder, otherwise delete a word"
