@@ -11,7 +11,9 @@
 		lsp-headerline-breadcrumb-enable nil
 		lsp-eldoc-render-all t
 		eldoc-echo-area-use-multiline-p 1
-		lsp-signature-doc-lines 0)
+		lsp-signature-doc-lines 0
+		lsp-completion-provider :capf ; use capf (corfu), never company
+		lsp-enable-snippet nil)       ; no yasnippet placeholder expansion on insert (laggy)
 
 
   ;; (general-define-key :keymaps 'lsp-mode-map

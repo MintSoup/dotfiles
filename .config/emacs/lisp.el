@@ -20,7 +20,7 @@
 
 (use-package sly
   :straight t
-  :hook (sly-mrepl-mode . company-mode)
+  :hook (sly-mrepl-mode . corfu-mode)
   :init
   (setq inferior-lisp-program "sbcl"))
 

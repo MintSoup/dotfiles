@@ -1,11 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
-(defun eshell-setup-company ()
-  (setq-local company-backends
-			  '(company-capf)))
-
-(add-hook 'eshell-mode-hook 'company-mode)
-(add-hook 'eshell-mode-hook 'eshell-setup-company)
+(add-hook 'eshell-mode-hook 'corfu-mode)
 (setq eshell-hist-ignoredups t)
 
 (my-local-leader :keymaps 'eshell-mode-map
