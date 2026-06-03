@@ -10,7 +10,7 @@
   :straight t
   :init
   (setq corfu-auto t
-        corfu-auto-delay 0	; mirror old company-idle-delay
+        corfu-auto-delay 0.0		   ; mirror old company-idle-delay
         corfu-auto-prefix 1	; mirror old company-minimum-prefix-length
         corfu-cycle t
         corfu-preselect 'prompt		 ; tab-and-go: nothing preselected
@@ -28,6 +28,7 @@
   :config
   (require 'corfu-popupinfo)
   (require 'corfu-history)
+  (setq-default pgtk-wait-for-event-timeout 0)
   (corfu-popupinfo-mode +1)             ; doc popup beside candidate
   ;; `my-dark' styles `corfu-current' almost like the popup bg, so the selected
   ;; row is invisible — inherit `region' instead. Inherit (not a copied colour)
