@@ -101,3 +101,6 @@
  :keymaps '(c-mode-map c++-mode-map java-mode-map)
  :states '(normal insert)
  "C-<return>" 'c-indent-new-comment-line)
+
+(use-package mixed-pitch
+  :straight t)
