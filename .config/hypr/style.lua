@@ -60,5 +60,5 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 1.75, bezier = "defa
 hl.layer_rule({ match = { namespace = "waybar" },     blur = true })
 hl.layer_rule({ match = { namespace = "rofi" },       blur = true })
 hl.layer_rule({ match = { namespace = "quickshell" }, blur = true })
--- hl.layer_rule({ match = { namespace = "quickshell" }, ignore_alpha = 0.01 })
+hl.layer_rule({ match = { namespace = "quickshell" }, ignore_alpha = 0.01 })
 hl.layer_rule({ match = { namespace = "quickshell" }, no_anim = true })
