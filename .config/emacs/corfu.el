@@ -66,7 +66,13 @@
   ;; Make the primary capfs non-exclusive so file/prose capfs can also fire
   ;; instead of an exclusive capf (e.g. lsp) shadowing them.
   (with-eval-after-load 'lsp-mode
-    (advice-add 'lsp-completion-at-point :around #'cape-wrap-nonexclusive))
+    (advice-add 'lsp-completion-at-point :around #'cape-wrap-nonexclusive)
+    ;; lsp-mode's completion doesn't unwind cleanly from corfu's `while-no-input'
+    ;; interrupt -> it gets stuck in `lsp-request-while-no-input'/`sit-for' at 100%
+    ;; CPU (the multi-second freezes, capped by `lsp-response-timeout'). Make the
+    ;; capf non-interruptible so corfu can't yank it mid-request. Maintainer-endorsed
+    ;; fix; see corfu#188 / lsp-mode#3555.
+    (advice-add 'lsp-completion-at-point :around #'cape-wrap-noninterruptible))
   (with-eval-after-load 'comint
     (advice-add 'comint-completion-at-point :around #'cape-wrap-nonexclusive))
   (with-eval-after-load 'pcomplete
