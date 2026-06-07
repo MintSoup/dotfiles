@@ -140,7 +140,8 @@
   :straight t
   :after evil
   :config
-  (evil-collection-init))
+  (evil-collection-init)
+  (setq evil-collection-repl-submit-state 'insert))
 
 (use-package evil-lion
   :straight t

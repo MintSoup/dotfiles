@@ -52,8 +52,8 @@ length of PATH (sans directory slashes) down to MAX-LEN."
 		  (with-face " $" :foreground (doom-color 'orange))
 		  (with-face " " :foreground (doom-color 'violet))))
 
-(setq eshell-prompt-function 'my-eshell-prompt)
-(setq eshell-prompt-regexp "([a-z]+) .* \\$ ")
+(setq eshell-prompt-function 'my-eshell-prompt
+	  eshell-prompt-regexp "([a-z]+) .* \\$ ")
 
 (defun eshell-cd-interactive (dir)
   (interactive "DCd into: ")

@@ -23,7 +23,8 @@
         corfu-popupinfo-delay 0.5
         ;; keep the popup a constant width (default 15..100 makes it jump)
         corfu-min-width 60
-        corfu-max-width 60)
+        corfu-max-width 60
+		corfu-popupinfo-max-height 20)
   (add-hook 'prog-mode-hook #'corfu-mode)
   :config
   (require 'corfu-popupinfo)
@@ -37,13 +38,18 @@
   ;; tab-and-go keys; RET stays a real newline (like the old company-tng-mode)
   (general-define-key
    :keymaps 'corfu-map
+   :states 'insert
+   "C-n" 'corfu-popupinfo-scroll-up
+   "C-p" 'corfu-popupinfo-scroll-down
    "TAB" 'corfu-next
    [tab] 'corfu-next
    "S-TAB" 'corfu-previous
    [backtab] 'corfu-previous
-   "RET" nil
-   [return] nil
    "M-SPC" 'corfu-insert-separator) ; type spaces for orderless matching
+  (general-define-key
+   :keymaps 'corfu-map
+   "RET" nil
+   [return] nil)
 
   ;; Let orderless filter completions in corfu buffers. Without this, lsp-mode
   ;; uses its own fuzzy category and surfaces irrelevant matches (e.g. `sigmask'
