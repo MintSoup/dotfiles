@@ -12,7 +12,7 @@
 		lsp-eldoc-render-all t
 		eldoc-echo-area-use-multiline-p 1
 		lsp-signature-doc-lines 0
-		lsp-completion-provider :capf ; use capf (corfu), never company
+		lsp-completion-provider :none
 		lsp-enable-on-type-formatting nil ; don't reformat as I type (cursor/indent jumps)
 		lsp-enable-indentation t
 		lsp-enable-snippet nil)           ; no server-snippet (yasnippet) expansion on completion
