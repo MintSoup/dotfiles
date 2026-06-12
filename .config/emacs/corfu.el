@@ -28,7 +28,7 @@
   (add-hook 'prog-mode-hook #'corfu-mode)
   :config
   (require 'corfu-popupinfo)
-  (setq-default pgtk-wait-for-event-timeout 0)
+  (setq-default pgtk-wait-for-event-timeout 0.005)
   (corfu-popupinfo-mode +1)             ; doc popup beside candidate
   ;; `my-dark' styles `corfu-current' almost like the popup bg, so the selected
   ;; row is invisible — inherit `region' instead. Inherit (not a copied colour)
