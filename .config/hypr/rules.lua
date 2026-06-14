@@ -33,5 +33,6 @@ hl.config({
     misc = {
         enable_swallow = true,
         swallow_regex  = "^(footclient|foot)$",
+		initial_workspace_tracking = 0,
     },
 })

@@ -13,7 +13,9 @@ end
 
 tty | grep tty1
 if [ $status = 0 ]
-    start-hyprland
+	if uwsm check may-start
+		exec uwsm start hyprland-uwsm.desktop
+	end
 end
 
 abbr -a -- p paru
