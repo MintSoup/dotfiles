@@ -19,3 +19,17 @@
 (use-package mcp-server
   :straight (:type git :host github :repo "rhblind/emacs-mcp-server"
 				   :files ("*.el" "tools/*.el" "mcp-wrapper.py" "mcp-wrapper.sh")))
+
+(use-package agent-shell-notifications
+  :straight (agent-shell-notifications
+             :type git
+             :host github
+             :repo "zackattackz/agent-shell-notifications")
+
+  :hook
+  (agent-shell-mode . agent-shell-notifications-mode)
+  (agent-shell-viewport-edit-mode . agent-shell-notifications-viewport-edit-mode)
+  (agent-shell-viewport-view-mode . agent-shell-notifications-viewport-view-mode)
+
+  :config
+  (setq agent-shell-notifications-timeout 5))
