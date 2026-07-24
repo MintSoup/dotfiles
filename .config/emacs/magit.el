@@ -1,6 +1,10 @@
 ;;; -*- lexical-binding: t -*-
 (use-package magit
-  :straight t)
+  :straight t
+  :config
+  (general-define-key
+   :keymaps '(magit-hunk-section-map magit-diff-section-map magit-file-section-map)
+   "RET" #'magit-diff-visit-worktree-file-other-window))
 
 ;; --- Manage dotfiles via a bare repo in magit, like the shell alias
 ;; ---   git --git-dir=$HOME/.dotfiles --work-tree=$HOME

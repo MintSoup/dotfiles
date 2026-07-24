@@ -23,6 +23,7 @@ hl.config({
             size    = 6,
             passes  = 2,
             noise   = 0,
+            popups_ignorealpha = 0.2
         },
 
         shadow = {

@@ -178,7 +178,9 @@
   (setq avy-background t))
 
 (use-package evil-surround
-  :straight t
+  :straight (evil-surround
+			 :type git :host github :repo "emacs-evil/evil-surround"
+			 :fork (:host github :repo "MintSoup/evil-surround"))
   :config
   (global-evil-surround-mode 1))
 
