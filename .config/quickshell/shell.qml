@@ -6,4 +6,5 @@ Scope {
 	Notifications {}
 	MicMutePopup {}
 	AppLauncher {}
+	EmojiPicker {}
 }

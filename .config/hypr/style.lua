@@ -63,3 +63,17 @@ hl.layer_rule({ match = { namespace = "rofi" },       blur = true })
 hl.layer_rule({ match = { namespace = "quickshell" }, blur = true })
 hl.layer_rule({ match = { namespace = "quickshell" }, ignore_alpha = 0.01 })
 hl.layer_rule({ match = { namespace = "quickshell" }, no_anim = true })
+
+-- Emoji picker: separate namespace so its blur cuts off higher up the fade
+-- (matching the perceived content) instead of lingering as an empty blurred
+-- rect. It stays permanently mapped, so no_anim isn't strictly needed but is
+-- kept for parity.
+hl.layer_rule({ match = { namespace = "emoji-picker" }, blur = true })
+hl.layer_rule({ match = { namespace = "emoji-picker" }, no_anim = true })
+hl.layer_rule({ match = { namespace = "emoji-picker" }, ignore_alpha = 0.2 })
+
+-- App launcher: same treatment as the emoji picker -- permanently mapped, so
+-- its blur needs a higher ignore_alpha to fade out cleanly with the dim.
+hl.layer_rule({ match = { namespace = "app-launcher" }, blur = true })
+hl.layer_rule({ match = { namespace = "app-launcher" }, no_anim = true })
+hl.layer_rule({ match = { namespace = "app-launcher" }, ignore_alpha = 0.2 })

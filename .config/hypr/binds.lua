@@ -17,7 +17,7 @@ hl.bind(mainMod .. " + CTRL + Space", hl.dsp.window.float({ action = "toggle" })
 ----------------------------
 
 hl.bind(mainMod .. " + Space",     hl.dsp.global("quickshell:launcher"))
-hl.bind(mainMod .. " + semicolon", hl.dsp.exec_cmd("rofi -show emoji"))
+hl.bind(mainMod .. " + semicolon", hl.dsp.global("quickshell:emoji"))
 hl.bind(mainMod .. " + C",         hl.dsp.exec_cmd("copyq show"))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("pcmanfm-qt"))
 -- NOTE: SUPER+SHIFT+S is bound twice in the original (flameshot gui and grim);
