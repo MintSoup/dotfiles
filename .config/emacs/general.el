@@ -29,6 +29,7 @@
   ";" '(eval-expression :wk "Eval expression")
   "g" '(magit :wk "Magit")
   "a" '(agent-shell :wk "Agent Shell")
+  "K" '(kubed-prefix-map :wk "Kubed")
   "/" '(switch-to-buffer-other-window :wk "Switch to buffer in other window")
   "SPC" '(project-find-file :wk "Find file in project"))
 
