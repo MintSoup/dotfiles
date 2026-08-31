@@ -47,3 +47,15 @@
 
 ;; (use-package consult-lsp
 ;;   :straight t)
+
+(with-eval-after-load 'markdown-mode
+  ;; Emacs 31 registers tree-sitter modes in `treesit-major-mode-remap-alist'
+  ;; and points `auto-mode-alist' at `<lang>-ts-mode-maybe', so markdown-mode's
+  ;; guard rejects every *-ts-mode and code blocks lose native fontification.
+  (define-advice markdown--lang-mode-predicate
+      (:around (orig mode) +treesit-remap-alist)
+    (or (funcall orig mode)
+        (and mode
+             (fboundp mode)
+             (rassq mode (bound-and-true-p treesit-major-mode-remap-alist))
+             t))))

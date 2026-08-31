@@ -58,7 +58,7 @@
 		 (re-search-forward "://" end t))
 	   (save-excursion
 		 (goto-char end)
-		 (- (if-let (pos (re-search-backward "[?#]" beg t))
+		 (- (if-let* ((pos (re-search-backward "[?#]" beg t)))
 				pos
 			  end)
 			(if (evil-visual-state-p)
