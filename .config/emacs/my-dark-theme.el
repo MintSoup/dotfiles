@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 ;;; -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 

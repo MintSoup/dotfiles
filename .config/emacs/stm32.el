@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;;; stm32.el --- Support for the STM32 mircocontrollers programming
 ;;
 ;; Filename: stm32.el

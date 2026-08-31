@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (setq-default tab-width 4)
 (add-hook 'prog-mode-hook 'set-up-indentation)
 (defun set-up-indentation ()
