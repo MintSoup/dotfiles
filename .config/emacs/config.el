@@ -104,3 +104,5 @@
 
 (use-package mixed-pitch
   :straight t)
+
+(setq treesit-enabled-modes '(rust-ts-mode))

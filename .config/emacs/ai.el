@@ -14,7 +14,9 @@
    '(((name . "emacs")
 	  (command . "socat")
 	  (args . ("-" "UNIX-CONNECT:/home/areg/.config/emacs/emacs-mcp-server.sock"))
-	  (env . ())))))
+	  (env . ())))
+
+   agent-shell-chat-mode-enabled nil))
 
 (use-package mcp-server
   :straight (:type git :host github :repo "rhblind/emacs-mcp-server"

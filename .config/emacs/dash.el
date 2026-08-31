@@ -1,12 +1,12 @@
 ;;; -*- lexical-binding: t -*-
 
-;;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
-(defun dashboard-init-hack ()
-  (setq initial-buffer-choice
-		(lambda ()
-		  (get-buffer "*dashboard*")))
-  (remove-hook 'before-make-frame-hook 'dashboard-init-hack))
+;; (defun dashboard-init-hack ()
+;;   (setq initial-buffer-choice
+;;   		(lambda ()
+;;   		  (get-buffer "*dashboard*")))
+;;   (remove-hook 'before-make-frame-hook 'dashboard-init-hack))
 
 
 (use-package dashboard
@@ -45,5 +45,5 @@
 						:height 160))
   (mapc 'set-dashboard-face (frame-list))
   (add-hook 'after-make-frame-functions 'set-dashboard-face)
-  (add-hook 'before-make-frame-hook 'dashboard-init-hack)
+  ;; (add-hook 'before-make-frame-hook 'dashboard-init-hack)
   (dashboard-setup-startup-hook))
