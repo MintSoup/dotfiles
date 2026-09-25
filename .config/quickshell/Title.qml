@@ -4,7 +4,7 @@ import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Widgets
 
-WrapperItem {
+Item {
     id: root
 
 	readonly property HyprlandToplevel activeToplevel: {
@@ -19,6 +19,8 @@ WrapperItem {
 	readonly property var entry: appId !== "" ? DesktopEntries.heuristicLookup(appId) : null
 
     RowLayout {
+        anchors.centerIn: parent
+        width: Math.min(implicitWidth, root.width)
         spacing: 4
         IconImage {
             source: Quickshell.iconPath(root.entry?.icon ?? "", true)
@@ -29,6 +31,8 @@ WrapperItem {
         }
         Noto {
             text: root.title
+            elide: Text.ElideRight
+            Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
         }
     }

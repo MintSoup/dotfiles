@@ -101,11 +101,12 @@ Variants {
 			anchors {
 				left: leftWidgets.right
 				right: rightWidgets.left
-				verticalCenter: parent.verticalCenter
+				top: parent.top
+				bottom: parent.bottom
 			}
 
 			Title {
-				anchors.centerIn: parent
+				anchors.fill: parent
 			}
 		}
 	}
