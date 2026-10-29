@@ -1,16 +1,21 @@
 #include <hyprland/src/plugins/PluginAPI.hpp>
 #include <hyprland/src/event/EventBus.hpp>
 #include <hyprland/src/desktop/state/FocusState.hpp>
-#include <hyprland/src/desktop/view/Window.hpp>
+#include <hyprland/src/desktop/view/window/Window.hpp>
 #include <hyprland/src/output/Monitor.hpp>
 #include <hyprland/src/devices/IPointer.hpp>
-#include <hyprland/src/managers/KeybindManager.hpp>
+#include <hyprland/src/config/shared/actions/ConfigActions.hpp>
 
+#include <cstdint>
+#include <optional>
 #include <string>
+#include <variant>
 #include <sys/types.h>
 #include <unistd.h>
 
 static HANDLE PHANDLE = nullptr;
+
+using WORKSPACEID = int64_t;
 
 // Keep callback handles alive for the duration of the plugin.
 // Losing these will unregister the callbacks.
@@ -31,7 +36,7 @@ static void run_command(const char *cmd) {
 
 static bool ignored_window() {
 	auto window = Desktop::focusState()->window();
-	return window && window->m_class.contains("Minecraft");
+	return window && window->metadata().appID().contains("Minecraft");
 }
 
 static inline WORKSPACEID ws_from_grid(WORKSPACEID row, WORKSPACEID col) {
@@ -46,8 +51,17 @@ static inline WORKSPACEID ws_col(WORKSPACEID ws) {
 	return (ws - 1) % 3;
 }
 
+// Returns the numbered ID of the monitor's active workspace, or nullopt for
+// special workspaces.
+static std::optional<WORKSPACEID> active_ws_id(const PHLMONITOR &pMonitor) {
+	const auto id = pMonitor->m_activeWorkspace->id();
+	if (const auto *num = std::get_if<Workspace::SWorkspaceNumberedID>(&id))
+		return num->value;
+	return std::nullopt;
+}
+
 static inline void switch_workspace(WORKSPACEID ws) {
-	g_pKeybindManager->m_dispatchers["workspace"](std::to_string(ws));
+	(void)Config::Actions::changeWorkspace(std::to_string(ws));
 }
 
 static void on_mouse_button(const IPointer::SButtonEvent &ev,
@@ -79,7 +93,10 @@ static void on_mouse_button(const IPointer::SButtonEvent &ev,
 
 	info.cancelled = true;
 
-	const WORKSPACEID ws = pMonitor->activeWorkspaceID();
+	const auto active = active_ws_id(pMonitor);
+	if (!active)
+		return;
+	const WORKSPACEID ws = *active;
 	const WORKSPACEID row = ws_row(ws);
 	const WORKSPACEID col = ws_col(ws);
 
@@ -102,7 +119,10 @@ static void on_mouse_axis(const IPointer::SAxisEvent &ev,
 	if (!pMonitor || !pMonitor->m_activeWorkspace)
 		return;
 
-	const WORKSPACEID ws = pMonitor->activeWorkspaceID();
+	const auto active = active_ws_id(pMonitor);
+	if (!active)
+		return;
+	const WORKSPACEID ws = *active;
 	const WORKSPACEID row = ws_row(ws);
 	const WORKSPACEID col = ws_col(ws);
 
