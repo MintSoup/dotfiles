@@ -3,4 +3,4 @@
 SETUVAR __fish_initialized:4300
 SETUVAR _fish_abbr_ga_2E_:git\x20add\x20\x2e
 SETUVAR fish_greeting:\x1d
-SETUVAR fish_user_paths:/home/areg/go/bin\x1e/home/areg/\x2ecargo/bin\x1e/opt/xtensa\x2dlx106\x2delf\x2dgcc/bin
+SETUVAR fish_user_paths:/home/areg/\x2elocal/bin\x1e/home/areg/go/bin\x1e/home/areg/\x2ecargo/bin\x1e/opt/xtensa\x2dlx106\x2delf\x2dgcc/bin
